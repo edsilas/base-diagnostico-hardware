@@ -144,11 +144,44 @@ piscando em cores alternadas e melodia no lugar de bipes. Todas as pistas citada
 `FF`, *1 longo + 2 curtos*, *1-1-1-3*, *2 âmbar + 1 branco*, LEDs CPU/DRAM/VGA/BOOT — são valores
 literais das fichas correspondentes.
 
+**Limitações conhecidas reestruturado**
+
+[15-limitacoes.md](../15-limitacoes.md) foi reorganizado para leitura por quem não conhece a
+estrutura interna das planilhas. Os **oito grupos originais foram mantidos**, com os mesmos
+títulos e âncoras; nenhum fato, valor ou link foi perdido.
+
+- Três seções novas: *Para que serve esta página*, *O que exige atenção antes de decidir* — as
+  quatro limitações que podem mudar um diagnóstico — e *Quando consultar outro documento*.
+- Cada grupo passou a declarar **tipo** (informação ausente, conflito entre fontes, divergência
+  não resolvida, anomalia da fonte, cobertura ausente, limitação de uso, limitação da
+  documentação) e **estado** (confirmado, não identificado, conflitante, não verificado,
+  pendente), com legenda própria.
+- Cada grupo segue agora **Situação → Impacto → Como proceder**, e cada limitação individual
+  aponta para a pendência correspondente: 15 âncoras diretas, contra 3 links genéricos antes.
+- Parágrafos densos das seções 5, 6 e 7 viraram tabelas; termos técnicos ganharam explicação na
+  primeira ocorrência (*power drain*, *boot mínimo*, `docProps/core.xml`).
+
+**Corrigido em `15-limitacoes.md`**
+
+| Onde | Antes | Agora |
+| --- | --- | --- |
+| Seção 1 | Nome, autor e licença listados como *"Não identificada"*, sem ressalva | Coluna *Situação atual* distingue o que falta na planilha do que foi confirmado fora dela ([P-01](pendencias.md#p-01--nome-oficial-do-projeto--fechada), [P-02](pendencias.md#p-02--versão-do-conteúdo-técnico)) |
+| Seção 3 | "ambas as versões", para quatro divergências — e o *boot mínimo* tem **três** definições | Redação corrigida, com nota explicitando que a linha condensa três definições ([P-06](pendencias.md#p-06--composição-do-boot-mínimo)) |
+| Seção 8 | "Não houve consulta a fontes externas" | Corrigido: registra as duas conferências bibliográficas de `doc-1.4.0` e mantém, em destaque, que **nenhuma informação técnica veio de documentação de fabricante** |
+
+A seção 1 dizia que o nome do projeto não estava identificado, enquanto P-01 está fechada desde
+`doc-1.1.0` e o README declara autor e licença — a página era o único documento a não registrar
+isso. A seção 8 contradizia [fontes.md](fontes.md),
+[matriz-rastreabilidade.md](matriz-rastreabilidade.md) e as pendências P-11 e P-15, atualizadas
+nesta mesma versão.
+
 **Preservado**
 
 Fichas de código, de cenário e de ferramenta, fluxogramas de diagnóstico, índices cruzados e
 glossário não foram tocados, exceto pelo carimbo de versão no rodapé. Nenhuma linha do catálogo de
 documentos foi perdida no reagrupamento: os mesmos arquivos continuam listados, sob os sete nomes.
+Em `15-limitacoes.md`, os 8 links originais continuam presentes e as âncoras da versão anterior
+continuam resolvendo.
 
 ## doc-1.3.0 — 2026-08-07
 
