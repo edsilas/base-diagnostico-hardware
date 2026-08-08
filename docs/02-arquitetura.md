@@ -108,7 +108,7 @@ documento precisa de conteúdo de outro, ele **referencia** em vez de copiar.
 
 ## Mapa aba de origem → documento
 
-| Arquivo-fonte | Aba | Volume | Documento gerado |
+| Arquivo-fonte | Aba | Volume | Documento derivado |
 | --- | --- | --- | --- |
 | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` | `Tabela Diagnóstico POST` | 54 códigos | [09-codigos-post/](09-codigos-post/00-indice-codigos.md) |
 | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` | `Fluxo de Diagnóstico` | 7 etapas | [06-fluxo-post.md](06-fluxo-post.md) |
@@ -127,9 +127,9 @@ documento precisa de conteúdo de outro, ele **referencia** em vez de copiar.
 
 **Fidelidade ao texto de origem.** Todo campo técnico é transcrição literal da célula
 correspondente. Os documentos das pastas `09-codigos-post/`, `10-cenarios/` e `14-ferramentas/`,
-mais os documentos 06, 07, 08, 11, 12, 13, 18 e 19, foram **gerados programaticamente** a partir
-das planilhas — não foram redigidos manualmente. Isso elimina a possibilidade de paráfrase
-acidental. O gerador está no repositório, em `tools/gerar_documentacao.py`.
+mais os documentos 06, 07, 08, 11, 12, 13, 18 e 19, reproduzem as células **sem reescrita**: nada
+foi resumido, adaptado ou dito com outras palavras. Isso elimina a possibilidade de paráfrase
+acidental.
 
 **Referências cruzadas derivadas.** As ligações entre documentos — código → ficha da camada,
 camada → códigos atribuídos, cenário → nós do fluxo que o alcançam, cenário → dependências — não
@@ -156,10 +156,13 @@ identifica qual dos dois modelos está em uso. Ver [03-taxonomia-camadas.md](03-
 ## Como manter
 
 1. A fonte da verdade continua sendo o arquivo `.xlsx`. Alterações de conteúdo técnico devem ser
-   feitas na planilha, não no Markdown.
-2. Documentos gerados trazem, na primeira linha, um comentário HTML indicando a aba de origem.
-3. Documentos redigidos manualmente (README, 00, 01, 02, 03, 04, 05, 15, 16, 17 e `references/`)
-   podem ser editados diretamente, desde que nenhuma afirmação nova seja introduzida sem fonte.
+   feitas na planilha e só então trazidas para o Markdown.
+2. Documentos derivados trazem, na primeira linha, um comentário HTML indicando a aba de origem —
+   é assim que se reconhece um deles.
+3. Os documentos redigidos (README, 00, 01, 02, 03, 04, 05, 15, 16, 17 e `references/`) não
+   transcrevem células e podem ser editados diretamente, desde que nenhuma afirmação nova entre
+   sem fonte. A separação completa está em
+   [CONTRIBUTING.md](../CONTRIBUTING.md#quais-arquivos-derivam-de-dados-e-quais-não-derivam).
 4. Toda mudança deve ser registrada em [references/changelog.md](references/changelog.md).
 
 ## Próximos passos
@@ -179,4 +182,4 @@ identifica qual dos dois modelos está em uso. Ver [03-taxonomia-camadas.md](03-
 | **Status de confiança** | Confirmado (mapa e volumes) / Inferido (diagrama de eixos) |
 | **Última verificação contra a fonte** | 2026-08-07 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.3.0` |
+| **Versão da documentação** | `doc-1.4.0` |

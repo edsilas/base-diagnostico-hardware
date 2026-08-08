@@ -152,7 +152,8 @@ Exemplos de divergência direta:
 [03-taxonomia-camadas.md](../03-taxonomia-camadas.md), e todo número de camada é reproduzido no
 formato original, que identifica o modelo.
 
-**Para fechar.** Unificar a numeração na fonte (planilhas) e regerar a documentação, **ou**
+**Para fechar.** Unificar a numeração na fonte (planilhas) e propagar a correção para a
+documentação, **ou**
 declarar formalmente que os dois modelos coexistem por escopo distinto.
 
 **Status:** Necessita validação.
@@ -261,8 +262,8 @@ alcançados por pelo menos um nó.
 entrada direta pelo índice.
 
 **Mitigação aplicada em `doc-1.2.0`.** A ficha de FI-01 passou a exibir, nas referências cruzadas,
-o aviso de que nenhum nó do fluxo conduz até ela, com link para esta pendência. O aviso é gerado
-automaticamente: se um nó passar a referenciar FI-01 na planilha, ele desaparece sozinho.
+o aviso de que nenhum nó do fluxo conduz até ela, com link para esta pendência. O aviso deve ser
+removido quando algum nó do fluxo passar a referenciar FI-01.
 
 **Status:** Necessita validação.
 
@@ -302,18 +303,34 @@ acionável offline.
 
 **Situação.**
 
-| Aba | Campo | Vazios |
+| Aba | Campo | Vazios (nas etapas) |
 | --- | --- | --- |
 | `REF_Victoria` | Atalho de Teclado | 6 de 9 |
 | `REF_AIDA64` | Atalho de Teclado | 42 de 45 |
 | `REF_AIDA64` | Alternativa Segura | 4 de 45 |
-| `REF_MemTest86` | Atalho de Teclado | 8 de 10 |
-| `REF_MemTest86` | Alternativa Segura | 6 de 10 |
+| `REF_MemTest86` | Atalho de Teclado | 7 de 10 |
+| `REF_MemTest86` | Alternativa Segura | 5 de 10 |
+
+> [!NOTE]
+> **Correção aplicada em `doc-1.4.0`.** As duas linhas de `REF_MemTest86` registravam *8 de 10* e
+> *6 de 10*. A contagem campo a campo sobre
+> [memtest86.md](../14-ferramentas/memtest86.md) — as dez etapas do procedimento — devolve **7** e
+> **5**: os atalhos faltam nas etapas 1, 4, 5, 6, 7, 8 e 10; a alternativa segura falta nas
+> etapas 2, 4, 5, 6 e 10. As linhas de `REF_Victoria` e `REF_AIDA64` conferem exatamente.
+>
+> A diferença é de **+1 em ambos os campos**, o que é compatível com uma contagem feita sobre as
+> onze linhas de conteúdo da aba — as dez etapas mais o bloco de critérios de decisão descrito em
+> [P-13](#p-13--bloco-de-critérios-do-memtest86-fora-da-estrutura), cujos campos também estão
+> vazios. **Essa explicação não pôde ser confirmada**, porque a planilha não está versionada
+> ([P-17](#p-17--planilhas-de-origem-não-versionadas-no-repositório)). O registro passou a trazer o
+> valor verificável na documentação; a conferência contra a célula continua pendente.
 
 **Impacto.** Baixo. É plausível que muitas etapas simplesmente não tenham atalho, mas a fonte não
 distingue "não existe" de "não preenchido".
 
-**Para fechar.** Preencher com `N/A` onde não houver atalho, para eliminar a ambiguidade.
+**Para fechar.** Preencher com `N/A` onde não houver atalho, para eliminar a ambiguidade, e
+confirmar contra a planilha se o denominador correto de `REF_MemTest86` são as 10 etapas ou as 11
+linhas de conteúdo da aba.
 
 **Status:** Necessita validação. Nos documentos, esses campos exibem
 *"Informação não identificada na fonte analisada"*.
@@ -389,7 +406,7 @@ estavam versionados.
 
 **Impacto.** Médio. Sem as planilhas no repositório:
 
-- não é possível regerar a documentação a partir do histórico;
+- não é possível reconstruir o estado da fonte a partir do histórico;
 - não é possível auditar uma alteração de conteúdo técnico via `git diff`;
 - a rastreabilidade descrita em [matriz-rastreabilidade.md](matriz-rastreabilidade.md) aponta para
   arquivos que só existem fora do repositório.
@@ -434,4 +451,4 @@ Registrado para evitar releitura desnecessária:
 | **Status de confiança** | Confirmado — cada pendência verificada contra a origem |
 | **Última verificação contra a fonte** | 2026-08-07 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.3.0` |
+| **Versão da documentação** | `doc-1.4.0` |

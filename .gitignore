@@ -1,9 +1,3 @@
-# Python
-__pycache__/
-*.py[cod]
-.venv/
-venv/
-
 # Arquivos temporários do Excel (evita subir lock de planilha aberta)
 ~$*.xlsx
 ~$*.xls

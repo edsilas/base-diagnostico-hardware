@@ -11,6 +11,7 @@
 
 ## Neste documento
 
+- [doc-1.4.0 — 2026-08-08](#doc-140--2026-08-08)
 - [doc-1.3.0 — 2026-08-07](#doc-130--2026-08-07)
 - [doc-1.2.0 — 2026-08-07](#doc-120--2026-08-07)
 - [doc-1.1.0 — 2026-08-07](#doc-110--2026-08-07)
@@ -42,6 +43,63 @@ Versão do projeto documentado — **não identificada na fonte analisada** (ver
 > **Atenção ao escopo do versionamento.** Os números abaixo versionam a **documentação**. O
 > material de origem não declara versão, e nenhuma foi atribuída a ele. Ver
 > [P-02 em pendencias.md](pendencias.md#p-02--versão-do-conteúdo-técnico).
+
+## doc-1.4.0 — 2026-08-08
+
+Revisão de integridade da documentação: três divergências entre documentos foram corrigidas, uma
+contradição foi resolvida e o material passou a ser autossuficiente para publicação. **Sem
+regressão:** nenhum documento foi removido ou renomeado, nenhuma ficha perdeu campo, e todas as
+contagens técnicas — 54 códigos, 13 cenários, 7 etapas de POST, 17 nós, 5 ambiguidades,
+6 correlações, 10 componentes de validação, 43 termos, 64 etapas de ferramentas — permanecem
+idênticas a `doc-1.3.0`.
+
+**Corrigido**
+
+| Onde | Antes | Agora |
+| --- | --- | --- |
+| [P-12](pendencias.md#p-12--campos-vazios-nos-guias-de-ferramentas) e [15-limitacoes.md](../15-limitacoes.md) | `REF_MemTest86`, Atalho de Teclado: 8 de 10 | **7 de 10** |
+| [P-12](pendencias.md#p-12--campos-vazios-nos-guias-de-ferramentas) e [15-limitacoes.md](../15-limitacoes.md) | `REF_MemTest86`, Alternativa Segura: 6 de 10 | **5 de 10** |
+| [matriz-rastreabilidade.md](matriz-rastreabilidade.md) | Camadas do modelo B observadas: 9 números (1–7, 9, 10) | **10 números (1–10)** |
+
+A contagem de `REF_MemTest86` foi refeita campo a campo sobre as dez etapas de
+[memtest86.md](../14-ferramentas/memtest86.md): faltam atalhos nas etapas 1, 4, 5, 6, 7, 8 e 10, e
+alternativa segura nas etapas 2, 4, 5, 6 e 10. `REF_Victoria` (6 de 9) e `REF_AIDA64` (42 de 45 e
+4 de 45) conferiam e não foram alteradas. O desvio de +1 em ambos os campos é compatível com uma
+contagem sobre as onze linhas de conteúdo da aba — as dez etapas mais o bloco de critérios de
+[P-13](pendencias.md#p-13--bloco-de-critérios-do-memtest86-fora-da-estrutura), cujos campos também
+estão vazios —, mas **isso não pôde ser confirmado** sem a planilha, e ficou registrado como
+hipótese, não como fato.
+
+A contagem do modelo B contradizia [03-taxonomia-camadas.md](../03-taxonomia-camadas.md),
+[P-04](pendencias.md#p-04--modelo-de-camadas-b-sem-tabela-de-definição) e
+[15-limitacoes.md](../15-limitacoes.md), que documentam dez camadas — a 8 (*Periféricos*) aparece
+em `CORRELACOES`. A matriz era o único documento a omiti-la.
+
+**Contradição resolvida**
+
+[02-arquitetura.md](../02-arquitetura.md), em *Como manter*, e
+[CONTRIBUTING.md](../../CONTRIBUTING.md) davam orientações opostas sobre a edição dos documentos
+redigidos. As duas páginas foram alinhadas: documentos derivados têm o valor técnico corrigido na
+planilha; documentos redigidos podem ser editados diretamente, sem afirmação nova sem fonte.
+
+**Reorganizado**
+
+- `README.md`: seção **Como esta base é mantida**, que dá cabeçalho a um parágrafo que estava
+  órfão entre *Limitações relevantes* e *Licença*, e resume as três regras que sustentam a
+  confiabilidade do material. A árvore do repositório passou a refletir exatamente o que é
+  publicado.
+- `CONTRIBUTING.md`: reorganizado em cinco blocos — separação entre documentos derivados e
+  redigidos, padrão estrutural, regras de conteúdo, fluxo de alteração e pendências abertas. Ganhou
+  sumário próprio, links diretos para cada documento citado e uma lista de conferência antes de
+  publicar. As regras de conteúdo, o significado dos callouts, a ordem das fases das fichas e as
+  convenções de fluxograma foram preservadas sem alteração.
+- A documentação passou a ser **autossuficiente**: não depende de nenhum recurso externo ao
+  repositório para ser lida, conferida ou publicada.
+
+**Preservado**
+
+Fichas de código, de cenário e de ferramenta, fluxogramas, índices cruzados, glossário, matriz de
+rastreabilidade e inventário de fontes não foram tocados, exceto pelo carimbo de versão no rodapé.
 
 ## doc-1.3.0 — 2026-08-07
 
@@ -123,15 +181,14 @@ um único dono — o README, que é o ponto de entrada — e o documento 05 reme
 em ordem de leitura, regras de uso e consulta por agentes de IA. Nenhuma informação foi perdida: a
 versão do README é mais completa que a anterior.
 
-**Validador reforçado**
+**Sumários preenchidos**
 
-Passou a verificar, além de links e âncoras: trilha de navegação, seção *Próximos passos*, sumário
-preenchido, blocos Mermaid balanceados e títulos de nível 2 duplicados no mesmo arquivo. Também
-foi acrescentada a etapa `gen9_sumarios.py` ao gerador, que preenche os sumários.
+A seção *Neste documento* passou a listar, em todos os documentos, as seções de conteúdo do
+arquivo, com link para cada uma.
 
 ## doc-1.2.0 — 2026-08-07
 
-Expansão de acesso ao conteúdo e empacotamento do gerador. **Sem regressão:** nenhuma ficha
+Expansão de acesso ao conteúdo. **Sem regressão:** nenhuma ficha
 técnica perdeu conteúdo; as contagens de códigos, cenários, camadas, ambiguidades, correlações e
 etapas permanecem idênticas.
 
@@ -147,9 +204,7 @@ etapas permanecem idênticas.
   dependências e cenários dependentes.
 - **Diagramas Mermaid** dos dois fluxos, em `06-fluxo-post.md` e `07-fluxo-sistemico.md`,
   reproduzindo a topologia das colunas de encadeamento.
-- `tools/gerar_documentacao.py` e `tools/gerador/` — o gerador que reconstrói a documentação a
-  partir das planilhas, até então externo ao repositório.
-- `CONTRIBUTING.md` — regras de conteúdo, fluxo de alteração e mapa arquivo → script.
+- `CONTRIBUTING.md` — regras de conteúdo, padrão dos documentos e fluxo de alteração.
 - Rodapé de cada documento passou a registrar autoria e versão da documentação.
 
 **Corrigido**
@@ -192,9 +247,6 @@ idênticos a `doc-1.0.0`.
 
 **Adicionado**
 
-- `tools/validar_documentacao.py` — validador de links internos, âncoras, cabeçalhos de contexto
-  e rodapés de fonte.
-- `.github/workflows/validar-docs.yml` — executa o validador a cada push que toque `docs/`.
 - `.gitignore`.
 - Pendência **P-17**: planilhas de origem não versionadas no repositório.
 
@@ -265,7 +317,7 @@ Documentação de autoria de Edsilas, derivada de planilhas de sua autoria.
 ## Como registrar mudanças futuras
 
 1. Alterar o conteúdo técnico **na planilha**, não no Markdown.
-2. Regerar os documentos derivados.
+2. Trazer a correção para os documentos derivados, preservando a transcrição literal da célula.
 3. Acrescentar aqui uma entrada com: versão, data, o que mudou, qual aba mudou e se alguma
    pendência foi fechada.
 4. Se uma pendência de [pendencias.md](pendencias.md) for resolvida, marcá-la como fechada em vez
@@ -287,4 +339,4 @@ Documentação de autoria de Edsilas, derivada de planilhas de sua autoria.
 | **Status de confiança** | Confirmado |
 | **Última verificação contra a fonte** | 2026-08-07 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.3.0` |
+| **Versão da documentação** | `doc-1.4.0` |

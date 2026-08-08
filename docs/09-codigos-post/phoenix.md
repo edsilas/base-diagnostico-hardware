@@ -471,4 +471,4 @@ Phoenix BIOS Technical Reference Manual
 | **Status de confiança** | Confirmado — transcrito das células de origem |
 | **Última verificação contra a fonte** | 2026-08-07 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.3.0` |
+| **Versão da documentação** | `doc-1.4.0` |

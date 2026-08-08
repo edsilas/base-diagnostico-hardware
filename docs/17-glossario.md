@@ -514,4 +514,4 @@ externo:
 | **Status de confiança** | Confirmado para os termos definidos pela fonte; lacunas sinalizadas por termo |
 | **Última verificação contra a fonte** | 2026-08-07 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.3.0` |
+| **Versão da documentação** | `doc-1.4.0` |

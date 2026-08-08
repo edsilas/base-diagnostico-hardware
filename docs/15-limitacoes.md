@@ -90,12 +90,19 @@ Registro completo em [references/pendencias.md](references/pendencias.md).
 | `REF_Victoria` | Atalho de Teclado | 6 de 9 etapas |
 | `REF_AIDA64` | Atalho de Teclado | 42 de 45 etapas |
 | `REF_AIDA64` | Alternativa Segura | 4 de 45 etapas |
-| `REF_MemTest86` | Atalho de Teclado | 8 de 10 etapas |
-| `REF_MemTest86` | Alternativa Segura | 6 de 10 etapas |
+| `REF_MemTest86` | Atalho de Teclado | 7 de 10 etapas |
+| `REF_MemTest86` | Alternativa Segura | 5 de 10 etapas |
 
 As demais colunas das abas `Tabela Diagnóstico POST` e `TABELA_PRINCIPAL` estão **100 %
 preenchidas**. Onde há vazio, o documento correspondente registra
 *"Informação não identificada na fonte analisada"* em vez de omitir a seção.
+
+> [!NOTE]
+> As duas linhas de `REF_MemTest86` registravam *8 de 10* e *6 de 10* até `doc-1.3.0`. A contagem
+> campo a campo sobre as dez etapas de [memtest86.md](14-ferramentas/memtest86.md) devolve **7** e
+> **5**. O denominador correto — 10 etapas ou as 11 linhas de conteúdo da aba — depende da planilha
+> e continua por confirmar:
+> [P-12](references/pendencias.md#p-12--campos-vazios-nos-guias-de-ferramentas).
 
 ## 5. Anomalias estruturais nas fontes
 
@@ -160,4 +167,4 @@ cada registro.
 | **Status de confiança** | Confirmado — cada item verificado contra a origem |
 | **Última verificação contra a fonte** | 2026-08-07 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.3.0` |
+| **Versão da documentação** | `doc-1.4.0` |

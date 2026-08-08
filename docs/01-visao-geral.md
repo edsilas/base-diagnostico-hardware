@@ -51,7 +51,7 @@ Estrutura interna da documentação (ver documento 02); procedimentos técnicos;
 | Descrição oficial | Base estruturada de conhecimento para diagnóstico de hardware, com fluxos, sintomas, códigos de erro, causas e procedimentos de análise e solução. |
 | Licença | MIT |
 | Proprietário do repositório | `edsilas` |
-| Versão desta documentação | `doc-1.3.0` |
+| Versão desta documentação | `doc-1.4.0` |
 
 **Nível de confiança: Confirmado.** Todos os valores acima vêm do repositório informado pelo
 proprietário e consultado em 2026-08-07. Ver [references/fontes.md](references/fontes.md).
@@ -175,4 +175,4 @@ Ver [Limitações](15-limitacoes.md) para a lista completa e verificada.
 | **Status de confiança** | Confirmado — transcrito das células de origem |
 | **Última verificação contra a fonte** | 2026-08-07 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.3.0` |
+| **Versão da documentação** | `doc-1.4.0` |

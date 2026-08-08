@@ -114,4 +114,4 @@ Para rastrear qualquer afirmação até a célula de origem, use
 | **Status de confiança** | Inferido (roteiro de navegação) sobre conteúdo Confirmado |
 | **Última verificação contra a fonte** | 2026-08-07 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.3.0` |
+| **Versão da documentação** | `doc-1.4.0` |

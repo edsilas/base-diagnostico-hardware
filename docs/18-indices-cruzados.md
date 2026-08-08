@@ -322,4 +322,4 @@ Ordem declarada na coluna `Ordem de Execução`, com os pré-requisitos da colun
 | **Status de confiança** | Confirmado (agrupamentos) / Inferido (coluna *Onde observar*) |
 | **Última verificação contra a fonte** | 2026-08-07 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.3.0` |
+| **Versão da documentação** | `doc-1.4.0` |

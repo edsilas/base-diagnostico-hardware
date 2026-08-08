@@ -155,7 +155,7 @@ que contêm remete a um documento gerado.
 | Cenários (IDs) | 13 |
 | Cenários (agrupamentos) | 9 |
 | Camadas modelo A | 7 |
-| Camadas modelo B observadas | 9 números distintos (1–7, 9, 10) |
+| Camadas modelo B observadas | 10 números distintos (1–10) |
 | Etapas do fluxo de POST | 7 |
 | Nós do fluxo sistêmico | 17 |
 | Casos de ambiguidade | 5 |
@@ -182,4 +182,4 @@ que contêm remete a um documento gerado.
 | **Status de confiança** | Confirmado — transcrito das células de origem |
 | **Última verificação contra a fonte** | 2026-08-07 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.3.0` |
+| **Versão da documentação** | `doc-1.4.0` |

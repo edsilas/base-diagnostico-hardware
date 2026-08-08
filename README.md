@@ -2,7 +2,7 @@
 
 > Base estruturada de conhecimento para diagnóstico de hardware, com fluxos, sintomas, códigos de erro, causas e procedimentos de análise e solução.
 
-**Autor:** Edsilas · **Repositório:** [`edsilas/base-diagnostico-hardware`](https://github.com/edsilas/base-diagnostico-hardware) · **Licença:** MIT · **Documentação:** `doc-1.3.0`
+**Autor:** Edsilas · **Repositório:** [`edsilas/base-diagnostico-hardware`](https://github.com/edsilas/base-diagnostico-hardware) · **Licença:** MIT · **Documentação:** `doc-1.4.0`
 
 Referência técnica para diagnóstico de falhas de hardware em computadores, do sinal de erro emitido
 no POST até a validação final que fecha o atendimento. Esta página é o **ponto de entrada**: a
@@ -155,7 +155,7 @@ Da causa identificada até a correção aplicada.
 | [Matriz de rastreabilidade](docs/references/matriz-rastreabilidade.md) | Informação → coluna de origem → documento → nível de confiança. |
 | [Pendências](docs/references/pendencias.md) | O que precisa de decisão humana, com severidade e o que falta para fechar. |
 | [Histórico](docs/references/changelog.md) | O que mudou em cada versão da documentação. |
-| [Como contribuir](CONTRIBUTING.md) | Regras de conteúdo, fluxo de alteração e mapa arquivo → script. |
+| [Como contribuir](CONTRIBUTING.md) | Regras de conteúdo, padrão dos documentos e fluxo de alteração. |
 
 ---
 
@@ -206,10 +206,7 @@ docs/
     ├── pendencias.md               O que precisa de validação humana
     └── changelog.md                Histórico desta documentação
 
-CONTRIBUTING.md                     Como alterar e regerar a documentação
-tools/gerar_documentacao.py         Regera docs/ a partir das planilhas
-tools/validar_documentacao.py       Valida links, âncoras e estrutura
-.github/workflows/validar-docs.yml  Executa o validador a cada push
+CONTRIBUTING.md                     Regras de conteúdo e fluxo de alteração
 ```
 
 ## Padrão dos documentos
@@ -230,18 +227,6 @@ Os avisos seguem convenção fixa: **NOTE** para procedência e nível de confia
 atalhos de navegação, **IMPORTANT** para pré-requisito que muda o resultado, **WARNING** para risco
 de erro de diagnóstico e **CAUTION** para risco elétrico, perda de dados ou dano a componente.
 
-## Origem dos dados
-
-Toda a base foi derivada de dois arquivos:
-
-| Arquivo | Abas | Conteúdo |
-| --- | --- | --- |
-| `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` | 4 | Códigos de POST, fluxo de POST, camadas, ambiguidades |
-| `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` | 8 | Cenários, fluxo sistêmico, correlações, validação, guias de ferramentas |
-
-Nenhuma informação foi acrescentada, deduzida ou completada por fonte externa. Onde a origem é
-omissa, a documentação registra a lacuna explicitamente. Detalhes em
-[fontes](docs/references/fontes.md).
 
 ## Limitações relevantes
 
@@ -254,23 +239,21 @@ omissa, a documentação registra a lacuna explicitamente. Detalhes em
 
 Lista completa: [Limitações](docs/15-limitacoes.md).
 
-## Manutenção
+## Como esta base é mantida
 
-A fonte da verdade é a planilha, não o Markdown. Conteúdo técnico se altera nos arquivos `.xlsx`;
-a documentação é então regerada:
+Todo campo técnico é transcrição literal da célula correspondente nas planilhas de origem. Isso
+elimina paráfrase acidental: o que está aqui é o que a fonte diz, com a mesma grafia e os mesmos
+valores.
 
-```bash
-pip install openpyxl
-python tools/gerar_documentacao.py --fontes ./fontes --saida .
-python tools/validar_documentacao.py
-```
+Três regras sustentam a confiabilidade do material:
 
-O gerador reconstrói os documentos derivados diretamente das células, o que elimina paráfrase
-acidental. O validador confere links internos, âncoras, cabeçalhos de contexto, trilha de
-navegação, próximos passos e rodapés de fonte, e sai com código diferente de zero se encontrar
-link quebrado.
+- **Lacuna se declara.** Campo sem informação na origem vira
+  *"Informação não identificada na fonte analisada"*, nunca uma dedução plausível.
+- **Conflito se registra, não se resolve por conta própria.** Quando as duas fontes divergem, as
+  duas versões ficam documentadas e o caso entra em [pendências](docs/references/pendencias.md).
+- **Inferência se marca.** Conclusão derivada leva o rótulo **Inferido** no ponto de uso.
 
-Procedimento completo em [CONTRIBUTING.md](CONTRIBUTING.md).
+Regras completas e fluxo de alteração em [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Licença
 
