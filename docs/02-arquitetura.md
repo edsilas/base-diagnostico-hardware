@@ -15,6 +15,7 @@
 - [Princípio de responsabilidade única](#princípio-de-responsabilidade-única)
 - [Mapa aba de origem → documento](#mapa-aba-de-origem--documento)
 - [Convenções adotadas](#convenções-adotadas)
+- [Versionamento do conteúdo](#versionamento-do-conteúdo)
 - [Como manter](#como-manter)
 - [Próximos passos](#próximos-passos)
 
@@ -94,17 +95,17 @@ documento precisa de conteúdo de outro, ele **referencia** em vez de copiar.
 | `05-utilizacao.md` | Por onde entrar conforme a situação |
 | `06-fluxo-post.md` | Sequência de decisão antes do boot |
 | `07-fluxo-sistemico.md` | Sequência de decisão de ponta a ponta |
-| `08-diagnostico-por-camada.md` | O que testar em cada subsistema (modelo A) |
+| `08-diagnostico-por-camada.md` | O que testar em cada subsistema (modelo POST) |
 | `09-codigos-post/` | Ficha de cada código de erro |
 | `10-cenarios/` | Ficha de cada cenário de falha |
 | `11-ambiguidades.md` | Códigos com mais de um significado |
 | `12-correlacoes.md` | Falha em uma camada que aparece como sintoma em outra |
 | `13-validacao-final.md` | Critérios de aprovação e reprovação pós-reparo |
 | `14-ferramentas/` | Operação passo a passo de Victoria, AIDA64 e MemTest86 |
-| `15-limitacoes.md` | O que a base não cobre e onde ela é frágil |
+| `15-seguranca-e-boas-praticas.md` | Precauções de bancada e procedimentos transversais canônicos |
 | `16-faq.md` | Perguntas derivadas do conteúdo documentado |
 | `17-glossario.md` | Termos técnicos usados no material |
-| `references/` | Origem dos dados, rastreabilidade, pendências e histórico |
+| `references/` | Origem dos dados, rastreabilidade e histórico |
 
 ## Mapa aba de origem → documento
 
@@ -148,10 +149,39 @@ ordem das linhas, para permitir link estável. Está sempre acompanhado do códi
 **Camadas.** O número de camada é sempre reproduzido no formato original, porque o formato
 identifica qual dos dois modelos está em uso. Ver [03-taxonomia-camadas.md](03-taxonomia-camadas.md).
 
+**Divergências entre as fontes.** Quando as duas planilhas apresentavam valores diferentes para o
+mesmo procedimento, a decisão foi tomada contra a documentação oficial do fabricante ou a norma
+aplicável, e o valor adotado passou a valer em toda a base, com o critério explicado no ponto de
+uso. As consultas estão registradas em
+[references/fontes.md](references/fontes.md#verificações-independentes-realizadas).
+
 **Lacunas.** Campo vazio na origem gera, no documento, a marcação explícita
 *"Informação não identificada na fonte analisada"*. Nenhuma lacuna foi preenchida por dedução.
 
 **Links.** Todos os links entre documentos são relativos.
+
+## Versionamento do conteúdo
+
+As planilhas de origem não trazem campo de versão, e o Excel não gravou `docProps/core.xml` em
+nenhuma das duas. A base resolve isso deslocando o versionamento para o artefato publicado:
+
+| Elemento | Como é versionado |
+| --- | --- |
+| **Conjunto publicado** | Um único número, `doc-X.Y.Z`, no rodapé de todos os documentos. A partir de `doc-2.0.0` ele cobre estrutura **e** conteúdo técnico |
+| **Estado das planilhas** | Fixado pelo **hash SHA-256** de cada arquivo, registrado em [references/fontes.md](references/fontes.md#nível-1--fontes-primárias). Hash diferente, fonte diferente |
+| **Data de conferência** | Campo *Última verificação contra a fonte*, no rodapé de cada documento |
+| **Histórico** | [references/changelog.md](references/changelog.md), com o que mudou e contra qual documento oficial cada decisão foi tomada |
+
+Escala:
+
+- **maior** (`2.0.0`) — mudança estrutural: arquivo renomeado, removido ou reorganizado;
+- **menor** (`2.1.0`) — conteúdo novo ou documento acrescentado;
+- **correção** (`2.0.1`) — link, formatação ou erro de transcrição.
+
+> [!IMPORTANT]
+> Ao trocar a versão, atualize o rodapé de **todos** os documentos, a tabela de identidade em
+> [01-visao-geral.md](01-visao-geral.md#identidade-oficial) e o cabeçalho do
+> [README](../README.md).
 
 ## Como manter
 
@@ -164,6 +194,8 @@ identifica qual dos dois modelos está em uso. Ver [03-taxonomia-camadas.md](03-
    sem fonte. A separação completa está em
    [CONTRIBUTING.md](../CONTRIBUTING.md#quais-arquivos-derivam-de-dados-e-quais-não-derivam).
 4. Toda mudança deve ser registrada em [references/changelog.md](references/changelog.md).
+5. Divergência nova entre fontes se resolve contra documento oficial e se incorpora ao ponto de
+   uso — a base não mantém lista paralela de itens em aberto.
 
 ## Próximos passos
 
@@ -172,6 +204,7 @@ identifica qual dos dois modelos está em uso. Ver [03-taxonomia-camadas.md](03-
 | vai alterar conteúdo técnico | [Como contribuir](../CONTRIBUTING.md) |
 | quer rastrear uma informação até a célula | [Matriz de rastreabilidade](references/matriz-rastreabilidade.md) |
 | quer ver o histórico de mudanças | [Changelog](references/changelog.md) |
+| quer conferir uma verificação externa | [Fontes](references/fontes.md#verificações-independentes-realizadas) |
 
 
 ---
@@ -180,6 +213,6 @@ identifica qual dos dois modelos está em uso. Ver [03-taxonomia-camadas.md](03-
 | --- | --- |
 | **Fonte primária deste documento** | Ambos os arquivos-fonte |
 | **Status de confiança** | Confirmado (mapa e volumes) / Inferido (diagrama de eixos) |
-| **Última verificação contra a fonte** | 2026-08-07 |
+| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.4.0` |
+| **Versão da documentação** | `doc-2.0.0` |

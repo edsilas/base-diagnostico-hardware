@@ -17,7 +17,7 @@
 - [Propósito](#propósito)
 - [Conteúdo consolidado](#conteúdo-consolidado)
 - [Público-alvo](#público-alvo)
-- [O que esta base não faz](#o-que-esta-base-não-faz)
+- [Fronteiras de cobertura](#fronteiras-de-cobertura)
 - [Próximos passos](#próximos-passos)
 
 ## Contexto
@@ -30,13 +30,14 @@ Identidade do projeto, propósito, público, conteúdo consolidado e origem dos 
 
 ## Fora do escopo
 
-Estrutura interna da documentação (ver documento 02); procedimentos técnicos; limitações detalhadas (ver documento 15).
+Estrutura interna da documentação (ver [documento 02](02-arquitetura.md)); procedimentos técnicos;
+precauções de bancada (ver [documento 15](15-seguranca-e-boas-praticas.md)).
 
 ## Relação com outros documentos
 
 - [Arquitetura da documentação](02-arquitetura.md)
 - [Como utilizar](05-utilizacao.md)
-- [Limitações](15-limitacoes.md)
+- [Segurança e boas práticas](15-seguranca-e-boas-praticas.md)
 - [Fontes](references/fontes.md)
 
 ---
@@ -51,7 +52,7 @@ Estrutura interna da documentação (ver documento 02); procedimentos técnicos;
 | Descrição oficial | Base estruturada de conhecimento para diagnóstico de hardware, com fluxos, sintomas, códigos de erro, causas e procedimentos de análise e solução. |
 | Licença | MIT |
 | Proprietário do repositório | `edsilas` |
-| Versão desta documentação | `doc-1.4.0` |
+| Versão | `doc-2.0.0` — versiona estrutura e conteúdo técnico ([convenção](02-arquitetura.md#versionamento-do-conteúdo)) |
 
 **Nível de confiança: Confirmado.** Todos os valores acima vêm do repositório informado pelo
 proprietário e consultado em 2026-08-07. Ver [references/fontes.md](references/fontes.md).
@@ -76,13 +77,13 @@ convertida a partir de duas planilhas de referência. Reúne, em um único corpo
 | Nome do projeto | Não declarado | **Confirmado** — ver identidade oficial acima |
 | Autor / responsável | Não declarado | **Confirmado** — Edsilas |
 | Licença | Não declarada | **Confirmado** — MIT |
-| Versão do conteúdo técnico | Não declarada | **Ainda não declarada** — pendência P-02 |
+| Versão do conteúdo técnico | Não declarada | **Confirmado** — a documentação publicada é a forma versionada do conteúdo: `doc-2.0.0` |
 | Idioma | Português (Brasil), com terminologia técnica em inglês preservada | Confirmado |
 
 > Os arquivos `.xlsx` não contêm `docProps/core.xml`, o registro interno onde o Excel grava autor,
-> título e datas. A identificação do projeto foi obtida do repositório, não das planilhas.
-> A **versão do conteúdo técnico** continua sem declaração — ver
-> [P-02 em references/pendencias.md](references/pendencias.md#p-02--versão-do-conteúdo-técnico).
+> título e datas. A identificação do projeto foi obtida do repositório, não das planilhas. O estado
+> das planilhas usado nesta versão está fixado pelos hashes SHA-256 registrados em
+> [fontes](references/fontes.md#nível-1--fontes-primárias).
 
 ## Propósito
 
@@ -109,6 +110,7 @@ conector ATX e interpretar S.M.A.R.T. Não é material de suporte ao usuário fi
 | Correlações em cascata entre camadas | 6 |
 | Componentes com critério de validação final | 10 |
 | Etapas operacionais de ferramentas | 64 |
+| Termos no glossário | 47 |
 
 ### Distribuição dos códigos por família de BIOS
 
@@ -146,16 +148,36 @@ conector ATX e interpretar S.M.A.R.T. Não é material de suporte ao usuário fi
 - Equipes de suporte de nível 2 e 3 que precisam decidir entre reparo, troca de componente e RMA.
 - Sistemas de IA que precisem consultar procedimentos de diagnóstico com rastreabilidade de origem.
 
-## O que esta base não faz
+## Fronteiras de cobertura
 
-- Não substitui o manual do fabricante da placa-mãe ou do equipamento.
-- Não cobre reparo em nível de componente (BGA, retrabalho, rebobinamento) — a fonte apenas o
-  cita como escalação possível, sem procedimento.
-- Não emite recomendação comercial de peças ou fornecedores.
-- Não versiona o próprio conteúdo técnico: não há como saber, pela planilha, se um procedimento
-  foi revisado.
+Saber onde a base **termina** é parte de usá-la bem: fora destas fronteiras, o procedimento correto
+está na documentação do fabricante, não aqui.
 
-Ver [Limitações](15-limitacoes.md) para a lista completa e verificada.
+### O que fica fora do escopo por decisão do projeto
+
+| Não coberto | Por quê e o que fazer |
+| --- | --- |
+| Reparo em nível de componente — BGA, retrabalho, troca de capacitor ou de VRM | A base trata isso como **escalação final**, não como procedimento. Quando o diagnóstico chega até aí, o encaminhamento é bancada especializada |
+| Recomendação comercial de peças, fornecedores ou preços | A base identifica o componente a substituir; a escolha do modelo e do fornecedor é decisão de quem executa |
+| Substituição do manual do fabricante | Pinagem de front panel, seção de Q-Code da placa, QVL de memória e lista de CPUs suportadas vêm do manual do equipamento. A base indica **quando** consultá-lo |
+| Custo, tempo médio de reparo e disponibilidade de peças | Fora do escopo documental |
+
+### Plataformas cobertas
+
+| Plataforma | Situação |
+| --- | --- |
+| Desktops com BIOS/UEFI de PC | **Cobertura principal.** Os 54 códigos e os 13 cenários assumem esta plataforma |
+| Notebooks | **Cobertura parcial.** Aparecem em registros específicos — LCD/eDP em Dell, cabo flat em Acer, compartimento SO-DIMM —, não como trilha própria |
+| Mac com processador Intel | **Coberto** pelo material Apple (EFI), incluindo os tons de inicialização |
+| Apple Silicon, plataformas ARM | **Não coberto.** O material Apple documentado é o de processador Intel |
+| Servidores com BMC/IPMI e memória ECC | **Não coberto.** O canal de diagnóstico desses equipamentos é o controlador de gerenciamento, que a base não trata |
+
+> [!IMPORTANT]
+> Fora das plataformas cobertas, a base **não sinaliza sozinha** que você saiu do escopo: um técnico
+> diante de um servidor com ECC vai encontrar aqui fichas que parecem aplicáveis e não são. Confira
+> a plataforma antes de aplicar um procedimento.
+
+
 
 ## Próximos passos
 
@@ -163,7 +185,7 @@ Ver [Limitações](15-limitacoes.md) para a lista completa e verificada.
 | --- | --- |
 | vai usar a base num atendimento | [Como utilizar](05-utilizacao.md) |
 | precisa entender os números de camada | [Taxonomia de camadas](03-taxonomia-camadas.md) |
-| quer saber onde a base é frágil | [Limitações](15-limitacoes.md) |
+| vai encostar no equipamento | [Segurança e boas práticas](15-seguranca-e-boas-praticas.md) |
 | vai manter ou alterar a documentação | [Arquitetura da documentação](02-arquitetura.md) |
 
 
@@ -173,6 +195,6 @@ Ver [Limitações](15-limitacoes.md) para a lista completa e verificada.
 | --- | --- |
 | **Fonte primária deste documento** | Ambos os arquivos-fonte |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-07 |
+| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.4.0` |
+| **Versão da documentação** | `doc-2.0.0` |

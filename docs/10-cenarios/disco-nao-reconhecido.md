@@ -167,6 +167,6 @@ SATA-IO Serial ATA Revision 3.5; NVM Express Specification Rev 2.0; Manual OEM d
 | --- | --- |
 | **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `TABELA_PRINCIPAL` e `INDICE_CENARIOS` |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-07 |
+| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.4.0` |
+| **Versão da documentação** | `doc-2.0.0` |

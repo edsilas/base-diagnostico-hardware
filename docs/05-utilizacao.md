@@ -36,13 +36,18 @@ Conteúdo técnico dos procedimentos; organização interna da documentação (v
 - [Fluxo de diagnóstico POST](06-fluxo-post.md)
 - [Fluxo de diagnóstico sistêmico](07-fluxo-sistemico.md)
 - [Índice de cenários](10-cenarios/00-indice-cenarios.md)
+- [Segurança e boas práticas](15-seguranca-e-boas-praticas.md)
 
 ---
 
 ## Antes de qualquer coisa
 
-Leia [Taxonomia de camadas](03-taxonomia-camadas.md). Os dois arquivos-fonte numeram as camadas
-de forma diferente, e usar o número errado leva a testar o subsistema errado.
+Leia [Taxonomia de camadas](03-taxonomia-camadas.md). A base usa dois modelos de camadas, um por
+escopo, e usar o número no modelo errado leva a testar o subsistema errado.
+
+Se você vai abrir o equipamento, leia também
+[Segurança e boas práticas](15-seguranca-e-boas-praticas.md): descarga de energia residual e
+proteção contra ESD são pré-requisito de qualquer manipulação.
 
 ## Onde entrar conforme o sintoma
 
@@ -56,16 +61,17 @@ ao aplicar um procedimento.
 
 ```mermaid
 flowchart TD
-    A["01 Visão geral<br/>o que é este material"] --> B["03 Taxonomia de camadas<br/>o conflito de numeração"]
+    A["01 Visão geral<br/>o que é este material"] --> B["03 Taxonomia de camadas<br/>os dois modelos"]
     B --> C["04 Requisitos<br/>o que precisa estar na bancada"]
-    C --> D{"O equipamento<br/>carrega o sistema?"}
+    C --> S["15 Segurança<br/>o que fazer antes de abrir"]
+    S --> D{"O equipamento<br/>carrega o sistema?"}
     D -->|"Não"| E["06 Fluxo de POST<br/>a decisão antes do boot"]
     D -->|"Sim"| F["07 Fluxo sistêmico<br/>a decisão de ponta a ponta"]
     E --> G["08 Camadas<br/>o que testar em cada subsistema"]
     F --> G
     G --> H["09 e 10<br/>as fichas, sob demanda"]
     H --> I["13 Validação final<br/>como fechar"]
-    I --> J["15 Limitações<br/>onde não confiar"]
+    I --> J["Laudo emitido"]
 ```
 
 > [!IMPORTANT]
@@ -75,16 +81,19 @@ flowchart TD
 
 ## Regras de uso do material
 
-1. **Não pule a camada de energia.** Os dois fluxos começam por ela, e a correlação
+1. **Prepare a bancada antes de abrir.** Descarga de energia residual e proteção contra ESD estão
+   em [Segurança e boas práticas](15-seguranca-e-boas-praticas.md); os procedimentos assumem que
+   você as executou.
+2. **Não pule a camada de energia.** Os dois fluxos começam por ela, e a correlação
    [COR-01](12-correlacoes.md#cor-01) registra que instabilidade de fonte se manifesta como falha de
    memória, de disco e de sistema operacional.
-2. **Anote o sinal exatamente como observado.** A Etapa 3 do fluxo de POST exige registrar número
+3. **Anote o sinal exatamente como observado.** A Etapa 3 do fluxo de POST exige registrar número
    de beeps, duração (curto/longo) e pausas. Sem isso, a consulta ao catálogo não converge.
-3. **Identifique o fabricante do BIOS antes de interpretar um beep.** O mesmo padrão sonoro tem
+4. **Identifique o fabricante do BIOS antes de interpretar um beep.** O mesmo padrão sonoro tem
    significados diferentes entre AMI, Award e Acer/Insyde.
-4. **Não conclua o atendimento sem validar.** O documento 13 traz critério PASS e FAIL por
+5. **Não conclua o atendimento sem validar.** O documento 13 traz critério PASS e FAIL por
    componente, com tempo de observação.
-5. **Onde a documentação disser "Informação não identificada na fonte analisada", trate como
+6. **Onde a documentação disser "Informação não identificada na fonte analisada", trate como
    lacuna real** — não como algo que possa ser preenchido por analogia com outro registro.
 
 ## Consulta automatizada
@@ -103,6 +112,7 @@ Para rastrear qualquer afirmação até a célula de origem, use
 | --- | --- |
 | o equipamento não carrega o sistema | [Fluxo de diagnóstico POST](06-fluxo-post.md) |
 | o equipamento carrega e falha em uso | [Fluxo de diagnóstico sistêmico](07-fluxo-sistemico.md) |
+| vai abrir o equipamento | [Segurança e boas práticas](15-seguranca-e-boas-praticas.md) |
 | quer a lista completa de documentos | [Índice da documentação](00-indice.md) |
 
 
@@ -112,6 +122,6 @@ Para rastrear qualquer afirmação até a célula de origem, use
 | --- | --- |
 | **Fonte primária deste documento** | Ambos os arquivos-fonte |
 | **Status de confiança** | Inferido (roteiro de navegação) sobre conteúdo Confirmado |
-| **Última verificação contra a fonte** | 2026-08-07 |
+| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.4.0` |
+| **Versão da documentação** | `doc-2.0.0` |

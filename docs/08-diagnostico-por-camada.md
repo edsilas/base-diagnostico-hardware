@@ -403,6 +403,6 @@ LED BOOT (verde), Q-Code A0-A2/B4, Disco não detectado no BIOS, USB causando tr
 | --- | --- |
 | **Fonte primária deste documento** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Camadas de Diagnóstico` |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-07 |
+| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.4.0` |
+| **Versão da documentação** | `doc-2.0.0` |

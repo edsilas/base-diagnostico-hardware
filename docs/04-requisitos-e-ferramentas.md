@@ -12,10 +12,11 @@
 ## Neste documento
 
 - [O que separar antes de começar](#o-que-separar-antes-de-começar)
-- [Ferramentas por camada de diagnóstico (modelo A)](#ferramentas-por-camada-de-diagnóstico-modelo-a)
+- [Ferramentas por camada de diagnóstico (modelo POST)](#ferramentas-por-camada-de-diagnóstico-modelo-post)
 - [Ferramentas por cenário de falha](#ferramentas-por-cenário-de-falha)
 - [Ferramentas de validação por componente](#ferramentas-de-validação-por-componente)
 - [Ferramentas com guia operacional próprio](#ferramentas-com-guia-operacional-próprio)
+- [Instrumental de segurança](#instrumental-de-segurança)
 - [Próximos passos](#próximos-passos)
 
 ## Contexto
@@ -36,6 +37,7 @@ Passo a passo de operação das ferramentas (ver `14-ferramentas/`); onde compra
 - [Diagnóstico por camada](08-diagnostico-por-camada.md)
 - [Índice de cenários](10-cenarios/00-indice-cenarios.md)
 - [Validação final por componente](13-validacao-final.md)
+- [Segurança e boas práticas](15-seguranca-e-boas-praticas.md) — como usar o instrumental com segurança
 
 ---
 
@@ -73,7 +75,7 @@ flowchart TD
 > integralmente abaixo. Nível de confiança: **Confirmado** (as ferramentas) /
 > **Inferido** (o agrupamento por estado do equipamento).
 
-## Ferramentas por camada de diagnóstico (modelo A)
+## Ferramentas por camada de diagnóstico (modelo POST)
 
 | Camada | Nome | Ferramentas (literal na fonte) |
 | --- | --- | --- |
@@ -132,12 +134,33 @@ procedimentos, sem guia próprio.
 > Nível de confiança: **Confirmado** para todas as tabelas acima — transcrição literal das
 > colunas de origem.
 
+## Instrumental de segurança
+
+Além das ferramentas de diagnóstico, a bancada precisa do instrumental que protege o operador e os
+componentes. Ele não aparece nas colunas de ferramentas das planilhas porque não é usado para
+diagnosticar — é usado para não danificar.
+
+| Item | Para quê | Referência |
+| --- | --- | --- |
+| Pulseira antiestática, ligada ao aterramento da bancada | Evitar descarga eletrostática no manuseio de placas e módulos | ANSI/ESD S20.20-2021; pulseiras conforme ANSI/ESD S1.1 |
+| Manta dissipativa aterrada | Superfície segura para apoiar placas | ANSI/ESD S20.20-2021 |
+| Embalagem dissipativa ou com blindagem | Guardar e transportar componentes removidos | ANSI/ESD S541 |
+| Iluminação dirigida e lupa 10x | Inspeção de socket, trilhas e capacitores | Citada nas camadas 2, 5 e 6 |
+| Ar comprimido | Limpeza sem contato mecânico | Citado na camada 5 |
+
+> [!CAUTION]
+> Componentes podem ser danificados por descargas a partir de **100 V** (modelo de corpo humano),
+> muito abaixo do limiar que uma pessoa percebe. Não sentir choque não significa que não houve
+> descarga — e o dano por ESD costuma ser latente, aparecendo semanas depois. Ver
+> [Proteção contra ESD](15-seguranca-e-boas-praticas.md#proteção-contra-descarga-eletrostática-esd).
+
 ## Próximos passos
 
 | Se você… | Vá para |
 | --- | --- |
 | precisa do passo a passo de uma ferramenta | [Guias de ferramentas](14-ferramentas/00-indice-ferramentas.md) |
 | quer saber qual ferramenta cada código exige | [Índices cruzados](18-indices-cruzados.md) |
+| vai abrir o equipamento | [Segurança e boas práticas](15-seguranca-e-boas-praticas.md) |
 | está pronto para começar o diagnóstico | [Fluxo de diagnóstico sistêmico](07-fluxo-sistemico.md) |
 
 
@@ -147,6 +170,6 @@ procedimentos, sem guia próprio.
 | --- | --- |
 | **Fonte primária deste documento** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Camadas de Diagnóstico`; `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `INDICE_CENARIOS` e `VALIDACAO_FINAL` |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-07 |
+| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.4.0` |
+| **Versão da documentação** | `doc-2.0.0` |

@@ -155,6 +155,13 @@ ordem das linhas da aba `Tabela Diagnóstico POST`. O campo **Código** é o val
 | POST-53 | LED VGA (Branco) | LED de Diagnóstico (cor fixa) | Genérico (Múltiplos) | GERAL — Placas com Debug LED | GPU / Slot PCIe | Camada 4: Vídeo | Alto | [POST-53](generico-debug-led.md#post-53--led-vga-branco) |
 | POST-54 | LED BOOT (Verde) | LED de Diagnóstico (cor fixa) | Genérico (Múltiplos) | GERAL — Placas com Debug LED | SSD / HDD / NVMe / Config BIOS | Camada 7: Periféricos Críticos | Médio | [POST-54](generico-debug-led.md#post-54--led-boot-verde) |
 
+> [!WARNING]
+> **Beep contínuo tem duas leituras.** O catálogo o registra na família Award, como memória não
+> instalada ou não detectada. Em parte das versões AMI, o mesmo sinal indica **tecla presa ou erro
+> de teclado** — hipótese que só está documentada em
+> [Ambiguidade de códigos](../11-ambiguidades.md#beep-contínuo). Desconecte o teclado antes de
+> concluir: se o bipe para, era o teclado.
+
 ## Próximos passos
 
 | Se você… | Vá para |
@@ -171,6 +178,6 @@ ordem das linhas da aba `Tabela Diagnóstico POST`. O campo **Código** é o val
 | --- | --- |
 | **Fonte primária deste documento** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-07 |
+| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.4.0` |
+| **Versão da documentação** | `doc-2.0.0` |

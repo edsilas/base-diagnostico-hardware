@@ -141,7 +141,7 @@ ATX12V PSU Design Guide v2.53 (Transient Response); Microsoft Docs: Kernel-Power
 
 ### Próximos passos
 
-- **Nenhum nó do fluxo sistêmico conduz a este cenário.** Entrada apenas pelo [índice de cenários](00-indice-cenarios.md). Ver [P-09 em pendências](../references/pendencias.md)
+- **Como se chega aqui pelo fluxo:** a partir de [F08](../07-fluxo-sistemico.md#regra-de-entrada-do-cenário-fi-01), quando o sistema não opera estável mas F09, F09b e F09c não reproduzem a falha sob demanda. Entrada direta também pelo [índice de cenários](00-indice-cenarios.md)
 - Comando desta ficha na [referência consolidada de comandos](../19-comandos.md#fi-01--falhas-esporádicas-sem-padrão-claro-freezes-bsods-variados-reinícios-não-reproduzível-sob-demanda)
 - Critérios de encerramento: [Validação final por componente](../13-validacao-final.md)
 
@@ -155,7 +155,7 @@ ATX12V PSU Design Guide v2.53 (Transient Response); Microsoft Docs: Kernel-Power
 | o problema voltou depois da troca de peça | [Correlações entre camadas](../12-correlacoes.md) |
 | aplicou a correção e precisa validar | [Validação final por componente](../13-validacao-final.md) |
 | precisa operar AIDA64, MemTest86 ou Victoria | [Guias de ferramentas](../14-ferramentas/00-indice-ferramentas.md) |
-| quer conferir onde este cenário entra no fluxo | [Fluxo de diagnóstico sistêmico](../07-fluxo-sistemico.md) |
+| quer conferir onde este cenário entra no fluxo | [Regra de entrada de FI-01](../07-fluxo-sistemico.md#regra-de-entrada-do-cenário-fi-01) |
 
 
 ---
@@ -164,6 +164,6 @@ ATX12V PSU Design Guide v2.53 (Transient Response); Microsoft Docs: Kernel-Power
 | --- | --- |
 | **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `TABELA_PRINCIPAL` e `INDICE_CENARIOS` |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-07 |
+| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.4.0` |
+| **Versão da documentação** | `doc-2.0.0` |

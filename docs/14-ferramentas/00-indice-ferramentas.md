@@ -97,10 +97,21 @@ Todas as etapas dos três guias seguem o mesmo conjunto de 20 campos definido na
 
 ## Observação sobre completude
 
-O campo **Atalho de teclado** está vazio na maioria das etapas dos três guias, e o campo
-**Alternativa segura** está vazio em parte das etapas de AIDA64 e MemTest86. Nesses pontos a
-documentação registra explicitamente a ausência, em vez de preencher. Ver
-[Limitações](../15-limitacoes.md).
+Nem toda etapa tem atalho de teclado, e nem toda etapa comporta alternativa segura. Onde a fonte
+não registra valor, o documento exibe *"Informação não identificada na fonte analisada"* em vez de
+omitir a seção ou preencher por analogia. A distribuição é esta:
+
+| Guia | Etapas sem atalho de teclado | Etapas sem alternativa segura |
+| --- | --- | --- |
+| [Victoria](victoria.md) | 6 de 9 | — |
+| [AIDA64](aida64-etapas-01-15.md) | 42 de 45 | 4 de 45 |
+| [MemTest86](memtest86.md) | 7 de 10 | 5 de 10 |
+
+> [!NOTE]
+> A ausência de atalho é esperada na maior parte dos casos: as três ferramentas são operadas
+> majoritariamente por menu e por mouse, e o MemTest86 responde a teclas apenas nas telas de
+> configuração e de relatório. Trate o campo vazio como "não há atalho documentado para esta
+> etapa", e navegue pelo campo **Caminho no software**, que está preenchido em todas as etapas.
 
 ## Próximos passos
 
@@ -109,6 +120,7 @@ documentação registra explicitamente a ausência, em vez de preencher. Ver
 | quer o inventário completo do instrumental | [Requisitos e ferramentas](../04-requisitos-e-ferramentas.md) |
 | precisa dos critérios de aprovação por componente | [Validação final por componente](../13-validacao-final.md) |
 | quer saber qual ferramenta cada cenário exige | [Índices cruzados](../18-indices-cruzados.md) |
+| vai executar uma etapa destrutiva | [Segurança e boas práticas](../15-seguranca-e-boas-praticas.md#procedimentos-que-destroem-dados) |
 
 
 ---
@@ -117,6 +129,6 @@ documentação registra explicitamente a ausência, em vez de preencher. Ver
 | --- | --- |
 | **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `REF_Victoria`, `REF_AIDA64`, `REF_MemTest86` |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-07 |
+| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.4.0` |
+| **Versão da documentação** | `doc-2.0.0` |

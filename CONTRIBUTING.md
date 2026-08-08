@@ -15,7 +15,6 @@ que a rastreabilidade desta base promete evitar.
 - [Padrão estrutural dos documentos](#padrão-estrutural-dos-documentos)
 - [Regras de conteúdo](#regras-de-conteúdo)
 - [Fluxo de alteração](#fluxo-de-alteração)
-- [Onde estão as pendências abertas](#onde-estão-as-pendências-abertas)
 - [Autoria](#autoria)
 
 ---
@@ -56,7 +55,7 @@ diretamente — desde que nenhuma afirmação nova entre sem fonte.
 [`docs/00-indice.md`](docs/00-indice.md),
 [`01`](docs/01-visao-geral.md), [`02`](docs/02-arquitetura.md),
 [`03`](docs/03-taxonomia-camadas.md), [`04`](docs/04-requisitos-e-ferramentas.md),
-[`05`](docs/05-utilizacao.md), [`15`](docs/15-limitacoes.md), [`16`](docs/16-faq.md),
+[`05`](docs/05-utilizacao.md), [`15`](docs/15-seguranca-e-boas-praticas.md), [`16`](docs/16-faq.md),
 [`17`](docs/17-glossario.md) e [`docs/references/`](docs/references/fontes.md).
 
 ---
@@ -136,16 +135,26 @@ bancada. Um dado inventado aqui custa uma peça boa descartada — ou uma ruim d
    versão — nada entra sem estar na fonte.
 2. **Lacuna se declara.** Campo sem informação vira
    *"Informação não identificada na fonte analisada"*, nunca uma dedução plausível.
-3. **Conflito se registra, não se resolve por conta própria.** Se duas fontes divergem, documente as
-   duas e abra uma pendência em [pendencias.md](docs/references/pendencias.md). A base já carrega
-   quatro divergências assim.
+3. **Divergência se resolve contra fonte primária.** Se as planilhas apresentarem valores
+   diferentes para o mesmo procedimento, não deixe as duas versões conviverem no texto e não crie
+   lista paralela de itens em aberto. Confronte o caso com a documentação oficial do fabricante ou
+   com a norma aplicável, adote um valor, aplique-o em toda a base e explique o critério no ponto
+   de uso. Registre a consulta em
+   [fontes.md](docs/references/fontes.md#verificações-independentes-realizadas) e a decisão no
+   [changelog](docs/references/changelog.md).
 4. **Inferência se marca.** Conclusão derivada leva o rótulo **Inferido** no ponto de uso.
 5. **Versão se preserva.** `MemTest86 v10+`, `ATX12V v2.53`, `UEFI 2.10` — copie exatamente como
    está. Não atualize por conta própria.
 6. **Nome técnico não se troca por sinônimo.** `Q-Code`, `Debug LED`, `power drain`, `boot mínimo`
    têm grafia estabelecida na base.
-7. **Fonte externa não preenche lacuna da fonte primária.** Se a planilha não diz, a documentação
-   não diz.
+7. **Fonte externa entra identificada.** A fonte primária continua sendo a planilha. Documentação
+   oficial de fabricante e norma técnica são admitidas para **três finalidades**: resolver
+   divergência entre as planilhas, expandir sigla que a fonte usa sem definir e corrigir referência
+   citada de forma incorreta. Em qualquer desses casos, diga qual é o documento consultado e o que
+   exatamente veio dele. O que a fonte externa **não** faz é inventar procedimento novo: se nenhuma
+   das duas planilhas trata do assunto, o assunto está fora de escopo.
+8. **Contagem se confere.** Números citados no texto — de códigos, cenários, termos, etapas — devem
+   bater com o conteúdo. Ao acrescentar ou remover um item, atualize toda ocorrência da contagem.
 
 ---
 
@@ -156,6 +165,7 @@ bancada. Um dado inventado aqui custa uma peça boa descartada — ou uma ruim d
 | Se a alteração é… | Então… |
 | --- | --- |
 | valor técnico em documento derivado | corrija primeiro a planilha, depois traga a correção para o Markdown |
+| divergência entre as duas planilhas | resolva contra documento oficial, adote um valor e registre a consulta em `fontes.md` |
 | texto explicativo em documento redigido | edite o Markdown diretamente |
 | link, formatação ou erro de transcrição | edite o Markdown diretamente |
 
@@ -170,42 +180,23 @@ bancada. Um dado inventado aqui custa uma peça boa descartada — ou uma ruim d
 - [ ] Nenhum título de nível 2 aparece duas vezes no mesmo arquivo — âncoras duplicadas confundem
       os links.
 - [ ] As contagens citadas continuam batendo com o conteúdo: 54 códigos, 13 cenários, 7 etapas de
-      POST, 17 nós, 5 ambiguidades, 6 correlações, 10 componentes de validação, 43 termos e
+      POST, 17 nós, 5 ambiguidades, 6 correlações, 10 componentes de validação, 47 termos e
       64 etapas de ferramentas.
 
 ### 3. Registre
 
 Toda alteração entra no [changelog](docs/references/changelog.md), com versão, data, o que mudou e
-qual aba foi afetada. Pendência resolvida é **marcada como fechada**, não apagada — o histórico da
-decisão vale mais que a lista limpa.
+qual aba foi afetada. Quando a alteração resolve uma divergência, registre também **qual valor foi
+adotado e contra qual documento oficial** — é o que permite auditar a decisão depois.
 
 Versionamento da documentação:
 
-- **maior** (`2.0.0`) — arquivos renomeados, removidos ou reorganizados;
-- **menor** (`1.1.0`) — conteúdo novo, pendência fechada, documento acrescentado;
-- **correção** (`1.0.1`) — link, formatação ou erro de transcrição.
+- **maior** (`3.0.0`) — arquivos renomeados, removidos ou reorganizados;
+- **menor** (`2.1.0`) — conteúdo novo ou documento acrescentado;
+- **correção** (`2.0.1`) — link, formatação ou erro de transcrição.
 
 Ao mudar a versão, atualize o rodapé de todos os documentos, a tabela de identidade em
 [01-visao-geral.md](docs/01-visao-geral.md) e o cabeçalho do [README](README.md).
-
----
-
-## Onde estão as pendências abertas
-
-[`docs/references/pendencias.md`](docs/references/pendencias.md) lista o que precisa de decisão
-humana. As de maior impacto:
-
-- **[P-03](docs/references/pendencias.md#p-03--duas-taxonomias-de-camada-incompatíveis)** — os dois
-  arquivos-fonte numeram as camadas de forma incompatível;
-- **[P-02](docs/references/pendencias.md#p-02--versão-do-conteúdo-técnico)** — o conteúdo técnico
-  não é versionado;
-- **[P-17](docs/references/pendencias.md#p-17--planilhas-de-origem-não-versionadas-no-repositório)**
-  — as planilhas de origem não estão versionadas, o que impede auditar uma alteração de conteúdo
-  técnico pelo histórico do Git.
-
-Antes de abrir uma pendência nova, confira a seção
-[*O que não ficou pendente*](docs/references/pendencias.md#o-que-não-ficou-pendente), no fim do
-mesmo arquivo — ela registra o que já foi verificado.
 
 ---
 
@@ -213,6 +204,4 @@ mesmo arquivo — ela registra o que já foi verificado.
 
 **Edsilas** — autor e responsável pelo projeto ([`edsilas`](https://github.com/edsilas)).
 
-Licença: MIT, conforme o arquivo
-[`LICENSE`](https://github.com/edsilas/base-diagnostico-hardware/blob/main/LICENSE) do
-repositório.
+Licença: MIT, conforme o arquivo [`LICENSE`](LICENSE) na raiz do repositório.

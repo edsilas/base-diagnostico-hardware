@@ -27,13 +27,14 @@ Mapeamento informação → aba de origem → documento → nível de confiança
 
 ## Fora do escopo
 
-O conteúdo em si; a análise de conflitos, que está em [pendencias.md](pendencias.md).
+O conteúdo em si; a resolução das divergências, registrada em
+[fontes.md](fontes.md#verificações-independentes-realizadas).
 
 ## Relação com outros documentos
 
 - [Fontes](fontes.md)
-- [Pendências](pendencias.md)
 - [Índice da documentação](../00-indice.md)
+- [Arquitetura da documentação](../02-arquitetura.md)
 
 ---
 
@@ -52,7 +53,7 @@ O nível de confiança segue a convenção definida em [00-indice.md](../00-indi
 | Valor literal do código | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → `Tabela Diagnóstico POST` → `CÓDIGO` | `09-codigos-post/*` | Confirmado |
 | Significado declarado do código | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → `Tabela Diagnóstico POST` → `INTERPRETAÇÃO OFICIAL` | `09-codigos-post/*` | Confirmado |
 | Componente indicado pelo código | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → `Tabela Diagnóstico POST` → `COMPONENTE AFETADO` | `09-codigos-post/*` | Confirmado |
-| Camada (modelo A) do código | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → `Tabela Diagnóstico POST` → `CAMADA DE DIAGNÓSTICO` | `09-codigos-post/*` | Confirmado |
+| Camada (modelo POST) do código | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → `Tabela Diagnóstico POST` → `CAMADA DE DIAGNÓSTICO` | `09-codigos-post/*` | Confirmado |
 | Fase do POST em que o código ocorre | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → `Tabela Diagnóstico POST` → `FASE POST` | `09-codigos-post/*` | Confirmado |
 | Causa raiz declarada | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → `Tabela Diagnóstico POST` → `CAUSA RAIZ (Documentação Oficial)` | `09-codigos-post/*` | Confirmado |
 | Condições que produzem o erro | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → `Tabela Diagnóstico POST` → `CONDIÇÕES QUE GERAM O ERRO` | `09-codigos-post/*` | Confirmado |
@@ -69,7 +70,7 @@ O nível de confiança segue a convenção definida em [00-indice.md](../00-indi
 | Ramo negativo | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → `Fluxo de Diagnóstico` → `AÇÃO SE NÃO` | `06-fluxo-post.md` | Confirmado |
 | Encadeamento entre etapas | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → `Fluxo de Diagnóstico` → `PRÓXIMA ETAPA` | `06-fluxo-post.md` | Confirmado |
 | Observações da etapa | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → `Fluxo de Diagnóstico` → `OBSERVAÇÕES` | `06-fluxo-post.md` | Confirmado |
-| Número da camada (modelo A) | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → `Camadas de Diagnóstico` → `CAMADA` | `08-diagnostico-por-camada.md`, `03-taxonomia-camadas.md` | Confirmado |
+| Número da camada (modelo POST) | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → `Camadas de Diagnóstico` → `CAMADA` | `08-diagnostico-por-camada.md`, `03-taxonomia-camadas.md` | Confirmado |
 | Nome da camada | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → `Camadas de Diagnóstico` → `NOME` | `08-diagnostico-por-camada.md`, `03-taxonomia-camadas.md` | Confirmado |
 | Componentes da camada | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → `Camadas de Diagnóstico` → `COMPONENTES` | `08-diagnostico-por-camada.md` | Confirmado |
 | Sintomas típicos da camada | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → `Camadas de Diagnóstico` → `SINTOMAS TÍPICOS` | `08-diagnostico-por-camada.md` | Confirmado |
@@ -82,7 +83,7 @@ O nível de confiança segue a convenção definida em [00-indice.md](../00-indi
 | Teste de desempate | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → `Ambiguidade de Códigos` → `TESTE PARA IDENTIFICAR CAUSA` | `11-ambiguidades.md` | Confirmado |
 | Identificador do cenário | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `TABELA_PRINCIPAL` → `ID` | `10-cenarios/*` | Confirmado |
 | Sintoma relatado | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `TABELA_PRINCIPAL` → `Sintoma Observado` | `10-cenarios/*` | Confirmado |
-| Camada (modelo B) do cenário | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `TABELA_PRINCIPAL` → `Camada Afetada` | `10-cenarios/*` | Confirmado |
+| Camada (modelo sistêmico) do cenário | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `TABELA_PRINCIPAL` → `Camada Afetada` | `10-cenarios/*` | Confirmado |
 | Componente suspeito | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `TABELA_PRINCIPAL` → `Componente Suspeito` | `10-cenarios/*` | Confirmado |
 | Condição em que o sintoma aparece | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `TABELA_PRINCIPAL` → `Condição de Ocorrência` | `10-cenarios/*` | Confirmado |
 | Causa raiz declarada | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `TABELA_PRINCIPAL` → `Causa Raiz` | `10-cenarios/*` | Confirmado |
@@ -104,7 +105,7 @@ O nível de confiança segue a convenção definida em [00-indice.md](../00-indi
 | Ferramentas do nó | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `FLUXO_LOGICO` → `Ferramentas` | `07-fluxo-sistemico.md` | Confirmado |
 | Cenário associado ao nó | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `FLUXO_LOGICO` → `Referência (ID)` | `07-fluxo-sistemico.md` | Confirmado |
 | Identificador da correlação | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `CORRELACOES` → `ID` | `12-correlacoes.md` | Confirmado |
-| Camadas envolvidas (modelo B) | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `CORRELACOES` → `Falha Primária (Camada) / Efeito Cascata (Camada)` | `12-correlacoes.md` | Confirmado |
+| Camadas envolvidas (modelo sistêmico) | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `CORRELACOES` → `Falha Primária (Camada) / Efeito Cascata (Camada)` | `12-correlacoes.md` | Confirmado |
 | Como a falha se propaga | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `CORRELACOES` → `Mecanismo de Propagação` | `12-correlacoes.md` | Confirmado |
 | Sintoma percebido | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `CORRELACOES` → `Sintoma Resultante` | `12-correlacoes.md` | Confirmado |
 | Ordem de teste recomendada | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `CORRELACOES` → `Diagnóstico Diferencial` | `12-correlacoes.md` | Confirmado |
@@ -120,7 +121,7 @@ O nível de confiança segue a convenção definida em [00-indice.md](../00-indi
 | Encaminhamento em caso de reprovação | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `VALIDACAO_FINAL` → `Ação se FAIL` | `13-validacao-final.md` | Confirmado |
 | Nome do cenário | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `INDICE_CENARIOS` → `Cenário` | `10-cenarios/00-indice-cenarios.md` | Confirmado |
 | Agrupamento dos IDs por cenário | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `INDICE_CENARIOS` → `IDs Relacionados` | `10-cenarios/00-indice-cenarios.md` | Confirmado |
-| Camada de entrada (modelo B) | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `INDICE_CENARIOS` → `Camada Primária` | `10-cenarios/00-indice-cenarios.md` | Confirmado |
+| Camada de entrada (modelo sistêmico) | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `INDICE_CENARIOS` → `Camada Primária` | `10-cenarios/00-indice-cenarios.md` | Confirmado |
 | Teste inicial recomendado | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `INDICE_CENARIOS` → `Primeiro Teste` | `10-cenarios/00-indice-cenarios.md` | Confirmado |
 | Ferramentas do cenário | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `INDICE_CENARIOS` → `Ferramentas Necessárias` | `10-cenarios/00-indice-cenarios.md`, `04-requisitos-e-ferramentas.md` | Confirmado |
 | Etapas operacionais (20 campos: objetivo, ação, caminho, atalho, configurações, verificação prévia, erros, causa, identificação, correção, validação, risco, impacto, tempo, observações, boas práticas, alternativa, checklist) | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `REF_Victoria` → `(todas as colunas)` | `14-ferramentas/victoria.md` | Confirmado |
@@ -137,12 +138,12 @@ que contêm remete a um documento gerado.
 | --- | --- | --- |
 | `README.md` | Apresentação e navegação | Confirmado |
 | `00-indice.md` | Mapa da documentação | Confirmado (estrutura) |
-| `01-visao-geral.md` | Descrição do projeto e contagens | Confirmado (contagens e identificação) / Necessita validação (versão do conteúdo técnico) |
+| `01-visao-geral.md` | Descrição do projeto, contagens e fronteiras de cobertura | Confirmado |
 | `02-arquitetura.md` | Organização e mapa de origem | Confirmado (mapa) / Inferido (diagrama de eixos) |
-| `03-taxonomia-camadas.md` | Registro de conflito entre modelos | Confirmado (modelo A) / Necessita validação (modelo B) |
+| `03-taxonomia-camadas.md` | Definição dos dois modelos de camada e regra de notação | Confirmado — modelo POST com tabela de definição própria; modelo sistêmico consolidado das três abas que o utilizam |
 | `04-requisitos-e-ferramentas.md` | Agregação de colunas de ferramentas | Confirmado |
 | `05-utilizacao.md` | Roteiro de navegação | Inferido sobre conteúdo Confirmado |
-| `15-limitacoes.md` | Lacunas e divergências verificadas | Confirmado |
+| `15-seguranca-e-boas-praticas.md` | Precauções e procedimentos transversais canônicos | Confirmado — fonte primária complementada por documentação oficial verificada |
 | `16-faq.md` | Perguntas derivadas do conteúdo | Confirmado (respostas) |
 | `17-glossario.md` | Termos com definição da fonte | Confirmado / sinalizado por termo |
 | `references/*` | Rastreabilidade e auditoria | Confirmado |
@@ -154,8 +155,8 @@ que contêm remete a um documento gerado.
 | Códigos de POST | 54 |
 | Cenários (IDs) | 13 |
 | Cenários (agrupamentos) | 9 |
-| Camadas modelo A | 7 |
-| Camadas modelo B observadas | 10 números distintos (1–10) |
+| Camadas do modelo POST | 7 |
+| Camadas do modelo sistêmico | 10 (1–10) |
 | Etapas do fluxo de POST | 7 |
 | Nós do fluxo sistêmico | 17 |
 | Casos de ambiguidade | 5 |
@@ -163,14 +164,14 @@ que contêm remete a um documento gerado.
 | Componentes na validação final | 10 |
 | Etapas de ferramentas | 64 |
 | Referências externas citadas pelas fontes | 56 (não verificadas) |
-| Fontes externas consultadas por esta documentação | 1 para conteúdo (repositório oficial) + 4 para conferência de designação (ver [P-15](pendencias.md#p-15--referências-externas-citadas-mas-não-verificadas) e [P-11](pendencias.md#p-11--lenovo-smartbeep-sem-procedimento)) |
+| Fontes externas consultadas por esta documentação | 1 para identificação do projeto (repositório oficial) + 11 verificações independentes registradas em [fontes.md](fontes.md#verificações-independentes-realizadas) |
 
 ## Próximos passos
 
 | Se você… | Vá para |
 | --- | --- |
 | quer os arquivos de origem e seus hashes | [Fontes](fontes.md) |
-| encontrou uma informação sem confirmação | [Pendências](pendencias.md) |
+| quer conferir uma verificação externa | [Fontes — verificações independentes](fontes.md#verificações-independentes-realizadas) |
 | vai alterar a documentação | [Como contribuir](../../CONTRIBUTING.md) |
 
 
@@ -180,6 +181,6 @@ que contêm remete a um documento gerado.
 | --- | --- |
 | **Fonte primária deste documento** | Ambos os arquivos-fonte |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-07 |
+| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.4.0` |
+| **Versão da documentação** | `doc-2.0.0` |

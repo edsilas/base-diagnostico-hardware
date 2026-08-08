@@ -2,7 +2,7 @@
 
 > Base estruturada de conhecimento para diagnóstico de hardware, com fluxos, sintomas, códigos de erro, causas e procedimentos de análise e solução.
 
-**Autor:** Edsilas · **Repositório:** [`edsilas/base-diagnostico-hardware`](https://github.com/edsilas/base-diagnostico-hardware) · **Licença:** MIT · **Documentação:** `doc-1.4.0`
+**Autor:** Edsilas · **Repositório:** [`edsilas/base-diagnostico-hardware`](https://github.com/edsilas/base-diagnostico-hardware) · **Licença:** MIT · **Documentação:** `doc-2.0.0`
 
 Referência técnica para diagnóstico de falhas de hardware em computadores, do sinal de erro emitido
 no POST até a validação final que fecha o atendimento. Esta página é o **ponto de entrada**: a
@@ -58,8 +58,9 @@ flowchart TD
 
 > [!IMPORTANT]
 > Antes de usar qualquer número de camada, leia
-> [Taxonomia de camadas](docs/03-taxonomia-camadas.md). Os dois arquivos-fonte numeram as camadas
-> de forma incompatível: *camada 3* é **Memória** em um e **CPU** no outro.
+> [Taxonomia de camadas](docs/03-taxonomia-camadas.md). A base usa **dois modelos de camadas**, um
+> por escopo: *camada 3* é **Memória** no modelo POST e **CPU** no modelo sistêmico. O formato em
+> que o número está escrito identifica qual é qual.
 
 ---
 
@@ -73,6 +74,7 @@ equipamento.
 | --- | --- | --- |
 | O risco declarado da ficha | Campo *Risco associado* ou *Risco / criticidade*, na própria ficha | 18 dos 54 códigos e 5 dos 13 cenários são declarados **Crítico** |
 | Os pré-requisitos | Seção *Pré-requisitos*, antes de *Execução da correção* | Vários procedimentos exigem o equipamento desligado e sem energia residual |
+| As precauções de bancada | [Segurança e boas práticas](docs/15-seguranca-e-boas-praticas.md) | Descarga de energia residual, proteção contra ESD e medição energizada |
 | O instrumental necessário | [Requisitos e ferramentas](docs/04-requisitos-e-ferramentas.md) | Medir tensão exige multímetro; não há substituto documentado |
 
 > [!CAUTION]
@@ -83,12 +85,9 @@ equipamento.
 
 > [!NOTE]
 > A escala de risco — Crítico, Alto, Médio, Baixo, Variável — é a declarada pelas planilhas de
-> origem. **A fonte não define o significado de cada nível**, então trate-a como ordem relativa,
-> não como medida absoluta. Para ver tudo agrupado por risco, use
+> origem, que não definem o significado de cada nível. Trate-a como ordem relativa, não como medida
+> absoluta. Para ver tudo agrupado por risco, use
 > [Índice por risco declarado](docs/18-indices-cruzados.md#índice-por-risco-declarado).
-
-Onde a documentação disser *"Informação não identificada na fonte analisada"*, trate como lacuna
-real: não preencha por analogia com outro registro.
 
 ---
 
@@ -105,6 +104,8 @@ real: não preencha por analogia com outro registro.
 - **6 correlações em cascata** — falhas que aparecem como sintoma de outro subsistema.
 - **10 critérios de validação final** por componente, com PASS, FAIL e tempo de observação.
 - **64 etapas operacionais** dos guias de Victoria, AIDA64 e MemTest86.
+- **Procedimentos transversais canônicos**: descarga de energia residual, boot mínimo e leitura dos
+  limiares térmicos, unificados em [Segurança e boas práticas](docs/15-seguranca-e-boas-praticas.md).
 
 ---
 
@@ -114,9 +115,10 @@ Leitura de primeira vez, na ordem.
 
 | Documento | O que resolve |
 | --- | --- |
-| [Visão geral](docs/01-visao-geral.md) | O que esta base é, o que cobre e o que deliberadamente não faz. |
+| [Visão geral](docs/01-visao-geral.md) | O que esta base é, o que cobre e onde ficam suas fronteiras. |
 | [Taxonomia de camadas](docs/03-taxonomia-camadas.md) | **Leitura obrigatória.** Como saber qual dos dois modelos de camada você está lendo. |
 | [Requisitos e ferramentas](docs/04-requisitos-e-ferramentas.md) | O que separar para a bancada antes de começar. |
+| [Segurança e boas práticas](docs/15-seguranca-e-boas-praticas.md) | Energia residual, ESD, medição energizada e procedimentos destrutivos. |
 | [Como utilizar](docs/05-utilizacao.md) | Por onde entrar conforme o sintoma e em que ordem ler. |
 | [Índice completo](docs/00-indice.md) | Mapa de todos os documentos, com uma linha por arquivo. |
 
@@ -172,9 +174,9 @@ Da causa identificada até a correção aplicada.
 | --- | --- |
 | [Índices cruzados](docs/18-indices-cruzados.md) | Os mesmos registros por componente, camada, risco, fase do POST, tipo de sinal e ferramenta. |
 | [Referência de comandos](docs/19-comandos.md) | Todos os comandos técnicos dos cenários, com contexto e risco. |
-| [Glossário](docs/17-glossario.md) | 43 termos, definidos pelo que a fonte diz sobre eles. |
+| [Glossário](docs/17-glossario.md) | 47 termos, com a definição usada nesta base e a expansão de cada sigla. |
 | [Perguntas frequentes](docs/16-faq.md) | Dúvidas derivadas do conteúdo documentado. |
-| [Limitações](docs/15-limitacoes.md) | O que esta base não cobre e onde ela é frágil. |
+| [Segurança e boas práticas](docs/15-seguranca-e-boas-praticas.md) | Precauções e procedimentos transversais canônicos. |
 
 ---
 
@@ -183,9 +185,8 @@ Da causa identificada até a correção aplicada.
 | Documento | O que resolve |
 | --- | --- |
 | [Arquitetura da documentação](docs/02-arquitetura.md) | Como o conhecimento está organizado e de qual aba cada documento saiu. |
-| [Fontes](docs/references/fontes.md) | Inventário das fontes, com hash de verificação. |
+| [Fontes](docs/references/fontes.md) | Inventário das fontes, com hash de verificação e o registro das verificações externas. |
 | [Matriz de rastreabilidade](docs/references/matriz-rastreabilidade.md) | Informação → coluna de origem → documento → nível de confiança. |
-| [Pendências](docs/references/pendencias.md) | O que precisa de decisão humana, com severidade e o que falta para fechar. |
 | [Histórico](docs/references/changelog.md) | O que mudou em cada versão da documentação. |
 | [Como contribuir](CONTRIBUTING.md) | Regras de conteúdo, padrão dos documentos e fluxo de alteração. |
 
@@ -213,7 +214,7 @@ outros. Inventário completo em
 ```text
 docs/
 ├── 00-indice.md                    Mapa da documentação
-├── 01-visao-geral.md               O que é o projeto
+├── 01-visao-geral.md               O que é o projeto e onde ficam suas fronteiras
 ├── 02-arquitetura.md               Como a documentação está organizada
 ├── 03-taxonomia-camadas.md         Os dois modelos de camadas (leitura obrigatória)
 ├── 04-requisitos-e-ferramentas.md  Instrumental necessário
@@ -227,18 +228,18 @@ docs/
 ├── 12-correlacoes.md               Falhas em cascata entre camadas
 ├── 13-validacao-final.md           Critérios PASS / FAIL por componente
 ├── 14-ferramentas/                 Victoria, AIDA64, MemTest86
-├── 15-limitacoes.md                O que a base não cobre
+├── 15-seguranca-e-boas-praticas.md Segurança de bancada e procedimentos canônicos
 ├── 16-faq.md                       Perguntas derivadas do conteúdo
 ├── 17-glossario.md                 Termos técnicos
 ├── 18-indices-cruzados.md          Busca por componente, camada, risco, fase, sinal, ferramenta
 ├── 19-comandos.md                  Todos os comandos técnicos reunidos
 └── references/
-    ├── fontes.md                   Origem de cada informação
+    ├── fontes.md                   Origem de cada informação e verificações externas
     ├── matriz-rastreabilidade.md   Informação → fonte → documento → confiança
-    ├── pendencias.md               O que precisa de validação humana
     └── changelog.md                Histórico desta documentação
 
 CONTRIBUTING.md                     Regras de conteúdo e fluxo de alteração
+LICENSE                             Licença MIT
 ```
 
 ## Padrão dos documentos
@@ -259,18 +260,6 @@ Os avisos seguem convenção fixa: **NOTE** para procedência e nível de confia
 atalhos de navegação, **IMPORTANT** para pré-requisito que muda o resultado, **WARNING** para risco
 de erro de diagnóstico e **CAUTION** para risco elétrico, perda de dados ou dano a componente.
 
-
-## Limitações relevantes
-
-- Os dois arquivos-fonte usam **numerações de camada incompatíveis entre si**. A documentação
-  preserva ambas e sinaliza o conflito; não escolhe uma delas.
-- Há divergências pontuais de procedimento entre as fontes (duração do *power drain*, composição
-  do *boot mínimo*, limiares de temperatura). Todas registradas em
-  [pendências](docs/references/pendencias.md).
-- Alguns campos estão vazios na origem — em especial *Atalho de teclado* nos guias de ferramentas.
-
-Lista completa: [Limitações](docs/15-limitacoes.md).
-
 ## Como esta base é mantida
 
 Todo campo técnico é transcrição literal da célula correspondente nas planilhas de origem. Isso
@@ -281,16 +270,17 @@ Três regras sustentam a confiabilidade do material:
 
 - **Lacuna se declara.** Campo sem informação na origem vira
   *"Informação não identificada na fonte analisada"*, nunca uma dedução plausível.
-- **Conflito se registra, não se resolve por conta própria.** Quando as duas fontes divergem, as
-  duas versões ficam documentadas e o caso entra em [pendências](docs/references/pendencias.md).
+- **Divergência se resolve com fonte primária.** Quando as planilhas apresentavam valores
+  diferentes para o mesmo procedimento, a decisão foi tomada contra a documentação oficial do
+  fabricante ou a norma aplicável, e o critério ficou registrado no ponto de uso. O registro de
+  cada verificação está em [Fontes](docs/references/fontes.md#nível-3--fontes-externas-verificadas).
 - **Inferência se marca.** Conclusão derivada leva o rótulo **Inferido** no ponto de uso.
 
 Regras completas e fluxo de alteração em [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Licença
 
-Distribuído sob a licença MIT. O texto completo está no arquivo
-[`LICENSE`](https://github.com/edsilas/base-diagnostico-hardware/blob/main/LICENSE), na raiz do
+Distribuído sob a licença MIT. O texto completo está no arquivo [`LICENSE`](LICENSE), na raiz do
 repositório.
 
 ## Autoria e créditos
@@ -298,7 +288,7 @@ repositório.
 **Edsilas** — autor e responsável pelo projeto
 ([`edsilas`](https://github.com/edsilas)).
 
-O conteúdo técnico deriva de duas planilhas de referência de autoria de Edsilas. As
-referências a documentação de fabricantes citadas dentro do material são declarações da fonte
-original e não foram verificadas de forma independente — ver
+O conteúdo técnico deriva de duas planilhas de referência de autoria de Edsilas. As referências a
+documentação de fabricantes citadas dentro do material são declarações da fonte original; as que
+foram conferidas de forma independente estão identificadas em
 [fontes](docs/references/fontes.md).

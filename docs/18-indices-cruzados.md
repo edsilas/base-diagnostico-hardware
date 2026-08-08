@@ -135,7 +135,7 @@ flowchart TD
 
 ## Índice por camada de diagnóstico
 
-### Códigos de POST (modelo A — `Camada N: Nome`)
+### Códigos de POST (modelo POST — `Camada N: NOME`)
 
 | Camada declarada | Códigos | Ficha da camada |
 | --- | --- | --- |
@@ -152,7 +152,7 @@ flowchart TD
 | Camada 7: Periféricos Críticos | [POST-16](09-codigos-post/ami-q-code.md#post-16--99--9a--9c), [POST-17](09-codigos-post/ami-q-code.md#post-17--a0--a2), [POST-18](09-codigos-post/ami-q-code.md#post-18--b4), [POST-50](09-codigos-post/ami-q-code.md#post-50--7f), [POST-54](09-codigos-post/generico-debug-led.md#post-54--led-boot-verde) | [ver ficha](08-diagnostico-por-camada.md#camada-7--periféricos-críticos) |
 | Variável | [POST-44](09-codigos-post/lenovo.md#post-44--melodia-variável) | — (valor composto ou variável) |
 
-### Cenários (modelo B — `N - Nome`)
+### Cenários (modelo sistêmico — `N - Nome`)
 
 | Camada declarada | Cenários |
 | --- | --- |
@@ -320,6 +320,6 @@ Ordem declarada na coluna `Ordem de Execução`, com os pré-requisitos da colun
 | --- | --- |
 | **Fonte primária deste documento** | Derivado das colunas de `Tabela Diagnóstico POST` e `TABELA_PRINCIPAL` |
 | **Status de confiança** | Confirmado (agrupamentos) / Inferido (coluna *Onde observar*) |
-| **Última verificação contra a fonte** | 2026-08-07 |
+| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.4.0` |
+| **Versão da documentação** | `doc-2.0.0` |

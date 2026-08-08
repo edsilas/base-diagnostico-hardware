@@ -11,7 +11,8 @@
 
 ## Neste documento
 
-- [doc-1.4.0 — 2026-08-08](#doc-140--2026-08-08)
+- [doc-2.0.0 — 2026-08-08](#doc-200--2026-08-08)
+- [doc-1.4.0 — 2026-08-07](#doc-140--2026-08-07)
 - [doc-1.3.0 — 2026-08-07](#doc-130--2026-08-07)
 - [doc-1.2.0 — 2026-08-07](#doc-120--2026-08-07)
 - [doc-1.1.0 — 2026-08-07](#doc-110--2026-08-07)
@@ -30,21 +31,94 @@ Versões da documentação, escopo de cada geração e origem usada.
 
 ## Fora do escopo
 
-Versão do projeto documentado — **não identificada na fonte analisada** (ver [pendencias.md](pendencias.md), P-02).
+Conteúdo técnico em si; origem campo a campo, que está em
+[matriz-rastreabilidade.md](matriz-rastreabilidade.md).
 
 ## Relação com outros documentos
 
-- [Pendências](pendencias.md)
 - [Fontes](fontes.md)
+- [Matriz de rastreabilidade](matriz-rastreabilidade.md)
 - [Arquitetura da documentação](../02-arquitetura.md)
 
 ---
 
-> **Atenção ao escopo do versionamento.** Os números abaixo versionam a **documentação**. O
-> material de origem não declara versão, e nenhuma foi atribuída a ele. Ver
-> [P-02 em pendencias.md](pendencias.md#p-02--versão-do-conteúdo-técnico).
+> **Escopo do versionamento.** A partir de `doc-2.0.0`, o número versiona o conjunto publicado —
+> estrutura **e** conteúdo técnico. A convenção está em
+> [Arquitetura da documentação](../02-arquitetura.md#versionamento-do-conteúdo).
 
-## doc-1.4.0 — 2026-08-08
+## doc-2.0.0 — 2026-08-08
+
+Consolidação da base. As divergências que antes eram apenas registradas passaram a ser
+**resolvidas contra documentação oficial**, e a decisão foi incorporada ao ponto de uso. Os
+registros temporários de acompanhamento — a lista de pendências e o documento de limitações —
+deixaram de existir: o que neles era problema em aberto virou conteúdo; o que era fronteira de
+escopo foi para [Visão geral](../01-visao-geral.md#fronteiras-de-cobertura); o que era precaução
+virou [Segurança e boas práticas](../15-seguranca-e-boas-praticas.md).
+
+**Sem regressão:** nenhuma ficha técnica perdeu campo, e todas as contagens permanecem idênticas —
+54 códigos, 13 cenários, 7 etapas de POST, 17 nós, 5 ambiguidades, 6 correlações, 10 componentes de
+validação e 64 etapas de ferramentas.
+
+### Divergências resolvidas
+
+Cada linha foi decidida contra a publicação de quem edita o documento de referência. O registro
+completo das consultas está em
+[fontes.md](fontes.md#verificações-independentes-realizadas).
+
+| Divergência | Como estava | Decisão adotada |
+| --- | --- | --- |
+| Duração da descarga de energia residual | 30 s em um arquivo, 10 s no outro | **30 s.** Dell publica 15–20 s e HP publica ≈15 s; 30 s satisfaz e supera todos os mínimos publicados, e 10 s fica abaixo de qualquer um deles |
+| Composição do *boot mínimo* | Três definições literais concorrentes | **Duas composições nomeadas** — *absoluto* e *com vídeo* —, com o cooler obrigatório nas duas, porque o controle térmico da CPU atua já na faixa de Tjunction max declarada pela Intel |
+| Limiar térmico em repouso | 60 °C em um registro, 90 °C em outro | **Escala de dois estágios:** 60 °C abre a investigação, 90 °C confirma a falha térmica |
+| Critério FAIL de temperatura | 95 °C na linha *CPU*, 90 °C na linha *Térmico* | **Sujeitos diferentes.** 95 °C julga a CPU como peça; 90 °C julga o subsistema de refrigeração. Para liberar o equipamento prevalece o mais restritivo |
+
+### Corrigido
+
+| Onde | Antes | Agora |
+| --- | --- | --- |
+| [fontes.md](fontes.md) | Citação *ATX12V PSU Design Guide v2.53* | Identificada como capítulo *ATX12V Specific Guidelines* do documento Intel nº 336521 — o título citado não corresponde a nenhum documento autônomo |
+| [fontes.md](fontes.md) | UEFI Specification 2.10 como referência corrente | Registrada a versão vigente: **2.11**, de dezembro de 2024 |
+| [fontes.md](fontes.md) | JEDEC JESD79-5 sem revisão | Registrada a revisão mais recente: **JESD79-5D**, de novembro de 2025 |
+| [09-codigos-post/lenovo.md](../09-codigos-post/lenovo.md) | Procedimento do SmartBeep sem o passo de reemissão | Acrescentado o passo oficial de **pressionar Fn** para reemitir o bipe, conforme o manual do fabricante |
+| [14-ferramentas/memtest86.md](../14-ferramentas/memtest86.md) | Bateria padrão descrita como 13 algoritmos | Registrada a contagem oficial: **testes 0 a 13 — quatorze**, sendo o 13 o *Hammer Test* |
+| [16-faq.md](../16-faq.md) | Resposta afirmava que autor e versão não estavam identificados | Corrigida: contradizia o README e o documento 01, que declaram autoria e licença desde `doc-1.1.0` |
+| [17-glossario.md](../17-glossario.md) | SEC, PEI, BIST, XMP/EXPO/DOCP e PSREF sem expansão | Expansões confirmadas em fonte oficial e incorporadas |
+
+### Acrescentado
+
+- [15-seguranca-e-boas-praticas.md](../15-seguranca-e-boas-praticas.md) — descarga de energia
+  residual, proteção contra descarga eletrostática, medição com o equipamento energizado,
+  procedimentos destrutivos, leitura dos limiares térmicos e registro do atendimento. Cobre a
+  lacuna de orientação de segurança que a base antes apenas declarava.
+- Ficha de referência das **10 camadas do modelo sistêmico** em
+  [03-taxonomia-camadas.md](../03-taxonomia-camadas.md), com componentes, cenários de entrada,
+  primeiro teste e ferramentas — o equivalente, para esse modelo, do que o documento 08 oferece
+  para o modelo POST.
+- **Regra de entrada do cenário FI-01** em [07-fluxo-sistemico.md](../07-fluxo-sistemico.md):
+  o cenário é alcançado a partir de F08 quando a instabilidade não se reproduz sob demanda em F09,
+  F09b e F09c. O cenário deixou de ser inalcançável pelo fluxo.
+- Arquivo [`LICENSE`](../../LICENSE) na raiz, com o texto MIT que o README já referenciava.
+- Registro das **verificações independentes** em
+  [fontes.md](fontes.md#verificações-independentes-realizadas).
+
+### Terminologia unificada
+
+Os rótulos *modelo A* e *modelo B* foram substituídos por **modelo POST** e **modelo sistêmico**,
+que dizem o escopo de cada um em vez de exigir a memorização de uma letra. A troca é de rótulo: os
+números, os nomes das camadas e a notação literal (`Camada N: NOME` e `N - Nome`) permanecem
+idênticos.
+
+### Removido
+
+| Removido | Para onde foi |
+| --- | --- |
+| `docs/references/pendencias.md` | Divergências resolvidas acima; verificações em [fontes.md](fontes.md); decisões de convenção em [02-arquitetura.md](../02-arquitetura.md) |
+| `docs/15-limitacoes.md` | Fronteiras de cobertura em [01-visao-geral.md](../01-visao-geral.md#fronteiras-de-cobertura); precauções em [15-seguranca-e-boas-praticas.md](../15-seguranca-e-boas-praticas.md) |
+
+Nenhum fato foi descartado no processo: cada item das duas listas foi resolvido, incorporado a um
+documento definitivo ou registrado neste histórico.
+
+## doc-1.4.0 — 2026-08-07
 
 Revisão de integridade da documentação: três divergências entre documentos foram corrigidas, uma
 contradição foi resolvida e o material passou a ser autossuficiente para publicação. **Sem
@@ -57,8 +131,8 @@ idênticas a `doc-1.3.0`.
 
 | Onde | Antes | Agora |
 | --- | --- | --- |
-| [P-12](pendencias.md#p-12--campos-vazios-nos-guias-de-ferramentas) e [15-limitacoes.md](../15-limitacoes.md) | `REF_MemTest86`, Atalho de Teclado: 8 de 10 | **7 de 10** |
-| [P-12](pendencias.md#p-12--campos-vazios-nos-guias-de-ferramentas) e [15-limitacoes.md](../15-limitacoes.md) | `REF_MemTest86`, Alternativa Segura: 6 de 10 | **5 de 10** |
+| `P-12` e `15-limitacoes.md` | `REF_MemTest86`, Atalho de Teclado: 8 de 10 | **7 de 10** |
+| `P-12` e `15-limitacoes.md` | `REF_MemTest86`, Alternativa Segura: 6 de 10 | **5 de 10** |
 | [matriz-rastreabilidade.md](matriz-rastreabilidade.md) | Camadas do modelo B observadas: 9 números (1–7, 9, 10) | **10 números (1–10)** |
 
 A contagem de `REF_MemTest86` foi refeita campo a campo sobre as dez etapas de
@@ -66,13 +140,13 @@ A contagem de `REF_MemTest86` foi refeita campo a campo sobre as dez etapas de
 alternativa segura nas etapas 2, 4, 5, 6 e 10. `REF_Victoria` (6 de 9) e `REF_AIDA64` (42 de 45 e
 4 de 45) conferiam e não foram alteradas. O desvio de +1 em ambos os campos é compatível com uma
 contagem sobre as onze linhas de conteúdo da aba — as dez etapas mais o bloco de critérios de
-[P-13](pendencias.md#p-13--bloco-de-critérios-do-memtest86-fora-da-estrutura), cujos campos também
+`P-13`, cujos campos também
 estão vazios —, mas **isso não pôde ser confirmado** sem a planilha, e ficou registrado como
 hipótese, não como fato.
 
 A contagem do modelo B contradizia [03-taxonomia-camadas.md](../03-taxonomia-camadas.md),
-[P-04](pendencias.md#p-04--modelo-de-camadas-b-sem-tabela-de-definição) e
-[15-limitacoes.md](../15-limitacoes.md), que documentam dez camadas — a 8 (*Periféricos*) aparece
+`P-04` e
+`15-limitacoes.md`, que documentam dez camadas — a 8 (*Periféricos*) aparece
 em `CORRELACOES`. A matriz era o único documento a omiti-la.
 
 **Contradição resolvida**
@@ -104,8 +178,8 @@ documento citado, não o conteúdo atribuído a ele.
 
 | Pendência | O que foi apurado |
 | --- | --- |
-| [P-11](pendencias.md#p-11--lenovo-smartbeep-sem-procedimento) | A Lenovo **não publica** tabela de melodia → significado do SmartBeep; a decodificação é feita pelo aplicativo. O manual oficial descreve um passo que a base não registrava: pressionar **Fn** para reemitir o bipe |
-| [P-15](pendencias.md#p-15--referências-externas-citadas-mas-não-verificadas) | UEFI 2.10 e JEDEC JESD79-4/79-5 confirmadas. A citação *ATX12V PSU Design Guide v2.53* nomeia um documento inexistente sob esse título: o correto é o capítulo *ATX12V Specific Guidelines 2.53* do guia de fontes da Intel (documento nº 336521). AMI, Phoenix e Award não são verificáveis como citadas, por falta de número e versão |
+| `P-11` | A Lenovo **não publica** tabela de melodia → significado do SmartBeep; a decodificação é feita pelo aplicativo. O manual oficial descreve um passo que a base não registrava: pressionar **Fn** para reemitir o bipe |
+| `P-15` | UEFI 2.10 e JEDEC JESD79-4/79-5 confirmadas. A citação *ATX12V PSU Design Guide v2.53* nomeia um documento inexistente sob esse título: o correto é o capítulo *ATX12V Specific Guidelines 2.53* do guia de fontes da Intel (documento nº 336521). AMI, Phoenix e Award não são verificáveis como citadas, por falta de número e versão |
 
 `pendencias.md` ganhou a seção *Como ler esta lista*, que define os campos de cada ficha e os
 quatro valores de **Status**; a tabela-resumo passou a trazer o status de cada item e link direto
@@ -146,7 +220,7 @@ literais das fichas correspondentes.
 
 **Limitações conhecidas reestruturado**
 
-[15-limitacoes.md](../15-limitacoes.md) foi reorganizado para leitura por quem não conhece a
+`15-limitacoes.md` foi reorganizado para leitura por quem não conhece a
 estrutura interna das planilhas. Os **oito grupos originais foram mantidos**, com os mesmos
 títulos e âncoras; nenhum fato, valor ou link foi perdido.
 
@@ -165,9 +239,9 @@ títulos e âncoras; nenhum fato, valor ou link foi perdido.
 
 | Onde | Antes | Agora |
 | --- | --- | --- |
-| Seção 1 | Nome, autor e licença listados como *"Não identificada"*, sem ressalva | Coluna *Situação atual* distingue o que falta na planilha do que foi confirmado fora dela ([P-01](pendencias.md#p-01--nome-oficial-do-projeto--fechada), [P-02](pendencias.md#p-02--versão-do-conteúdo-técnico)) |
-| Seção 3 | "ambas as versões", para quatro divergências — e o *boot mínimo* tem **três** definições | Redação corrigida, com nota explicitando que a linha condensa três definições ([P-06](pendencias.md#p-06--composição-do-boot-mínimo)) |
-| Seção 8 | "Não houve consulta a fontes externas" | Corrigido: registra as duas conferências bibliográficas de `doc-1.4.0` e mantém, em destaque, que **nenhuma informação técnica veio de documentação de fabricante** |
+| Seção 1 | Nome, autor e licença listados como *"Não identificada"*, sem ressalva | Coluna *Situação atual* distingue o que falta na planilha do que foi confirmado fora dela (`P-01`, `P-02`) |
+| Seção 3 | "ambas as versões", para quatro divergências — e o *boot mínimo* tem **três** definições | Redação corrigida, com nota explicitando que a linha condensa três definições (`P-06`) |
+| Seção 8 | "Não houve consulta a fontes externas" | Corrigido: registra as duas conferências bibliográficas de `doc-2.0.0` e mantém, em destaque, que **nenhuma informação técnica veio de documentação de fabricante** |
 
 A seção 1 dizia que o nome do projeto não estava identificado, enquanto P-01 está fechada desde
 `doc-1.1.0` e o README declara autor e licença — a página era o único documento a não registrar
@@ -367,7 +441,7 @@ Geração inicial da base de conhecimento a partir de dois arquivos `.xlsx`.
 - Duas taxonomias de camada incompatíveis entre os arquivos-fonte.
 - Divergências de *power drain*, *boot mínimo* e limiares térmicos.
 
-Detalhamento em [pendencias.md](pendencias.md).
+Detalhamento em `pendencias.md`.
 
 **Decisões de documentação**
 
@@ -402,14 +476,14 @@ Documentação de autoria de Edsilas, derivada de planilhas de sua autoria.
 2. Trazer a correção para os documentos derivados, preservando a transcrição literal da célula.
 3. Acrescentar aqui uma entrada com: versão, data, o que mudou, qual aba mudou e se alguma
    pendência foi fechada.
-4. Se uma pendência de [pendencias.md](pendencias.md) for resolvida, marcá-la como fechada em vez
-   de removê-la, preservando o histórico da decisão.
+4. Se uma divergência entre fontes for resolvida, registrar aqui **qual valor foi adotado e contra
+   qual documento oficial**, e incorporar a decisão ao ponto de uso — não a um registro separado.
 
 ## Próximos passos
 
 | Se você… | Vá para |
 | --- | --- |
-| quer o que ainda está aberto | [Pendências](pendencias.md) |
+| quer conferir a origem de uma informação | [Fontes](fontes.md) |
 | vai registrar uma mudança | [Como contribuir](../../CONTRIBUTING.md) |
 
 
@@ -419,6 +493,6 @@ Documentação de autoria de Edsilas, derivada de planilhas de sua autoria.
 | --- | --- |
 | **Fonte primária deste documento** | Esta documentação |
 | **Status de confiança** | Confirmado |
-| **Última verificação contra a fonte** | 2026-08-07 |
+| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.4.0` |
+| **Versão da documentação** | `doc-2.0.0` |

@@ -68,7 +68,7 @@ flowchart LR
         F1["17 Glossário"]
         F2["18 Índices cruzados"]
         F3["19 Comandos"]
-        F4["15 Limitações"]
+        F4["15 Segurança e<br/>boas práticas"]
         F5["16 FAQ"]
     end
     subgraph MA["Manutenção e rastreabilidade"]
@@ -102,9 +102,10 @@ abaixo é exatamente o mesmo.
 | --- | --- |
 | [README](../README.md) | Porta de entrada: triagem por sintoma, o que há na base e para onde ir. |
 | [00-indice.md](00-indice.md) | Este documento: uma linha por arquivo, para quem prefere o mapa ao fluxograma. |
-| [01-visao-geral.md](01-visao-geral.md) | O que a base é, o que cobre, para quem e o que não faz. |
-| [03-taxonomia-camadas.md](03-taxonomia-camadas.md) | Os dois modelos de camadas coexistentes e o conflito entre eles. **Leitura obrigatória.** |
+| [01-visao-geral.md](01-visao-geral.md) | O que a base é, o que cobre, para quem, e onde ficam suas fronteiras. |
+| [03-taxonomia-camadas.md](03-taxonomia-camadas.md) | Os dois modelos de camadas, um por escopo, e a regra de notação. **Leitura obrigatória.** |
 | [04-requisitos-e-ferramentas.md](04-requisitos-e-ferramentas.md) | Inventário do instrumental exigido, por camada, por cenário e por componente. |
+| [15-seguranca-e-boas-praticas.md](15-seguranca-e-boas-praticas.md) | Energia residual, ESD, medição energizada e procedimentos transversais canônicos. |
 | [05-utilizacao.md](05-utilizacao.md) | Em que ordem ler e que regras seguir ao aplicar um procedimento. |
 
 ### Diagnostique
@@ -145,18 +146,17 @@ abaixo é exatamente o mesmo.
 | --- | --- |
 | [18-indices-cruzados.md](18-indices-cruzados.md) | Os mesmos registros por componente, camada, risco, fase do POST, tipo de sinal e ferramenta. |
 | [19-comandos.md](19-comandos.md) | Todos os comandos técnicos dos cenários, com contexto e risco. |
-| [17-glossario.md](17-glossario.md) | 43 termos, definidos pelo que a fonte diz sobre eles. |
+| [17-glossario.md](17-glossario.md) | 47 termos, com a definição usada na base e a expansão de cada sigla. |
 | [16-faq.md](16-faq.md) | Dúvidas derivadas do conteúdo documentado. |
-| [15-limitacoes.md](15-limitacoes.md) | O que esta base não cobre e onde ela é frágil. |
+| [15-seguranca-e-boas-praticas.md](15-seguranca-e-boas-praticas.md) | Precauções de bancada e procedimentos transversais canônicos. |
 
 ### Manutenção e rastreabilidade
 
 | Documento | Finalidade |
 | --- | --- |
 | [02-arquitetura.md](02-arquitetura.md) | Como o conhecimento está organizado e de qual aba cada documento saiu. |
-| [references/fontes.md](references/fontes.md) | Inventário das fontes e do que foi extraído de cada aba. |
+| [references/fontes.md](references/fontes.md) | Inventário das fontes, do que foi extraído de cada aba e das verificações externas. |
 | [references/matriz-rastreabilidade.md](references/matriz-rastreabilidade.md) | Informação → coluna de origem → documento → nível de confiança. |
-| [references/pendencias.md](references/pendencias.md) | Tudo que precisa de decisão humana, com severidade e o que falta para fechar. |
 | [references/changelog.md](references/changelog.md) | O que mudou em cada versão da documentação. |
 | [CONTRIBUTING.md](../CONTRIBUTING.md) | Regras de conteúdo, padrão dos documentos e fluxo de alteração. |
 
@@ -190,6 +190,6 @@ abaixo é exatamente o mesmo.
 | --- | --- |
 | **Fonte primária deste documento** | Ambos os arquivos-fonte |
 | **Status de confiança** | Confirmado (estrutura) — documento organizacional |
-| **Última verificação contra a fonte** | 2026-08-07 |
+| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.4.0` |
+| **Versão da documentação** | `doc-2.0.0` |

@@ -13,6 +13,7 @@
 
 - [Como fechar o atendimento](#como-fechar-o-atendimento)
 - [Matriz de validação](#matriz-de-validação)
+- [Como ler os dois limiares de temperatura](#como-ler-os-dois-limiares-de-temperatura)
 - [Detalhamento](#detalhamento)
 - [PSU](#psu)
 - [Placa-mãe](#placa-mãe)
@@ -43,6 +44,7 @@ Como chegar ao diagnóstico (ver fluxos e cenários); operação detalhada das f
 - [Fluxo de diagnóstico sistêmico](07-fluxo-sistemico.md) — nó F14 usa estes critérios
 - [Guias de ferramentas](14-ferramentas/00-indice-ferramentas.md)
 - [Índice de cenários](10-cenarios/00-indice-cenarios.md)
+- [Segurança e boas práticas](15-seguranca-e-boas-praticas.md) — escala completa de limiares térmicos
 
 ---
 
@@ -84,6 +86,33 @@ flowchart TD
 | [SO Windows](#so-windows) | 0 integrity violations. 0 erros críticos em 72h. | sfc encontra erros recorrentes. BSODs persistem. | Scan + 72h uso normal |
 | [Drivers](#drivers) | 0 erros no Device Manager. 0 TDRs em 48h. | Dispositivos desconhecidos. TDRs recorrentes. BSODs de driver. | Verificação imediata + 48h estabilidade |
 | [Térmico](#térmico) | Temperaturas estáveis. 0% throttling. Delta < 2°C com IR. | Temp > 90°C. Throttling detectado. Diferença > 10°C com IR. | 30 min stress |
+
+## Como ler os dois limiares de temperatura
+
+A matriz traz dois critérios FAIL de temperatura que parecem conflitar — **95 °C** na linha
+[CPU](#cpu) e **90 °C** na linha [Térmico](#térmico). Eles não conflitam: **julgam sujeitos
+diferentes**.
+
+| Linha | O que ela avalia | Critério FAIL | Pergunta que responde |
+| --- | --- | --- | --- |
+| [CPU](#cpu) | O processador como peça | Temp > 95 °C | O processador está defeituoso? |
+| [Térmico](#térmico) | A solução de refrigeração como sistema — cooler, pasta, fluxo de ar | Temp > 90 °C | A refrigeração está adequada? |
+
+Um equipamento estabilizado em **92 °C** sob carga tem, portanto, **CPU aprovada e subsistema
+térmico reprovado**: o processador não está defeituoso, mas a refrigeração não dá conta dele.
+
+> [!IMPORTANT]
+> **Para liberar o equipamento prevalece o limiar mais restritivo.** A validação final só fecha
+> quando **todos** os componentes avaliados passam. Aprovar a 92 °C porque a linha *CPU* passou
+> devolve ao cliente uma máquina que vai voltar para a bancada com queixa de lentidão — o cenário
+> [SA-01](10-cenarios/superaquecimento.md#sa-01) e a correlação
+> [COR-04](12-correlacoes.md#cor-04) descrevem exatamente esse caminho.
+
+Como referência de teto: segundo a Intel, o **Tjunction max** — ponto em que o processador aciona
+o controle térmico interno para reduzir potência — fica entre **100 °C e 110 °C** conforme o
+produto. Os dois critérios acima são margens de engenharia abaixo desse limite físico, não o
+limite em si. A escala completa, incluindo os limiares de repouso, está em
+[Limiares térmicos](15-seguranca-e-boas-praticas.md#limiares-térmicos-e-o-que-cada-um-decide).
 
 ---
 
@@ -426,6 +455,6 @@ Reaplicar pasta. Verificar cooler. Melhorar airflow. Substituir cooler se inadeq
 | --- | --- |
 | **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → aba `VALIDACAO_FINAL` |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-07 |
+| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.4.0` |
+| **Versão da documentação** | `doc-2.0.0` |

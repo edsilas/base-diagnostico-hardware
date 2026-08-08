@@ -39,6 +39,7 @@ Diagnóstico após o boot do sistema operacional (ver fluxo sistêmico); conteú
 - [Índice de códigos POST](09-codigos-post/00-indice-codigos.md) — destino das Etapas 4, 5 e 6
 - [Camadas de diagnóstico](08-diagnostico-por-camada.md) — subsistemas citados nas ações
 - [Ambiguidade de códigos](11-ambiguidades.md) — tratamento citado na Etapa 4
+- [Segurança e boas práticas](15-seguranca-e-boas-praticas.md) — define o boot mínimo citado nas Etapas 2 e 7
 
 ---
 
@@ -53,8 +54,15 @@ ou acende LED de diagnóstico. A Etapa 1 é o ponto de entrada obrigatório.
 
 ## Pré-requisitos
 
-Os pré-requisitos não estão declarados em campo próprio na fonte. As ferramentas citadas nas ações
-de cada etapa estão reproduzidas abaixo, no texto original.
+As ferramentas citadas nas ações de cada etapa estão reproduzidas abaixo, no texto original. Antes
+de executar qualquer etapa que exija abrir o equipamento:
+
+| Pré-requisito | Onde está definido |
+| --- | --- |
+| Descarga da energia residual — 30 s com o botão Power, sem cabo AC | [Procedimento canônico](15-seguranca-e-boas-praticas.md#procedimento-canônico-de-power-drain) |
+| Proteção contra descarga eletrostática | [Proteção contra ESD](15-seguranca-e-boas-praticas.md#proteção-contra-descarga-eletrostática-esd) |
+| Composição do boot mínimo citada nas Etapas 2 e 7 | [Boot mínimo](15-seguranca-e-boas-praticas.md#boot-mínimo-as-duas-composições-canônicas) |
+| Multímetro, para a medição de 5VSB da Etapa 1 | [Requisitos e ferramentas](04-requisitos-e-ferramentas.md) |
 
 > Nível de confiança: **Confirmado** para o conteúdo das etapas; a seção "Quando utilizar" acima é
 > **Inferida** a partir da condição da Etapa 1.
@@ -170,6 +178,14 @@ Etapa 3 ou Etapa 7
 #### Observações
 
 Sistemas sem speaker, Q-Code ou Debug LED são os mais difíceis de diagnosticar. POST Card USB/PCI é recomendada.
+
+> [!IMPORTANT]
+> O *boot mínimo* citado no item 4 desta etapa é o **boot mínimo absoluto** — CPU + cooler +
+> 1 módulo de RAM no slot primário + PSU, sem GPU dedicada. Quando a placa não tem speaker,
+> Q-Code nem Debug LED, use a variante **com vídeo**, porque a tela passa a ser o único canal de
+> resposta. As duas composições estão definidas em
+> [Boot mínimo](15-seguranca-e-boas-praticas.md#boot-mínimo-as-duas-composições-canônicas).
+> O cooler é obrigatório nas duas: sem ele o teste mede a proteção térmica, não a falha.
 
 ---
 
@@ -335,6 +351,7 @@ esse conteúdo está em [09-codigos-post/](09-codigos-post/00-indice-codigos.md)
 | o código tem mais de um significado | [Ambiguidade de códigos](11-ambiguidades.md) |
 | quer saber o que testar em cada subsistema | [Diagnóstico por camada](08-diagnostico-por-camada.md) |
 | o POST concluiu e a falha aparece em uso | [Fluxo de diagnóstico sistêmico](07-fluxo-sistemico.md) |
+| precisa montar o boot mínimo | [Segurança e boas práticas](15-seguranca-e-boas-praticas.md#boot-mínimo-as-duas-composições-canônicas) |
 
 
 ---
@@ -343,6 +360,6 @@ esse conteúdo está em [09-codigos-post/](09-codigos-post/00-indice-codigos.md)
 | --- | --- |
 | **Fonte primária deste documento** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Fluxo de Diagnóstico` |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-07 |
+| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.4.0` |
+| **Versão da documentação** | `doc-2.0.0` |

@@ -133,6 +133,16 @@ Sem a mídia correta, impossível rodar o teste fora do SO.
 
 O MemTest86 v10+ requer UEFI. Para PCs antigos (Legacy BIOS), deve-se usar a versão v4.3.7 (que vem junto no pacote, mas é limitada).
 
+> [!IMPORTANT]
+> **A v4 deixou de acompanhar o pacote.** Segundo o histórico de versões do desenvolvedor, o
+> MemTest86 v4 (BIOS) foi retirado das imagens de boot: as versões atuais são **exclusivamente
+> UEFI**, e o pacote não é mais de boot duplo. Para máquinas com BIOS legado, a v4 precisa ser
+> baixada à parte, na área de versões antigas do site do PassMark. Se o equipamento não oferece
+> boot UEFI, baixar apenas o pacote atual deixa você sem ferramenta.
+>
+> Verificado na documentação do desenvolvedor — ver
+> [Fontes](../references/fontes.md#verificações-independentes-realizadas).
+
 ### Boas práticas
 
 Usar Pen Drive de baixa capacidade (4GB/8GB) é suficiente e formata mais rápido.
@@ -323,6 +333,13 @@ Modo Round Robin (Alterna CPUs).
 ### Objetivo da etapa
 
 Rodar os 13 algoritmos padrão para detectar 95% dos erros comuns
+
+> [!NOTE]
+> **Conferência com a documentação do desenvolvedor.** O manual do MemTest86 (PassMark) descreve a
+> bateria padrão como os testes **0 a 13 — quatorze testes**, e não treze. A numeração começa em
+> zero, o que explica a diferença: o último teste é o de número 13, o
+> [*Hammer Test*](#etapa-5--teste-de-row-hammer-teste-13). Nada muda na execução — a etapa continua
+> sendo deixar o Pass 1 completar —, mas a contagem correta é quatorze.
 
 ### Ação exata a executar
 
@@ -908,6 +925,6 @@ Erros apenas no Teste 13 (Hammer): Vulnerável. Uso aceitável para PC doméstic
 | --- | --- |
 | **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → aba `REF_MemTest86` |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-07 |
+| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.4.0` |
+| **Versão da documentação** | `doc-2.0.0` |

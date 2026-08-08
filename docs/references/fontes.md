@@ -14,7 +14,7 @@
 - [Nível 1 — Fontes primárias](#nível-1--fontes-primárias)
 - [Inventário por aba](#inventário-por-aba)
 - [Nível 2 — Informações fornecidas pelo proprietário](#nível-2--informações-fornecidas-pelo-proprietário)
-- [Nível 3 — Fontes externas](#nível-3--fontes-externas)
+- [Nível 3 — Fontes externas verificadas](#nível-3--fontes-externas-verificadas)
 - [Nível 4 — Inferências desta documentação](#nível-4--inferências-desta-documentação)
 - [Próximos passos](#próximos-passos)
 
@@ -24,7 +24,8 @@ Registro de origem de todo o conteúdo desta base. Identifica os arquivos, seu c
 
 ## Escopo
 
-Inventário dos arquivos-fonte, hash de verificação, conteúdo por aba e destino documental.
+Inventário dos arquivos-fonte, hash de verificação, conteúdo por aba, destino documental e registro
+das verificações feitas contra fontes externas.
 
 ## Fora do escopo
 
@@ -33,8 +34,8 @@ Rastreabilidade campo a campo — está em [matriz-rastreabilidade.md](matriz-ra
 ## Relação com outros documentos
 
 - [Matriz de rastreabilidade](matriz-rastreabilidade.md)
-- [Pendências](pendencias.md)
 - [Arquitetura da documentação](../02-arquitetura.md)
+- [Segurança e boas práticas](../15-seguranca-e-boas-praticas.md) — usa as verificações registradas aqui
 
 ---
 
@@ -96,9 +97,11 @@ O proprietário do projeto informou o endereço do repositório oficial:
 Dessa informação decorre a identificação do projeto (nome, proprietário, licença), obtida por
 consulta direta ao repositório — registrada no Nível 3 abaixo.
 
-Permanece **não fornecida** a versão do conteúdo técnico das planilhas.
+A versão do conteúdo passou a ser a da própria documentação publicada (`doc-2.0.0`),
+conforme a convenção descrita em
+[Arquitetura da documentação](../02-arquitetura.md#versionamento-do-conteúdo).
 
-## Nível 3 — Fontes externas
+## Nível 3 — Fontes externas verificadas
 
 ### Repositório oficial do projeto
 
@@ -190,19 +193,40 @@ Referências citadas pelas fontes, agrupadas:
 - Phoenix BIOS Technical Reference Manual
 - SATA-IO Serial ATA Revision 3.5; NVM Express Specification Rev 2.0; Manual OEM da Placa-mãe (M.2 Compatibility Chart)
 
-> **Status dessas referências: Não confirmado.** Elas são declarações da fonte primária, não
-> verificações independentes. Para elevar a "Oficial", cada uma precisaria ser confrontada com o
-> documento original do fabricante.
+> **Status dessas referências: declaradas pela fonte primária.** Elas são citações feitas pelas
+> planilhas, não verificações independentes. As que foram conferidas de forma autônoma por esta
+> documentação estão na tabela seguinte, com o resultado da conferência; as demais permanecem como
+> declaração da fonte.
 
-**Conferência bibliográfica.** A designação de parte dessas referências — não o conteúdo atribuído
-a elas — foi conferida contra os órgãos que as publicam. A conferência apurou que a citação
-*ATX12V PSU Design Guide v2.53* nomeia um documento que não existe sob esse título, embora a versão
-esteja correta. O resultado completo está em
-[P-15](pendencias.md#p-15--referências-externas-citadas-mas-não-verificadas).
+### Verificações independentes realizadas
 
-Isso **não altera** o que está escrito acima: nenhuma informação técnica desta base veio de
-documentação de fabricante. A conferência apenas verifica se os documentos citados pelas planilhas
-existem e como se chamam.
+Cada linha abaixo foi conferida contra a publicação de quem edita o documento — o órgão de
+normalização, o fabricante ou o desenvolvedor da ferramenta. A tabela distingue o que foi
+confirmado do que foi corrigido.
+
+| O que foi verificado | Fonte consultada | Resultado |
+| --- | --- | --- |
+| Designação do guia de fontes da Intel | Intel, *ATX Version 3 Multi Rail Desktop Platform Power Supply Design Guide*, documento nº 336521 | **Corrigido.** Não existe documento autônomo chamado *ATX12V PSU Design Guide v2.53*. `ATX12V Specific Guidelines` é um **capítulo** do documento 336521; a versão 2.53 desse capítulo é real e consta do histórico de revisões. A revisão vigente do capítulo é a 3.1 |
+| Versão vigente da especificação UEFI | UEFI Forum, página oficial de especificações | **Atualizado.** A 2.10 é de agosto de 2022 (Errata A em agosto de 2024) e foi substituída pela **2.11, de dezembro de 2024** |
+| Designação e revisão das normas JEDEC de memória | JEDEC, área de *Main Memory: DDR SDRAM* | **Confirmado e atualizado.** `JESD79-4` (DDR4) e `JESD79-5` (DDR5) são designações oficiais. A JESD79-5 é de julho de 2020; a revisão mais recente é a **JESD79-5D, de novembro de 2025** |
+| Procedimento do Lenovo SmartBeep | Lenovo, *User Guide* ThinkPad, tópico *Beep errors* | **Confirmado e completado.** A Lenovo não publica tabela melodia → significado: a decodificação é feita pelo aplicativo. O procedimento oficial tem quatro passos e inclui **pressionar Fn para reemitir o bipe** — passo que a planilha não registrava. Incorporado em [POST-44](../09-codigos-post/lenovo.md#post-44--melodia-variável) |
+| Duração da descarga de energia residual | Dell, base de conhecimento 000139016 e manuais de serviço; HP, *How to power reset your computer* | **Divergência resolvida.** Dell publica 15–20 s; HP publica ≈15 s. A base adota **30 s**, valor que satisfaz e supera todos os mínimos publicados. Ver [procedimento canônico](../15-seguranca-e-boas-praticas.md#procedimento-canônico-de-power-drain) |
+| Limite térmico do processador | Intel, artigo de suporte 000005597, *Information about Temperature for Intel Processors* | **Confirmado.** Tjunction max é o ponto em que o processador aciona o controle térmico interno, e fica entre **100 °C e 110 °C** conforme o produto. É o teto que ancora a escala de limiares desta base |
+| Expansão de BIST e procedimento do autoteste de fonte | Dell, base de conhecimento 000125179 | **Confirmado.** *Built-In Self-Test*. O critério publicado é LED sólido **e** ventoinha girando; ventoinha parada reprova o teste mesmo com o LED aceso |
+| Expansão de XMP, EXPO e DOCP | ASUS, FAQ 1042256 | **Confirmado.** *Extreme Memory Profile* (Intel), *EXtended Profiles for Overclocking* (AMD) e *Direct Over Clock Profile* (ASUS) |
+| Expansão de SEC e PEI | UEFI Forum, *Platform Initialization Specification*; documentação do EDK II | **Confirmado.** *Security* e *Pre-EFI Initialization*, primeira e segunda fases da sequência SEC → PEI → DXE → BDS |
+| Bateria padrão e requisitos do MemTest86 | PassMark, *MemTest86 User Manual* e página de download | **Confirmado e corrigido.** A bateria padrão executa os testes **0 a 13 — quatorze testes**, sendo o Teste 13 o *Hammer Test* (row hammer). As versões atuais exigem **UEFI**; sistemas com BIOS legado usam a linha v4 |
+| Norma de controle de descarga eletrostática | EOS/ESD Association, ANSI/ESD S20.20-2021 | **Confirmado.** Trata como sensíveis itens suscetíveis a partir de 100 V (HBM) e 200 V (CDM) — abaixo do limiar perceptível por uma pessoa |
+
+> [!IMPORTANT]
+> Estas verificações apuram a **identidade e o valor pontual** do que foi consultado. Elas não
+> auditam campo a campo as 54 fichas de código nem as 13 de cenário: o conteúdo técnico dessas
+> fichas continua tendo o valor da planilha de origem. Onde a verificação externa alterou ou
+> completou uma informação, isso está dito no ponto de uso.
+
+As demais referências citadas pelas planilhas — em especial os manuais de beep code de AMI,
+Phoenix e Award — trazem títulos genéricos, sem número de documento nem versão, e por isso não são
+localizáveis de forma inequívoca. Elas permanecem registradas como declaração da fonte.
 
 ## Nível 4 — Inferências desta documentação
 
@@ -217,13 +241,16 @@ Toda inferência está sinalizada no ponto de uso. As de maior alcance são:
 | Divisão do guia AIDA64 em três arquivos | `14-ferramentas/` | Divisão puramente numérica por faixa de etapas |
 | Agrupamento dos 13 IDs em 9 arquivos de cenário | `10-cenarios/` | Agrupamento definido pela própria coluna `IDs Relacionados` |
 | Roteiro de navegação por situação | `05-utilizacao.md` | Derivado das condições de entrada dos fluxos |
+| Ficha de referência das camadas do modelo sistêmico | `03-taxonomia-camadas.md` | Agrupamento, por camada, de colunas já existentes em `TABELA_PRINCIPAL`, `INDICE_CENARIOS` e `CORRELACOES` |
+| Regra de entrada do cenário FI-01 | `07-fluxo-sistemico.md`, `10-cenarios/falhas-intermitentes.md` | Derivada do campo `Condição de Ocorrência` do próprio FI-01, que declara o problema como não reproduzível sob demanda |
+| Nomes *boot mínimo absoluto* e *boot mínimo com vídeo* | `15-seguranca-e-boas-praticas.md` | Nomeiam as composições que a fonte descreve sem rótulo próprio |
 
 ## Próximos passos
 
 | Se você… | Vá para |
 | --- | --- |
 | quer o mapeamento campo a campo | [Matriz de rastreabilidade](matriz-rastreabilidade.md) |
-| quer o que ainda não foi confirmado | [Pendências](pendencias.md) |
+| quer as precauções que decorrem destas fontes | [Segurança e boas práticas](../15-seguranca-e-boas-praticas.md) |
 | quer entender como os documentos são gerados | [Arquitetura da documentação](../02-arquitetura.md) |
 
 
@@ -233,6 +260,6 @@ Toda inferência está sinalizada no ponto de uso. As de maior alcance são:
 | --- | --- |
 | **Fonte primária deste documento** | Inventário direto dos arquivos recebidos |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-07 |
+| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.4.0` |
+| **Versão da documentação** | `doc-2.0.0` |

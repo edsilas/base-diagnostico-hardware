@@ -17,6 +17,7 @@
 - [Mapa de nós](#mapa-de-nós)
 - [Diagrama do fluxo](#diagrama-do-fluxo)
 - [Nós detalhados](#nós-detalhados)
+- [Como o fluxo alcança cada cenário](#como-o-fluxo-alcança-cada-cenário)
 - [Quando interromper](#quando-interromper)
 - [Observações](#observações)
 - [Próximos passos](#próximos-passos)
@@ -39,6 +40,7 @@ Detalhamento dos cenários (ver fichas em `10-cenarios/`); códigos de POST; pas
 - [Fluxo de diagnóstico POST](06-fluxo-post.md) — detalhamento da faixa pré-boot
 - [Validação final por componente](13-validacao-final.md) — critérios usados no nó F14
 - [Correlações entre camadas](12-correlacoes.md) — armadilhas que este fluxo não cobre
+- [Segurança e boas práticas](15-seguranca-e-boas-praticas.md) — pré-requisitos de bancada e limiares térmicos
 
 ---
 
@@ -54,8 +56,14 @@ quanto o comportamento pós-boot (F06–F14).
 
 ## Pré-requisitos
 
-Os pré-requisitos não estão declarados em campo próprio na fonte. As ferramentas exigidas por nó
-estão na coluna *Ferramentas*, reproduzida abaixo.
+As ferramentas exigidas por nó estão na coluna *Ferramentas*, reproduzida abaixo. Antes dos nós que
+exigem abrir o equipamento — **F02**, **F02b**, **F04**, **F05** e **F10** —, valem os
+pré-requisitos gerais de bancada: descarga da energia residual e proteção contra ESD, definidos em
+[Segurança e boas práticas](15-seguranca-e-boas-praticas.md).
+
+O *minimal boot* citado em **F02b** é o **boot mínimo absoluto** — CPU + cooler + 1 módulo de RAM +
+PSU —, conforme
+[Boot mínimo](15-seguranca-e-boas-praticas.md#boot-mínimo-as-duas-composições-canônicas).
 
 ## Mapa de nós
 
@@ -354,7 +362,7 @@ Observação
 
 #### Referência (ID)
 
-— (sem cenário associado na fonte)
+— (nó de bifurcação pura: não executa ação própria, apenas encaminha)
 
 ---
 
@@ -410,7 +418,7 @@ Observação
 
 #### Referência (ID)
 
-— (sem cenário associado na fonte)
+— (nó de bifurcação pura: não executa ação própria, apenas encaminha)
 
 ---
 
@@ -634,9 +642,57 @@ AIDA64 Report, Victoria Log, MemTest86 HTML
 
 #### Referência (ID)
 
-— (sem cenário associado na fonte)
+— (nó terminal: o fluxo encerra aqui e passa à emissão do laudo)
 
 ---
+
+## Como o fluxo alcança cada cenário
+
+Os treze IDs de cenário são alcançáveis a partir deste fluxo. A tabela mostra por qual nó se chega
+a cada um:
+
+| Cenário | Alcançado por | Condição |
+| --- | --- | --- |
+| [NL-01](10-cenarios/nao-liga.md#nl-01) | F01, F02 | O equipamento não liga |
+| [NL-02](10-cenarios/nao-liga.md#nl-02) | F02b | PSU aprovada, mas a placa não responde |
+| [SV-01](10-cenarios/liga-sem-video.md#sv-01) | F03, F04 | Liga sem vídeo; Debug LED em DRAM |
+| [SV-02](10-cenarios/liga-sem-video.md#sv-02) | F05 | Debug LED estaciona em VGA |
+| [BS-01](10-cenarios/bsod.md#bs-01) | F07 | BSOD de código 0x1A ou 0x0A |
+| [BS-02](10-cenarios/bsod.md#bs-02) | F07, F12 | BSOD de código 0x7A ou 0x24; S.M.A.R.T. degradado |
+| [RA-01](10-cenarios/reinicializacao-aleatoria.md#ra-01) | F09 | Reinício aleatório com PSU instável |
+| [RA-02](10-cenarios/reinicializacao-aleatoria.md#ra-02) | F09, F13 | Reinício aleatório com PSU estável; erro em MemTest86 |
+| [TR-01](10-cenarios/travamentos-freeze.md#tr-01) | F09b | Freeze completo |
+| [AU-01](10-cenarios/alto-uso-cpu-gpu.md#au-01) | F09c | Lentidão com alto uso de CPU |
+| [DN-01](10-cenarios/disco-nao-reconhecido.md#dn-01) | F10 | Disco não reconhecido |
+| [SA-01](10-cenarios/superaquecimento.md#sa-01) | F11 | Temperatura fora de spec sob carga |
+| [FI-01](10-cenarios/falhas-intermitentes.md#fi-01) | F08 → F09 → F09b → F09c, sem reprodução | Ver a regra abaixo |
+
+### Regra de entrada do cenário FI-01
+
+O cenário [FI-01](10-cenarios/falhas-intermitentes.md#fi-01) trata de falhas **não reproduzíveis
+sob demanda** — a própria ficha declara, no campo *Condição de Ocorrência*, que o problema é
+intermitente e de difícil reprodução. Por isso ele não é alcançado por um nó que faça uma pergunta
+respondível na hora: nenhum teste pontual reproduz o sintoma.
+
+A regra é esta:
+
+> Se **F08** foi respondido **"não"** — o sistema não opera estável —, mas **F09**, **F09b** e
+> **F09c** não conseguem reproduzir a falha durante a observação, o caso é de falha intermitente:
+> vá para **FI-01** e passe ao registro contínuo de sensores.
+
+```mermaid
+flowchart TD
+    F08{"F08<br/>Opera estável em<br/>uso normal?"}
+    F08 -->|"Sim"| F10["F10<br/>segue o fluxo"]
+    F08 -->|"Não"| F09{"F09 · F09b · F09c<br/>reinício, freeze<br/>ou lentidão?"}
+    F09 -->|"Reproduz"| CEN["Cenário correspondente<br/>RA · TR · AU"]
+    F09 -->|"Não reproduz<br/>sob demanda"| FI["FI-01<br/>Falhas intermitentes<br/>log contínuo de 12–24 h"]
+```
+
+> [!NOTE]
+> A regra acima é **derivada** do campo *Condição de Ocorrência* de FI-01 e da estrutura dos nós
+> F08 a F09c: a coluna `Referência (ID)` de `FLUXO_LOGICO` não cita FI-01 em nenhum nó. Nível de
+> confiança: **Inferido**, sobre campos Confirmados.
 
 ## Quando interromper
 
@@ -646,7 +702,11 @@ determina a geração de relatório final com classificação em *Saudável*, *M
 
 ## Observações
 
-Os nós **F06** e **F08** não possuem ID de cenário associado na fonte (campo preenchido com "—").
+Os nós **F06** e **F08** não têm ID de cenário associado, e isso é coerente com a função deles: são
+**nós de bifurcação pura**. A ação declarada em cada um é apenas observar — *"Observar se Windows
+carrega até o desktop"* e *"Usar o sistema por 15-30 min com tarefas normais"* — e o resultado
+encaminha para outro nó. Como não executam procedimento próprio, não há ficha de cenário a
+referenciar. Todos os nós que executam ação apontam para pelo menos um ID.
 
 ## Próximos passos
 
@@ -664,6 +724,6 @@ Os nós **F06** e **F08** não possuem ID de cenário associado na fonte (campo 
 | --- | --- |
 | **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → aba `FLUXO_LOGICO` |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-07 |
+| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.4.0` |
+| **Versão da documentação** | `doc-2.0.0` |

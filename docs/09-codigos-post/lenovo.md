@@ -104,6 +104,25 @@ App 'Lenovo PC Diagnostics' (smartphone iOS/Android)
 
 App identifica código e procedimento resolve o erro. POST completa. Lenovo Diagnostics (F10) sem erros.
 
+> [!IMPORTANT]
+> **Passo que a fonte primária não registrava.** O manual do fabricante acrescenta uma ação
+> indispensável quando o bipe já ocorreu e não se repete sozinho: **pressionar a tecla Fn no
+> computador para emitir o bipe novamente**, com o aplicativo já em execução e o smartphone
+> próximo. Sem isso não há sinal a decodificar.
+>
+> O procedimento oficial completo tem quatro passos:
+>
+> 1. Acessar `https://support.lenovo.com/smartbeep`.
+> 2. Baixar o aplicativo de diagnóstico e instalá-lo no smartphone.
+> 3. Executar o aplicativo com o smartphone próximo ao computador.
+> 4. Pressionar **Fn** no computador para emitir o bipe novamente. O aplicativo decodifica o erro e
+>    mostra as soluções possíveis.
+>
+> O recurso se aplica a sintomas de **tela preta acompanhada de bipes**. A Lenovo **não publica**
+> tabela de melodia → significado: a decodificação existe apenas no aplicativo. Verificado no
+> *User Guide* ThinkPad, tópico *Beep errors* — ver
+> [Fontes](../references/fontes.md#verificações-independentes-realizadas).
+
 ### Risco e origem
 
 #### Risco / criticidade
@@ -116,7 +135,7 @@ Lenovo SmartBeep Documentation / Lenovo HMM
 
 ### Próximos passos
 
-- Camada declarada: `Variável` — valor composto ou variável; ver [Taxonomia de camadas](../03-taxonomia-camadas.md)
+- Camada declarada: `Variável` — a camada só é conhecida depois de o aplicativo decodificar o bipe; ver [Taxonomia de camadas](../03-taxonomia-camadas.md#regra-de-notação-obrigatória)
 - Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
 - Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
 
@@ -230,6 +249,6 @@ Lenovo ThinkPad HMM / Lenovo BIOS Guide
 | --- | --- |
 | **Fonte primária deste documento** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-07 |
+| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.4.0` |
+| **Versão da documentação** | `doc-2.0.0` |

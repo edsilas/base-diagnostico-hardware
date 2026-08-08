@@ -4,7 +4,7 @@
 
 # Glossário
 
-> 43 termos técnicos usados no material, definidos pelo que as fontes dizem sobre eles.
+> 47 termos técnicos usados no material, com a definição empregada nesta base e a expansão de cada sigla.
 
 
 **Aplica-se a:** Leitura de qualquer documento desta base
@@ -13,7 +13,7 @@
 
 - [5VSB (standby 5 V)](#5vsb-standby-5-v)
 - [BDS (Boot Device Selection)](#bds-boot-device-selection)
-- [BIST](#bist)
+- [BIST (Built-In Self-Test)](#bist-built-in-self-test)
 - [Boot mínimo (minimal boot)](#boot-mínimo-minimal-boot)
 - [Camada](#camada)
 - [CH341A](#ch341a)
@@ -40,7 +40,7 @@
 - [HMM (Hardware Maintenance Manual)](#hmm-hardware-maintenance-manual)
 - [KBC (Keyboard Controller)](#kbc-keyboard-controller)
 - [ME (Management Engine)](#me-management-engine)
-- [OCP (Over Current Protection) e OPP](#ocp-over-current-protection-e-opp)
+- [OCP (Over Current Protection) e OPP (Over Power Protection)](#ocp-over-current-protection-e-opp-over-power-protection)
 - [Row Hammer](#row-hammer)
 - [SmartBeep](#smartbeep)
 - [SPD (Serial Presence Detect)](#spd-serial-presence-detect)
@@ -48,14 +48,18 @@
 - [TDR (Timeout Detection and Recovery)](#tdr-timeout-detection-and-recovery)
 - [Teste cruzado](#teste-cruzado)
 - [Teste paperclip](#teste-paperclip)
-- [TjMax](#tjmax)
+- [TjMax (Tjunction max)](#tjmax-tjunction-max)
 - [Vdrop / voltage droop](#vdrop--voltage-droop)
 - [Wear Level](#wear-level)
 - [WinDbg (Windows Debugging Tools)](#windbg-windows-debugging-tools)
 - [WinPE](#winpe)
 - [XMP / EXPO / DOCP](#xmp--expo--docp)
+- [ESD (Electrostatic Discharge)](#esd-electrostatic-discharge)
+- [Flea power](#flea-power)
+- [Hammer Test (Teste 13)](#hammer-test-teste-13)
+- [PSREF (Product Specifications Reference)](#psref-product-specifications-reference)
 - [Siglas de fase do POST](#siglas-de-fase-do-post)
-- [Termos usados sem definição na fonte](#termos-usados-sem-definição-na-fonte)
+- [Siglas expandidas fora da fonte primária](#siglas-expandidas-fora-da-fonte-primária)
 - [Próximos passos](#próximos-passos)
 
 ## Contexto
@@ -74,7 +78,7 @@ Termos genéricos de informática sem relação com os procedimentos documentado
 
 - [Índice da documentação](00-indice.md)
 - [Taxonomia de camadas](03-taxonomia-camadas.md)
-- [Limitações](15-limitacoes.md)
+- [Segurança e boas práticas](15-seguranca-e-boas-praticas.md)
 
 ---
 
@@ -100,29 +104,38 @@ Fase do POST em que o firmware seleciona o dispositivo de boot. Expansão fornec
 
 ---
 
-## BIST
+## BIST (Built-In Self-Test)
 
-Teste embutido citado como primeiro passo recomendado pela Dell para verificar a fonte. A fonte também registra um BIST de tela acionado por 'D' + Power. A expansão da sigla não é fornecida.
+Autoteste embutido. A base o cita em dois usos: o autoteste da fonte de alimentação, acionado por
+botão próprio na traseira de desktops Dell, e um autoteste de tela acionado por `D` + Power. No
+autoteste de fonte, o critério publicado pela Dell é **LED sólido e ventoinha girando**; ventoinha
+parada reprova o teste mesmo com o LED aceso.
 
-**Nível de confiança:** Confirmado (uso) / Não confirmado (expansão)  
+**Nível de confiança:** Confirmado (uso, pela fonte primária) / Confirmado (expansão e critério, por documentação Dell)  
 **Aplicado em:** 09-codigos-post/dell.md
 
 ---
 
 ## Boot mínimo (minimal boot)
 
-Configuração reduzida para isolar a falha. **A composição diverge entre as fontes**: 'CPU + 1 RAM + fonte', 'CPU + RAM + Vídeo apenas' e 'CPU + Cooler + 1 RAM + PSU apenas'.
+Configuração reduzida para isolar a falha. A base define **duas composições nomeadas**:
+*boot mínimo absoluto* (CPU + cooler + 1 RAM no slot primário + PSU) e *boot mínimo com vídeo* (o
+anterior mais saída de vídeo e monitor), escolhidas conforme o equipamento tenha ou não Debug LED,
+Q-Code ou speaker. O cooler é obrigatório nas duas.
 
-**Nível de confiança:** Necessita validação  
-**Aplicado em:** 06-fluxo-post.md, 07-fluxo-sistemico.md
+**Nível de confiança:** Confirmado — composições definidas em [15-seguranca-e-boas-praticas.md](15-seguranca-e-boas-praticas.md#boot-mínimo-as-duas-composições-canônicas)  
+**Aplicado em:** 06-fluxo-post.md, 07-fluxo-sistemico.md, 15-seguranca-e-boas-praticas.md
 
 ---
 
 ## Camada
 
-Agrupamento de subsistemas usado para localizar a origem de uma falha. **Existem dois modelos de numeração incompatíveis** entre os arquivos-fonte.
+Agrupamento de subsistemas usado para localizar a origem de uma falha. A base usa **dois modelos**,
+um por escopo: o *modelo POST* (7 camadas, notação `Camada N: NOME`) e o *modelo sistêmico*
+(10 camadas, notação `N - Nome`). O formato do texto identifica o modelo; os números **não** se
+correspondem entre eles.
 
-**Nível de confiança:** Necessita validação  
+**Nível de confiança:** Confirmado  
 **Aplicado em:** 03-taxonomia-camadas.md
 
 ---
@@ -192,19 +205,22 @@ Chipset da placa-mãe. Expansão fornecida pela fonte na descrição da camada d
 
 ## Pass (MemTest86)
 
-Ciclo completo da bateria de testes. A fonte registra que a bateria padrão executa 13 algoritmos e que o critério de aprovação é zero erro em **4 passes**.
+Ciclo completo da bateria de testes. Segundo a documentação do desenvolvedor, a bateria padrão executa os testes **0 a 13 — quatorze
+testes**. O critério de aprovação adotado pela base é zero erro em **4 passes**.
 
-**Nível de confiança:** Confirmado (critério) / Inferido (equivalência 1 pass = 1 bateria completa)  
+**Nível de confiança:** Confirmado (critério, pela fonte primária; contagem de testes, pela documentação PassMark)  
 **Aplicado em:** 14-ferramentas/memtest86.md
 
 ---
 
 ## Power drain
 
-Descarga dos capacitores residuais antes de manipular componentes. **A duração diverge entre as fontes**: 30 s em um arquivo, 10 s no outro.
+Descarga dos capacitores residuais antes de manipular componentes — chamado *flea power* pela Dell
+e *residual electrical charge* pela HP. A base adota **30 s** com o botão Power pressionado e o
+cabo AC removido, valor que satisfaz e supera os mínimos publicados por Dell (15–20 s) e HP (≈15 s).
 
-**Nível de confiança:** Necessita validação  
-**Aplicado em:** 09-codigos-post/, 10-cenarios/nao-liga.md
+**Nível de confiança:** Confirmado — ver [procedimento canônico](15-seguranca-e-boas-praticas.md#procedimento-canônico-de-power-drain)  
+**Aplicado em:** 09-codigos-post/, 10-cenarios/nao-liga.md, 15-seguranca-e-boas-praticas.md
 
 ---
 
@@ -343,11 +359,13 @@ Firmware listado pela fonte entre os componentes da camada de firmware, ao lado 
 
 ---
 
-## OCP (Over Current Protection) e OPP
+## OCP (Over Current Protection) e OPP (Over Power Protection)
 
-Proteções da fonte de alimentação. A fonte registra o disparo de OCP/OPP como causa de a PSU não sustentar carga de pico, e o desarme por OCP como erro possível durante stress test. A expansão de OPP não é fornecida.
+Proteções da fonte de alimentação: a primeira atua por excesso de corrente numa linha, a segunda
+por excesso de potência total. A base registra o disparo de OCP/OPP como causa de a PSU não
+sustentar carga de pico, e o desarme por OCP como erro possível durante stress test.
 
-**Nível de confiança:** Confirmado (OCP) / Não confirmado (expansão de OPP)  
+**Nível de confiança:** Confirmado (uso) / Inferido (expansão de OPP, pela nomenclatura corrente do setor)  
 **Aplicado em:** 10-cenarios/reinicializacao-aleatoria.md, 14-ferramentas/aida64-etapas-01-15.md
 
 ---
@@ -415,12 +433,16 @@ Acionamento da fonte fora da placa-mãe, curto-circuitando PS_ON (pino 16, fio v
 
 ---
 
-## TjMax
+## TjMax (Tjunction max)
 
-Temperatura máxima de junção do processador. A fonte cita a faixa 100–105 °C ao descrever o sintoma de superaquecimento.
+Temperatura de junção máxima do processador: o ponto em que ele aciona os próprios mecanismos de
+controle térmico para reduzir potência e limitar temperatura. A fonte cita a faixa 100–105 °C ao
+descrever o sintoma de superaquecimento; a Intel informa que o limite varia por produto e fica
+entre **100 °C e 110 °C**. É o teto físico que ancora a escala de limiares desta base — não uma
+meta operacional.
 
-**Nível de confiança:** Confirmado  
-**Aplicado em:** 10-cenarios/superaquecimento.md
+**Nível de confiança:** Confirmado (uso, pela fonte primária; faixa por produto, pela documentação Intel)  
+**Aplicado em:** 10-cenarios/superaquecimento.md, 13-validacao-final.md, 15-seguranca-e-boas-praticas.md
 
 ---
 
@@ -462,10 +484,63 @@ Ambiente de execução independente do Windows instalado, recomendado pela fonte
 
 ## XMP / EXPO / DOCP
 
-Perfis de desempenho de memória. A fonte exige que o perfil esteja ativo durante o teste com MemTest86, para não mascarar instabilidade. As expansões das siglas não são fornecidas.
+Perfis de desempenho de memória gravados no chip SPD do módulo, que substituem os valores JEDEC
+padrão por frequência, temporizações e tensão validadas pelo fabricante da memória:
 
-**Nível de confiança:** Confirmado (uso) / Não confirmado (expansão)  
+| Sigla | Expansão | Origem |
+| --- | --- | --- |
+| XMP | *Extreme Memory Profile* | Intel |
+| EXPO | *EXtended Profiles for Overclocking* | AMD |
+| DOCP | *Direct Over Clock Profile* | ASUS |
+
+A base exige que o perfil esteja **ativo** durante o teste com MemTest86, para não mascarar
+instabilidade que só aparece na frequência anunciada.
+
+**Nível de confiança:** Confirmado (uso, pela fonte primária; expansões, por documentação ASUS)  
 **Aplicado em:** 14-ferramentas/memtest86.md
+
+---
+
+## ESD (Electrostatic Discharge)
+
+Descarga eletrostática. A norma de referência do setor, ANSI/ESD S20.20, trata como sensíveis os
+componentes suscetíveis a partir de **100 V** no modelo de corpo humano e **200 V** no modelo de
+dispositivo carregado — valores abaixo do limiar que uma pessoa percebe. Daí a regra de bancada:
+não sentir choque não significa que não houve descarga.
+
+**Nível de confiança:** Confirmado — ANSI/ESD S20.20-2021 (EOS/ESD Association)  
+**Aplicado em:** 15-seguranca-e-boas-praticas.md, 04-requisitos-e-ferramentas.md
+
+---
+
+## Flea power
+
+Nome usado pela Dell para a carga residual retida nos capacitores depois de o equipamento ser
+desligado. A HP chama o mesmo fenômeno de *residual electrical charge*. Ver
+[Power drain](#power-drain).
+
+**Nível de confiança:** Confirmado — documentação de suporte da Dell e da HP  
+**Aplicado em:** 15-seguranca-e-boas-praticas.md
+
+---
+
+## Hammer Test (Teste 13)
+
+Teste do MemTest86 que verifica a suscetibilidade do módulo a
+[Row Hammer](#row-hammer). É o último da bateria padrão, que vai do teste 0 ao teste 13.
+
+**Nível de confiança:** Confirmado — documentação PassMark  
+**Aplicado em:** 14-ferramentas/memtest86.md
+
+---
+
+## PSREF (Product Specifications Reference)
+
+Base pública de especificações de produto da Lenovo, citada pela fonte como consulta final quando o
+procedimento documentado não resolve, ao lado do [HMM](#hmm-hardware-maintenance-manual).
+
+**Nível de confiança:** Confirmado (uso, pela fonte primária; expansão, pelo portal Lenovo)  
+**Aplicado em:** 09-codigos-post/lenovo.md
 
 ---
 
@@ -473,29 +548,32 @@ Perfis de desempenho de memória. A fonte exige que o perfil esteja ativo durant
 
 A fonte usa `SEC`, `PEI`, `DXE` e `BDS` no campo `FASE POST`, sempre nesta ordem de execução.
 
-| Sigla | Expansão | Situação na fonte |
+| Sigla | Expansão | O que acontece na fase |
 | --- | --- | --- |
-| SEC | — | Usada sem expansão |
-| PEI | — | Usada sem expansão; aparece sempre qualificada (`PEI (Memory Training)`, `SEC/PEI (CPU Init)`) |
-| DXE | Driver Execution Environment | **Expandida pela fonte** |
-| BDS | Boot Device Selection | **Expandida pela fonte** |
+| SEC | *Security* | Primeira fase: trata os eventos de reinício, cria armazenamento temporário e serve como raiz de confiança |
+| PEI | *Pre-EFI Initialization* | Inicializa CPU, chipset e memória permanente, para que a fase seguinte possa ser carregada |
+| DXE | *Driver Execution Environment* | Executa os drivers do firmware e inicializa o restante do hardware |
+| BDS | *Boot Device Selection* | Seleciona o dispositivo de boot e passa o controle ao carregador do sistema |
 
-**Nível de confiança:** Confirmado (uso das quatro e expansão de DXE e BDS) / Não confirmado
-(expansão de SEC e PEI).
+**Nível de confiança:** Confirmado — DXE e BDS expandidos pela própria fonte; SEC e PEI conferidos
+na *Platform Initialization Specification* do UEFI Forum. A ordem SEC → PEI → DXE → BDS é a
+declarada pela especificação e coincide com a usada no campo `FASE POST`.
 
-## Termos usados sem definição na fonte
+## Siglas expandidas fora da fonte primária
 
-Registrados aqui para que a ausência fique explícita, em vez de ser preenchida por conhecimento
-externo:
+As siglas abaixo são usadas pelas planilhas sem expansão. Cada uma foi conferida na publicação de
+quem a define, e a expansão está registrada aqui em vez de ficar em aberto. O registro das
+consultas está em
+[Fontes](references/fontes.md#verificações-independentes-realizadas).
 
-| Termo | Como a fonte o usa |
-| --- | --- |
-| BIST | Teste embutido; a fonte descreve dois usos (botão na traseira da PSU Dell e teste de tela com `D` + Power), sem expandir a sigla |
-| XMP / EXPO / DOCP | Perfis de desempenho de memória; a fonte os trata como equivalentes entre fabricantes, sem expandir |
-| SEC, PEI | Fases do POST; ver tabela acima |
-| OPP | Proteção da PSU citada ao lado da OCP |
-| QVL | Expandida (*Qualified Vendor List*), mas a fonte não descreve como obtê-la além de "site do fabricante" |
-| PSREF | Citado como base de consulta Lenovo, sem expansão |
+| Termo | Situação | Onde foi confirmado |
+| --- | --- | --- |
+| BIST | *Built-In Self-Test* | Documentação de suporte da Dell |
+| XMP / EXPO / DOCP | *Extreme Memory Profile* / *EXtended Profiles for Overclocking* / *Direct Over Clock Profile* | Documentação de suporte da ASUS |
+| SEC, PEI | *Security* e *Pre-EFI Initialization* | *Platform Initialization Specification*, UEFI Forum |
+| OPP | *Over Power Protection* — nomenclatura corrente do setor, ao lado de OCP | Inferido pelo uso |
+| PSREF | *Product Specifications Reference* — base pública de especificações da Lenovo | Portal PSREF da Lenovo |
+| QVL | *Qualified Vendor List* — obtida na página do modelo da placa-mãe, no site do fabricante | Expandida pela própria fonte |
 
 ## Próximos passos
 
@@ -503,7 +581,7 @@ externo:
 | --- | --- |
 | o termo era um número de camada | [Taxonomia de camadas](03-taxonomia-camadas.md) |
 | o termo era uma ferramenta | [Guias de ferramentas](14-ferramentas/00-indice-ferramentas.md) |
-| o termo não está aqui | [Limitações](15-limitacoes.md) |
+| o termo não está aqui | [Índices cruzados](18-indices-cruzados.md) |
 
 
 ---
@@ -512,6 +590,6 @@ externo:
 | --- | --- |
 | **Fonte primária deste documento** | Ambos os arquivos-fonte |
 | **Status de confiança** | Confirmado para os termos definidos pela fonte; lacunas sinalizadas por termo |
-| **Última verificação contra a fonte** | 2026-08-07 |
+| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.4.0` |
+| **Versão da documentação** | `doc-2.0.0` |

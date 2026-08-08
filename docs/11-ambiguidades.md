@@ -127,6 +127,14 @@ flowchart TD
 
 ## Beep Contínuo
 
+> [!IMPORTANT]
+> **Esta é a entrada canônica para beep contínuo.** O
+> [catálogo de códigos](09-codigos-post/00-indice-codigos.md) registra beep contínuo apenas na
+> família Award, com o significado de memória não instalada ou não detectada. A hipótese de
+> **teclado com tecla presa**, que ocorre em parte das versões AMI, existe só aqui. Se você chegou
+> ao catálogo por um beep contínuo e o procedimento de memória não resolveu, volte a esta seção
+> antes de condenar a placa: o teste de desconectar o teclado leva segundos e desempata.
+
 ### Significados concorrentes
 
 | Fabricante | Significado |
@@ -219,6 +227,6 @@ flowchart TD
 | --- | --- |
 | **Fonte primária deste documento** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Ambiguidade de Códigos` |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-07 |
+| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-1.4.0` |
+| **Versão da documentação** | `doc-2.0.0` |
