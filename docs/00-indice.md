@@ -12,8 +12,7 @@
 ## Neste documento
 
 - [Mapa da documentação](#mapa-da-documentação)
-- [Ordem lógica](#ordem-lógica)
-- [Documentos](#documentos)
+- [Todos os documentos](#todos-os-documentos)
 - [Convenção de níveis de confiança](#convenção-de-níveis-de-confiança)
 - [Próximos passos](#próximos-passos)
 
@@ -59,20 +58,20 @@ flowchart LR
         C3["11 Ambiguidades"]
         C4["12 Correlações"]
     end
-    subgraph FE["Feche"]
+    subgraph FE["Feche o atendimento"]
         D1["13 Validação final"]
     end
-    subgraph FR["Ferramentas"]
+    subgraph FR["Opere as ferramentas"]
         E1["14 Victoria<br/>AIDA64<br/>MemTest86"]
     end
-    subgraph RF["Referência"]
+    subgraph RF["Consulte a referência"]
         F1["17 Glossário"]
         F2["18 Índices cruzados"]
         F3["19 Comandos"]
         F4["15 Limitações"]
         F5["16 FAQ"]
     end
-    subgraph MA["Rastreabilidade"]
+    subgraph MA["Manutenção e rastreabilidade"]
         G1["02 Arquitetura"]
         G2["references/"]
     end
@@ -91,103 +90,80 @@ flowchart LR
     D1 -.-> MA
 ```
 
-## Ordem lógica
+## Todos os documentos
 
-```text
-Comece aqui        → README, 00-indice
-Entenda o projeto  → 01-visao-geral, 02-arquitetura, 03-taxonomia-camadas
-Prepare-se         → 04-requisitos-e-ferramentas
-Saiba navegar      → 05-utilizacao
-Diagnostique       → 06-fluxo-post, 07-fluxo-sistemico, 08-diagnostico-por-camada
-Resolva            → 09-codigos-post/, 10-cenarios/, 11-ambiguidades, 12-correlacoes
-Feche o caso       → 13-validacao-final
-Opere a ferramenta → 14-ferramentas/
-Conheça os limites → 15-limitacoes, 16-faq, 17-glossario
-Busque de outro jeito → 18-indices-cruzados, 19-comandos
-Rastreie a origem  → references/
-```
-
-## Documentos
+Os grupos abaixo são os mesmos sete do [README](../README.md) e da trilha de navegação que abre
+cada página. Se você chegou aqui por uma trilha — *Início › Resolva › …* —, o grupo **Resolva**
+abaixo é exatamente o mesmo.
 
 ### Comece aqui
 
 | Documento | Finalidade |
 | --- | --- |
-| [README](../README.md) | Porta de entrada do repositório: o que é, o que há, início rápido. |
-| [00-indice.md](00-indice.md) | Este documento: mapa completo da base. |
-
-### Entenda o projeto
-
-| Documento | Finalidade |
-| --- | --- |
+| [README](../README.md) | Porta de entrada: triagem por sintoma, o que há na base e para onde ir. |
+| [00-indice.md](00-indice.md) | Este documento: uma linha por arquivo, para quem prefere o mapa ao fluxograma. |
 | [01-visao-geral.md](01-visao-geral.md) | O que a base é, o que cobre, para quem e o que não faz. |
-| [02-arquitetura.md](02-arquitetura.md) | Como o conhecimento foi organizado e de onde cada documento veio. |
 | [03-taxonomia-camadas.md](03-taxonomia-camadas.md) | Os dois modelos de camadas coexistentes e o conflito entre eles. **Leitura obrigatória.** |
-
-### Prepare-se e navegue
-
-| Documento | Finalidade |
-| --- | --- |
 | [04-requisitos-e-ferramentas.md](04-requisitos-e-ferramentas.md) | Inventário do instrumental exigido, por camada, por cenário e por componente. |
-| [05-utilizacao.md](05-utilizacao.md) | Por onde entrar conforme o sintoma e em que ordem ler. |
+| [05-utilizacao.md](05-utilizacao.md) | Em que ordem ler e que regras seguir ao aplicar um procedimento. |
 
 ### Diagnostique
 
 | Documento | Finalidade |
 | --- | --- |
-| [06-fluxo-post.md](06-fluxo-post.md) | Fluxo condicional de 7 etapas para falhas antes do boot. |
-| [07-fluxo-sistemico.md](07-fluxo-sistemico.md) | Árvore de decisão de 17 nós, do botão Power à validação final. |
-| [08-diagnostico-por-camada.md](08-diagnostico-por-camada.md) | Ficha de cada um dos 7 subsistemas: componentes, testes, indicadores de falha. |
+| [06-fluxo-post.md](06-fluxo-post.md) | As 7 etapas do fluxo de POST, da energia à identificação do código. |
+| [07-fluxo-sistemico.md](07-fluxo-sistemico.md) | Os 17 nós do fluxo de ponta a ponta, do botão Power ao laudo. |
+| [08-diagnostico-por-camada.md](08-diagnostico-por-camada.md) | O que testar em cada subsistema: componentes, testes primários, indicadores de falha. |
 
 ### Resolva
 
 | Documento | Finalidade |
 | --- | --- |
-| [09-codigos-post/](09-codigos-post/00-indice-codigos.md) | Catálogo dos 54 códigos de POST, com ficha completa de cada um. |
-| [10-cenarios/](10-cenarios/00-indice-cenarios.md) | Fichas dos 13 cenários de falha pós-boot. |
-| [11-ambiguidades.md](11-ambiguidades.md) | Os 5 sinais com mais de um significado e como diferenciá-los. |
-| [12-correlacoes.md](12-correlacoes.md) | As 6 falhas que se manifestam em outra camada e as armadilhas associadas. |
+| [09-codigos-post/](09-codigos-post/00-indice-codigos.md) | Fichas dos 54 códigos de POST, agrupadas em 11 famílias de BIOS. |
+| [10-cenarios/](10-cenarios/00-indice-cenarios.md) | Os 13 procedimentos de falha pós-boot, em 9 agrupamentos. |
+| [11-ambiguidades.md](11-ambiguidades.md) | Os 5 sinais com mais de um significado, e o teste que desempata. |
+| [12-correlacoes.md](12-correlacoes.md) | As 6 falhas que se manifestam em outro subsistema. |
 
 ### Feche o atendimento
 
 | Documento | Finalidade |
 | --- | --- |
-| [13-validacao-final.md](13-validacao-final.md) | Critérios PASS e FAIL por componente, com tempo de observação e ação em caso de reprovação. |
+| [13-validacao-final.md](13-validacao-final.md) | Critério PASS, critério FAIL, tempo de observação e ação em caso de reprovação, para 10 componentes. |
 
 ### Opere as ferramentas
 
 | Documento | Finalidade |
 | --- | --- |
-| [14-ferramentas/](14-ferramentas/00-indice-ferramentas.md) | Índice dos guias operacionais. |
-| [victoria.md](14-ferramentas/victoria.md) | 9 etapas: da preparação do ambiente ao relatório final. |
-| [memtest86.md](14-ferramentas/memtest86.md) | 10 etapas + critérios de decisão sobre o destino dos módulos. |
-| [aida64-etapas-01-15.md](14-ferramentas/aida64-etapas-01-15.md) | AIDA64, etapas 1 a 15. |
-| [aida64-etapas-16-30.md](14-ferramentas/aida64-etapas-16-30.md) | AIDA64, etapas 16 a 30. |
-| [aida64-etapas-31-45.md](14-ferramentas/aida64-etapas-31-45.md) | AIDA64, etapas 31 a 45. |
+| [14-ferramentas/](14-ferramentas/00-indice-ferramentas.md) | Qual ferramenta usar para cada verificação, e o guia operacional de cada uma. |
+| [14-ferramentas/victoria.md](14-ferramentas/victoria.md) | 9 etapas: S.M.A.R.T., varredura de superfície, remapeamento, relatório. |
+| [14-ferramentas/memtest86.md](14-ferramentas/memtest86.md) | 10 etapas, mais os critérios de decisão sobre o destino dos módulos. |
+| [14-ferramentas/aida64-etapas-01-15.md](14-ferramentas/aida64-etapas-01-15.md) | 45 etapas em três partes: [01–15](14-ferramentas/aida64-etapas-01-15.md) · [16–30](14-ferramentas/aida64-etapas-16-30.md) · [31–45](14-ferramentas/aida64-etapas-31-45.md). |
 
-### Conheça os limites
+### Consulte a referência
 
 | Documento | Finalidade |
 | --- | --- |
-| [15-limitacoes.md](15-limitacoes.md) | O que a base não cobre, lacunas e divergências verificadas. |
-| [16-faq.md](16-faq.md) | Perguntas derivadas exclusivamente do conteúdo documentado. |
-| [17-glossario.md](17-glossario.md) | Termos técnicos usados no material, com a definição que a fonte dá. |
+| [18-indices-cruzados.md](18-indices-cruzados.md) | Os mesmos registros por componente, camada, risco, fase do POST, tipo de sinal e ferramenta. |
+| [19-comandos.md](19-comandos.md) | Todos os comandos técnicos dos cenários, com contexto e risco. |
+| [17-glossario.md](17-glossario.md) | 43 termos, definidos pelo que a fonte diz sobre eles. |
+| [16-faq.md](16-faq.md) | Dúvidas derivadas do conteúdo documentado. |
+| [15-limitacoes.md](15-limitacoes.md) | O que esta base não cobre e onde ela é frágil. |
 
-### Busque de outro jeito
-
-| Documento | Finalidade |
-| --- | --- |
-| [18-indices-cruzados.md](18-indices-cruzados.md) | Os mesmos registros reagrupados por componente, camada, risco, fase do POST, tipo de sinal e ferramenta. |
-| [19-comandos.md](19-comandos.md) | Todos os comandos técnicos dos cenários reunidos, com contexto e risco. |
-
-### Rastreie a origem
+### Manutenção e rastreabilidade
 
 | Documento | Finalidade |
 | --- | --- |
+| [02-arquitetura.md](02-arquitetura.md) | Como o conhecimento está organizado e de qual aba cada documento saiu. |
 | [references/fontes.md](references/fontes.md) | Inventário das fontes e do que foi extraído de cada aba. |
-| [references/matriz-rastreabilidade.md](references/matriz-rastreabilidade.md) | Informação → fonte → documento → nível de confiança. |
-| [references/pendencias.md](references/pendencias.md) | Tudo que precisa de validação humana. |
-| [references/changelog.md](references/changelog.md) | Histórico desta documentação. |
+| [references/matriz-rastreabilidade.md](references/matriz-rastreabilidade.md) | Informação → coluna de origem → documento → nível de confiança. |
+| [references/pendencias.md](references/pendencias.md) | Tudo que precisa de decisão humana, com severidade e o que falta para fechar. |
+| [references/changelog.md](references/changelog.md) | O que mudou em cada versão da documentação. |
+| [CONTRIBUTING.md](../CONTRIBUTING.md) | Regras de conteúdo, padrão dos documentos e fluxo de alteração. |
+
+> [!TIP]
+> Procurando a **ordem de leitura** para quem está chegando agora? Ela fica em
+> [05-utilizacao.md](05-utilizacao.md#ordem-de-leitura-para-quem-está-chegando-agora), com o
+> diagrama da sequência.
 
 ## Convenção de níveis de confiança
 

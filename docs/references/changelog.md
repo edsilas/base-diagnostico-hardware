@@ -113,10 +113,42 @@ para a ficha correspondente. [fontes.md](fontes.md) e
 [matriz-rastreabilidade.md](matriz-rastreabilidade.md) registram a conferência sem alterar a
 declaração de que nenhuma fonte de fabricante alimentou o conteúdo técnico.
 
+**Navegação unificada**
+
+A base usava três vocabulários diferentes para os mesmos grupos de documento: os sete nomes do
+[README](../../README.md) — que são os mesmos da trilha que abre cada página —, dez nomes na seção
+*Documentos* de [00-indice.md](../00-indice.md) e onze num bloco *Ordem lógica* do mesmo arquivo.
+Quem chegava por uma trilha *Início › Resolva › …* não encontrava "Resolva" no índice.
+
+- `00-indice.md` passou a usar **exclusivamente os sete nomes canônicos**, na seção
+  *Todos os documentos*. Os rótulos do fluxograma do mapa foram alinhados aos mesmos sete.
+- O bloco *Ordem lógica* foi retirado: era um terceiro vocabulário que repetia o catálogo logo
+  abaixo. A ordem de leitura tem dono único —
+  [05-utilizacao.md](../05-utilizacao.md#ordem-de-leitura-para-quem-está-chegando-agora) —, para
+  onde o índice agora remete.
+- Em `05-utilizacao.md`, a seção *Entrada por sintoma* era um título sem conteúdo, apenas com um
+  aviso de redirecionamento. Virou *Onde entrar conforme o sintoma*, que declara o que a página
+  cobre e o que fica no README.
+
+**Segurança e aplicação prática**
+
+O README levava direto do sintoma ao procedimento, sem nada entre a triagem e a execução. Nova
+seção **Antes de executar qualquer procedimento**, com o que conferir antes de encostar no
+equipamento: o risco declarado da ficha, os pré-requisitos e o instrumental. Traz um aviso
+`> [!CAUTION]` sobre medição energizada, manipulação de fonte e regravação de firmware, e registra
+que a escala de risco é ordem relativa — a fonte não define o significado dos níveis.
+
+A tabela de triagem ganhou uma coluna intermediária, *Como isso costuma aparecer*, com a
+manifestação observável de cada situação, e três entradas novas: visor de dois caracteres, LED
+piscando em cores alternadas e melodia no lugar de bipes. Todas as pistas citadas — `00`, `B4`,
+`FF`, *1 longo + 2 curtos*, *1-1-1-3*, *2 âmbar + 1 branco*, LEDs CPU/DRAM/VGA/BOOT — são valores
+literais das fichas correspondentes.
+
 **Preservado**
 
-Fichas de código, de cenário e de ferramenta, fluxogramas, índices cruzados e glossário não foram
-tocados, exceto pelo carimbo de versão no rodapé.
+Fichas de código, de cenário e de ferramenta, fluxogramas de diagnóstico, índices cruzados e
+glossário não foram tocados, exceto pelo carimbo de versão no rodapé. Nenhuma linha do catálogo de
+documentos foi perdida no reagrupamento: os mesmos arquivos continuam listados, sob os sete nomes.
 
 ## doc-1.3.0 — 2026-08-07
 

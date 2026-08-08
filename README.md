@@ -36,27 +36,59 @@ flowchart TD
     V1 --> Z(["Laudo emitido"])
 ```
 
-| Situação | Vá para |
-| --- | --- |
-| Não dá sinal de vida | [Fluxo de diagnóstico POST](docs/06-fluxo-post.md) |
-| Liga, mas não aparece imagem | [Fluxo de diagnóstico POST](docs/06-fluxo-post.md) → [Liga sem vídeo](docs/10-cenarios/liga-sem-video.md) |
-| Está emitindo bipes | [Catálogo de códigos](docs/09-codigos-post/00-indice-codigos.md) |
-| Mostra código hexadecimal no display | [AMI Q-Code](docs/09-codigos-post/ami-q-code.md) |
-| Há um LED de diagnóstico aceso | [Debug LED genérico](docs/09-codigos-post/generico-debug-led.md) |
-| O mesmo bipe tem dois significados | [Ambiguidade de códigos](docs/11-ambiguidades.md) |
-| Trava, reinicia ou dá tela azul | [Cenários de falha](docs/10-cenarios/00-indice-cenarios.md) |
-| Esquenta demais ou desliga sozinho | [Superaquecimento](docs/10-cenarios/superaquecimento.md) |
-| Um disco sumiu do sistema | [Disco não reconhecido](docs/10-cenarios/disco-nao-reconhecido.md) |
-| Troquei a peça e o problema voltou | [Correlações entre camadas](docs/12-correlacoes.md) |
-| Terminei o reparo, preciso validar | [Validação final](docs/13-validacao-final.md) |
-| Preciso do comando exato | [Referência de comandos](docs/19-comandos.md) |
-| Quero buscar por componente, risco ou ferramenta | [Índices cruzados](docs/18-indices-cruzados.md) |
-| Não reconheço um termo | [Glossário](docs/17-glossario.md) |
+| O que você observa | Como isso costuma aparecer | Vá para |
+| --- | --- | --- |
+| Não dá sinal de vida | Nenhuma luz, nenhum ventilador, nenhum som | [Fluxo de diagnóstico POST](docs/06-fluxo-post.md) |
+| Liga, mas não aparece imagem | Ventiladores giram, tela permanece preta | [Fluxo de diagnóstico POST](docs/06-fluxo-post.md) → [Liga sem vídeo](docs/10-cenarios/liga-sem-video.md) |
+| Está emitindo bipes | Padrões como *1 longo + 2 curtos* ou *1-1-1-3* | [Catálogo de códigos](docs/09-codigos-post/00-indice-codigos.md) |
+| Mostra dois caracteres num visor | Um par como `00`, `B4`, `FF`, geralmente na placa-mãe | [AMI Q-Code](docs/09-codigos-post/ami-q-code.md) |
+| Há um LED de diagnóstico aceso | LED rotulado CPU, DRAM, VGA ou BOOT | [Debug LED genérico](docs/09-codigos-post/generico-debug-led.md) |
+| Pisca em cores alternadas | Sequências como *2 âmbar + 1 branco* (Dell) | [Códigos Dell](docs/09-codigos-post/dell.md) |
+| Toca uma melodia em vez de bipes | ThinkPad e ThinkStation com SmartBeep | [Códigos Lenovo](docs/09-codigos-post/lenovo.md) |
+| O mesmo bipe tem dois significados | O padrão consta de mais de um fabricante | [Ambiguidade de códigos](docs/11-ambiguidades.md) |
+| Trava, reinicia ou dá tela azul | Já carrega o sistema, mas não se sustenta | [Cenários de falha](docs/10-cenarios/00-indice-cenarios.md) |
+| Esquenta demais ou desliga sozinho | Desligamento sem aviso, ventoinha acelerada | [Superaquecimento](docs/10-cenarios/superaquecimento.md) |
+| Um disco sumiu do sistema | A unidade não aparece no sistema ou na BIOS | [Disco não reconhecido](docs/10-cenarios/disco-nao-reconhecido.md) |
+| Falha só às vezes, sem padrão | Não reproduz sob demanda | [Falhas intermitentes](docs/10-cenarios/falhas-intermitentes.md) |
+| Troquei a peça e o problema voltou | A causa estava em outro subsistema | [Correlações entre camadas](docs/12-correlacoes.md) |
+| Terminei o reparo, preciso validar | — | [Validação final](docs/13-validacao-final.md) |
+| Preciso do comando exato | — | [Referência de comandos](docs/19-comandos.md) |
+| Quero buscar por componente, risco ou ferramenta | — | [Índices cruzados](docs/18-indices-cruzados.md) |
+| Não reconheço um termo | — | [Glossário](docs/17-glossario.md) |
 
 > [!IMPORTANT]
 > Antes de usar qualquer número de camada, leia
 > [Taxonomia de camadas](docs/03-taxonomia-camadas.md). Os dois arquivos-fonte numeram as camadas
 > de forma incompatível: *camada 3* é **Memória** em um e **CPU** no outro.
+
+---
+
+## Antes de executar qualquer procedimento
+
+Toda ficha desta base — de código de POST ou de cenário — traz um campo de **risco declarado** e
+uma seção de **pré-requisitos**, antes da seção de correção. Leia os dois antes de encostar no
+equipamento.
+
+| Confira | Onde está | Por quê |
+| --- | --- | --- |
+| O risco declarado da ficha | Campo *Risco associado* ou *Risco / criticidade*, na própria ficha | 18 dos 54 códigos e 5 dos 13 cenários são declarados **Crítico** |
+| Os pré-requisitos | Seção *Pré-requisitos*, antes de *Execução da correção* | Vários procedimentos exigem o equipamento desligado e sem energia residual |
+| O instrumental necessário | [Requisitos e ferramentas](docs/04-requisitos-e-ferramentas.md) | Medir tensão exige multímetro; não há substituto documentado |
+
+> [!CAUTION]
+> Parte dos procedimentos envolve **medição de tensão com o equipamento energizado**, manipulação
+> de fonte e regravação de firmware. Se você não tem o instrumento pedido nos pré-requisitos ou não
+> está seguro do passo, **pare e encaminhe a um técnico**. Esta base descreve o que fazer; ela não
+> substitui prática de bancada.
+
+> [!NOTE]
+> A escala de risco — Crítico, Alto, Médio, Baixo, Variável — é a declarada pelas planilhas de
+> origem. **A fonte não define o significado de cada nível**, então trate-a como ordem relativa,
+> não como medida absoluta. Para ver tudo agrupado por risco, use
+> [Índice por risco declarado](docs/18-indices-cruzados.md#índice-por-risco-declarado).
+
+Onde a documentação disser *"Informação não identificada na fonte analisada"*, trate como lacuna
+real: não preencha por analogia com outro registro.
 
 ---
 

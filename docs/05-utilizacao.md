@@ -12,10 +12,10 @@
 ## Neste documento
 
 - [Antes de qualquer coisa](#antes-de-qualquer-coisa)
-- [Entrada por sintoma](#entrada-por-sintoma)
+- [Onde entrar conforme o sintoma](#onde-entrar-conforme-o-sintoma)
 - [Ordem de leitura para quem está chegando agora](#ordem-de-leitura-para-quem-está-chegando-agora)
 - [Regras de uso do material](#regras-de-uso-do-material)
-- [Uso por sistemas de IA](#uso-por-sistemas-de-ia)
+- [Consulta automatizada](#consulta-automatizada)
 - [Próximos passos](#próximos-passos)
 
 ## Contexto
@@ -44,13 +44,13 @@ Conteúdo técnico dos procedimentos; organização interna da documentação (v
 Leia [Taxonomia de camadas](03-taxonomia-camadas.md). Os dois arquivos-fonte numeram as camadas
 de forma diferente, e usar o número errado leva a testar o subsistema errado.
 
-## Entrada por sintoma
+## Onde entrar conforme o sintoma
 
-> [!TIP]
-> A entrada por sintoma fica no [README](../README.md#por-onde-começar), que é o ponto de entrada
-> da base: lá estão o fluxograma de triagem e a tabela completa de situação → documento.
-> Esta página trata do **como usar** o material: em que ordem ler, que regras seguir e como um
-> agente de IA deve consultá-lo.
+A triagem por sintoma vive no [README](../README.md#por-onde-começar) — fluxograma de decisão e
+tabela completa de *o que você observa* → documento. Ela não é repetida aqui.
+
+Esta página cobre o que vem **depois** de escolher o caminho: em que ordem ler e que regras seguir
+ao aplicar um procedimento.
 
 ## Ordem de leitura para quem está chegando agora
 
@@ -87,12 +87,12 @@ flowchart TD
 5. **Onde a documentação disser "Informação não identificada na fonte analisada", trate como
    lacuna real** — não como algo que possa ser preenchido por analogia com outro registro.
 
-## Uso por sistemas de IA
+## Consulta automatizada
 
 Cada documento é autocontido: traz contexto, escopo, fora de escopo, relação com outros documentos
-e a aba de origem no rodapé. Um agente pode carregar apenas o documento relevante sem perder a
-noção de onde ele se encaixa. Os documentos gerados trazem, na primeira linha, um comentário HTML
-com a aba de origem.
+e a aba de origem no rodapé. É possível carregar apenas o documento relevante sem perder a noção de
+onde ele se encaixa. Os documentos derivados das planilhas trazem, na primeira linha, um comentário
+HTML com a aba de origem.
 
 Para rastrear qualquer afirmação até a célula de origem, use
 [references/matriz-rastreabilidade.md](references/matriz-rastreabilidade.md).
