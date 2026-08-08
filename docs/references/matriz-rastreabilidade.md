@@ -163,7 +163,7 @@ que contêm remete a um documento gerado.
 | Componentes na validação final | 10 |
 | Etapas de ferramentas | 64 |
 | Referências externas citadas pelas fontes | 56 (não verificadas) |
-| Fontes externas consultadas por esta documentação | 1 (repositório oficial) |
+| Fontes externas consultadas por esta documentação | 1 para conteúdo (repositório oficial) + 4 para conferência de designação (ver [P-15](pendencias.md#p-15--referências-externas-citadas-mas-não-verificadas) e [P-11](pendencias.md#p-11--lenovo-smartbeep-sem-procedimento)) |
 
 ## Próximos passos
 

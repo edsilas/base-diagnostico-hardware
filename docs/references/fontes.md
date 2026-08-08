@@ -194,6 +194,16 @@ Referências citadas pelas fontes, agrupadas:
 > verificações independentes. Para elevar a "Oficial", cada uma precisaria ser confrontada com o
 > documento original do fabricante.
 
+**Conferência bibliográfica.** A designação de parte dessas referências — não o conteúdo atribuído
+a elas — foi conferida contra os órgãos que as publicam. A conferência apurou que a citação
+*ATX12V PSU Design Guide v2.53* nomeia um documento que não existe sob esse título, embora a versão
+esteja correta. O resultado completo está em
+[P-15](pendencias.md#p-15--referências-externas-citadas-mas-não-verificadas).
+
+Isso **não altera** o que está escrito acima: nenhuma informação técnica desta base veio de
+documentação de fabricante. A conferência apenas verifica se os documentos citados pelas planilhas
+existem e como se chamam.
+
 ## Nível 4 — Inferências desta documentação
 
 Toda inferência está sinalizada no ponto de uso. As de maior alcance são:

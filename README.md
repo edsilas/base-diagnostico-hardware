@@ -257,11 +257,9 @@ Regras completas e fluxo de alteração em [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Licença
 
-MIT, conforme o arquivo [`LICENSE`](https://github.com/edsilas/base-diagnostico-hardware/blob/main/LICENSE) do repositório.
-
-> [!NOTE]
-> O arquivo `LICENSE` já existe no repositório e **não** faz parte deste pacote de documentação —
-> para não sobrescrever o original.
+Distribuído sob a licença MIT. O texto completo está no arquivo
+[`LICENSE`](https://github.com/edsilas/base-diagnostico-hardware/blob/main/LICENSE), na raiz do
+repositório.
 
 ## Autoria e créditos
 

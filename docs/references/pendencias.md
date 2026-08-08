@@ -11,6 +11,7 @@
 
 ## Neste documento
 
+- [Como ler esta lista](#como-ler-esta-lista)
 - [Resumo](#resumo)
 - [~~P-01 — Nome oficial do projeto~~ · FECHADA](#p-01--nome-oficial-do-projeto--fechada)
 - [P-02 — Versão do conteúdo técnico](#p-02--versão-do-conteúdo-técnico)
@@ -53,27 +54,53 @@ Limitações estruturais do material, que estão em [15-limitacoes.md](../15-lim
 
 ---
 
+## Como ler esta lista
+
+Cada pendência traz os mesmos campos, na mesma ordem:
+
+| Campo | O que informa |
+| --- | --- |
+| **Situação** | O que foi encontrado nas fontes, com a citação literal quando ela é o próprio problema |
+| **Impacto** | O efeito prático no diagnóstico, e para quem |
+| **O que já foi feito** | A mitigação aplicada na documentação, quando existe. Mitigação não fecha a pendência |
+| **Para fechar** | A ação concreta que resolve o item — quase sempre na planilha de origem |
+| **Status** | Em que estágio o item está |
+
+Nas pendências fechadas, **O que já foi feito** é substituído por **Como foi resolvida**.
+
+O campo **Status** usa quatro valores:
+
+| Status | Significa |
+| --- | --- |
+| **Fechada** | Resolvida e registrada no [changelog](changelog.md). Mantida na lista para preservar o histórico da decisão |
+| **Necessita validação** | Depende de conferência contra a fonte ou de confirmação de que o comportamento é intencional |
+| **Decisão pendente** | Depende de uma escolha do proprietário do projeto; não há resposta certa a apurar |
+| **Parcialmente verificada** | Parte do item foi confirmada; o restante continua em aberto |
+
 ## Resumo
 
-| # | Pendência | Tipo | Severidade |
-| --- | --- | --- | --- |
-| ~~P-01~~ | ~~Nome oficial do projeto~~ | Ausência | **FECHADA em doc-1.1.0** |
-| P-02 | Versão do conteúdo técnico | Ausência | Média |
-| P-03 | Duas taxonomias de camada incompatíveis | Conflito | Alta |
-| P-04 | Modelo de camadas B sem tabela de definição | Ausência | Alta |
-| P-05 | Duração do *power drain*: 30 s vs 10 s | Conflito | Média |
-| P-06 | Composição do *boot mínimo* divergente | Conflito | Média |
-| P-07 | Limiar térmico em idle: 60 °C vs 90 °C | Conflito | Média |
-| P-08 | Critério FAIL de temperatura: 95 °C vs 90 °C | Conflito | Média |
-| P-09 | FI-01 inalcançável pelo fluxo sistêmico | Inconsistência | Média |
-| P-10 | Beep contínuo de teclado (AMI) sem ficha no catálogo | Lacuna | Média |
-| P-11 | Lenovo SmartBeep sem procedimento | Lacuna | Baixa |
-| P-12 | Campos `Atalho de Teclado` e `Alternativa Segura` vazios | Lacuna | Baixa |
-| P-13 | Bloco de critérios do MemTest86 fora da estrutura de etapas | Estrutura | Baixa |
-| P-14 | Nós F06 e F08 sem cenário associado | Estrutura | Baixa |
-| P-15 | Referências externas citadas mas não verificadas | Verificação | Média |
-| P-16 | Identificador `POST-NN` criado por esta documentação | Decisão | Baixa |
-| P-17 | Planilhas de origem não versionadas no repositório | Rastreabilidade | Média |
+| # | Pendência | Tipo | Severidade | Status |
+| --- | --- | --- | --- | --- |
+| [~~P-01~~](#p-01--nome-oficial-do-projeto--fechada) | ~~Nome oficial do projeto~~ | Ausência | — | **Fechada** em `doc-1.1.0` |
+| [P-02](#p-02--versão-do-conteúdo-técnico) | Versão do conteúdo técnico | Ausência | Média | Decisão pendente |
+| [P-03](#p-03--duas-taxonomias-de-camada-incompatíveis) | Duas taxonomias de camada incompatíveis | Conflito | **Alta** | Decisão pendente |
+| [P-04](#p-04--modelo-de-camadas-b-sem-tabela-de-definição) | Modelo de camadas B sem tabela de definição | Ausência | **Alta** | Decisão pendente |
+| [P-05](#p-05--duração-do-power-drain) | Duração do *power drain*: 30 s vs 10 s | Conflito | Média | Decisão pendente |
+| [P-06](#p-06--composição-do-boot-mínimo) | Composição do *boot mínimo* divergente | Conflito | Média | Decisão pendente |
+| [P-07](#p-07--limiar-térmico-em-idle) | Limiar térmico em idle: 60 °C vs 90 °C | Conflito | Média | Decisão pendente |
+| [P-08](#p-08--critério-fail-de-temperatura-na-validação-final) | Critério FAIL de temperatura: 95 °C vs 90 °C | Conflito | Média | Decisão pendente |
+| [P-09](#p-09--fi-01-inalcançável-pelo-fluxo-sistêmico) | FI-01 inalcançável pelo fluxo sistêmico | Inconsistência | Média | Necessita validação |
+| [P-10](#p-10--beep-contínuo-de-teclado-ami-sem-ficha-no-catálogo) | Beep contínuo de teclado (AMI) sem ficha no catálogo | Lacuna | Média | Necessita validação |
+| [P-11](#p-11--lenovo-smartbeep-sem-procedimento) | Lenovo SmartBeep sem procedimento | Lacuna | Baixa | Parcialmente verificada |
+| [P-12](#p-12--campos-vazios-nos-guias-de-ferramentas) | Campos `Atalho de Teclado` e `Alternativa Segura` vazios | Lacuna | Baixa | Necessita validação |
+| [P-13](#p-13--bloco-de-critérios-do-memtest86-fora-da-estrutura) | Bloco de critérios do MemTest86 fora da estrutura de etapas | Estrutura | Baixa | Decisão pendente |
+| [P-14](#p-14--nós-f06-e-f08-sem-cenário-associado) | Nós F06 e F08 sem cenário associado | Estrutura | Baixa | Necessita validação |
+| [P-15](#p-15--referências-externas-citadas-mas-não-verificadas) | Referências externas citadas mas não verificadas | Verificação | Média | Parcialmente verificada |
+| [P-16](#p-16--identificador-post-nn-criado-por-esta-documentação) | Identificador `POST-NN` criado por esta documentação | Decisão | Baixa | Decisão pendente |
+| [P-17](#p-17--planilhas-de-origem-não-versionadas-no-repositório) | Planilhas de origem não versionadas no repositório | Rastreabilidade | Média | Decisão pendente |
+
+**16 pendências abertas, 1 fechada.** As duas de severidade alta — P-03 e P-04 — tratam do mesmo
+assunto: a numeração de camadas. Resolver a taxonomia na fonte fecha as duas.
 
 ---
 
@@ -125,7 +152,7 @@ revisado, quando, e em relação a qual versão anterior. A documentação versi
 **Para fechar.** Adotar um campo de versão nas planilhas — uma aba `METADADOS` com versão, data de
 revisão e responsável resolveria — e passar a marcar releases no repositório (`git tag`).
 
-**Status:** Necessita validação.
+**Status:** Decisão pendente.
 
 ---
 
@@ -148,7 +175,7 @@ Exemplos de divergência direta:
 
 **Impacto.** Alto. Um técnico que leia "camada 3" sem saber a origem testa o subsistema errado.
 
-**O que foi feito.** Nenhum modelo foi escolhido. Ambos estão documentados em
+**O que já foi feito.** Nenhum modelo foi escolhido. Ambos estão documentados em
 [03-taxonomia-camadas.md](../03-taxonomia-camadas.md), e todo número de camada é reproduzido no
 formato original, que identifica o modelo.
 
@@ -156,7 +183,7 @@ formato original, que identifica o modelo.
 documentação, **ou**
 declarar formalmente que os dois modelos coexistem por escopo distinto.
 
-**Status:** Necessita validação.
+**Status:** Decisão pendente.
 
 ---
 
@@ -174,7 +201,7 @@ reconstruído varrendo as ocorrências literais nas células. Consequências:
 **Para fechar.** Criar, na planilha de origem, uma aba de definição equivalente a
 `Camadas de Diagnóstico`, cobrindo as 10 camadas do modelo B.
 
-**Status:** Necessita validação.
+**Status:** Decisão pendente.
 
 ---
 
@@ -191,7 +218,7 @@ reconstruído varrendo as ocorrências literais nas células. Consequências:
 
 **Para fechar.** Definir a duração de referência e uniformizar nas duas planilhas.
 
-**Status:** Necessita validação. Ambas as versões estão preservadas nos documentos.
+**Status:** Decisão pendente. Ambas as versões estão preservadas nos documentos.
 
 ---
 
@@ -209,7 +236,7 @@ reconstruído varrendo as ocorrências literais nas células. Consequências:
 
 **Para fechar.** Definir uma composição canônica e, se necessário, variantes nomeadas.
 
-**Status:** Necessita validação.
+**Status:** Decisão pendente. As três definições estão preservadas nos documentos.
 
 ---
 
@@ -228,7 +255,7 @@ reconstruído varrendo as ocorrências literais nas células. Consequências:
 **Para fechar.** Definir o limiar de decisão em idle e, se houver faixas distintas (alerta vs
 confirmação), nomeá-las.
 
-**Status:** Necessita validação.
+**Status:** Decisão pendente. Os dois limiares estão preservados nos documentos.
 
 ---
 
@@ -246,7 +273,7 @@ confirmação), nomeá-las.
 **Para fechar.** Definir se os limiares são intencionalmente diferentes (componente vs sistema
 térmico) e explicitar essa distinção na fonte.
 
-**Status:** Necessita validação.
+**Status:** Decisão pendente.
 
 ---
 
@@ -261,7 +288,7 @@ alcançados por pelo menos um nó.
 **Para fechar.** Acrescentar ao fluxo um nó que conduza a FI-01, ou documentar que o cenário é de
 entrada direta pelo índice.
 
-**Mitigação aplicada em `doc-1.2.0`.** A ficha de FI-01 passou a exibir, nas referências cruzadas,
+**O que já foi feito.** Desde `doc-1.2.0`, a ficha de FI-01 exibe, nas referências cruzadas,
 o aviso de que nenhum nó do fluxo conduz até ela, com link para esta pendência. O aviso deve ser
 removido quando algum nó do fluxo passar a referenciar FI-01.
 
@@ -293,9 +320,34 @@ risco, e remete ao aplicativo Lenovo PC Diagnostics. Não há procedimento próp
 **Impacto.** Baixo — a fonte indica a ferramenta correta —, mas a ficha fica sem conteúdo
 acionável offline.
 
-**Para fechar.** Documentar as melodias e seus significados, se essa informação existir.
+**O que a documentação oficial da Lenovo informa.** A pergunta original desta pendência era se
+existiria uma tabela melodia → significado a documentar. A consulta ao manual oficial do
+fabricante responde que **não**: a decodificação é feita pelo aplicativo, e a Lenovo não publica a
+correspondência em forma de tabela. O procedimento publicado tem quatro passos:
 
-**Status:** Necessita validação.
+1. Acessar `https://support.lenovo.com/smartbeep`.
+2. Instalar o aplicativo de diagnóstico no smartphone.
+3. Executar o aplicativo com o smartphone próximo ao computador.
+4. Pressionar **Fn** no computador para emitir o bipe novamente; o aplicativo decodifica o erro e
+   apresenta as soluções possíveis.
+
+O recurso se aplica a sintomas de tela preta acompanhados de bipes, em modelos ThinkPad e
+ThinkStation compatíveis.
+
+> [!NOTE]
+> Esta verificação foi feita contra o manual do fabricante — *ThinkPad P15v / T15p Gen 3 User
+> Guide*, Lenovo, julho de 2023, tópico *Beep errors* — e **não** contra a planilha de origem. Ela
+> confirma que a informação pedida não existe em forma tabular, mas não é fonte primária desta
+> base: nada dela foi incorporado às fichas técnicas. Ver
+> [regras de conteúdo](../../CONTRIBUTING.md#regras-de-conteúdo), item 7.
+
+**Para fechar.** Decidir se o passo operacional confirmado acima — pressionar **Fn** para reemitir
+o bipe — entra na planilha de origem como procedimento do registro SmartBeep. Se entrar, a ficha
+deixa de ficar sem conteúdo acionável; se não entrar, registrar que a remissão ao aplicativo é o
+tratamento definitivo.
+
+**Status:** Parcialmente verificada. A existência da tabela de melodias foi descartada em fonte
+oficial; a decisão sobre o procedimento continua aberta.
 
 ---
 
@@ -311,29 +363,28 @@ acionável offline.
 | `REF_MemTest86` | Atalho de Teclado | 7 de 10 |
 | `REF_MemTest86` | Alternativa Segura | 5 de 10 |
 
+Em [memtest86.md](../14-ferramentas/memtest86.md), os atalhos faltam nas etapas 1, 4, 5, 6, 7, 8 e
+10; a alternativa segura falta nas etapas 2, 4, 5, 6 e 10.
+
 > [!NOTE]
-> **Correção aplicada em `doc-1.4.0`.** As duas linhas de `REF_MemTest86` registravam *8 de 10* e
-> *6 de 10*. A contagem campo a campo sobre
-> [memtest86.md](../14-ferramentas/memtest86.md) — as dez etapas do procedimento — devolve **7** e
-> **5**: os atalhos faltam nas etapas 1, 4, 5, 6, 7, 8 e 10; a alternativa segura falta nas
-> etapas 2, 4, 5, 6 e 10. As linhas de `REF_Victoria` e `REF_AIDA64` conferem exatamente.
->
-> A diferença é de **+1 em ambos os campos**, o que é compatível com uma contagem feita sobre as
-> onze linhas de conteúdo da aba — as dez etapas mais o bloco de critérios de decisão descrito em
+> **O denominador de `REF_MemTest86` é ambíguo.** A aba tem onze linhas de conteúdo: as dez etapas
+> do procedimento mais o bloco de critérios de decisão descrito em
 > [P-13](#p-13--bloco-de-critérios-do-memtest86-fora-da-estrutura), cujos campos também estão
-> vazios. **Essa explicação não pôde ser confirmada**, porque a planilha não está versionada
-> ([P-17](#p-17--planilhas-de-origem-não-versionadas-no-repositório)). O registro passou a trazer o
-> valor verificável na documentação; a conferência contra a célula continua pendente.
+> vazios. Uma contagem sobre as onze linhas devolve 8 e 6; sobre as dez etapas, 7 e 5. A tabela
+> acima usa as dez etapas, que é o recorte verificável nos documentos. Qual dos dois recortes a
+> planilha considera não pôde ser confirmado, porque ela não está versionada
+> ([P-17](#p-17--planilhas-de-origem-não-versionadas-no-repositório)).
 
 **Impacto.** Baixo. É plausível que muitas etapas simplesmente não tenham atalho, mas a fonte não
 distingue "não existe" de "não preenchido".
 
-**Para fechar.** Preencher com `N/A` onde não houver atalho, para eliminar a ambiguidade, e
-confirmar contra a planilha se o denominador correto de `REF_MemTest86` são as 10 etapas ou as 11
-linhas de conteúdo da aba.
+**O que já foi feito.** Nos documentos, esses campos exibem
+*"Informação não identificada na fonte analisada"*, em vez de a seção ser omitida.
 
-**Status:** Necessita validação. Nos documentos, esses campos exibem
-*"Informação não identificada na fonte analisada"*.
+**Para fechar.** Preencher com `N/A` onde não houver atalho, para eliminar a ambiguidade, e
+definir se o bloco de critérios conta como linha de `REF_MemTest86` — o que também resolve P-13.
+
+**Status:** Necessita validação.
 
 ---
 
@@ -344,12 +395,12 @@ pós-teste ocupando a coluna `Nº da Etapa`.
 
 **Impacto.** Baixo, mas quebra a estrutura tabular da aba e prejudica processamento automático.
 
-**O que foi feito.** O bloco foi extraído e apresentado como seção própria, com aviso explícito,
+**O que já foi feito.** O bloco foi extraído e apresentado como seção própria, com aviso explícito,
 em [memtest86.md](../14-ferramentas/memtest86.md).
 
 **Para fechar.** Mover o bloco para uma aba ou coluna própria na planilha.
 
-**Status:** Necessita validação.
+**Status:** Decisão pendente.
 
 ---
 
@@ -370,15 +421,45 @@ estável em uso normal?") têm o campo `Referência (ID)` preenchido com "—".
 
 **Situação.** As planilhas citam documentação de fabricantes e normas nos campos de fonte —
 AMI, Phoenix, Award, Intel ATX12V PSU Design Guide v2.53, JEDEC, UEFI Specification 2.10, entre
-outras. Nenhuma foi confrontada com o documento original.
+outras. A lista completa está em [fontes.md](fontes.md).
 
 **Impacto.** Médio. As referências sustentam afirmações técnicas específicas (valores de tensão,
 tolerância de ripple, intervalos de refresh).
 
-**Para fechar.** Verificar cada referência contra o documento oficial e elevar o nível de confiança
-de "Não confirmado" para "Oficial" onde a verificação for bem-sucedida.
+**Verificação bibliográfica.** As designações citadas foram conferidas contra os órgãos que
+publicam cada documento. Isso confirma **que o documento existe e como ele se chama** — não que a
+afirmação técnica atribuída a ele esteja lá.
 
-**Status:** Não confirmado. A lista está em [fontes.md](fontes.md).
+| Referência como citada | Situação | Observação |
+| --- | --- | --- |
+| UEFI Specification 2.10 | **Existe** | Publicada pelo UEFI Forum em agosto de 2022; Errata A em agosto de 2024. Substituída pela versão 2.11, de dezembro de 2024 |
+| JEDEC JESD79-4 (DDR4) e JESD79-5 (DDR5) | **Existem** | Designações oficiais JEDEC. A JESD79-5 é de julho de 2020; a revisão mais recente, JESD79-5D, é de novembro de 2025 |
+| Intel ATX12V PSU Design Guide v2.53 | **Existe, com ressalva** | Ver abaixo |
+| AMI, Phoenix e Award (manuais de beep e status codes) | **Não verificável como citado** | As citações trazem títulos genéricos, sem número de documento nem versão |
+
+> [!IMPORTANT]
+> **A citação do guia da Intel está imprecisa.** Não existe um documento independente chamado
+> *ATX12V Power Supply Design Guide* na versão 2.53 — essa série autônoma parou na versão 2.4.
+> O que existe é o capítulo **ATX12V Specific Guidelines 2.53**, dentro do *ATX Multi Rail Desktop
+> Platform Power Supply Design Guide* da Intel (documento nº 336521). A versão **2.53 está
+> correta**; o que está errado é o título, que sugere um documento que não existe sob esse nome.
+
+**Impacto da imprecisão.** Baixo para o diagnóstico, alto para quem tentar localizar a fonte: uma
+busca pelo título citado não encontra o documento.
+
+**O que continua em aberto.** Nenhuma **afirmação técnica** foi confrontada com o texto original.
+Saber que a UEFI 2.10 existe não confirma que o código de POST atribuído a ela conste da
+especificação. É essa conferência, campo a campo, que eleva o nível de confiança de
+"Não confirmado" para "Oficial".
+
+**Para fechar.**
+
+1. Corrigir, na planilha de origem, o título da referência ao guia da Intel.
+2. Acrescentar número de documento e versão às citações de AMI, Phoenix e Award.
+3. Conferir cada afirmação técnica contra a seção correspondente do documento original.
+
+**Status:** Parcialmente verificada. A identidade de três referências foi confirmada; o conteúdo
+atribuído a todas elas continua não confirmado.
 
 ---
 
@@ -391,7 +472,7 @@ documentos, foi criado o identificador `POST-01` … `POST-54`, seguindo a ordem
 **desloca todos os identificadores seguintes**.
 
 **Para fechar.** Adotar uma coluna `ID` na planilha de origem, com valores estáveis, e passar a
-gerar a documentação a partir dela.
+usá-la como identificador nos documentos, no lugar da posição da linha.
 
 **Status:** Decisão pendente.
 

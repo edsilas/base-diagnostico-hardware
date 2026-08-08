@@ -96,10 +96,27 @@ planilha; documentos redigidos podem ser editados diretamente, sem afirmação n
 - A documentação passou a ser **autossuficiente**: não depende de nenhum recurso externo ao
   repositório para ser lida, conferida ou publicada.
 
+**Pendências verificadas em fonte oficial**
+
+Duas pendências avançaram por conferência contra a documentação de quem publica cada referência.
+Nenhuma informação externa entrou nas fichas técnicas: a conferência apura a **identidade** do
+documento citado, não o conteúdo atribuído a ele.
+
+| Pendência | O que foi apurado |
+| --- | --- |
+| [P-11](pendencias.md#p-11--lenovo-smartbeep-sem-procedimento) | A Lenovo **não publica** tabela de melodia → significado do SmartBeep; a decodificação é feita pelo aplicativo. O manual oficial descreve um passo que a base não registrava: pressionar **Fn** para reemitir o bipe |
+| [P-15](pendencias.md#p-15--referências-externas-citadas-mas-não-verificadas) | UEFI 2.10 e JEDEC JESD79-4/79-5 confirmadas. A citação *ATX12V PSU Design Guide v2.53* nomeia um documento inexistente sob esse título: o correto é o capítulo *ATX12V Specific Guidelines 2.53* do guia de fontes da Intel (documento nº 336521). AMI, Phoenix e Award não são verificáveis como citadas, por falta de número e versão |
+
+`pendencias.md` ganhou a seção *Como ler esta lista*, que define os campos de cada ficha e os
+quatro valores de **Status**; a tabela-resumo passou a trazer o status de cada item e link direto
+para a ficha correspondente. [fontes.md](fontes.md) e
+[matriz-rastreabilidade.md](matriz-rastreabilidade.md) registram a conferência sem alterar a
+declaração de que nenhuma fonte de fabricante alimentou o conteúdo técnico.
+
 **Preservado**
 
-Fichas de código, de cenário e de ferramenta, fluxogramas, índices cruzados, glossário, matriz de
-rastreabilidade e inventário de fontes não foram tocados, exceto pelo carimbo de versão no rodapé.
+Fichas de código, de cenário e de ferramenta, fluxogramas, índices cruzados e glossário não foram
+tocados, exceto pelo carimbo de versão no rodapé.
 
 ## doc-1.3.0 — 2026-08-07
 
