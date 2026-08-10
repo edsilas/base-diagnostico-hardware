@@ -4,8 +4,6 @@
 
 > Base estruturada de conhecimento para diagnóstico de hardware, com fluxos, sintomas, códigos de erro, causas e procedimentos de análise e solução.
 
-**Autor:** Edsilas · **Repositório:** [`edsilas/base-diagnostico-hardware`](https://github.com/edsilas/base-diagnostico-hardware) · **Licença:** MIT · **Documentação:** `doc-2.0.0`
-
 Referência técnica para diagnóstico de falhas de hardware em computadores, do sinal de erro emitido
 no POST até a validação final que fecha o atendimento. Esta página é o **ponto de entrada**: a
 partir daqui você chega a qualquer procedimento sem precisar abrir arquivo por arquivo.
