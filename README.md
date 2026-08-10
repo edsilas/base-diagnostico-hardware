@@ -1,5 +1,7 @@
 # Base de Diagnóstico de Hardware
 
+<img alt="Tipo" src="https://img.shields.io/badge/Tipo-Base_Documental-0F172A?labelColor=020617&style=for-the-badge"> <img alt="Foco" src="https://img.shields.io/badge/Foco-Diagnóstico_de_Hardware-7C2D12?labelColor=431407&style=for-the-badge"> <img alt="Estrutura" src="https://img.shields.io/badge/Conteúdo-Fluxos_e_Procedimentos-3F3F46?labelColor=18181B&style=for-the-badge"> <a href="LICENSE"><img alt="Licença" src="https://img.shields.io/badge/Licença-MIT-166534?labelColor=064E3B&style=for-the-badge"></a>
+
 > Base estruturada de conhecimento para diagnóstico de hardware, com fluxos, sintomas, códigos de erro, causas e procedimentos de análise e solução.
 
 **Autor:** Edsilas · **Repositório:** [`edsilas/base-diagnostico-hardware`](https://github.com/edsilas/base-diagnostico-hardware) · **Licença:** MIT · **Documentação:** `doc-2.0.0`
