@@ -1,32 +1,27 @@
+---
+title: Guia operacional — AIDA64 (etapas 31 a 45)
+description: Etapas 31 a 45 do procedimento de uso do AIDA64 para monitoramento, teste de estabilidade, benchmark e auditoria.
+author: Edsilas
+date: 2026-08-08
+---
+
 <!-- Gerado a partir de `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → aba `REF_AIDA64`. Não editar manualmente sem atualizar a fonte. -->
 
 [Início](../../README.md) › [Opere as ferramentas](../../README.md#opere-as-ferramentas) › **Guia operacional — AIDA64 (etapas 31 a 45)**
 
 # Guia operacional — AIDA64 (etapas 31 a 45)
 
+> [!NOTE]
 > Etapas 31 a 45 do procedimento de uso do AIDA64 para monitoramento, teste de estabilidade, benchmark e auditoria.
-
 
 **Aplica-se a:** Sistemas que carregam o Windows — sensores, stress test e relatórios
 
-## Neste documento
+## Neste artigo
 
+- [Contexto](#contexto)
+- [Escopo](#escopo)
+- [Relação com outros documentos](#relação-com-outros-documentos)
 - [Etapas](#etapas)
-- [Etapa 31 — Calibração de Sensores (Offset)](#etapa-31--calibração-de-sensores-offset)
-- [Etapa 32 — Identificação de Hardware Desconhecido](#etapa-32--identificação-de-hardware-desconhecido)
-- [Etapa 33 — Monitoramento de No-Break (UPS)](#etapa-33--monitoramento-de-no-break-ups)
-- [Etapa 34 — Integração com Displays LCD (Logitech/Razer)](#etapa-34--integração-com-displays-lcd-logitechrazer)
-- [Etapa 35 — Exportação para Memória Compartilhada (Modding)](#etapa-35--exportação-para-memória-compartilhada-modding)
-- [Etapa 36 — Backup de Drivers Instalados](#etapa-36--backup-de-drivers-instalados)
-- [Etapa 37 — Diagnóstico de Link de Rede (PHY)](#etapa-37--diagnóstico-de-link-de-rede-phy)
-- [Etapa 38 — Verificação de Tempo de Atividade (Uptime)](#etapa-38--verificação-de-tempo-de-atividade-uptime)
-- [Etapa 39 — Auditoria de Softwares Instalados](#etapa-39--auditoria-de-softwares-instalados)
-- [Etapa 40 — Gerenciador de Auditoria (Audit Manager)](#etapa-40--gerenciador-de-auditoria-audit-manager)
-- [Etapa 41 — Solução de Conflito com Anti-Cheat](#etapa-41--solução-de-conflito-com-anti-cheat)
-- [Etapa 42 — Auditoria de Segurança do Windows](#etapa-42--auditoria-de-segurança-do-windows)
-- [Etapa 43 — Criação de "Master Report" (Entrega)](#etapa-43--criação-de-master-report-entrega)
-- [Etapa 44 — Limpeza de Registro do AIDA64](#etapa-44--limpeza-de-registro-do-aida64)
-- [Etapa 45 — Checklist Final de Encerramento (SOP)](#etapa-45--checklist-final-de-encerramento-sop)
 - [Próximos passos](#próximos-passos)
 
 ## Contexto
@@ -37,9 +32,7 @@ Procedimento de uso do AIDA64 para monitoramento, teste de estabilidade, benchma
 
 As etapas 31 a 45 registradas na fonte, com todos os campos originais.
 
-## Fora do escopo
-
-Interpretação clínica dos resultados fora do que a fonte declara; procedimentos de outras ferramentas; critérios de validação por componente (ver documento 13).
+**Fora do escopo:** Interpretação clínica dos resultados fora do que a fonte declara; procedimentos de outras ferramentas; critérios de validação por componente (ver documento 13).
 
 ## Relação com outros documentos
 
@@ -49,12 +42,13 @@ Interpretação clínica dos resultados fora do que a fonte declara; procediment
 
 ---
 
+> [!NOTE]
 > Este guia foi dividido em três arquivos **apenas pela numeração das etapas de origem** (1–15, 16–30, 31–45). A divisão é organizacional; a fonte não define grupos.
 
 ## Etapas
 
 | Nº | Fase do processo | Risco | Tempo estimado |
-| --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- |
 | [31](#etapa-31--calibração-de-sensores-offset) | Calibração de Sensores (Offset) | Crítico | 10 min |
 | [32](#etapa-32--identificação-de-hardware-desconhecido) | Identificação de Hardware Desconhecido | Baixo | 2 min |
 | [33](#etapa-33--monitoramento-de-no-break-ups) | Monitoramento de No-Break (UPS) | Alto (Servidor) | 3 min |
@@ -75,1250 +69,796 @@ Interpretação clínica dos resultados fora do que a fonte declara; procediment
 
 ## Etapa 31 — Calibração de Sensores (Offset)
 
-### Objetivo da etapa
-
-Corrigir leituras erradas de sensores da placa-mãe (ex: Temp ambiente vs Real)
+**Objetivo:** Corrigir leituras erradas de sensores da placa-mãe (ex: Temp ambiente vs Real).
+**Risco:** Crítico | **Tempo estimado:** 10 min
 
 ### Ação exata a executar
 
 Ajustar manualmente o deslocamento (Offset) ou multiplicador dos sensores.
 
-### Caminho no software
+**Caminho no software:** **Arquivo** > **Preferências** > **Monitoramento de Hardware** > **Correção**
 
-Arquivo > Preferências > Monitoramento de Hardware > Correção
+> [!NOTE]
+> **Atalho de teclado:** Informação não identificada na fonte analisada.
 
-### Atalho de teclado
+### Configurações e Pré-requisitos
 
-> Informação não identificada na fonte analisada.
+- **Configurações recomendadas:** Usar apenas se tiver um termômetro físico (infravermelho/laser) para referência.
+- **Verificação antes de executar:** Comparar leitura da BIOS com a leitura do AIDA64. Se diferir, ajustar.
 
-### Configurações recomendadas
+> [!TIP]
+> **Boas práticas:** Ocultar sensores "fantasmas" na aba de visibilidade em vez de tentar calibrá-los.
+> **Alternativa segura:** N/A - Confiar na BIOS.
+> **Observações técnicas:** Placas-mãe antigas frequentemente reportam sensores "Aux" com valores absurdos (127°C ou -50°C). Estes são pinos desconectados e devem ser ocultados, não calibrados.
 
-Usar apenas se tiver um termômetro físico (infravermelho/laser) para referência.
+### Solução de problemas
 
-### Verificação antes de executar
-
-Comparar leitura da BIOS com a leitura do AIDA64. Se diferir, ajustar.
-
-### Possíveis erros
-
-1. Leitura mascarada.  
-
+**Possíveis erros:**
+1. Leitura mascarada.
 2. Superaquecimento real ignorado.
 
-### Causa técnica do erro
-
-1. Aplicar offset negativo (-20°C) incorretamente faz o PC ferver sem alertar.  
-
+**Causa técnica:**
+1. Aplicar offset negativo (-20°C) incorretamente faz o PC ferver sem alertar.
 2. Confundir Fahrenheit com Celsius.
 
-### Como identificar o erro
-
+**Como identificar:**
 AIDA mostra 40°C, mas o dissipador está intocável de quente (>80°C).
 
-### Como corrigir (passo a passo)
+**Como corrigir:**
+`SE` dúvida `ENTÃO`: Clicar em "Restaurar Padrões". Nunca chutar valores de calibração.
 
-SE dúvida ENTÃO: Clicar em "Restaurar Padrões". Nunca chutar valores de calibração.
+**Validação pós-correção:** A temperatura exibida no software deve bater com a temperatura medida no termômetro IR (+/- 2°C).
 
-### Validação pós-correção
-
-A temperatura exibida no software deve bater com a temperatura medida no termômetro IR (+/- 2°C).
-
-### Risco
-
-Crítico
-
-### Impacto se ignorado
-
-Mascarar um problema térmico real via software pode levar à queima do componente a longo prazo.
-
-### Tempo estimado
-
-10 min
-
-### Observações técnicas
-
-Placas-mãe antigas frequentemente reportam sensores "Aux" com valores absurdos (127°C ou -50°C). Estes são pinos desconectados e devem ser ocultados, não calibrados.
-
-### Boas práticas
-
-Ocultar sensores "fantasmas" na aba de visibilidade em vez de tentar calibrá-los.
-
-### Alternativa segura
-
-N/A - Confiar na BIOS.
+> [!CAUTION]
+> **Impacto se ignorado:** Mascarar um problema térmico real via software pode levar à queima do componente a longo prazo.
 
 ### Checklist de confirmação
-
-- [ ] Termômetro físico usado?  
-- [ ] Offset aplicado com razão?  
+- [ ] Termômetro físico usado?
+- [ ] Offset aplicado com razão?
 - [ ] Sensores fantasmas ocultos?
 
 ---
 
 ## Etapa 32 — Identificação de Hardware Desconhecido
 
-### Objetivo da etapa
-
-Encontrar drivers para dispositivos listados como "Dispositivo Desconhecido" no Windows
+**Objetivo:** Encontrar drivers para dispositivos listados como "Dispositivo Desconhecido" no Windows.
+**Risco:** Baixo | **Tempo estimado:** 2 min
 
 ### Ação exata a executar
 
 Usar o banco de dados de Hardware ID (PCI/USB/ACPI) para identificar o fabricante.
 
-### Caminho no software
+**Caminho no software:** **Dispositivos** > **Dispositivos do Windows** > **Unknown**
 
-Menu Dispositivos > Dispositivos do Windows > Unknown
+> [!NOTE]
+> **Atalho de teclado:** Informação não identificada na fonte analisada.
 
-### Atalho de teclado
+### Configurações e Pré-requisitos
 
-> Informação não identificada na fonte analisada.
+- **Configurações recomendadas:** Clicar no dispositivo e olhar o painel inferior (Propriedades do Dispositivo).
+- **Verificação antes de executar:** Ter conexão com a internet para buscar o driver posteriormente.
 
-### Configurações recomendadas
+> [!TIP]
+> **Boas práticas:** Copiar o ID do Hardware diretamente para a área de transferência com botão direito.
+> **Alternativa segura:** DriverPack Solution (Cuidado com adwares).
+> **Observações técnicas:** O AIDA64 possui um banco de dados interno de Vendor IDs muito superior ao do Windows Update.
 
-Clicar no dispositivo e olhar o painel inferior (Propriedades do Dispositivo).
+### Solução de problemas
 
-### Verificação antes de executar
-
-Ter conexão com a internet para buscar o driver posteriormente.
-
-### Possíveis erros
-
-1. ID genérico.  
-
+**Possíveis erros:**
+1. ID genérico.
 2. Dispositivo não listado.
 
-### Causa técnica do erro
-
-1. Periférico USB sem handshake (defeituoso).  
-
+**Causa técnica:**
+1. Periférico USB sem handshake (defeituoso).
 2. Driver de chipset não instalado, ocultando o barramento inteiro.
 
-### Como identificar o erro
+**Como identificar:**
+O campo "Hardware ID" mostra apenas `USB\UNKNOWN`.
 
-O campo "Hardware ID" mostra apenas USB\\UNKNOWN.
+**Como corrigir:**
+`SE` ID desconhecido `ENTÃO`: Copiar a string `VEN_xxxx&DEV_xxxx`. Colocar no Google ou site "PCI Lookup".
 
-### Como corrigir (passo a passo)
+**Validação pós-correção:** O AIDA64 deve mostrar o nome do fabricante (ex: "Realtek", "Intel") na descrição do dispositivo, facilitando o download.
 
-SE ID desconhecido ENTÃO: Copiar a string VEN_xxxx&DEV_xxxx. Colocar no Google ou site "PCI Lookup".
-
-### Validação pós-correção
-
-O AIDA64 deve mostrar o nome do fabricante (ex: "Realtek", "Intel") na descrição do dispositivo, facilitando o download.
-
-### Risco
-
-Baixo
-
-### Impacto se ignorado
-
-Entregar PC com "triângulos amarelos" no Gerenciador de Dispositivos.
-
-### Tempo estimado
-
-2 min
-
-### Observações técnicas
-
-O AIDA64 possui um banco de dados interno de Vendor IDs muito superior ao do Windows Update.
-
-### Boas práticas
-
-Copiar o ID do Hardware diretamente para a área de transferência com botão direito.
-
-### Alternativa segura
-
-DriverPack Solution (Cuidado com adwares).
+> [!WARNING]
+> **Impacto se ignorado:** Entregar PC com "triângulos amarelos" no Gerenciador de Dispositivos.
 
 ### Checklist de confirmação
-
-- [ ] Dispositivo identificado?  
-- [ ] Driver baixado?  
+- [ ] Dispositivo identificado?
+- [ ] Driver baixado?
 - [ ] Gerenciador limpo?
 
 ---
 
 ## Etapa 33 — Monitoramento de No-Break (UPS)
 
-### Objetivo da etapa
-
-Verificar carga, voltagem de entrada/saída e saúde da bateria do UPS via USB
+**Objetivo:** Verificar carga, voltagem de entrada/saída e saúde da bateria do UPS via USB.
+**Risco:** Alto (Servidor) | **Tempo estimado:** 3 min
 
 ### Ação exata a executar
 
 Acessar dados de energia externa (se o No-break tiver porta USB/Serial).
 
-### Caminho no software
+**Caminho no software:** **Computador** > **Gerenciamento de Energia**
 
-Menu Computador > Gerenciamento de Energia
+> [!NOTE]
+> **Atalho de teclado:** Informação não identificada na fonte analisada.
 
-### Atalho de teclado
+### Configurações e Pré-requisitos
 
-> Informação não identificada na fonte analisada.
+- **Configurações recomendadas:** Requer cabo USB conectado entre UPS e PC.
+- **Verificação antes de executar:** Instalar driver do fabricante do No-break (APC, SMS, Eaton) se não for plug-and-play.
 
-### Configurações recomendadas
+> [!TIP]
+> **Boas práticas:** Testar o "Self-Test" do UPS via software proprietário, usar AIDA apenas para leitura passiva.
+> **Alternativa segura:** Software nativo do fabricante (PowerChute).
+> **Observações técnicas:** Essencial para servidores. O AIDA64 pode disparar o alerta de "Voltagem Baixa" configurado na Etapa 11 se a energia cair.
 
-Requer cabo USB conectado entre UPS e PC.
+### Solução de problemas
 
-### Verificação antes de executar
-
-Instalar driver do fabricante do No-break (APC, SMS, Eaton) se não for plug-and-play.
-
-### Possíveis erros
-
-1. UPS não detectado.  
-
+**Possíveis erros:**
+1. UPS não detectado.
 2. Leitura de carga errada.
 
-### Causa técnica do erro
-
-1. Cabo de dados desconectado ou serviço do Windows (Battery) conflitando.  
-
+**Causa técnica:**
+1. Cabo de dados desconectado ou serviço do Windows (Battery) conflitando.
 2. Bateria do UPS viciada.
 
-### Como identificar o erro
-
+**Como identificar:**
 Linha "Bateria" ausente ou mostrando "Carregando" infinitamente.
 
-### Como corrigir (passo a passo)
+**Como corrigir:**
+`SE` não detectar `ENTÃO`: Verificar se o serviço "HID UPS Battery" do Windows está rodando (`services.msc`).
 
-SE não detectar ENTÃO: Verificar se o serviço "HID UPS Battery" do Windows está rodando (services.msc).
+**Validação pós-correção:** Tensão de Entrada deve mostrar ~115V/220V e Saída estável. Carga da bateria deve ser >90%.
 
-### Validação pós-correção
-
-Tensão de Entrada deve mostrar ~115V/220V e Saída estável. Carga da bateria deve ser >90%.
-
-### Risco
-
-Alto (Servidor)
-
-### Impacto se ignorado
-
-Se o UPS falhar silenciosamente, o servidor desligará no primeiro pico de luz, corrompendo banco de dados.
-
-### Tempo estimado
-
-3 min
-
-### Observações técnicas
-
-Essencial para servidores. O AIDA64 pode disparar o alerta de "Voltagem Baixa" configurado na Etapa 11 se a energia cair.
-
-### Boas práticas
-
-Testar o "Self-Test" do UPS via software proprietário, usar AIDA apenas para leitura passiva.
-
-### Alternativa segura
-
-Software nativo do fabricante (PowerChute).
+> [!WARNING]
+> **Impacto se ignorado:** Se o UPS falhar silenciosamente, o servidor desligará no primeiro pico de luz, corrompendo banco de dados.
 
 ### Checklist de confirmação
-
-- [ ] Cabo USB conectado?  
-- [ ] Carga da bateria visível?  
+- [ ] Cabo USB conectado?
+- [ ] Carga da bateria visível?
 - [ ] Tensão de entrada monitorada?
 
 ---
 
 ## Etapa 34 — Integração com Displays LCD (Logitech/Razer)
 
-### Objetivo da etapa
-
-Enviar dados para teclados com tela (G15/G19) ou displays dedicados
+**Objetivo:** Enviar dados para teclados com tela (G15/G19) ou displays dedicados.
+**Risco:** Baixo (Cosmético) | **Tempo estimado:** 10 min
 
 ### Ação exata a executar
 
 Configurar o layout para telas LCD monocromáticas ou coloridas integradas a periféricos.
 
-### Caminho no software
+**Caminho no software:** **Arquivo** > **Preferências** > **Hardware Monitoring** > **LCD**
 
-Arquivo > Preferências > Hardware Monitoring > LCD
+> [!NOTE]
+> **Atalho de teclado:** Informação não identificada na fonte analisada.
 
-### Atalho de teclado
+### Configurações e Pré-requisitos
 
-> Informação não identificada na fonte analisada.
+- **Configurações recomendadas:** Selecionar o modelo exato do teclado/display.
+- **Verificação antes de executar:** Ter o software do fabricante (Logitech G Hub / Razer Synapse) rodando.
 
-### Configurações recomendadas
+> [!TIP]
+> **Boas práticas:** Usar fontes grandes para facilitar leitura rápida.
+> **Observações técnicas:** Para usuários avançados, pode-se usar um tablet velho como segundo monitor via "RemoteSensor" (Etapa 23) ou app "Odyssey".
 
-Selecionar o modelo exato do teclado/display.
+### Solução de problemas
 
-### Verificação antes de executar
-
-Ter o software do fabricante (Logitech G Hub / Razer Synapse) rodando.
-
-### Possíveis erros
-
-1. Tela do teclado preta.  
-
+**Possíveis erros:**
+1. Tela do teclado preta.
 2. Layout desconfigurado (texto cortado).
 
-### Causa técnica do erro
-
-1. Applet do AIDA64 não autorizado no software do teclado.  
-
+**Causa técnica:**
+1. Applet do AIDA64 não autorizado no software do teclado.
 2. Resolução do LCD incorreta.
 
-### Como identificar o erro
-
+**Como identificar:**
 AIDA64 aparece na lista de apps do teclado, mas não mostra dados.
 
-### Como corrigir (passo a passo)
+**Como corrigir:**
+`SE` tela preta `ENTÃO`: Abrir Logitech G Hub > Applets > Ativar AIDA64. Pressionar botão de troca de app no teclado.
 
-SE tela preta ENTÃO: Abrir Logitech G Hub > Applets > Ativar AIDA64. Pressionar botão de troca de app no teclado.
+**Validação pós-correção:** As informações aparecem fisicamente no teclado, permitindo monitorar temps em tela cheia no monitor principal.
 
-### Validação pós-correção
-
-As informações aparecem fisicamente no teclado, permitindo monitorar temps em tela cheia no monitor principal.
-
-### Risco
-
-Baixo (Cosmético)
-
-### Impacto se ignorado
-
-Recurso "Gamer" premium não utilizado.
-
-### Tempo estimado
-
-10 min
-
-### Observações técnicas
-
-Para usuários avançados, pode-se usar um tablet velho como segundo monitor via "RemoteSensor" (Etapa 23) ou app "Odyssey".
-
-### Boas práticas
-
-Usar fontes grandes para facilitar leitura rápida.
-
-### Alternativa segura
-
-> Informação não identificada na fonte analisada.
+> [!WARNING]
+> **Impacto se ignorado:** Recurso "Gamer" premium não utilizado.
 
 ### Checklist de confirmação
-
-- [ ] Display detectado?  
-- [ ] Applet autorizado?  
+- [ ] Display detectado?
+- [ ] Applet autorizado?
 - [ ] Dados legíveis?
 
 ---
 
 ## Etapa 35 — Exportação para Memória Compartilhada (Modding)
 
-### Objetivo da etapa
-
-Alimentar softwares de personalização de Desktop (Rainmeter/Samurize) com dados reais
+**Objetivo:** Alimentar softwares de personalização de Desktop (Rainmeter/Samurize) com dados reais.
+**Risco:** Baixo | **Tempo estimado:** 15 min
 
 ### Ação exata a executar
 
 Habilitar a escrita em Shared Memory para skins de terceiros.
 
-### Caminho no software
+**Caminho no software:** **Arquivo** > **Preferências** > **Hardware Monitoring** > **External Applications**
 
-Arquivo > Preferências > Hardware Monitoring > External Applications
+> [!NOTE]
+> **Atalho de teclado:** Informação não identificada na fonte analisada.
 
-### Atalho de teclado
+### Configurações e Pré-requisitos
 
-> Informação não identificada na fonte analisada.
+- **Configurações recomendadas:** Check: Enable Shared Memory.
+- **Verificação antes de executar:** Saber mapear as variáveis (ex: SCPUUTI = CPU Utilization) no software destino.
 
-### Configurações recomendadas
+> [!TIP]
+> **Boas práticas:** Manter taxa de atualização em 1000ms para não consumir ciclos de CPU desnecessários.
+> **Alternativa segura:** HWiNFO Shared Memory (Requer licença Pro para uso contínuo recente).
+> **Observações técnicas:** Permite criar desktops futuristas para clientes "Gamers/Modders". O AIDA64 atua como o motor (backend) e o Rainmeter como a interface (frontend).
 
-Check: Enable Shared Memory.
+### Solução de problemas
 
-### Verificação antes de executar
-
-Saber mapear as variáveis (ex: SCPUUTI = CPU Utilization) no software destino.
-
-### Possíveis erros
-
-1. Rainmeter mostra "0" ou nada.  
-
+**Possíveis erros:**
+1. Rainmeter mostra "0" ou nada.
 2. Alto uso de CPU pelo AIDA64.
 
-### Causa técnica do erro
-
-1. Mapeamento de nomes de variáveis incorreto na skin do Rainmeter.  
-
+**Causa técnica:**
+1. Mapeamento de nomes de variáveis incorreto na skin do Rainmeter.
 2. Taxa de atualização muito agressiva (<100ms).
 
-### Como identificar o erro
-
+**Como identificar:**
 Skin do desktop estática.
 
-### Como corrigir (passo a passo)
+**Como corrigir:**
+`SE` dados zerados `ENTÃO`: Verificar a lista de "Registry/Shared Memory Labels" no AIDA e corrigir o `.ini` do Rainmeter.
 
-SE dados zerados ENTÃO: Verificar a lista de "Registry/Shared Memory Labels" no AIDA e corrigir o .ini do Rainmeter.
+**Validação pós-correção:** O widget no desktop reage instantaneamente ao uso do computador.
 
-### Validação pós-correção
-
-O widget no desktop reage instantaneamente ao uso do computador.
-
-### Risco
-
-Baixo
-
-### Impacto se ignorado
-
-Apenas visual.
-
-### Tempo estimado
-
-15 min
-
-### Observações técnicas
-
-Permite criar desktops futuristas para clientes "Gamers/Modders". O AIDA64 atua como o motor (backend) e o Rainmeter como a interface (frontend).
-
-### Boas práticas
-
-Manter taxa de atualização em 1000ms para não consumir ciclos de CPU desnecessários.
-
-### Alternativa segura
-
-HWiNFO Shared Memory (Requer licença Pro para uso contínuo recente).
+> [!WARNING]
+> **Impacto se ignorado:** Apenas visual.
 
 ### Checklist de confirmação
-
-- [ ] Shared Memory ativo?  
-- [ ] Labels verificados?  
+- [ ] Shared Memory ativo?
+- [ ] Labels verificados?
 - [ ] Skin reagindo?
 
 ---
 
 ## Etapa 36 — Backup de Drivers Instalados
 
-### Objetivo da etapa
-
-Extrair uma lista ou os próprios arquivos de drivers funcionais para formatação futura
+**Objetivo:** Extrair uma lista ou os próprios arquivos de drivers funcionais para formatação futura.
+**Risco:** Médio | **Tempo estimado:** 3 min
 
 ### Ação exata a executar
 
 Listar todos os drivers de sistema e periféricos detectados.
 
-### Caminho no software
+**Caminho no software:** **Computador** > **Sistema Operacional** > **Drivers de Sistema**
 
-Menu Computador > Sistema Operacional > Drivers de Sistema
+> [!NOTE]
+> **Atalho de teclado:** Informação não identificada na fonte analisada.
 
-### Atalho de teclado
+### Configurações e Pré-requisitos
 
-> Informação não identificada na fonte analisada.
+- **Configurações recomendadas:** Clicar com botão direito > Copiar tudo.
+- **Verificação antes de executar:** O objetivo não é fazer backup dos arquivos (o AIDA não faz isso bem), mas sim inventariar as versões.
 
-### Configurações recomendadas
+> [!TIP]
+> **Boas práticas:** Usar a lista do AIDA para baixar previamente os drivers no site do fabricante antes de formatar.
+> **Alternativa segura:** Double Driver (Software antigo mas funcional para backup).
+> **Observações técnicas:** O AIDA64 é ferramenta de Informação. Para Extração de drivers, use o comando do PowerShell: `Export-WindowsDriver -Online -Destination "D:\BackupDrivers"`.
 
-Clicar com botão direito > Copiar tudo.
+### Solução de problemas
 
-### Verificação antes de executar
-
-O objetivo não é fazer backup dos arquivos (o AIDA não faz isso bem), mas sim inventariar as versões.
-
-### Possíveis erros
-
-1. Confiar que a lista contém o instalador.  
-
+**Possíveis erros:**
+1. Confiar que a lista contém o instalador.
 2. Não anotar a versão exata.
 
-### Causa técnica do erro
-
-1. O AIDA lista o driver carregado na RAM, não o instalador .exe.  
-
+**Causa técnica:**
+1. O AIDA lista o driver carregado na RAM, não o instalador `.exe`.
 2. Windows Update substitui drivers funcionais por genéricos.
 
-### Como identificar o erro
-
+**Como identificar:**
 Após formatar, o driver novo causa tela azul e não se sabe qual era o antigo funcional.
 
-### Como corrigir (passo a passo)
+**Como corrigir:**
+`SE` driver crítico (ex: Placa de captura antiga) `ENTÃO`: Usar `DISM /Export-Driver` no CMD, usando o AIDA apenas para identificar qual é o crucial.
 
-SE driver crítico (ex: Placa de captura antiga) ENTÃO: Usar "DISM /Export-Driver" no CMD, usando o AIDA apenas para identificar qual é o crucial.
+**Validação pós-correção:** Ter uma lista impressa das versões (ex: Nvidia v531.29) que funcionavam perfeitamente.
 
-### Validação pós-correção
-
-Ter uma lista impressa das versões (ex: Nvidia v531.29) que funcionavam perfeitamente.
-
-### Risco
-
-Médio
-
-### Impacto se ignorado
-
-Perder compatibilidade com hardware legado após formatação.
-
-### Tempo estimado
-
-3 min
-
-### Observações técnicas
-
-O AIDA64 é ferramenta de Informação. Para Extração de drivers, use o comando do PowerShell: Export-WindowsDriver -Online -Destination "D:\\BackupDrivers".
-
-### Boas práticas
-
-Usar a lista do AIDA para baixar previamente os drivers no site do fabricante antes de formatar.
-
-### Alternativa segura
-
-Double Driver (Software antigo mas funcional para backup).
+> [!WARNING]
+> **Impacto se ignorado:** Perder compatibilidade com hardware legado após formatação.
 
 ### Checklist de confirmação
-
-- [ ] Lista de versões salva?  
-- [ ] DISM executado para extração?  
+- [ ] Lista de versões salva?
+- [ ] DISM executado para extração?
 - [ ] Drivers críticos identificados?
 
 ---
 
 ## Etapa 37 — Diagnóstico de Link de Rede (PHY)
 
-### Objetivo da etapa
-
-Verificar se a placa de rede está negociando a velocidade correta (1Gbps vs 100Mbps) com o roteador
+**Objetivo:** Verificar se a placa de rede está negociando a velocidade correta (1Gbps vs 100Mbps) com o roteador.
+**Risco:** Médio | **Tempo estimado:** 2 min
 
 ### Ação exata a executar
 
 Acessar status da conexão física e verificar a velocidade negociada.
 
-### Caminho no software
+**Caminho no software:** **Rede** > **Rede do Windows**
 
-Menu Rede > Rede do Windows
+> [!NOTE]
+> **Atalho de teclado:** Informação não identificada na fonte analisada.
 
-### Atalho de teclado
+### Configurações e Pré-requisitos
 
-> Informação não identificada na fonte analisada.
+- **Configurações recomendadas:** Verificar campo Velocidade da Conexão e Endereço MAC.
+- **Verificação antes de executar:** Confirmar se o cabo é CAT5e ou superior e se o switch/roteador é Gigabit.
 
-### Configurações recomendadas
+> [!TIP]
+> **Boas práticas:** Cruzar essa informação com um teste de velocidade (Speedtest).
+> **Alternativa segura:** `ncpa.cpl` (Status da placa no Windows).
+> **Observações técnicas:** O AIDA64 lê a camada física (PHY). Se o driver estiver genérico, pode não mostrar detalhes avançados.
 
-Verificar campo Velocidade da Conexão e Endereço MAC.
+### Solução de problemas
 
-### Verificação antes de executar
-
-Confirmar se o cabo é CAT5e ou superior e se o switch/roteador é Gigabit.
-
-### Possíveis erros
-
-1. Link travado em 100Mbps.  
-
+**Possíveis erros:**
+1. Link travado em 100Mbps.
 2. Wi-Fi com sinal fraco (-80dBm).
 
-### Causa técnica do erro
-
-1. Cabo crimpado errado (apenas 2 pares) ou porta do roteador em modo "Eco".  
-
+**Causa técnica:**
+1. Cabo crimpado errado (apenas 2 pares) ou porta do roteador em modo "Eco".
 2. Interferência ou distância.
 
-### Como identificar o erro
-
+**Como identificar:**
 Velocidade de internet lenta, mas provedor entrega banda correta.
 
-### Como corrigir (passo a passo)
+**Como corrigir:**
+`SE` 100Mbps em placa Gigabit `ENTÃO`: Trocar o cabo de rede imediatamente.
+`SE` Wi-Fi fraco `ENTÃO`: Mudar canal no roteador.
 
-SE 100Mbps em placa Gigabit ENTÃO: Trocar o cabo de rede imediatamente. SE Wi-Fi fraco ENTÃO: Mudar canal no roteador.
+**Validação pós-correção:** O campo deve mostrar "1000 Mbps" (Gigabit) ou velocidade Wi-Fi real (ex: 866 Mbps).
 
-### Validação pós-correção
-
-O campo deve mostrar "1000 Mbps" (Gigabit) ou velocidade Wi-Fi real (ex: 866 Mbps).
-
-### Risco
-
-Médio
-
-### Impacto se ignorado
-
-Diagnosticar erroneamente lentidão de internet como culpa do provedor, quando é o cabeamento local.
-
-### Tempo estimado
-
-2 min
-
-### Observações técnicas
-
-O AIDA64 lê a camada física (PHY). Se o driver estiver genérico, pode não mostrar detalhes avançados.
-
-### Boas práticas
-
-Cruzar essa informação com um teste de velocidade (Speedtest).
-
-### Alternativa segura
-
-ncpa.cpl (Status da placa no Windows).
+> [!WARNING]
+> **Impacto se ignorado:** Diagnosticar erroneamente lentidão de internet como culpa do provedor, quando é o cabeamento local.
 
 ### Checklist de confirmação
-
-- [ ] Negociação Gigabit?  
-- [ ] MAC Address confere?  
+- [ ] Negociação Gigabit?
+- [ ] MAC Address confere?
 - [ ] Wi-Fi Signal > -65dBm?
 
 ---
 
 ## Etapa 38 — Verificação de Tempo de Atividade (Uptime)
 
-### Objetivo da etapa
-
-Descobrir se o usuário realmente reiniciou o PC ou apenas desligou e ligou (Fast Boot)
+**Objetivo:** Descobrir se o usuário realmente reiniciou o PC ou apenas desligou e ligou (Fast Boot).
+**Risco:** Baixo | **Tempo estimado:** 1 min
 
 ### Ação exata a executar
 
 Verificar o contador de tempo de atividade real do kernel.
 
-### Caminho no software
+**Caminho no software:** **Sistema Operacional** > **Tempo de Atividade**
 
-Menu Sistema Operacional > Tempo de Atividade
+> [!NOTE]
+> **Atalho de teclado:** Informação não identificada na fonte analisada.
 
-### Atalho de teclado
+### Configurações e Pré-requisitos
 
-> Informação não identificada na fonte analisada.
+- **Configurações recomendadas:** Analisar: Tempo de Atividade do Sistema vs Tempo de Atividade Atual.
+- **Verificação antes de executar:** Lembrar que o "Desligar" do Windows 10/11 é uma hibernação híbrida e não zera o contador.
 
-### Configurações recomendadas
+> [!TIP]
+> **Boas práticas:** Desativar a "Inicialização Rápida" no Painel de Controle de Energia se causar problemas frequentes.
+> **Alternativa segura:** Gerenciador de Tarefas > **Desempenho** > **CPU** (Tempo de Atividade).
+> **Observações técnicas:** Esta é a ferramenta nº 1 para desmentir usuários que dizem "Já reiniciei 3 vezes" (quando só desligaram o monitor ou suspenderam).
 
-Analisar: Tempo de Atividade do Sistema vs Tempo de Atividade Atual.
+### Solução de problemas
 
-### Verificação antes de executar
-
-Lembrar que o "Desligar" do Windows 10/11 é uma hibernação híbrida e não zera o contador.
-
-### Possíveis erros
-
-1. Uptime de 30+ dias reportado.  
-
+**Possíveis erros:**
+1. Uptime de 30+ dias reportado.
 2. Lentidão acumulada.
 
-### Causa técnica do erro
-
-1. O usuário clica em "Desligar", mas o kernel nunca reinicia devido ao "Fast Startup".  
-
+**Causa técnica:**
+1. O usuário clica em "Desligar", mas o kernel nunca reinicia devido ao "Fast Startup".
 2. Vazamento de memória (Memory Leak) acumulado.
 
-### Como identificar o erro
-
+**Como identificar:**
 O PC está lento e o cliente jura que "desligou ontem".
 
-### Como corrigir (passo a passo)
+**Como corrigir:**
+`SE` Uptime > 7 dias e PC lento `ENTÃO`: Segurar Shift e clicar em Desligar (Força Full Shutdown) ou usar Reiniciar.
 
-SE Uptime > 7 dias e PC lento ENTÃO: Segurar Shift e clicar em Desligar (Força Full Shutdown) ou usar Reiniciar.
+**Validação pós-correção:** Contador deve zerar para "0 dias, 0 horas, X minutos".
 
-### Validação pós-correção
-
-Contador deve zerar para "0 dias, 0 horas, X minutos".
-
-### Risco
-
-Baixo
-
-### Impacto se ignorado
-
-Diagnóstico falho de lentidão causada apenas por falta de reboot real.
-
-### Tempo estimado
-
-1 min
-
-### Observações técnicas
-
-Esta é a ferramenta nº 1 para desmentir usuários que dizem "Já reiniciei 3 vezes" (quando só desligaram o monitor ou suspenderam).
-
-### Boas práticas
-
-Desativar a "Inicialização Rápida" no Painel de Controle de Energia se causar problemas frequentes.
-
-### Alternativa segura
-
-Gerenciador de Tarefas > Desempenho > CPU (Tempo de Atividade).
+> [!WARNING]
+> **Impacto se ignorado:** Diagnóstico falho de lentidão causada apenas por falta de reboot real.
 
 ### Checklist de confirmação
-
-- [ ] Uptime verificado?  
-- [ ] Reinício real confirmado?  
+- [ ] Uptime verificado?
+- [ ] Reinício real confirmado?
 - [ ] Fast Boot explicado?
 
 ---
 
 ## Etapa 39 — Auditoria de Softwares Instalados
 
-### Objetivo da etapa
-
-Listar todos os programas para backup ou identificar Bloatware/Malware oculto
+**Objetivo:** Listar todos os programas para backup ou identificar Bloatware/Malware oculto.
+**Risco:** Médio | **Tempo estimado:** 3 min
 
 ### Ação exata a executar
 
 Gerar lista completa de aplicações instaladas via registro e Windows Store.
 
-### Caminho no software
+**Caminho no software:** **Programas** > **Programas Instalados**
 
-Menu Programas > Programas Instalados
+> [!NOTE]
+> **Atalho de teclado:** Informação não identificada na fonte analisada.
 
-### Atalho de teclado
+### Configurações e Pré-requisitos
 
-> Informação não identificada na fonte analisada.
+- **Configurações recomendadas:** Ordenar por Data da Instalação para ver o que foi colocado recentemente.
+- **Verificação antes de executar:** Perguntar ao cliente quais softwares são vitais antes de sugerir remoção.
 
-### Configurações recomendadas
+> [!TIP]
+> **Boas práticas:** Exportar esta lista para TXT e salvar no backup do cliente (`Softwares_Antigos.txt`).
+> **Alternativa segura:** `appwiz.cpl` (Não lista Apps da Loja Windows tão bem).
+> **Observações técnicas:** Útil para criar uma "Lista de Reinstalação" antes de formatar a máquina do cliente.
 
-Ordenar por Data da Instalação para ver o que foi colocado recentemente.
+### Solução de problemas
 
-### Verificação antes de executar
-
-Perguntar ao cliente quais softwares são vitais antes de sugerir remoção.
-
-### Possíveis erros
-
-1. Lista incompleta (Portable apps).  
-
+**Possíveis erros:**
+1. Lista incompleta (Portable apps).
 2. Softwares fantasmas (desinstalados mas registro sujo).
 
-### Causa técnica do erro
-
-1. Softwares que não escrevem em Uninstall no registro não aparecem.  
-
+**Causa técnica:**
+1. Softwares que não escrevem em Uninstall no registro não aparecem.
 2. Restos de chaves de registro.
 
-### Como identificar o erro
-
+**Como identificar:**
 Programas que não aparecem no Painel de Controle mas estão na lista do AIDA.
 
-### Como corrigir (passo a passo)
+**Como corrigir:**
+`SE` software suspeito `ENTÃO`: Google no nome do executável. SE confirmado inútil, usar Revo Uninstaller.
 
-SE software suspeito ENTÃO: Google no nome do executável. SE confirmado inútil, usar Revo Uninstaller.
+**Validação pós-correção:** Lista limpa contendo apenas softwares úteis e drivers.
 
-### Validação pós-correção
-
-Lista limpa contendo apenas softwares úteis e drivers.
-
-### Risco
-
-Médio
-
-### Impacto se ignorado
-
-Deixar softwares espiões ou trials expirados consumindo recursos.
-
-### Tempo estimado
-
-3 min
-
-### Observações técnicas
-
-Útil para criar uma "Lista de Reinstalação" antes de formatar a máquina do cliente.
-
-### Boas práticas
-
-Exportar esta lista para TXT e salvar no backup do cliente (Softwares_Antigos.txt).
-
-### Alternativa segura
-
-appwiz.cpl (Não lista Apps da Loja Windows tão bem).
+> [!WARNING]
+> **Impacto se ignorado:** Deixar softwares espiões ou trials expirados consumindo recursos.
 
 ### Checklist de confirmação
-
-- [ ] Bloatware identificado?  
-- [ ] Lista exportada?  
+- [ ] Bloatware identificado?
+- [ ] Lista exportada?
 - [ ] Softwares críticos notados?
 
 ---
 
 ## Etapa 40 — Gerenciador de Auditoria (Audit Manager)
 
-### Objetivo da etapa
-
-Rastrear mudanças de hardware/software entre duas datas (O que mudou?)
+**Objetivo:** Rastrear mudanças de hardware/software entre duas datas (O que mudou?).
+**Risco:** Alto (Segurança) | **Tempo estimado:** 5 min
 
 ### Ação exata a executar
 
 Comparar dois relatórios AIDA64 gerados em momentos diferentes para ver diferenças.
 
-### Caminho no software
+**Caminho no software:** **Ferramentas** > **Gerenciador de Auditoria**
 
-Menu Ferramentas > Gerenciador de Auditoria
+> [!NOTE]
+> **Atalho de teclado:** Informação não identificada na fonte analisada.
 
-### Atalho de teclado
+### Configurações e Pré-requisitos
 
-> Informação não identificada na fonte analisada.
+- **Configurações recomendadas:** Carregar `Relatorio_Antigo.csv` e `Relatorio_Novo.csv`.
+- **Verificação antes de executar:** Requer que um relatório anterior tenha sido salvo e guardado (Etapa 08/20).
 
-### Configurações recomendadas
+> [!TIP]
+> **Boas práticas:** Usar relatórios CSV para esta função (são mais fáceis de parsear).
+> **Alternativa segura:** Comparação manual de olho (falível).
+> **Observações técnicas:** Ferramenta administrativa poderosa para TI Corporativa. Permite provar que o usuário instalou software proibido entre a visita A e B.
 
-Carregar Relatório_Antigo.csv e Relatório_Novo.csv.
+### Solução de problemas
 
-### Verificação antes de executar
-
-Requer que um relatório anterior tenha sido salvo e guardado (Etapa 08/20).
-
-### Possíveis erros
-
-1. Relatórios incompatíveis.  
-
+**Possíveis erros:**
+1. Relatórios incompatíveis.
 2. Falso positivo de mudança (ex: Temperatura).
 
-### Causa técnica do erro
-
-1. Formatos diferentes (HTML vs CSV) ou versões de AIDA muito distantes.  
-
+**Causa técnica:**
+1. Formatos diferentes (HTML vs CSV) ou versões de AIDA muito distantes.
 2. Sensores variam naturalmente.
 
-### Como identificar o erro
-
+**Como identificar:**
 O software aponta "Mudança" em voltagem ou RPM de fan.
 
-### Como corrigir (passo a passo)
-
+**Como corrigir:**
 Filtrar/Ignorar sensores na comparação. Focar em: Memória Total, Disco Rígido, Adaptador de Vídeo.
 
-### Validação pós-correção
+**Validação pós-correção:** Detectar se um pente de memória foi removido ou uma GPU trocada.
 
-Detectar se um pente de memória foi removido ou uma GPU trocada.
-
-### Risco
-
-Alto (Segurança)
-
-### Impacto se ignorado
-
-Detectar furto de componentes em empresas ou mudanças não autorizadas pelo usuário.
-
-### Tempo estimado
-
-5 min
-
-### Observações técnicas
-
-Ferramenta administrativa poderosa para TI Corporativa. Permite provar que o usuário instalou software proibido entre a visita A e B.
-
-### Boas práticas
-
-Usar relatórios CSV para esta função (são mais fáceis de parsear).
-
-### Alternativa segura
-
-Comparação manual de olho (falível).
+> [!WARNING]
+> **Impacto se ignorado:** Detectar furto de componentes em empresas ou mudanças não autorizadas pelo usuário.
 
 ### Checklist de confirmação
-
-- [ ] Relatório base existe?  
-- [ ] Mudanças detectadas?  
+- [ ] Relatório base existe?
+- [ ] Mudanças detectadas?
 - [ ] Furto/Alteração descartado?
 
 ---
 
 ## Etapa 41 — Solução de Conflito com Anti-Cheat
 
-### Objetivo da etapa
-
-Evitar que o driver kerneld.x64 cause banimento ou crash em jogos (Valorant/CS2)
+**Objetivo:** Evitar que o driver `kerneld.x64` cause banimento ou crash em jogos (Valorant/CS2).
+**Risco:** Alto | **Tempo estimado:** 2 min
 
 ### Ação exata a executar
 
 Desativar recursos de baixo nível antes de entregar o PC ao cliente gamer.
 
-### Caminho no software
+**Caminho no software:** **Arquivo** > **Preferências** > **Estabilidade**
 
-Arquivo > Preferências > Estabilidade
+> [!NOTE]
+> **Atalho de teclado:** Informação não identificada na fonte analisada.
 
-### Atalho de teclado
+### Configurações e Pré-requisitos
 
-> Informação não identificada na fonte analisada.
+- **Configurações recomendadas:** Check (Desativar): Kernel Driver (se não for usar sensores) ou apenas garantir que o AIDA esteja FECHADO.
+- **Verificação antes de executar:** Perguntar se o cliente joga Valorant, FaceIT ou usa softwares bancários (Warsaw).
 
-### Configurações recomendadas
+> [!TIP]
+> **Boas práticas:** Configurar o AIDA64 para não carregar o driver na inicialização em PCs domésticos.
+> **Alternativa segura:** Usar visualizadores de sensor nativos da GPU (GeForce Experience) para jogos.
+> **Observações técnicas:** O driver do AIDA64 acessa hardware diretamente. Anti-cheats modernos odeiam isso.
 
-Check (Desativar): Kernel Driver (se não for usar sensores) ou apenas garantir que o AIDA esteja FECHADO.
+### Solução de problemas
 
-### Verificação antes de executar
+**Possíveis erros:**
+1. Jogo não abre (Erro VAN 1067).
+2. Tela azul `PAGE_FAULT_IN_NONPAGED_AREA`.
 
-Perguntar se o cliente joga Valorant, FaceIT ou usa softwares bancários (Warsaw).
-
-### Possíveis erros
-
-1. Jogo não abre (Erro VAN 1067).  
-
-2. Tela azul PAGE_FAULT_IN_NONPAGED_AREA.
-
-### Causa técnica do erro
-
-1. O Anti-Cheat detecta o driver do AIDA64 como ferramenta de hacking (leitura de memória).  
-
+**Causa técnica:**
+1. O Anti-Cheat detecta o driver do AIDA64 como ferramenta de hacking (leitura de memória).
 2. Conflito de acesso ao barramento SMBus.
 
-### Como identificar o erro
-
+**Como identificar:**
 Mensagem de erro do Riot Vanguard ao iniciar o PC.
 
-### Como corrigir (passo a passo)
+**Como corrigir:**
+`SE` cliente gamer `ENTÃO`: Não configurar AIDA64 para iniciar com o Windows. Ensinar a fechar completamente após o uso.
 
-SE cliente gamer ENTÃO: Não configurar AIDA64 para iniciar com o Windows. Ensinar a fechar completamente após o uso.
+**Validação pós-correção:** O jogo abre normalmente sem alertas de segurança.
 
-### Validação pós-correção
-
-O jogo abre normalmente sem alertas de segurança.
-
-### Risco
-
-Alto
-
-### Impacto se ignorado
-
-Cliente ser banido de jogo online por "Uso de software de terceiros" (Falso positivo).
-
-### Tempo estimado
-
-2 min
-
-### Observações técnicas
-
-O driver do AIDA64 acessa hardware diretamente. Anti-cheats modernos odeiam isso.
-
-### Boas práticas
-
-Configurar o AIDA64 para não carregar o driver na inicialização em PCs domésticos.
-
-### Alternativa segura
-
-Usar visualizadores de sensor nativos da GPU (GeForce Experience) para jogos.
+> [!WARNING]
+> **Impacto se ignorado:** Cliente ser banido de jogo online por "Uso de software de terceiros" (Falso positivo).
 
 ### Checklist de confirmação
-
-- [ ] Anti-Cheat detectado?  
-- [ ] AIDA removido do Startup?  
+- [ ] Anti-Cheat detectado?
+- [ ] AIDA removido do Startup?
 - [ ] Cliente alertado?
 
 ---
 
 ## Etapa 42 — Auditoria de Segurança do Windows
 
-### Objetivo da etapa
-
-Verificar status real do Antivírus, Firewall e UAC via WMI
+**Objetivo:** Verificar status real do Antivírus, Firewall e UAC via WMI.
+**Risco:** Crítico | **Tempo estimado:** 1 min
 
 ### Ação exata a executar
 
 Acessar o centro de segurança via API para confirmar proteção ativa.
 
-### Caminho no software
+**Caminho no software:** **Sistema Operacional** > **Sistema Operacional** (Seção Segurança)
 
-Menu Sistema Operacional > Sistema Operacional (Seção Segurança)
+> [!NOTE]
+> **Atalho de teclado:** Informação não identificada na fonte analisada.
 
-### Atalho de teclado
+### Configurações e Pré-requisitos
 
-> Informação não identificada na fonte analisada.
+- **Configurações recomendadas:** Verificar Antivírus, Firewall e Controle de Conta de Usuário (UAC).
+- **Verificação antes de executar:** Não confiar apenas no ícone da bandeja do sistema (que pode ser falsificado por malware).
 
-### Configurações recomendadas
+> [!TIP]
+> **Boas práticas:** UAC deve estar sempre no nível padrão ou máximo. Nunca desligado.
+> **Alternativa segura:** Comando `wmic /namespace:\\root\servicemodel path antivirusproduct get displayName`.
+> **Observações técnicas:** O AIDA64 lê o repositório WMI `root\SecurityCenter2`. Se o malware corromper isso, o AIDA reportará erro.
 
-Verificar Antivírus, Firewall e Controle de Conta de Usuário (UAC).
+### Solução de problemas
 
-### Verificação antes de executar
-
-Não confiar apenas no ícone da bandeja do sistema (que pode ser falsificado por malware).
-
-### Possíveis erros
-
-1. Antivírus reportado como "Desativado" mas está ativo.  
-
+**Possíveis erros:**
+1. Antivírus reportado como "Desativado" mas está ativo.
 2. UAC desativado.
 
-### Causa técnica do erro
-
-1. Delay na atualização do WMI do Windows.  
-
+**Causa técnica:**
+1. Delay na atualização do WMI do Windows.
 2. Usuário desativou UAC para instalar crack.
 
-### Como identificar o erro
-
+**Como identificar:**
 Campo de segurança em cinza ou vermelho.
 
-### Como corrigir (passo a passo)
+**Como corrigir:**
+`SE` desativado `ENTÃO`: Ir no Painel de Segurança do Windows e reativar. Se falhar, possível infecção por Malware que matou o Defender.
 
-SE desativado ENTÃO: Ir no Painel de Segurança do Windows e reativar. Se falhar, possível infecção por Malware que matou o Defender.
+**Validação pós-correção:** Status "Ativo e Atualizado".
 
-### Validação pós-correção
-
-Status "Ativo e Atualizado".
-
-### Risco
-
-Crítico
-
-### Impacto se ignorado
-
-Entregar PC vulnerável a ransomware.
-
-### Tempo estimado
-
-1 min
-
-### Observações técnicas
-
-O AIDA64 lê o repositório WMI root\\SecurityCenter2. Se o malware corromper isso, o AIDA reportará erro.
-
-### Boas práticas
-
-UAC deve estar sempre no nível padrão ou máximo. Nunca desligado.
-
-### Alternativa segura
-
-Comando wmic /namespace:\\\\root\\servicemodel path antivirusproduct get displayName.
+> [!CAUTION]
+> **Impacto se ignorado:** Entregar PC vulnerável a ransomware.
 
 ### Checklist de confirmação
-
-- [ ] AV Ativo?  
-- [ ] Firewall Ativo?  
+- [ ] AV Ativo?
+- [ ] Firewall Ativo?
 - [ ] UAC Nível 2+?
 
 ---
 
 ## Etapa 43 — Criação de "Master Report" (Entrega)
 
-### Objetivo da etapa
-
-Gerar o documento final consolidado que atesta a saúde da máquina
+**Objetivo:** Gerar o documento final consolidado que atesta a saúde da máquina.
+**Risco:** Baixo | **Tempo estimado:** 5 min
 
 ### Ação exata a executar
 
 Compilar todas as páginas relevantes em um único PDF/HTML limpo.
 
-### Caminho no software
+**Caminho no software:** **Relatório** > **Assistente** > **Páginas Personalizadas**
 
-Relatório > Assistente > Páginas Personalizadas
+> [!NOTE]
+> **Atalho de teclado:** Informação não identificada na fonte analisada.
 
-### Atalho de teclado
+### Configurações e Pré-requisitos
 
-> Informação não identificada na fonte analisada.
+- **Configurações recomendadas:** Selecionar: Resumo, Sensor, S.M.A.R.T., Overclock, Licenças (Ocultas ou Visíveis dependendo do destino).
+- **Verificação antes de executar:** Remover seções irrelevantes (ex: Debug, Direct X Database) para não criar um PDF de 200 páginas.
 
-### Configurações recomendadas
+> [!TIP]
+> **Boas práticas:** Adicionar um comentário no topo do relatório (campo Comentários nas Preferências) com o número da OS.
+> **Alternativa segura:** Print Screen colado no Word (Amador).
+> **Observações técnicas:** Este é o "Laudo Médico" do computador. Pode ser usado judicialmente em casos de garantia negada.
 
-Selecionar: Resumo, Sensor, S.M.A.R.T., Overclock, Licenças (Ocultas ou Visíveis dependendo do destino).
+### Solução de problemas
 
-### Verificação antes de executar
-
-Remover seções irrelevantes (ex: Debug, Direct X Database) para não criar um PDF de 200 páginas.
-
-### Possíveis erros
-
-1. Relatório muito grande (50MB+).  
-
+**Possíveis erros:**
+1. Relatório muito grande (50MB+).
 2. Dados sensíveis expostos.
 
-### Causa técnica do erro
-
-1. Incluir "Logs de Eventos" ou "Arquivos DLL" no relatório.  
-
+**Causa técnica:**
+1. Incluir "Logs de Eventos" ou "Arquivos DLL" no relatório.
 2. Não filtrar a seção de Licenças/Rede.
 
-### Como identificar o erro
-
+**Como identificar:**
 Cliente reclama que não consegue ler ou enviar o arquivo por e-mail.
 
-### Como corrigir (passo a passo)
-
+**Como corrigir:**
 Selecionar apenas as categorias "Hardware Check" e "Benchmark" no assistente.
 
-### Validação pós-correção
+**Validação pós-correção:** Arquivo final leve (<2MB), legível e profissional.
 
-Arquivo final leve (<2MB), legível e profissional.
-
-### Risco
-
-Baixo
-
-### Impacto se ignorado
-
-Profissionalismo.
-
-### Tempo estimado
-
-5 min
-
-### Observações técnicas
-
-Este é o "Laudo Médico" do computador. Pode ser usado judicialmente em casos de garantia negada.
-
-### Boas práticas
-
-Adicionar um comentário no topo do relatório (campo Comentários nas Preferências) com o número da OS.
-
-### Alternativa segura
-
-Print Screen colado no Word (Amador).
+> [!WARNING]
+> **Impacto se ignorado:** Profissionalismo.
 
 ### Checklist de confirmação
-
-- [ ] Seções filtradas?  
-- [ ] Dados sensíveis ocultos?  
+- [ ] Seções filtradas?
+- [ ] Dados sensíveis ocultos?
 - [ ] Salvo com nome da OS?
 
 ---
 
 ## Etapa 44 — Limpeza de Registro do AIDA64
 
-### Objetivo da etapa
-
-Remover chaves de configuração do registro do Windows ao desinstalar (Cleanup)
+**Objetivo:** Remover chaves de configuração do registro do Windows ao desinstalar (Cleanup).
+**Risco:** Alto | **Tempo estimado:** 3 min
 
 ### Ação exata a executar
 
-Apagar a chave HKEY_CURRENT_USER\\Software\\FinalWire\\AIDA64.
+Apagar a chave `HKEY_CURRENT_USER\Software\FinalWire\AIDA64`.
 
-### Caminho no software
+**Caminho no software:** `regedit.exe`
 
-regedit.exe
+> [!NOTE]
+> **Atalho de teclado:** `Win` + `R` > `regedit`
 
-### Atalho de teclado
+### Configurações e Pré-requisitos
 
-Win + R > regedit
+- **Configurações recomendadas:** Cuidado Extremo: Fazer backup do registro antes.
+- **Verificação antes de executar:** Apenas necessário se o software foi instalado (não Portable) e apresentou bugs que reinstalação não resolve.
 
-### Configurações recomendadas
+> [!TIP]
+> **Boas práticas:** Só fazer isso se o AIDA64 estiver travando na inicialização ("Reset de Fábrica").
+> **Alternativa segura:** Desinstalar via Revo Uninstaller (Modo Avançado).
+> **Observações técnicas:** O AIDA64 é muito limpo, mas configurações de OSD/SensorPanel ficam no registro. Se corromperem, só apagando a chave para resetar.
 
-Cuidado Extremo: Fazer backup do registro antes.
+### Solução de problemas
 
-### Verificação antes de executar
-
-Apenas necessário se o software foi instalado (não Portable) e apresentou bugs que reinstalação não resolve.
-
-### Possíveis erros
-
-1. Apagar chave errada.  
-
+**Possíveis erros:**
+1. Apagar chave errada.
 2. Corromper perfil de usuário.
 
-### Causa técnica do erro
-
-1. Erro humano.  
-
+**Causa técnica:**
+1. Erro humano.
 2. Manipulação indevida do regedit.
 
-### Como identificar o erro
-
+**Como identificar:**
 Windows não salva mais preferências ou AIDA não abre.
 
-### Como corrigir (passo a passo)
+**Como corrigir:**
+`SE` erro `ENTÃO`: Restaurar backup do registro.
 
-SE erro ENTÃO: Restaurar backup do registro.
+**Validação pós-correção:** O AIDA64 abre como se fosse a primeira vez (Zero KM).
 
-### Validação pós-correção
-
-O AIDA64 abre como se fosse a primeira vez (Zero KM).
-
-### Risco
-
-Alto
-
-### Impacto se ignorado
-
-Danificar o registro do Windows é fatal para a estabilidade do SO.
-
-### Tempo estimado
-
-3 min
-
-### Observações técnicas
-
-O AIDA64 é muito limpo, mas configurações de OSD/SensorPanel ficam no registro. Se corromperem, só apagando a chave para resetar.
-
-### Boas práticas
-
-Só fazer isso se o AIDA64 estiver travando na inicialização ("Reset de Fábrica").
-
-### Alternativa segura
-
-Desinstalar via Revo Uninstaller (Modo Avançado).
+> [!WARNING]
+> **Impacto se ignorado:** Danificar o registro do Windows é fatal para a estabilidade do SO.
 
 ### Checklist de confirmação
-
-- [ ] Backup do Reg feito?  
-- [ ] Chave correta localizada?  
+- [ ] Backup do Reg feito?
+- [ ] Chave correta localizada?
 - [ ] Reset confirmado?
 
 ---
 
 ## Etapa 45 — Checklist Final de Encerramento (SOP)
 
-### Objetivo da etapa
-
-Garantir que o técnico seguiu o fluxo lógico e não esqueceu nenhuma etapa crítica
+**Objetivo:** Garantir que o técnico seguiu o fluxo lógico e não esqueceu nenhuma etapa crítica.
+**Risco:** Médio | **Tempo estimado:** 5 min
 
 ### Ação exata a executar
 
 Revisão mental ou física de todo o procedimento antes de liberar a máquina.
 
-### Caminho no software
+**Caminho no software:** N/A (Procedural)
 
-N/A (Procedural)
+> [!NOTE]
+> **Atalho de teclado:** Informação não identificada na fonte analisada.
 
-### Atalho de teclado
+### Configurações e Pré-requisitos
 
-> Informação não identificada na fonte analisada.
+- **Configurações recomendadas:** Validar: Backup > Hardware > Stress > Software > Limpeza > Relatório.
+- **Verificação antes de executar:** Não ter pressa na entrega.
 
-### Configurações recomendadas
+> [!TIP]
+> **Boas práticas:** Colocar um adesivo de "Testado com AIDA64" ou selo de garantia na máquina (físico).
+> **Observações técnicas:** A diferença entre um "formatador" e um Engenheiro de TI está neste checklist final.
 
-Validar: Backup > Hardware > Stress > Software > Limpeza > Relatório.
+### Solução de problemas
 
-### Verificação antes de executar
-
-Não ter pressa na entrega.
-
-### Possíveis erros
-
-1. Esquecer pen drive conectado.  
-
-2. Deixar stress test rodando em background.  
-
+**Possíveis erros:**
+1. Esquecer pen drive conectado.
+2. Deixar stress test rodando em background.
 3. Esquecer de reativar o Sleep Mode (Etapa 01).
 
-### Causa técnica do erro
-
-1. Distração.  
-
+**Causa técnica:**
+1. Distração.
 2. Falta de checklist físico.
 
-### Como identificar o erro
-
+**Como identificar:**
 Cliente liga dizendo "O PC não desliga a tela nunca mais" (Pois alteramos na Etapa 01).
 
-### Como corrigir (passo a passo)
-
+**Como corrigir:**
 Reverter alterações de energia feitas na Etapa 01 (Restaurar plano "Equilibrado").
 
-### Validação pós-correção
+**Validação pós-correção:** Máquina pronta, limpa, otimizada e documentada.
 
-Máquina pronta, limpa, otimizada e documentada.
-
-### Risco
-
-Médio
-
-### Impacto se ignorado
-
-Pequenos esquecimentos geram chamados de retorno (Recall) desnecessários.
-
-### Tempo estimado
-
-5 min
-
-### Observações técnicas
-
-A diferença entre um "formatador" e um Engenheiro de TI está neste checklist final.
-
-### Boas práticas
-
-Colocar um adesivo de "Testado com AIDA64" ou selo de garantia na máquina (físico).
-
-### Alternativa segura
-
-> Informação não identificada na fonte analisada.
+> [!WARNING]
+> **Impacto se ignorado:** Pequenos esquecimentos geram chamados de retorno (Recall) desnecessários.
 
 ### Checklist de confirmação
-
-- [ ] Plano de Energia restaurado?  
-- [ ] Pen drive removido?  
+- [ ] Plano de Energia restaurado?
+- [ ] Pen drive removido?
 - [ ] Relatório entregue?
 
 ---
 
-
 ## Próximos passos
 
 | Se você… | Vá para |
-| --- | --- |
+| :--- | :--- |
 | terminou o teste e precisa fechar o atendimento | [Validação final por componente](../13-validacao-final.md) |
 | quer o procedimento do sintoma que motivou o teste | [Índice de cenários](../10-cenarios/00-indice-cenarios.md) |
 | precisa de outra ferramenta | [Índice de ferramentas](00-indice-ferramentas.md) |
 
-
 ---
 
-| | |
-| --- | --- |
+| Atributo | Valor |
+| :--- | :--- |
 | **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → aba `REF_AIDA64` |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
 | **Última verificação contra a fonte** | 2026-08-08 |
