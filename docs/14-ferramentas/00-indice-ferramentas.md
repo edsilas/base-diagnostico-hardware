@@ -1,16 +1,26 @@
+---
+title: Índice de guias de ferramentas
+description: Qual ferramenta usar para cada tipo de verificação, e onde está o procedimento passo a passo de cada uma.
+author: Edsilas
+date: 2026-08-08
+---
+
 <!-- Gerado a partir de `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `REF_Victoria`, `REF_AIDA64`, `REF_MemTest86`. Não editar manualmente sem atualizar a fonte. -->
 
 [Início](../../README.md) › [Opere as ferramentas](../../README.md#opere-as-ferramentas) › **Índice de guias de ferramentas**
 
 # Índice de guias de ferramentas
 
+> [!NOTE]
 > Qual ferramenta usar para cada tipo de verificação, e onde está o procedimento passo a passo de cada uma.
-
 
 **Aplica-se a:** Victoria, AIDA64 e MemTest86 — as três com guia próprio na fonte
 
-## Neste documento
+## Neste artigo
 
+- [Contexto](#contexto)
+- [Escopo](#escopo)
+- [Relação com outros documentos](#relação-com-outros-documentos)
 - [Qual ferramenta usar](#qual-ferramenta-usar)
 - [Guias disponíveis](#guias-disponíveis)
 - [Estrutura comum das etapas](#estrutura-comum-das-etapas)
@@ -62,10 +72,8 @@ flowchart TD
 
 ## Guias disponíveis
 
-
-
 | Ferramenta | Guia | Etapas |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | Victoria (HDD/SSD) | [victoria.md](victoria.md) | 9 |
 | MemTest86 | [memtest86.md](memtest86.md) | 10 (+ critérios de decisão) |
 | AIDA64 | [etapas 01–15](aida64-etapas-01-15.md) · [16–30](aida64-etapas-16-30.md) · [31–45](aida64-etapas-31-45.md) | 45 |
@@ -102,7 +110,7 @@ não registra valor, o documento exibe *"Informação não identificada na fonte
 omitir a seção ou preencher por analogia. A distribuição é esta:
 
 | Guia | Etapas sem atalho de teclado | Etapas sem alternativa segura |
-| --- | --- | --- |
+| :--- | :--- | :--- |
 | [Victoria](victoria.md) | 6 de 9 | — |
 | [AIDA64](aida64-etapas-01-15.md) | 42 de 45 | 4 de 45 |
 | [MemTest86](memtest86.md) | 7 de 10 | 5 de 10 |
@@ -116,17 +124,16 @@ omitir a seção ou preencher por analogia. A distribuição é esta:
 ## Próximos passos
 
 | Se você… | Vá para |
-| --- | --- |
+| :--- | :--- |
 | quer o inventário completo do instrumental | [Requisitos e ferramentas](../04-requisitos-e-ferramentas.md) |
 | precisa dos critérios de aprovação por componente | [Validação final por componente](../13-validacao-final.md) |
 | quer saber qual ferramenta cada cenário exige | [Índices cruzados](../18-indices-cruzados.md) |
 | vai executar uma etapa destrutiva | [Segurança e boas práticas](../15-seguranca-e-boas-praticas.md#procedimentos-que-destroem-dados) |
 
-
 ---
 
-| | |
-| --- | --- |
+| Atributo | Valor |
+| :--- | :--- |
 | **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `REF_Victoria`, `REF_AIDA64`, `REF_MemTest86` |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
 | **Última verificação contra a fonte** | 2026-08-08 |
