@@ -1,16 +1,26 @@
+---
+title: Índice de cenários de falha
+description: Ponto de entrada por sintoma. Descreva o que o equipamento faz e vá direto para o procedimento.
+author: Edsilas
+date: 2026-08-08
+---
+
 <!-- Gerado a partir de `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `TABELA_PRINCIPAL` e `INDICE_CENARIOS`. Não editar manualmente sem atualizar a fonte. -->
 
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Índice de cenários de falha**
 
 # Índice de cenários de falha
 
+> [!NOTE]
 > Ponto de entrada por sintoma. Descreva o que o equipamento faz e vá direto para o procedimento.
-
 
 **Aplica-se a:** Falhas percebidas depois que o sistema operacional carrega
 
-## Neste documento
+## Neste artigo
 
+- [Contexto](#contexto)
+- [Escopo](#escopo)
+- [Relação com outros documentos](#relação-com-outros-documentos)
 - [Qual é o seu sintoma?](#qual-é-o-seu-sintoma)
 - [Tabela de entrada por sintoma](#tabela-de-entrada-por-sintoma)
 - [Ordem de execução declarada na fonte](#ordem-de-execução-declarada-na-fonte)
@@ -25,9 +35,7 @@ Ponto de entrada por sintoma. Quem chega com uma queixa ('não liga', 'tela azul
 
 Os 9 cenários e os 13 IDs de diagnóstico registrados na fonte, com camada primária, primeiro teste e ferramentas necessárias.
 
-## Fora do escopo
-
-Conteúdo detalhado das fichas (ver arquivos por cenário); códigos de POST; fluxos completos.
+**Fora do escopo:** Conteúdo detalhado das fichas (ver arquivos por cenário); códigos de POST; fluxos completos.
 
 ## Relação com outros documentos
 
@@ -71,7 +79,7 @@ flowchart TD
 ## Tabela de entrada por sintoma
 
 | Cenário | IDs relacionados | Camada primária | Primeiro teste | Ferramentas necessárias | Fichas |
-| --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- |
 | Não liga | NL-01, NL-02 | 1 - Energia | Teste paperclip da PSU → Multímetro nas tensões | Multímetro, Testador PSU, Chave de fenda | [NL-01](nao-liga.md#nl-01), [NL-02](nao-liga.md#nl-02) |
 | Liga sem vídeo | SV-01, SV-02 | 4 - Memória / 6-GPU | Reencaixar RAM (1 módulo, slot primário) → Testar iGPU | Manual placa-mãe, GPU known-good | [SV-01](liga-sem-video.md#sv-01), [SV-02](liga-sem-video.md#sv-02) |
 | Reinicialização aleatória | RA-01, RA-02 | 1 - Energia / 4-Memória | AIDA64 Voltage monitoring → MemTest86 | AIDA64, MemTest86, Multímetro | [RA-01](reinicializacao-aleatoria.md#ra-01), [RA-02](reinicializacao-aleatoria.md#ra-02) |
@@ -85,7 +93,7 @@ flowchart TD
 ## Ordem de execução declarada na fonte
 
 | ID | Sintoma observado | Camada afetada | Componente suspeito | Ordem de execução | Dependências | Risco |
-| --- | --- | --- | --- | --- | --- | --- |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | [NL-01](nao-liga.md#nl-01) | Equipamento não liga: sem LEDs, sem ventoinhas, sem sinal de vida. | 1 - Energia | PSU (Fonte de Alimentação) | 1 | Nenhuma (primeiro teste da cadeia) | Crítico |
 | [NL-02](nao-liga.md#nl-02) | PSU funcional (teste paperclip OK), mas sistema não liga ao conectar na placa-mãe. | 7 - Placa-mãe | Placa-mãe / VRM / Front Panel Header | 2 | NL-01 (PSU validada) | Alto |
 | [SV-01](liga-sem-video.md#sv-01) | Sistema liga (ventoinhas giram, LEDs acendem) mas sem saída de vídeo. Monitor em standby. | 4 - Memória | Módulos DRAM / Slots DIMM | 3 | NL-01, NL-02 (energia e placa-mãe validadas) | Alto |
@@ -115,17 +123,16 @@ flowchart TD
 ## Próximos passos
 
 | Se você… | Vá para |
-| --- | --- |
+| :--- | :--- |
 | o equipamento não chega a carregar o sistema | [Fluxo de diagnóstico POST](../06-fluxo-post.md) |
 | quer percorrer o diagnóstico do início ao fim | [Fluxo de diagnóstico sistêmico](../07-fluxo-sistemico.md) |
 | precisa do comando exato de um cenário | [Referência de comandos](../19-comandos.md) |
 | quer buscar por componente, risco ou ferramenta | [Índices cruzados](../18-indices-cruzados.md) |
 
-
 ---
 
-| | |
-| --- | --- |
+| Atributo | Valor |
+| :--- | :--- |
 | **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `TABELA_PRINCIPAL` e `INDICE_CENARIOS` |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
 | **Última verificação contra a fonte** | 2026-08-08 |
