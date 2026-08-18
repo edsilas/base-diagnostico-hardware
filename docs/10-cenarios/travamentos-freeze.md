@@ -1,48 +1,59 @@
+---
+title: "Cenário — Travamentos (Freeze)"
+description: "Procedimento completo para o cenário Travamentos (Freeze) - pré-requisitos, diagnóstico, correção, resultado esperado e riscos."
+author: "Edsilas"
+date: "2026-08-18"
+---
+
 <!-- Gerado a partir de `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `TABELA_PRINCIPAL` e `INDICE_CENARIOS`. Não editar manualmente sem atualizar a fonte. -->
 
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Cenário — Travamentos (Freeze)**
 
 # Cenário — Travamentos (Freeze)
 
+> [!NOTE]
 > Procedimento completo para o cenário Travamentos (Freeze): pré-requisitos, diagnóstico, correção, resultado esperado e riscos.
 
+**Aplica-se a:** Equipamentos que concluem o POST — falhas percebidas durante o uso.
 
-**Aplica-se a:** Equipamentos que concluem o POST — falhas percebidas em uso
+## Neste artigo
 
-## Neste documento
-
-- [Entrada rápida (registro do índice de cenários)](#entrada-rápida-registro-do-índice-de-cenários)
+- [Contexto](#contexto)
+- [Escopo](#escopo)
+- [Relação com outros documentos](#relação-com-outros-documentos)
+- [Entrada rápida](#entrada-rápida)
 - [TR-01](#tr-01)
 - [Próximos passos](#próximos-passos)
 
 ## Contexto
 
-Fichas de diagnóstico do cenário `Travamentos (Freeze)` conforme registrado na fonte. Cada ficha corresponde a um ID da tabela principal e reproduz integralmente seus campos.
+Ficha de diagnóstico do cenário `Travamentos (Freeze)` conforme registado na fonte. Cada ficha corresponde a um ID da tabela principal e reproduz os respectivos campos técnicos.
 
 ## Escopo
 
-IDs TR-01 — sintoma, causa raiz, método de diagnóstico, comandos, correção, validação, risco e fonte oficial.
+ID `TR-01` — sintoma, causa raiz, método de diagnóstico, comandos, correção, validação, risco e fonte oficial.
 
-## Fora do escopo
-
-Outros cenários; catálogo de códigos POST; guias detalhados das ferramentas.
+**Fora do escopo:** outros cenários, catálogo de códigos POST e guias detalhados das ferramentas.
 
 ## Relação com outros documentos
 
 - [Índice de cenários](00-indice-cenarios.md)
-- [Fluxo de diagnóstico sistêmico](../07-fluxo-sistemico.md)
+- [Fluxo de diagnóstico sistémico](../07-fluxo-sistemico.md)
 - [Correlações entre camadas](../12-correlacoes.md)
 - [Validação final por componente](../13-validacao-final.md)
 
 ---
 
-## Entrada rápida (registro do índice de cenários)
+## Entrada rápida
 
-- **Cenário (fonte):** Travamentos (Freeze)
-- **IDs relacionados:** TR-01
-- **Camada primária:** 3 - CPU
-- **Primeiro teste:** AIDA64 Stability Test + OSD (temperatura + throttling)
-- **Ferramentas necessárias:** AIDA64, Pasta térmica, Álcool isopropílico
+| Atributo | Valor |
+| :--- | :--- |
+| **Cenário** | Travamentos (Freeze) |
+| **ID relacionado** | TR-01 |
+| **Camada primária** | 3 - CPU |
+| **Primeiro teste** | AIDA64 Stability Test + OSD |
+| **Monitoramento** | Temperatura + Throttling |
+| **Ferramentas necessárias** | AIDA64, pasta térmica, álcool isopropílico 99% |
 
 ---
 
@@ -50,122 +61,112 @@ Outros cenários; catálogo de códigos POST; guias detalhados das ferramentas.
 
 ### Identificação
 
-#### Sintoma observado
-
-Sistema congela completamente (freeze). Mouse e teclado não respondem. Sem BSOD.
-
-#### Camada afetada
-
-3 - CPU
-
-#### Componente suspeito
-
-CPU / Thermal Throttling / VRM
-
-#### Condição de ocorrência
-
-Ocorre sob carga ou após período de uso. Pode estar associado a superaquecimento.
+- **Sintoma observado:** Sistema congela completamente (freeze). Mouse e teclado não respondem. Sem BSOD.
+- **Camada afetada:** 3 - CPU
+- **Componente suspeito:** CPU / Thermal Throttling / VRM
+- **Condição de ocorrência:** Ocorre sob carga ou após período de uso. Pode estar associado a superaquecimento.
 
 ### Pré-requisitos
 
-#### Dependências
-
-RA-01 (PSU estável), SV-01/02 (vídeo funcional para monitorar)
-
-#### Ordem de execução
-
-9
-
-#### Ferramentas oficiais
-
-AIDA64 Engineer (Stability Test + OSD); Pasta térmica (ex: Noctua NT-H1, Arctic MX-6); Álcool isopropílico 99%; Câmera térmica (opcional)
+- **Dependências:** RA-01 (PSU estável), SV-01/02 (vídeo funcional para monitoramento)
+- **Ordem de execução:** 9
+- **Ferramentas oficiais:** AIDA64 Engineer; pasta térmica (ex.: Noctua NT-H1, Arctic MX-6); álcool isopropílico 99%; câmera térmica (opcional)
 
 ### Diagnóstico
 
-#### Causa raiz
+**Causa raiz:** CPU atingindo TjMax e apresentando throttling extremo, ou VRM da placa-mãe incapaz de sustentar a carga, provocando *voltage droop* e possível travamento.
 
-CPU atingindo TjMax e throttling extremo, ou VRM da placa-mãe não sustentando carga, causando voltage droop fatal. Ref: Intel Datasheet Volume 1 (Thermal Specifications); AMD Processor Programming Reference.
+**Referências:** *Intel Datasheet Volume 1 — Thermal Specifications*; *AMD Processor Programming Reference*.
 
-#### Método de diagnóstico (passo a passo)
+**Método de diagnóstico:**
 
-1. Instalar AIDA64 e configurar OSD com CPU Package Temp e Throttling indicator.  
-2. Executar AIDA64 Stability Test (Stress FPU).  
-3. Monitorar temperatura: SE > 95°C ou Throttling > 0% → problema térmico.  
-4. Parar teste imediatamente se Temp > 100°C.  
-5. Verificar montagem do cooler: pressão uniforme nos 4 pontos.  
-6. Verificar pasta térmica: remover cooler, limpar com álcool isopropílico 99%, reaplicar pasta de qualidade.  
-7. SE temperatura OK mas freeze persiste → suspeitar de firmware/BIOS.
+1. Instalar o AIDA64.
+2. Configurar o OSD com `CPU Package Temp` e `Throttling Indicator`.
+3. Executar o **AIDA64 Stability Test** com **Stress FPU**.
+4. Monitorar continuamente a temperatura e o throttling.
+5. Se a temperatura ultrapassar `95 °C` ou o `Throttling` for superior a `0%`, considerar indício de problema térmico.
+6. Se a temperatura ultrapassar `100 °C`, interromper imediatamente o teste.
+7. Verificar a montagem do cooler e a pressão uniforme nos pontos de fixação.
+8. Inspecionar a pasta térmica.
+9. Se necessário, remover o cooler, limpar com álcool isopropílico 99% e reaplicar pasta térmica.
+10. Se a temperatura permanecer normal e o freeze persistir, investigar firmware, BIOS e VRM.
 
-#### Comandos técnicos
+### Comandos técnicos
 
-AIDA64: Stress FPU (isola geração de calor máximo)  
-Event Viewer: eventvwr.msc → System → filtrar WHEA-Logger
+```text
+AIDA64
+Stability Test → Stress FPU
+
+Visualizador de Eventos
+eventvwr.msc
+
+Windows Logs → System
+Filtro: WHEA-Logger
+```
 
 ### Execução da correção
 
-#### Procedimento de correção (detalhado)
-
-1. Desligar e desconectar AC.  
-2. Remover cooler da CPU.  
-3. Limpar pasta térmica antiga com álcool isopropílico e pano sem fiapos.  
-4. Reaplicar pasta térmica (método do ponto central ou X).  
-5. Reinstalar cooler com pressão uniforme.  
-6. SE watercooler: verificar bomba (vibração/som).  
-7. Retestar com AIDA64 Stability Test 30min.
+1. Desligar o equipamento e desconectar a alimentação AC.
+2. Remover o cooler da CPU.
+3. Remover completamente a pasta térmica antiga.
+4. Limpar a CPU e a base do cooler com álcool isopropílico 99%.
+5. Aplicar nova pasta térmica.
+6. Reinstalar o cooler garantindo pressão uniforme.
+7. Se for utilizado watercooler, verificar o funcionamento da bomba.
+8. Verificar filtros de poeira e fluxo de ar do gabinete.
+9. Executar novamente o **AIDA64 Stability Test por 30 minutos**.
 
 ### Resultado esperado
 
-#### Critério de validação técnica
-
-AIDA64 Stability Test 30min sem throttling. CPU Package Temp estabiliza abaixo de 85°C sob carga máxima.
-
-#### Evidência de sucesso
-
-Gráfico AIDA64: temperatura estabilizada. Throttling = 0%. Frequência de clock mantida em boost.
+- **Critério de validação técnica:** AIDA64 Stability Test executado por 30 minutos sem throttling.
+- **Temperatura:** CPU Package Temp abaixo de `85 °C` sob carga máxima.
+- **Throttling:** `0%`.
+- **Estabilidade:** nenhum novo freeze durante o teste.
+- **Evidência de sucesso:** temperatura estabilizada, throttling em `0%` e frequência de clock mantida dentro do comportamento esperado.
 
 ### Risco e impacto
 
-#### Risco associado
+| Atributo | Classificação |
+| :--- | :--- |
+| **Risco associado** | Crítico |
+| **Impacto no sistema** | Degradação acelerada do silício, aumento da frequência dos freezes e possibilidade de dano permanente à CPU |
 
-Crítico
-
-#### Impacto no sistema
-
-Degradação acelerada do silício. Freezes progressivamente mais frequentes. Possível dano permanente à CPU.
+> [!CAUTION]
+> Interrompa imediatamente o teste de estresse caso a temperatura atinja o limite definido para o diagnóstico. Não mantenha o equipamento sob carga térmica excessiva durante a investigação.
 
 ### Origem
 
-#### Fonte oficial
+**Fontes técnicas:**
 
-Intel 13th/14th Gen Datasheet Vol.1 (Thermal Design); AMD Ryzen Processor Technical Reference; AIDA64 Documentation
+- Intel 13th/14th Gen Datasheet — Thermal Design
+- AMD Ryzen Processor Technical Reference
+- AIDA64 Documentation
 
-### Próximos passos
+### Próximos passos (TR-01)
 
-- Alcançado pelos nós [F09b](../07-fluxo-sistemico.md#f09b) do fluxo sistêmico
-- Depende de [SV-01](liga-sem-video.md#sv-01), [RA-01](reinicializacao-aleatoria.md#ra-01) — execute-os antes
+- Alcançado pelo nó [F09b](../07-fluxo-sistemico.md#f09b) do fluxo sistémico
+- Depende de [SV-01](liga-sem-video.md#sv-01) e [RA-01](reinicializacao-aleatoria.md#ra-01) — execute-os antes
 - É pré-requisito de [AU-01](alto-uso-cpu-gpu.md#au-01)
 - Comando desta ficha na [referência consolidada de comandos](../19-comandos.md#tr-01--sistema-congela-completamente-freeze-mouse-e-teclado-não-respondem-sem-bsod)
 - Critérios de encerramento: [Validação final por componente](../13-validacao-final.md)
 
 ---
 
-
 ## Próximos passos
 
-| Se você… | Vá para |
-| --- | --- |
-| o problema voltou depois da troca de peça | [Correlações entre camadas](../12-correlacoes.md) |
-| aplicou a correção e precisa validar | [Validação final por componente](../13-validacao-final.md) |
-| precisa operar AIDA64, MemTest86 ou Victoria | [Guias de ferramentas](../14-ferramentas/00-indice-ferramentas.md) |
-| quer conferir onde este cenário entra no fluxo | [Fluxo de diagnóstico sistêmico](../07-fluxo-sistemico.md) |
-
+| Se você... | Vá para |
+| :--- | :--- |
+| O problema voltou depois da troca de peça | [Correlações entre camadas](../12-correlacoes.md) |
+| Aplicou a correção e precisa validar | [Validação final por componente](../13-validacao-final.md) |
+| Precisa operar AIDA64, MemTest86 ou Victoria | [Guias de ferramentas](../14-ferramentas/00-indice-ferramentas.md) |
+| Quer conferir onde este cenário entra no fluxo | [Fluxo de diagnóstico sistémico](../07-fluxo-sistemico.md) |
 
 ---
 
-| | |
-| --- | --- |
+| Atributo | Valor |
+| :--- | :--- |
 | **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `TABELA_PRINCIPAL` e `INDICE_CENARIOS` |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
+| **Última verificação contra a fonte** | 2026-08-18 |
 | **Autoria** | Edsilas |
 | **Versão da documentação** | `doc-2.0.0` |
