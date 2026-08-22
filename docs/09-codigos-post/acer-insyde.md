@@ -2,145 +2,106 @@
 
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Códigos POST — Acer / Insyde**
 
-# Códigos POST — Acer / Insyde
+# Erro de POST: 1 Longo + 2 Curtos (Acer / Insyde)
 
-> Fichas completas dos códigos de POST da família Acer / Insyde, com causa raiz, diagnóstico, correção e critério de validação.
+**Aplica-se a:** Equipamentos com BIOS Proprietário Acer / Insyde (Acer Aspire, Nitro, Predator)
 
-
-**Aplica-se a:** Equipamentos com BIOS `Proprietário Acer / Insyde`
-
-## Neste documento
-
-- [POST-49 — 1 Longo + 2 Curtos](#post-49--1-longo--2-curtos)
-- [Próximos passos](#próximos-passos)
-
-## Contexto
-
-Fichas completas dos códigos de POST atribuídos, na fonte, ao fabricante de BIOS `Proprietário Acer / Insyde`. Cada ficha reproduz integralmente os campos registrados na planilha de origem.
-
-## Escopo
-
-Os 1 código(s) da família `Proprietário Acer / Insyde` presentes na fonte, com interpretação, causa raiz, método de diagnóstico, procedimento de correção, critério de validação, risco e fonte oficial.
-
-## Fora do escopo
-
-Códigos de outras famílias de BIOS; fluxos de decisão; cenários sistêmicos (pós-boot); guias de ferramentas.
-
-## Relação com outros documentos
-
-- [Índice de códigos POST](00-indice-codigos.md)
-- [Fluxo de diagnóstico POST](../06-fluxo-post.md)
-- [Camadas de diagnóstico](../08-diagnostico-por-camada.md)
-- [Ambiguidade de códigos](../11-ambiguidades.md)
+Este artigo fornece detalhes de diagnóstico e resolução para o código de erro POST **1 Longo + 2 Curtos** da família de BIOS proprietária Acer / Insyde. 
 
 ---
 
-## POST-49 — 1 Longo + 2 Curtos
+## Visão geral do erro
 
-**Fabricante BIOS:** Proprietário Acer / Insyde  
-**Fabricante / plataforma:** Acer — Aspire / Nitro / Predator  
-**Tipo de sinal:** Beep Sonoro  
-**Código:** `1 Longo + 2 Curtos`
-
-### Identificação
-
-#### Interpretação oficial
-
-Video Interface Error — Erro na interface de vídeo
-
-#### Componente afetado
-
-GPU / Cabo Flat (LVDS/eDP)
-
-#### Camada de diagnóstico
-
-Camada 4: Vídeo
-
-#### Fase POST
-
-Video Init
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-Erro na interface de vídeo. Em notebooks Acer, frequentemente causado por cabo flat LVDS/eDP rompido na região da dobradiça (ponto de maior stress mecânico).
-
-#### Condições que geram o erro
-
-1. Cabo flat LVDS/eDP desconectado ou rompido (dobradiça).  
-2. GPU com defeito.  
-3. Tela LCD com defeito.  
-4. Conector na placa-mãe com mau contato.
-
-#### Método de diagnóstico técnico
-
-1. Conectar monitor externo (se imagem no externo: cabo ou tela).  
-2. Abrir moldura e verificar cabo flat na região da dobradiça.  
-3. Teste de continuidade no cabo flat.
-
-#### Ferramentas oficiais
-
-Teste de Continuidade no cabo flat / Monitor externo / Multímetro
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Conectar monitor externo (HDMI/VGA):  
-
-   — Se imagem no externo: problema é cabo flat ou tela.  
-   — Se sem imagem no externo: GPU/placa com defeito.  
-2. Se problema no cabo/tela:  
-
-   a. Remover moldura da tela (clipes plásticos).  
-   b. Inspecionar cabo flat na região da dobradiça.  
-   c. Verificar conexão do cabo no painel LCD e na placa-mãe.  
-   d. Se cabo rompido: substituir cabo flat (peça específica do modelo).  
-   e. Se cabo OK mas tela sem imagem: tela LCD com defeito → substituir painel.  
-3. Se GPU: reparo BGA profissional ou troca da placa.
-
-### Resultado esperado
-
-#### Critério de validação
-
-Imagem estável na tela interna e externa. Sem flickering. Sem artefatos.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Alto
-
-#### Fonte oficial
-
-Acer Service Manual / Insyde BIOS Reference
-
-### Próximos passos
-
-- Ficha da camada: [Camada 4: Vídeo](../08-diagnostico-por-camada.md#camada-4--vídeo-gpuigpu)
-- **Código ambíguo.** Confira o critério de diferenciação em [Ambiguidade de códigos](../11-ambiguidades.md#1-longo--2-curtos) antes de aplicar o procedimento.
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Código** | `1 Longo + 2 Curtos` |
+| **Tipo de sinal** | Beep Sonoro |
+| **Mensagem oficial** | *Video Interface Error* (Erro na interface de vídeo) |
+| **Fase POST** | Video Init |
+| **Componente afetado** | GPU / Cabo Flat (LVDS/eDP) |
+| **Camada de diagnóstico**| Camada 4: Vídeo |
+| **Criticidade** | Alta |
 
 ---
 
-## Próximos passos
+## Causas
 
-| Se você… | Vá para |
-| --- | --- |
-| não encontrou o código aqui | [Índice de códigos POST](00-indice-codigos.md) — catálogo completo |
-| suspeita que o código tem outro significado | [Ambiguidade de códigos](../11-ambiguidades.md) |
-| quer saber o que testar naquele subsistema | [Diagnóstico por camada](../08-diagnostico-por-camada.md) |
-| aplicou a correção e precisa fechar o atendimento | [Validação final por componente](../13-validacao-final.md) |
+O sistema emite 1 bipe longo seguido de 2 bipes curtos ao ligar. Este comportamento indica uma falha na interface de vídeo. Em notebooks Acer, este problema é frequentemente causado por um cabo flat LVDS/eDP rompido na região da dobradiça (ponto de maior estresse mecânico).
 
+As condições que geram este erro incluem:
+
+* Cabo flat LVDS/eDP desconectado ou rompido.
+* Defeito no chip gráfico (GPU).
+* Defeito no painel LCD (tela).
+* Mau contato no conector da placa-mãe.
 
 ---
 
-| | |
-| --- | --- |
-| **Fonte primária deste documento** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
+## Diagnóstico
+
+Antes de iniciar o reparo físico da máquina, isole o componente que está falhando utilizando ferramentas básicas de bancada.
+
+**Ferramentas necessárias:** Monitor externo (com cabo HDMI ou VGA) e Multímetro (para teste de continuidade).
+
+**Etapas de isolamento:**
+1. Conecte o monitor externo à porta de vídeo do notebook.
+2. Ligue o computador e aguarde o processamento do vídeo.
+3. Analise o resultado para determinar o plano de ação:
+   * **Se houver imagem no monitor externo:** A falha está restrita ao cabo flat ou à tela LCD.
+   * **Se não houver imagem no monitor externo:** A falha está na GPU ou na placa-mãe.
+
+---
+
+## Resolução
+
+Siga os procedimentos abaixo com base no resultado obtido na fase de diagnóstico.
+
+### Cenário A: O problema está no cabo ou na tela
+Se o equipamento apresentou vídeo no monitor externo, o reparo consiste em verificar a via de comunicação com o painel nativo:
+
+1. Remova a moldura da tela soltando os clipes plásticos com cuidado.
+2. Inspecione visualmente o cabo flat, especialmente na área que sofre flexão pela dobradiça.
+3. Verifique e reconecte as extremidades do cabo flat no painel LCD e na placa-mãe.
+4. Execute um teste de continuidade no cabo flat com o multímetro.
+5. **Se o cabo estiver rompido:** Substitua o cabo flat por uma peça específica do mesmo modelo.
+6. **Se o cabo estiver intacto:** O painel LCD está com defeito. Substitua a tela.
+
+### Cenário B: O problema está na GPU ou Placa-mãe
+Se o equipamento não apresentou vídeo no monitor externo, o componente primário de vídeo falhou:
+
+1. Encaminhe o equipamento para reparo BGA profissional ou proceda com a substituição completa da placa-mãe.
+
+---
+
+## Validação
+
+Após aplicar a correção física, ligue o equipamento para validar o reparo. O sistema deve atender aos seguintes critérios:
+
+* Imagem estável e nítida na tela interna e no monitor externo.
+* Ausência de *flickering* (cintilação).
+* Ausência de artefatos gráficos.
+
+---
+
+## Consulte também
+
+Para aprofundamento técnico ou informações sobre o fluxo de atendimento, consulte os documentos relacionados:
+
+* **[Ambiguidade de códigos](../11-ambiguidades.md#1-longo--2-curtos):** Este código é ambíguo. Verifique o critério de diferenciação antes de aplicar o procedimento.
+* **[Camada 4: Vídeo](../08-diagnostico-por-camada.md#camada-4--vídeo-gpuigpu):** Aprofunde-se no diagnóstico da camada correspondente.
+* **[Índice de códigos POST](00-indice-codigos.md):** Catálogo completo caso não tenha encontrado o código esperado.
+* **[Fluxo de diagnóstico POST](../06-fluxo-post.md):** Como chegar até este código partindo de um sintoma generalizado.
+* **[Diagnóstico por camada](../08-diagnostico-por-camada.md):** Metodologia de testes nos subsistemas de hardware.
+* **[Validação final por componente](../13-validacao-final.md):** Testes recomendados para fechar o atendimento com segurança.
+* **[Índices cruzados](../18-indices-cruzados.md):** Outros códigos do mesmo componente ou nível de risco.
+
+---
+
+| Metadados do Artigo | |
+| :--- | :--- |
+| **Fonte oficial** | Acer Service Manual / Insyde BIOS Reference |
+| **Fonte primária interna** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
+| **Última verificação** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da doc.** | `doc-2.0.0` |
