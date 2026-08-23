@@ -2,945 +2,318 @@
 
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Códigos POST — AMI Q-Code Hex**
 
-# Códigos POST — AMI Q-Code Hex
+# Referência de Códigos de Erro POST: AMI Q-Code Hex
 
-> Fichas completas dos códigos de POST da família AMI Q-Code Hex, com causa raiz, diagnóstico, correção e critério de validação.
+**Aplica-se a:** Equipamentos com BIOS `AMI (Q-Code Hex)` (Ex: Placas-mãe ASUS e GIGABYTE Desktop)
 
-
-**Aplica-se a:** Equipamentos com BIOS `AMI (Q-Code Hex)`
-
-## Neste documento
-
-- [POST-13 — 00 / D0](#post-13--00--d0)
-- [POST-14 — 50 — 55](#post-14--50--55)
-- [POST-15 — 63 — 67](#post-15--63--67)
-- [POST-16 — 99 / 9A / 9C](#post-16--99--9a--9c)
-- [POST-17 — A0 — A2](#post-17--a0--a2)
-- [POST-18 — B4](#post-18--b4)
-- [POST-19 — D6 / D7](#post-19--d6--d7)
-- [POST-20 — FE](#post-20--fe)
-- [POST-21 — FF](#post-21--ff)
-- [POST-50 — 7F](#post-50--7f)
-- [Próximos passos](#próximos-passos)
-
-## Contexto
-
-Fichas completas dos códigos de POST atribuídos, na fonte, ao fabricante de BIOS `AMI (Q-Code Hex)`. Cada ficha reproduz integralmente os campos registrados na planilha de origem.
-
-## Escopo
-
-Os 10 código(s) da família `AMI (Q-Code Hex)` presentes na fonte, com interpretação, causa raiz, método de diagnóstico, procedimento de correção, critério de validação, risco e fonte oficial.
-
-## Fora do escopo
-
-Códigos de outras famílias de BIOS; fluxos de decisão; cenários sistêmicos (pós-boot); guias de ferramentas.
-
-## Relação com outros documentos
-
-- [Índice de códigos POST](00-indice-codigos.md)
-- [Fluxo de diagnóstico POST](../06-fluxo-post.md)
-- [Camadas de diagnóstico](../08-diagnostico-por-camada.md)
-- [Ambiguidade de códigos](../11-ambiguidades.md)
+Este artigo fornece a referência completa de diagnóstico e resolução para os códigos hexadecimais de erro POST (Q-Code display) da família AMI. Utilize o índice abaixo para navegar diretamente para o código exibido no display da placa-mãe.
 
 ---
 
-## POST-13 — 00 / D0
+## Neste artigo
 
-**Fabricante BIOS:** AMI (Q-Code Hex)  
-**Fabricante / plataforma:** AMI Q-Code — ASUS / GIGABYTE Desktop  
-**Tipo de sinal:** Hex Q-Code (Display)  
-**Código:** `00 / D0`
-
-### Identificação
-
-#### Interpretação oficial
-
-CPU Initialization Error — Microcode não encontrado ou CPU não responde
-
-#### Componente afetado
-
-CPU
-
-#### Camada de diagnóstico
-
-Camada 2: CPU
-
-#### Fase POST
-
-SEC Phase (CPU Init)
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-A CPU não é inicializada. O BIOS não encontra microcode compatível para o stepping da CPU, ou a CPU fisicamente não responde. Código 00 no Q-Code geralmente indica que o POST nem iniciou.
-
-#### Condições que geram o erro
-
-1. CPU não suportada pela versão do BIOS instalada.  
-2. Pinos do socket LGA tortos.  
-3. Conector EPS 8-pin (CPU power) desconectado.  
-4. VRM da placa com defeito.  
-5. CPU fisicamente danificada.
-
-#### Método de diagnóstico técnico
-
-1. Verificar lista de compatibilidade CPU × BIOS no site do fabricante.  
-2. Inspecionar pinos do socket com lupa.  
-3. Medir tensão 12V no conector EPS.  
-4. Verificar se LEDs de diagnóstico da placa indicam CPU.  
-5. Se CPU nova em placa antiga: BIOS Flashback para atualizar sem CPU.
-
-#### Ferramentas oficiais
-
-Multímetro (12V EPS, VCore) / Lupa 10x / BIOS Flashback
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Verificar compatibilidade CPU-BIOS no site do fabricante.  
-2. Se CPU requer BIOS mais nova:  
-
-   ASUS: USB BIOS Flashback (pendrive FAT32, porta USB designada, botão 3s).  
-   GIGABYTE: Q-Flash Plus (procedimento similar).  
-3. Inspecionar socket LGA — pinos tortos = tentar realinhar ou condenar placa.  
-4. Verificar conector EPS 8-pin firmemente conectado.  
-5. Medir 12V no conector EPS.  
-6. Se tudo OK: teste cruzado de CPU.
-
-### Resultado esperado
-
-#### Critério de validação
-
-Q-Code avança além de 00/D0. CPU reconhecida no BIOS. POST completa.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Crítico
-
-#### Fonte oficial
-
-ASUS Q-Code Reference / GIGABYTE Debug Code List
-
-### Próximos passos
-
-- Ficha da camada: [Camada 2: CPU](../08-diagnostico-por-camada.md#camada-2--cpu-processador)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+- [Código 00 / D0: Erro de Inicialização da CPU](#código-00--d0-erro-de-inicialização-da-cpu)
+- [Código 50 a 55: Erro de Inicialização de Memória](#código-50-a-55-erro-de-inicialização-de-memória)
+- [Código 63 a 67: Falha na Fase DXE da CPU (VCore/VRM)](#código-63-a-67-falha-na-fase-dxe-da-cpu-vcorevrm)
+- [Código 99 / 9A / 9C: Problema em Periféricos USB/PCIe](#código-99--9a--9c-problema-em-periféricos-usbpcie)
+- [Código A0 a A2: Falha na Inicialização de Armazenamento](#código-a0-a-a2-falha-na-inicialização-de-armazenamento)
+- [Código B4: Erro de Hot Plug USB (Curto/Dano)](#código-b4-erro-de-hot-plug-usb-curtodano)
+- [Código D6 / D7: GPU Não Detectada](#código-d6--d7-gpu-não-detectada)
+- [Código FE: Travamento Pré-POST (Curto/Estrutural)](#código-fe-travamento-pré-post-curtoestrutural)
+- [Código FF: Boot Normal ou Falha Crítica](#código-ff-boot-normal-ou-falha-crítica)
+- [Código 7F: Aguardando Ação do Usuário](#código-7f-aguardando-ação-do-usuário)
+- [Consulte também](#consulte-também)
 
 ---
 
-## POST-14 — 50 — 55
+## Código 00 / D0: Erro de Inicialização da CPU
 
-**Fabricante BIOS:** AMI (Q-Code Hex)  
-**Fabricante / plataforma:** AMI Q-Code — ASUS / GIGABYTE Desktop  
-**Tipo de sinal:** Hex Q-Code (Display)  
-**Código:** `50 — 55`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *CPU Initialization Error* (Microcode não encontrado ou CPU não responde) |
+| **Componente afetado** | CPU |
+| **Fase / Camada** | SEC Phase (CPU Init) / Camada 2: CPU |
+| **Criticidade** | Crítico |
 
-### Identificação
+### Causas
+A CPU não é inicializada. O BIOS não encontra microcode compatível para a revisão (*stepping*) do processador, ou a CPU fisicamente não responde. Na prática, `00` indica que o POST sequer iniciou.
+* CPU não suportada pela versão atual do BIOS.
+* Pinos do socket LGA tortos ou danificados.
+* Conector EPS 8-pin (alimentação da CPU) desconectado.
+* VRM da placa-mãe com defeito.
+* CPU fisicamente danificada.
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+**Ferramentas:** Multímetro (12V EPS, VCore), Lupa 10x, BIOS Flashback.
+1. Verifique a lista de compatibilidade de CPU e BIOS no site do fabricante.
+2. Se a CPU exigir BIOS mais recente: atualize-a via USB BIOS Flashback / Q-Flash Plus, recurso que não exige que a CPU seja reconhecida.
+3. Inspecione o socket LGA com uma lupa. Se houver pinos tortos, tente realinhá-los cuidadosamente ou condene a placa.
+4. Confirme a conexão firme do EPS 8-pin e meça a tensão de 12V.
+5. Se tudo estiver OK, realize um teste cruzado com outra CPU.
 
-Memory Initialization Error — RAM não detectada ou treinamento falhou (55 mais comum)
-
-#### Componente afetado
-
-RAM / Controladora de Memória
-
-#### Camada de diagnóstico
-
-Camada 3: Memória
-
-#### Fase POST
-
-PEI (Memory Training)
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-Erro durante a inicialização e treinamento da memória. O código 55 é o mais frequente e indica que nenhum módulo DIMM foi detectado ou que o treinamento de memória falhou completamente.
-
-#### Condições que geram o erro
-
-1. Nenhum módulo instalado.  
-2. Módulos nos slots errados.  
-3. Contatos da CPU sujos (controladora de memória está na CPU).  
-4. Cooler com pressão excessiva empenando pinos do socket.  
-5. Módulo incompatível (fora da QVL).
-
-#### Método de diagnóstico técnico
-
-1. Limpar contatos LGA da CPU com isopropanol e escova antiestática.  
-2. Afrouxar cooler 1/4 de volta (pressão excessiva pode empurrar CPU contra pinos).  
-3. Testar slot único com módulo known-good.  
-4. Verificar QVL.  
-5. Reset CMOS.
-
-#### Ferramentas oficiais
-
-Isopropanol 99% / Lupa 10x / Escova antiestática / QVL do fabricante
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Desligar, remover AC, power drain.  
-2. Remover cooler da CPU.  
-3. Remover CPU cuidadosamente.  
-4. Limpar contatos LGA da CPU (parte inferior) com isopropanol 99% e escova macia.  
-5. Inspecionar socket com lupa (debris, pinos tortos).  
-6. Reinstalar CPU e cooler (NÃO apertar excessivamente).  
-7. Inserir 1 módulo no slot A2.  
-8. Reset CMOS.  
-9. Ligar e aguardar (DDR5: até 3 min).  
-10. Se persistir: módulo ou slot defeituoso.
-
-### Resultado esperado
-
-#### Critério de validação
-
-Q-Code avança além de 55. RAM reconhecida com capacidade correta. MemTest86 sem erros.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Alto
-
-#### Fonte oficial
-
-ASUS Q-Code Reference / AMI Aptio Status Codes
-
-### Próximos passos
-
-- Ficha da camada: [Camada 3: Memória](../08-diagnostico-por-camada.md#camada-3--memória-ram)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+Q-Code avança para além de `00` / `D0`. A CPU é reconhecida e o POST completa adequadamente.
 
 ---
 
-## POST-15 — 63 — 67
+## Código 50 a 55: Erro de Inicialização de Memória
 
-**Fabricante BIOS:** AMI (Q-Code Hex)  
-**Fabricante / plataforma:** AMI Q-Code — ASUS / GIGABYTE Desktop  
-**Tipo de sinal:** Hex Q-Code (Display)  
-**Código:** `63 — 67`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *Memory Initialization Error* (RAM não detectada ou treinamento falhou) |
+| **Componente afetado** | RAM / Controladora de Memória |
+| **Fase / Camada** | PEI (Memory Training) / Camada 3: Memória |
+| **Criticidade** | Alto |
 
-### Identificação
+### Causas
+Ocorre erro (sendo o `55` o mais comum) durante o treinamento inicial da RAM. Nenhum módulo DIMM é detectado ou falhou na validação de timmings.
+* Nenhum módulo DIMM instalado ou instalados em slots incorretos.
+* Contatos da CPU sujos (controladora de memória integrada).
+* Cooler com pressão excessiva, empenando os pinos de contato do socket.
+* Módulo de memória incompatível (fora da QVL).
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+**Ferramentas:** Isopropanol 99%, Lupa 10x, Escova antiestática, Lista QVL.
+1. Faça o *power drain* (remova AC e drene energia).
+2. Remova o cooler da CPU. Limpe os contatos LGA inferiores do processador com isopropanol 99% e escova macia.
+3. Inspecione o socket buscando detritos ou pinos tortos.
+4. Reinstale a CPU e o cooler **sem aplicar força excessiva**.
+5. Insira 1 único módulo DIMM sabidamente bom no slot primário (geralmente `A2`).
+6. Faça um Reset de CMOS, ligue a máquina e aguarde o tempo de treinamento (em plataformas DDR5, pode levar até 3 minutos).
 
-CPU DXE Initialization Started — Travamento indica falha VCore/VRM
-
-#### Componente afetado
-
-CPU / VRM
-
-#### Camada de diagnóstico
-
-Camada 2: CPU
-
-#### Fase POST
-
-DXE Phase
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-A fase DXE (Driver Execution Environment) da CPU iniciou mas travou. Indica que a CPU começou a executar mas encontrou instabilidade, geralmente relacionada a VCore insuficiente ou VRM com defeito.
-
-#### Condições que geram o erro
-
-1. VRM da placa com capacitores defeituosos (inchados, vazando).  
-2. VCore instável ou insuficiente.  
-3. CPU com defeito parcial.  
-4. BIOS corrompida (parcialmente funcional).
-
-#### Método de diagnóstico técnico
-
-1. Inspeção visual dos capacitores VRM (inchados? vazando?).  
-2. Medir VCore nos pontos de teste da placa.  
-3. Reset CMOS.  
-4. Teste cruzado de CPU.  
-5. Se VRM com defeito visual: placa condenada (reparo avançado).
-
-#### Ferramentas oficiais
-
-Multímetro (VCore) / Inspeção visual VRM / Lupa
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Reset CMOS para defaults.  
-2. Inspecionar VRM visualmente:  
-
-   — Capacitores inchados/vazando = placa condenada ou reparo SMD.  
-   — MOSFETs queimados (marcas escuras) = placa condenada.  
-3. Medir VCore (tipicamente 0.8-1.4V sob carga).  
-4. Testar outra CPU known-good.  
-5. Se CPU boa funciona: CPU original com defeito.  
-6. Se CPU boa também trava: placa com defeito (VRM/PCH).
-
-### Resultado esperado
-
-#### Critério de validação
-
-Q-Code avança além de 67. POST completa. CPU estável sob carga.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Alto
-
-#### Fonte oficial
-
-ASUS Q-Code Reference
-
-### Próximos passos
-
-- Ficha da camada: [Camada 2: CPU](../08-diagnostico-por-camada.md#camada-2--cpu-processador)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+Q-Code avança além de `55`. RAM reconhecida com capacidade e velocidade corretas. MemTest86 sem falhas.
 
 ---
 
-## POST-16 — 99 / 9A / 9C
+## Código 63 a 67: Falha na Fase DXE da CPU (VCore/VRM)
 
-**Fabricante BIOS:** AMI (Q-Code Hex)  
-**Fabricante / plataforma:** AMI Q-Code — ASUS / GIGABYTE Desktop  
-**Tipo de sinal:** Hex Q-Code (Display)  
-**Código:** `99 / 9A / 9C`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *CPU DXE Initialization Started* (Travamento indica falha VCore/VRM) |
+| **Componente afetado** | CPU / VRM |
+| **Fase / Camada** | DXE Phase / Camada 2: CPU |
+| **Criticidade** | Alto |
 
-### Identificação
+### Causas
+A fase DXE iniciou, mas travou. A CPU começou a executar rotinas avançadas, mas encontrou instabilidade geralmente ligada a alimentação.
+* Capacitores do VRM defeituosos (inchados, vazando).
+* VCore instável ou insuficiente entregue à CPU.
+* CPU com defeito estrutural parcial.
+* BIOS corrompida na região de execução.
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+**Ferramentas:** Multímetro (VCore), Inspeção visual.
+1. Execute Reset do CMOS para as configurações padrão.
+2. Inspecione o VRM visualmente (capacitores inchados/vazando ou MOSFETs com marcas de queimado). Se sim, a placa está condenada ou requer reparo SMD.
+3. Meça o VCore sob carga simulada (tipicamente 0.8-1.4V).
+4. Efetue o teste cruzado com outra CPU.
+5. Se a CPU boa funcionar, o processador original está defeituoso. Se travar igualmente, há falha de VRM/PCH na placa-mãe.
 
-Super IO Initialization / USB Detect — Problema em periféricos ou portas
-
-#### Componente afetado
-
-Super I/O / USB / PCIe
-
-#### Camada de diagnóstico
-
-Camada 7: Periféricos Críticos
-
-#### Fase POST
-
-DXE I/O Init
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-O sistema está na fase de inicialização do Super I/O e detecção de dispositivos USB/PCIe. Travamento nesta fase indica conflito ou curto em dispositivo conectado.
-
-#### Condições que geram o erro
-
-1. Dispositivo USB com defeito ou em curto.  
-2. Front Panel USB/Audio com conector danificado.  
-3. Dispositivo PCIe causando conflito.  
-4. Super I/O chip com defeito.
-
-#### Método de diagnóstico técnico
-
-1. Desconectar TODOS os dispositivos USB.  
-2. Desconectar headers do front panel (USB, Audio).  
-3. Testar boot mínimo (CPU+RAM+Vídeo apenas).  
-4. Se POST OK: reconectar um por um para isolar.  
-5. Verificar portas USB fisicamente (pinos tortos, debris).
-
-#### Ferramentas oficiais
-
-Inspeção Visual das portas / Boot mínimo (bare minimum)
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Desconectar todos os dispositivos USB (front e rear).  
-2. Desconectar headers internos: F_USB1, F_USB2, F_AUDIO, F_PANEL (se possível).  
-3. Ligar apenas com CPU + RAM + GPU + Fonte.  
-4. Se POST OK: reconectar headers um a um, ligando entre cada um.  
-5. Quando falhar: último header conectado é o culpado.  
-6. Inspecionar conector/cabo do header.  
-7. Se falhar mesmo sem nada: Super I/O chip defeituoso.
-
-### Resultado esperado
-
-#### Critério de validação
-
-Q-Code avança além de 9C. Todos os dispositivos USB reconhecidos. Sem travamentos na inicialização.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Médio
-
-#### Fonte oficial
-
-ASUS Q-Code Reference / AMI Aptio Status Codes
-
-### Próximos passos
-
-- Ficha da camada: [Camada 7: Periféricos Críticos](../08-diagnostico-por-camada.md#camada-7--periféricos-críticos)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+Q-Code passa de `67` e avança no POST. O sistema fica estável em carga alta (stress tests).
 
 ---
 
-## POST-17 — A0 — A2
+## Código 99 / 9A / 9C: Problema em Periféricos USB/PCIe
 
-**Fabricante BIOS:** AMI (Q-Code Hex)  
-**Fabricante / plataforma:** AMI Q-Code — ASUS / GIGABYTE Desktop  
-**Tipo de sinal:** Hex Q-Code (Display)  
-**Código:** `A0 — A2`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *Super IO Initialization / USB Detect* (Problema em periféricos) |
+| **Componente afetado** | Super I/O / USB / PCIe |
+| **Fase / Camada** | DXE I/O Init / Camada 7: Periféricos Críticos |
+| **Criticidade** | Médio |
 
-### Identificação
+### Causas
+Travamento na detecção e inicialização via Super I/O. Indica conflito ou curto em dispositivo conectado externamente ou via headers internos.
+* Dispositivo USB defeituoso ou em curto.
+* Front Panel (USB/Audio) do gabinete com conector danificado.
+* Placa de expansão PCIe causando conflito.
+* Chip Super I/O com avaria.
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+1. Desconecte TODOS os periféricos USB (traseiros e frontais).
+2. Desconecte os headers internos da placa-mãe (`F_USB1`, `F_USB2`, `F_AUDIO`, etc.).
+3. Tente realizar o boot mínimo (Apenas CPU, RAM, Vídeo e Fonte).
+4. Se o POST completar, reconecte os *headers* e portas um a um para isolar o causador do curto/conflito.
+5. Se travar mesmo com boot mínimo e sem cabos, o chip Super I/O está comprometido.
 
-IDE/SATA Initialization — Travamento indica falha em disco/SSD
-
-#### Componente afetado
-
-SATA / M.2 / NVMe
-
-#### Camada de diagnóstico
-
-Camada 7: Periféricos Críticos
-
-#### Fase POST
-
-DXE Storage Init
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-O BIOS está inicializando controladores IDE/SATA/NVMe. Travamento indica dispositivo de armazenamento com defeito, cabo SATA ruim, ou M.2 mal encaixado.
-
-#### Condições que geram o erro
-
-1. SSD/HDD com firmware travado (busy/hung).  
-2. Cabo SATA defeituoso ou mal conectado.  
-3. M.2 NVMe mal encaixado no slot.  
-4. Porta SATA da placa com defeito.  
-5. Fonte sem alimentação SATA suficiente.
-
-#### Método de diagnóstico técnico
-
-1. Desconectar todos os discos (SATA e M.2).  
-2. Se POST OK sem discos: reconectar um a um.  
-3. Trocar cabo SATA.  
-4. Verificar encaixe do M.2 (parafuso de fixação).  
-5. Verificar SMART do disco em outro sistema.
-
-#### Ferramentas oficiais
-
-Teste SMART (CrystalDiskInfo) / Cabos SATA novos / Chave M.2
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Desconectar TODOS os dispositivos de armazenamento (SATA + M.2).  
-2. Ligar sistema — deve POST sem discos.  
-3. Se POST OK: reconectar discos um a um:  
-
-   a. Ligar, conectar 1 disco SATA, reiniciar.  
-   b. Se travar: disco com defeito ou cabo ruim.  
-   c. Trocar cabo SATA e retestar.  
-4. Para M.2: remover, limpar contatos com isopropanol, reinserir, apertar parafuso.  
-5. Se nenhum disco funciona: porta SATA/M.2 da placa com defeito.
-
-### Resultado esperado
-
-#### Critério de validação
-
-Q-Code avança. Discos reconhecidos no BIOS. SMART OK (CrystalDiskInfo). Boot normal.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Médio
-
-#### Fonte oficial
-
-ASUS Q-Code Reference
-
-### Próximos passos
-
-- Ficha da camada: [Camada 7: Periféricos Críticos](../08-diagnostico-por-camada.md#camada-7--periféricos-críticos)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+Q-Code avança de `9C`. Todos os dispositivos USB são alocados sem travar a inicialização.
 
 ---
 
-## POST-18 — B4
+## Código A0 a A2: Falha na Inicialização de Armazenamento
 
-**Fabricante BIOS:** AMI (Q-Code Hex)  
-**Fabricante / plataforma:** AMI Q-Code — ASUS / GIGABYTE Desktop  
-**Tipo de sinal:** Hex Q-Code (Display)  
-**Código:** `B4`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *IDE/SATA Initialization* (Travamento por disco/SSD) |
+| **Componente afetado** | SATA / M.2 / NVMe |
+| **Fase / Camada** | DXE Storage Init / Camada 7: Periféricos Críticos |
+| **Criticidade** | Médio |
 
-### Identificação
+### Causas
+Bios tentando enumerar e iniciar controladores IDE/SATA/NVMe falhou.
+* SSD/HDD com firmware travado (estado *busy/hung*).
+* Cabo SATA defeituoso ou conector danificado.
+* SSD M.2 mal encaixado nos contatos do slot.
+* Fonte falhando na tensão SATA.
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+**Ferramentas:** Teste SMART, Cabos SATA de reposição.
+1. Remova a comunicação de TODOS os discos (SATA e NVMe).
+2. Ligue a máquina. Se o POST avançar sem discos, reconecte-os um a um.
+3. Se um disco específico causar o travamento, substitua o cabo SATA.
+4. Em unidades M.2: remova, limpe com isopropanol, reinsira firmemente e parafuse o espaçador adequadamente.
+5. Em caso de defeito físico no SSD, confira a saúde utilizando *CrystalDiskInfo* em outro equipamento.
 
-USB Hot Plug Error — Dispositivo USB em curto ou porta danificada
-
-#### Componente afetado
-
-USB
-
-#### Camada de diagnóstico
-
-Camada 7: Periféricos Críticos
-
-#### Fase POST
-
-DXE USB Init
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-Erro durante hot-plug de dispositivo USB. Indica que um dispositivo USB conectado está em curto-circuito ou que uma porta USB está fisicamente danificada.
-
-#### Condições que geram o erro
-
-1. Dispositivo USB com curto interno (hub, pen drive, etc.).  
-2. Porta USB traseira ou frontal com pinos tortos/curto.  
-3. Cabo USB interno (header) com fio rompido.
-
-#### Método de diagnóstico técnico
-
-1. Remover todos dispositivos USB.  
-2. Inspecionar todas as portas USB (detritos, pinos tortos).  
-3. Testar sem headers USB frontais.  
-4. Reconectar dispositivos um a um.
-
-#### Ferramentas oficiais
-
-Inspeção Visual / Multímetro (curto nos pinos USB)
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Remover TODOS os dispositivos USB.  
-2. Inspecionar portas USB traseiras com lanterna (pinos tortos, debris metálico).  
-3. Desconectar headers USB frontais da placa-mãe.  
-4. Ligar sistema.  
-5. Se POST OK: reconectar dispositivos/headers um a um.  
-6. Se porta específica causa falha: porta danificada — desabilitar no BIOS ou reparo físico.
-
-### Resultado esperado
-
-#### Critério de validação
-
-POST completa. Todos os dispositivos USB reconhecidos sem erros. Sem desconexões aleatórias.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Médio
-
-#### Fonte oficial
-
-ASUS Q-Code Reference
-
-### Próximos passos
-
-- Ficha da camada: [Camada 7: Periféricos Críticos](../08-diagnostico-por-camada.md#camada-7--periféricos-críticos)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+O Q-Code passa rapidamente pelas fases A0-A2, reconhece os discos de inicialização, e o boot do SO procede corretamente.
 
 ---
 
-## POST-19 — D6 / D7
+## Código B4: Erro de Hot Plug USB (Curto/Dano)
 
-**Fabricante BIOS:** AMI (Q-Code Hex)  
-**Fabricante / plataforma:** AMI Q-Code — ASUS / GIGABYTE Desktop  
-**Tipo de sinal:** Hex Q-Code (Display)  
-**Código:** `D6 / D7`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *USB Hot Plug Error* (USB em curto ou porta danificada) |
+| **Componente afetado** | USB |
+| **Fase / Camada** | DXE USB Init / Camada 7: Periféricos Críticos |
+| **Criticidade** | Médio |
 
-### Identificação
+### Causas
+O sistema detectou um curto-circuito em um dispositivo USB hot-plug inserido ou as linhas de dados da própria porta estão mecanicamente rompidas/curto-circuitadas.
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+1. Desconecte todos os dispositivos USB.
+2. Utilize uma lanterna e inspecione minuciosamente os contatos internos das portas USB (traseiras e as vinculadas ao painel frontal). Procure por "línguas" plásticas quebradas ou pinos amassados se tocando.
+3. Desconecte *headers* frontais.
+4. Ligue a placa. Se bootar normalmente, uma das portas isoladas apresenta curto permanente (deve ser desabilitada via software ou reparada fisicamente).
 
-No Console Output Devices Found — GPU não detectada para saída de vídeo
-
-#### Componente afetado
-
-GPU / Saída de Vídeo
-
-#### Camada de diagnóstico
-
-Camada 4: Vídeo
-
-#### Fase POST
-
-DXE Console Init
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-O BIOS não encontrou nenhum dispositivo de saída de console (GPU) para exibir vídeo. Diferente do erro de VRAM — aqui a GPU simplesmente não é detectada no barramento.
-
-#### Condições que geram o erro
-
-1. GPU não encaixada corretamente no slot PCIe.  
-2. GPU com BIOS dual (chave seletora Silent/OC na posição errada).  
-3. Slot PCIe com defeito.  
-4. BIOS configurada para saída por iGPU mas somente GPU dedicada presente.  
-5. GPU incompatível (muito antiga para UEFI).
-
-#### Método de diagnóstico técnico
-
-1. Limpar slot PCIe e contatos da GPU.  
-2. Verificar chave seletora de BIOS na GPU (se existir).  
-3. Testar GPU em outro slot PCIe (se disponível).  
-4. Testar outra GPU.  
-5. Verificar se monitor está na saída correta.
-
-#### Ferramentas oficiais
-
-Teste Monitor Externo / GPU known-good / Cabo de vídeo alternativo
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Desligar, remover AC, power drain.  
-2. Remover GPU, limpar contatos, limpar slot.  
-3. Reinserir GPU firmemente.  
-4. Verificar chave de BIOS na GPU (ex: ASUS Dual BIOS switch).  
-5. Conectar monitor diretamente à GPU (não à placa-mãe).  
-6. Testar cabo de vídeo alternativo (HDMI → DP ou vice-versa).  
-7. Se persistir: testar outra GPU.  
-8. Se nenhuma GPU funciona neste slot: testar outro slot PCIe x16.  
-9. Reset CMOS — verificar Primary Display = PCIe.
-
-### Resultado esperado
-
-#### Critério de validação
-
-Q-Code avança. Vídeo funcional. GPU reconhecida corretamente no BIOS.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Alto
-
-#### Fonte oficial
-
-ASUS Q-Code Reference
-
-### Próximos passos
-
-- Ficha da camada: [Camada 4: Vídeo](../08-diagnostico-por-camada.md#camada-4--vídeo-gpuigpu)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+POST completa sem travamentos. Dispositivos USB funcionam sem desconexões aleatórias no SO.
 
 ---
 
-## POST-20 — FE
+## Código D6 / D7: GPU Não Detectada
 
-**Fabricante BIOS:** AMI (Q-Code Hex)  
-**Fabricante / plataforma:** AMI Q-Code — ASUS / GIGABYTE Desktop  
-**Tipo de sinal:** Hex Q-Code (Display)  
-**Código:** `FE`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *No Console Output Devices Found* (GPU não detectada p/ vídeo) |
+| **Componente afetado** | GPU / Saída de Vídeo |
+| **Fase / Camada** | DXE Console Init / Camada 4: Vídeo |
+| **Criticidade** | Alto |
 
-### Identificação
+### Causas
+O BIOS concluiu que não há nenhum dispositivo para renderizar o console de saída. A placa de vídeo simplesmente não apareceu no barramento PCIe.
+* GPU não inserida completamente no slot PCIe.
+* GPU com vBIOS corrompida (ou *switch* dual BIOS na posição intermediária/defeituosa).
+* Defeito na trilha/slot PCIe.
+* GPU demasiadamente legada que não suporta inicialização UEFI (GOP driver ausente).
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+1. Efetue um *power drain* no sistema. Remova a GPU.
+2. Limpe os contatos dourados da GPU e limpe o slot PCIe com ar comprimido/limpa contato.
+3. Se a placa de vídeo tiver uma chave seletora (*Silent/OC Switch*), assegure-se de que ela está firme em um dos lados.
+4. Conecte o monitor diretamente à placa de vídeo (teste variar a saída HDMI/DisplayPort).
+5. Se persistir, e a placa-mãe possuir outro slot PCIe x16 (mesmo que elétrico x4/x8), teste-a no slot inferior.
+6. Avalie o Reset do CMOS. Caso não resolva, isole o problema realizando um teste cruzado com uma GPU de confiança.
 
-Reserved / Pre-POST Hang — Travamento antes do POST iniciar
-
-#### Componente afetado
-
-Placa-mãe (Estrutural)
-
-#### Camada de diagnóstico
-
-Camada 5: Chipset / Motherboard
-
-#### Fase POST
-
-Pre-SEC
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-Código reservado pela AMI. Na prática, indica que o sistema travou antes de iniciar o POST. Geralmente causado por curto-circuito grave no chipset, falha estrutural da placa-mãe, ou problema de alimentação primária.
-
-#### Condições que geram o erro
-
-1. Curto-circuito no PCH/Chipset.  
-2. VRM com componente em curto.  
-3. Trilha rompida em camada interna da PCB.  
-4. Capacitor em curto-circuito.  
-5. Fonte de alimentação com defeito.
-
-#### Método de diagnóstico técnico
-
-1. Teste de fonte: verificar standby 5VSB e 12V com multímetro.  
-2. Teste olfativo (componente queimado?).  
-3. Inspecionar placa com lupa (capacitores, MOSFETs, marcas de queimado).  
-4. Boot mínimo absoluto (CPU + 1 RAM + fonte, sem GPU).  
-5. Se persistir: placa condenada.
-
-#### Ferramentas oficiais
-
-Multímetro (5VSB, 12V, 3.3V, 5V) / Inspeção visual / Lupa
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Desconectar TUDO exceto CPU e fonte.  
-2. Medir 5VSB no conector 24-pin (pino 9, fio roxo) — deve ser 5V com AC conectado.  
-3. Se 5VSB ausente: fonte com defeito.  
-4. Se 5VSB OK: ligar e medir 12V, 5V, 3.3V.  
-5. Se todas as tensões OK mas código FE persiste: placa-mãe com curto interno.  
-6. Inspecionar visualmente (capacitores, MOSFETs, marcas de queimado).  
-7. Se não há sinal visual: condenação da placa.  
-
-SERVIDOR: Substituir system board. Testar CPU e RAM em placa substituta.
-
-### Resultado esperado
-
-#### Critério de validação
-
-Se placa condenada: N/A. Se fonte era o problema: POST completa com fonte nova. Todas as tensões dentro de spec ATX.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Crítico
-
-#### Fonte oficial
-
-AMI Reserved Codes / ASUS Debug Reference
-
-### Próximos passos
-
-- Ficha da camada: [Camada 5: Chipset / Motherboard](../08-diagnostico-por-camada.md#camada-5--chipset--motherboard)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+Vídeo devidamente exibido, placa reconhecida. Q-Code avança do bloco D.
 
 ---
 
-## POST-21 — FF
+## Código FE: Travamento Pré-POST (Curto/Estrutural)
 
-**Fabricante BIOS:** AMI (Q-Code Hex)  
-**Fabricante / plataforma:** AMI Q-Code — ASUS / GIGABYTE Desktop  
-**Tipo de sinal:** Hex Q-Code (Display)  
-**Código:** `FF`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *Reserved / Pre-POST Hang* (Travamento antes do POST iniciar) |
+| **Componente afetado** | Placa-mãe (Estrutural) |
+| **Fase / Camada** | Pre-SEC / Camada 5: Chipset / Motherboard |
+| **Criticidade** | Crítico |
 
-### Identificação
+### Causas
+Código reservado que, no mundo real das assistências, denota que o sistema *freezou* nos primeiros ciclos de energia.
+* Curto-circuito grave no PCH/Chipset, trilhas internas ou malha do VRM.
+* Fonte de alimentação sem capacidade de fornecer os trilhos primários de corrente.
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+1. Desconecte discos, periféricos, placa de vídeo, ventoinhas (exceto cooler CPU) e deixe 1 módulo de RAM.
+2. Com o cabo ATX de 24 pinos no lugar, meça a linha `5VSB` (Fio roxo, pino 9). Ela precisa entregar ~5V.
+3. Ligue o equipamento e verifique os trilhos dinâmicos (12V, 5V e 3.3V). Se a fonte não segura tensão, teste uma fonte sabidamente boa.
+4. Se o problema se mantiver com tensões ideais: Realize a inspeção olfativa (marcas de queimado).
+5. A ausência de defeito cosmético aliada a um código FE fixo indica condenação do PCB (em desktops) ou da *System Board* (em servidores).
 
-Recovery/Boot — Comportamento depende do momento: fixo=falha / final=boot OK
-
-#### Componente afetado
-
-Variável
-
-#### Camada de diagnóstico
-
-Camada 6: Firmware / Camada 2: CPU
-
-#### Fase POST
-
-Variável
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-FF no Q-Code tem significado duplo: se aparece fixo imediatamente ao ligar, indica falha grave (CPU/VRM/BIOS morta). Se aparece após sequência de outros códigos e o sistema inicia, é o código final indicando que o controle foi passado ao OS.
-
-#### Condições que geram o erro
-
-Se fixo ao ligar:  
-1. VRM com defeito.  
-2. CPU morta.  
-3. BIOS completamente corrompida.  
-4. Fonte sem potência.  
-
-Se final após sequência:  
-1. Normal — sistema está iniciando o OS.
-
-#### Método de diagnóstico técnico
-
-1. Observar QUANDO o FF aparece:  
-
-   — Imediato e fixo = falha grave.  
-   — Após sequência (00→55→A0→FF) = normal.  
-2. Se fixo: seguir diagnóstico de código FE.  
-3. Verificar LED de diagnóstico da placa (CPU/DRAM/VGA/BOOT).
-
-#### Ferramentas oficiais
-
-Observação do comportamento do Q-Code / LEDs de diagnóstico
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-Se FF fixo ao ligar:  
-1. Seguir procedimento completo de código FE (curto/placa condenada).  
-2. Tentar BIOS Flashback (pode ser BIOS corrompida).  
-3. Teste cruzado CPU.  
-
-Se FF após sequência normal:  
-1. Não é erro — sistema está funcionando.  
-2. Se não há vídeo mas Q-Code mostra FF após sequência: problema de saída de vídeo (monitor, cabo, GPU).
-
-### Resultado esperado
-
-#### Critério de validação
-
-Se fixo: depende da causa raiz encontrada. Se normal: OS carrega, sistema operacional funcional.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Variável
-
-#### Fonte oficial
-
-ASUS Q-Code Reference
-
-### Próximos passos
-
-- Camada declarada: `Camada 6: Firmware / Camada 2: CPU` — valor composto ou variável; ver [Taxonomia de camadas](../03-taxonomia-camadas.md)
-- **Código ambíguo.** Confira o critério de diferenciação em [Ambiguidade de códigos](../11-ambiguidades.md#q-code-ff) antes de aplicar o procedimento.
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+Se for apenas fonte, a inicialização ocorre sem sustos. Se houver falha de PCB, apenas a troca garante a volta das operações.
 
 ---
 
-## POST-50 — 7F
+## Código FF: Boot Normal ou Falha Crítica
 
-**Fabricante BIOS:** AMI (Q-Code Hex)  
-**Fabricante / plataforma:** ASUS / GIGABYTE — Desktop  
-**Tipo de sinal:** Hex Q-Code (Display)  
-**Código:** `7F`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *Recovery/Boot* (A depender do timing) |
+| **Componente afetado** | Variável |
+| **Fase / Camada** | Variável / Camadas 6 (Firmware) ou 2 (CPU) |
+| **Criticidade** | Variável |
 
-### Identificação
+### Causas
+O Q-Code `FF` tem dualidade de comportamento, dependendo do **momento** em que ele é exibido:
+1. **Se fixo IMEDIATAMENTE ao ligar:** Falha dramática. VRM/CPU mortos, ou BIOS vazia/corrompida.
+2. **Se parar em FF no FINAL (após piscar outros números):** O BIOS entregou o controle ao Sistema Operacional. É o fluxo de boot normal.
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+**Código Ambíguo:** Confira a seção [Ambiguidade de códigos](../11-ambiguidades.md#q-code-ff) para aprofundamento.
+1. Se exibido de imediato, e em caráter fixo, adote as práticas do código `FE` e execute uma atualização do BIOS via botão Flashback para regravar a partição corrompida.
+2. Se apareceu após `A0` ou similar, não há defeito no POST. Caso você não veja imagem, o problema é restrito ao cabo, monitor ou driver de SO.
 
-Check User Input (Waiting) — Sistema aguardando input do usuário
-
-#### Componente afetado
-
-Teclado / BIOS Setup
-
-#### Camada de diagnóstico
-
-Camada 7: Periféricos Críticos
-
-#### Fase POST
-
-BDS (Boot Device Selection)
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-O sistema está pausado aguardando interação do usuário. Geralmente aparece quando o BIOS requer que o usuário pressione F1 (para continuar com erro) ou Del/F2 (para entrar no Setup). NÃO é um erro.
-
-#### Condições que geram o erro
-
-1. BIOS detectou configuração alterada e pede confirmação.  
-2. Overclocking falhou e BIOS pede F1 para defaults.  
-3. Novo hardware detectado.  
-4. Erro anterior não crítico registrado.
-
-#### Método de diagnóstico técnico
-
-1. Verificar se há teclado funcional conectado.  
-2. Pressionar F1 ou Del conforme mensagem na tela.  
-3. Se não há mensagem: verificar vídeo.
-
-#### Ferramentas oficiais
-
-Teclado funcional conectado
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Conectar teclado USB funcional.  
-2. Pressionar F1 para continuar ou Del/F2 para entrar no BIOS Setup.  
-3. Se aparece repetidamente:  
-
-   a. Entrar no BIOS e verificar se há warnings.  
-   b. Verificar se OC falhou (BIOS pode ter revertido para defaults).  
-   c. Salvar configurações e reiniciar (F10 → Save & Exit).  
-4. Se teclado não responde: testar outra porta USB ou teclado PS/2.
-
-### Resultado esperado
-
-#### Critério de validação
-
-Sistema avança para boot do OS. Q-Code passa de 7F para códigos de boot.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Baixo
-
-#### Fonte oficial
-
-ASUS Q-Code Reference / GIGABYTE Debug Code List
-
-### Próximos passos
-
-- Ficha da camada: [Camada 7: Periféricos Críticos](../08-diagnostico-por-camada.md#camada-7--periféricos-críticos)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+Passagem bem sucedida para o Windows/Linux (se final) ou diagnóstico elétrico fechado.
 
 ---
 
-## Próximos passos
+## Código 7F: Aguardando Ação do Usuário
 
-| Se você… | Vá para |
-| --- | --- |
-| não encontrou o código aqui | [Índice de códigos POST](00-indice-codigos.md) — catálogo completo |
-| suspeita que o código tem outro significado | [Ambiguidade de códigos](../11-ambiguidades.md) |
-| quer saber o que testar naquele subsistema | [Diagnóstico por camada](../08-diagnostico-por-camada.md) |
-| aplicou a correção e precisa fechar o atendimento | [Validação final por componente](../13-validacao-final.md) |
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *Check User Input (Waiting)* (Sistema pausado aguardando input) |
+| **Componente afetado** | Teclado / BIOS Setup |
+| **Fase / Camada** | BDS (Boot Device Selection) / Camada 7: Periféricos Críticos |
+| **Criticidade** | Baixo |
 
+### Causas
+Não é propriamente um erro; o fluxo natural de boot foi interrompido (exibindo usualmente uma mensagem na tela) e aguarda confirmação, comumente o pressionar de `F1` para prosseguir, ou `Del/F2` para entrar no SETUP. Isso ocorre porque o CMOS detectou uma mudança física de hardware, overclocking mal-sucedido ou configurações zeradas (bateria morta).
+
+### Diagnóstico e Resolução
+1. Conecte um teclado USB devidamente funcional (ou PS/2, se aplicável e o USB for bloqueado).
+2. Verifique o monitor; caso haja indicação (`Press F1 to run SETUP`), realize a ação.
+3. Se falhas de overclock geraram o gatilho, a BIOS forçou o retorno para padrão. Entre no menu, ajuste os perfis, acione `F10` para Salvar e Sair.
+4. Substitua a Bateria CR2032 se a placa apresentar este código consistentemente após cortes de energia elétrica.
+
+### Validação
+Q-Code prossegue o boot; códigos vinculados à passagem de sistema operacional se iniciam e o SO entra em funcionamento.
 
 ---
 
-| | |
-| --- | --- |
-| **Fonte primária deste documento** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
+## Consulte também
+
+Para aprofundamento técnico ou informações sobre o fluxo de atendimento, consulte os documentos relacionados:
+
+* **[Índice de códigos POST](00-indice-codigos.md):** Catálogo completo.
+* **[Ambiguidade de códigos](../11-ambiguidades.md):** Verifique divergências de sinais entre fabricantes.
+* **[Diagnóstico por camada](../08-diagnostico-por-camada.md):** Metodologia de testes nos subsistemas de hardware.
+* **[Fluxo de diagnóstico POST](../06-fluxo-post.md):** Como chegar até o código partindo de um sintoma generalizado.
+* **[Validação final por componente](../13-validacao-final.md):** Testes para fechamento de atendimento.
+
+---
+
+| Metadados do Artigo | |
+| :--- | :--- |
+| **Fonte oficial** | ASUS Q-Code Reference / GIGABYTE Debug Code List / AMI |
+| **Fonte primária interna** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
+| **Última verificação** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da doc.** | `doc-2.0.0` |
