@@ -2,234 +2,103 @@
 
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Códigos POST — AMI UEFI / Aptio V**
 
-# Códigos POST — AMI UEFI / Aptio V
+# Referência de Códigos de Erro POST: AMI UEFI / Aptio V
 
-> Fichas completas dos códigos de POST da família AMI UEFI / Aptio V, com causa raiz, diagnóstico, correção e critério de validação.
+**Aplica-se a:** Equipamentos com BIOS `AMI (UEFI/Aptio V)` (Desktops Modernos)
 
-
-**Aplica-se a:** Equipamentos com BIOS `AMI (UEFI/Aptio V)`
-
-## Neste documento
-
-- [POST-11 — 1 Longo + 2 Curtos](#post-11--1-longo--2-curtos)
-- [POST-12 — 1 Longo + 3 Curtos](#post-12--1-longo--3-curtos)
-- [Próximos passos](#próximos-passos)
-
-## Contexto
-
-Fichas completas dos códigos de POST atribuídos, na fonte, ao fabricante de BIOS `AMI (UEFI/Aptio V)`. Cada ficha reproduz integralmente os campos registrados na planilha de origem.
-
-## Escopo
-
-Os 2 código(s) da família `AMI (UEFI/Aptio V)` presentes na fonte, com interpretação, causa raiz, método de diagnóstico, procedimento de correção, critério de validação, risco e fonte oficial.
-
-## Fora do escopo
-
-Códigos de outras famílias de BIOS; fluxos de decisão; cenários sistêmicos (pós-boot); guias de ferramentas.
-
-## Relação com outros documentos
-
-- [Índice de códigos POST](00-indice-codigos.md)
-- [Fluxo de diagnóstico POST](../06-fluxo-post.md)
-- [Camadas de diagnóstico](../08-diagnostico-por-camada.md)
-- [Ambiguidade de códigos](../11-ambiguidades.md)
+Este artigo fornece a referência completa de diagnóstico e resolução para os códigos sonoros (bipes) de erro POST da família AMI UEFI e Aptio V. Utilize o índice abaixo para navegar diretamente para o código de erro apresentado pelo equipamento.
 
 ---
 
-## POST-11 — 1 Longo + 2 Curtos
+## Neste artigo
 
-**Fabricante BIOS:** AMI (UEFI/Aptio V)  
-**Fabricante / plataforma:** AMI UEFI/Aptio — Desktop Moderno  
-**Tipo de sinal:** Beep Sonoro  
-**Código:** `1 Longo + 2 Curtos`
-
-### Identificação
-
-#### Interpretação oficial
-
-Video System Failure — GPU não detectada ou ROM Opcional falha
-
-#### Componente afetado
-
-GPU / PCIe
-
-#### Camada de diagnóstico
-
-Camada 4: Vídeo
-
-#### Fase POST
-
-DXE Video Init
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-O BIOS não consegue inicializar o adaptador gráfico. A GPU não é detectada no barramento PCIe, ou a Option ROM da GPU falha ao carregar. Em sistemas com GPU via riser (mineração, casos compactos), pode ser problema de compatibilidade PCIe Gen.
-
-#### Condições que geram o erro
-
-1. GPU mal encaixada no slot PCIe.  
-2. Cabo de alimentação PCIe (6+2 pinos) desconectado.  
-3. GPU sem energia suficiente (fonte subdimensionada).  
-4. Riser PCIe com defeito ou incompatível.  
-5. BIOS configurada para iGPU mas GPU dedicada instalada (ou vice-versa).
-
-#### Método de diagnóstico técnico
-
-1. Verificar cabo PCIe da fonte (6+2 pinos) firmemente conectado.  
-2. Reseat GPU no slot.  
-3. Se usar riser: testar diretamente no slot.  
-4. Mudar PCIe Gen na BIOS para Gen 3.0 (compatibilidade).  
-5. Teste cruzado com outra GPU.
-
-#### Ferramentas oficiais
-
-Teste GPU Cruzado / Fonte com potência adequada / Multímetro (12V PCIe)
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Desligar, remover AC, power drain.  
-2. Verificar cabo PCIe 6+2 pinos da fonte → GPU.  
-3. Remover GPU, limpar contatos, reinserir.  
-4. Se riser: remover e conectar GPU diretamente ao slot.  
-5. Se persistir: testar outra GPU.  
-6. Se outra GPU funciona: GPU original com defeito.  
-7. Se nenhuma GPU funciona: slot PCIe ou configuração BIOS.  
-8. Reset CMOS e verificar configuração Primary Display.
-
-### Resultado esperado
-
-#### Critério de validação
-
-POST completa com vídeo. GPU reconhecida no BIOS e Device Manager. Benchmark gráfico estável.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Alto
-
-#### Fonte oficial
-
-AMI Aptio V Status Codes / Fabricante da placa-mãe
-
-### Próximos passos
-
-- Ficha da camada: [Camada 4: Vídeo](../08-diagnostico-por-camada.md#camada-4--vídeo-gpuigpu)
-- **Código ambíguo.** Confira o critério de diferenciação em [Ambiguidade de códigos](../11-ambiguidades.md#1-longo--2-curtos) antes de aplicar o procedimento.
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+- [1 Bipe Longo + 2 Curtos: Falha no Sistema de Vídeo (GPU)](#1-bipe-longo--2-curtos-falha-no-sistema-de-vídeo-gpu)
+- [1 Bipe Longo + 3 Curtos: Falha de Treinamento de Memória (RAM)](#1-bipe-longo--3-curtos-falha-de-treinamento-de-memória-ram)
+- [Consulte também](#consulte-também)
 
 ---
 
-## POST-12 — 1 Longo + 3 Curtos
+## 1 Bipe Longo + 2 Curtos: Falha no Sistema de Vídeo (GPU)
 
-**Fabricante BIOS:** AMI (UEFI/Aptio V)  
-**Fabricante / plataforma:** AMI UEFI/Aptio — Desktop Moderno  
-**Tipo de sinal:** Beep Sonoro  
-**Código:** `1 Longo + 3 Curtos`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *Video System Failure* (GPU não detectada ou ROM Opcional falha) |
+| **Componente afetado** | GPU / PCIe |
+| **Fase / Camada** | DXE Video Init / Camada 4: Vídeo |
+| **Criticidade** | Alto |
 
-### Identificação
+### Causas
+O BIOS não consegue inicializar o adaptador gráfico. A GPU não é detectada no barramento PCIe, ou a *Option ROM* da placa de vídeo falha ao carregar. Em sistemas com GPU montada via *riser* (ex: cases compactos SFF ou mineração), pode indicar problema de compatibilidade com a geração do PCIe (Gen 3.0 / 4.0).
+* GPU mal encaixada no slot PCIe.
+* Cabo de alimentação PCIe (6+2 pinos) desconectado da fonte ou frouxo.
+* Placa de vídeo sem fornecimento de energia suficiente (fonte subdimensionada).
+* Cabo extensor/Riser PCIe com defeito ou incompatível.
+* Conflito de configuração no BIOS (configurada para iGPU forçada, mas apenas GPU dedicada está instalada).
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+**Ferramentas:** GPU de teste, Fonte com potência adequada, Multímetro (12V PCIe).
+1. Faça o *power drain* (desligue e drene a energia residual).
+2. Verifique se o cabo de energia PCIe (6+2 pinos) está firmemente conectado à GPU.
+3. Remova a placa de vídeo, limpe os contatos dourados, e faça o *reseat* (reinstalação firme) no slot.
+4. **Se estiver usando Riser PCIe:** Remova o cabo extensor e conecte a placa de vídeo diretamente na placa-mãe. Se der vídeo, o problema é o riser ou a versão do barramento (configure para Gen 3.0 no BIOS temporariamente).
+5. Se persistir, realize um teste cruzado com outra placa de vídeo. Se a substituta der vídeo, a original está com defeito.
+6. Avalie realizar o Reset do CMOS para restaurar a seleção primária de display (*Primary Display*).
 
-Conventional/Extended Memory Failure — RAM mal encaixada ou incompatível
-
-#### Componente afetado
-
-RAM (Módulos DIMM)
-
-#### Camada de diagnóstico
-
-Camada 3: Memória
-
-#### Fase POST
-
-Memory Training (PEI)
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-Falha no treinamento de memória (memory training) durante a fase PEI. A controladora de memória não consegue estabelecer comunicação com os módulos DIMM. Muito comum com DDR5 que requer treinamento mais longo.
-
-#### Condições que geram o erro
-
-1. Módulo DIMM mal encaixado (trava não fechou completamente).  
-2. Slot errado (ex: usar A1 quando manual pede A2 primeiro).  
-3. Módulos incompatíveis (mix de ranks, frequências, fabricantes).  
-4. DDR5: PMIC do módulo com defeito.  
-5. Pressão excessiva do cooler empenando o socket.
-
-#### Método de diagnóstico técnico
-
-1. Verificar se travas do DIMM fecharam completamente.  
-2. Consultar manual: usar slots corretos (geralmente A2 para single channel).  
-3. Testar slots individualmente com 1 módulo.  
-4. Verificar QVL (Qualified Vendor List) da placa-mãe.  
-5. DDR5: aguardar até 3 min no primeiro boot (treinamento).
-
-#### Ferramentas oficiais
-
-Manual da placa-mãe (QVL) / Módulo known-good
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Desligar, remover AC, power drain.  
-2. Remover todos os módulos DIMM.  
-3. Pressionar travas com firmeza uniforme ao inserir.  
-4. Inserir 1 módulo no slot A2 (ou conforme manual).  
-5. Ligar — se DDR5, aguardar até 3 minutos.  
-6. Se POST OK: adicionar módulos um a um.  
-7. Se falhar: testar outro módulo known-good.  
-8. Se falhar com módulo bom: verificar se cooler exerce pressão excessiva no IHS (afrouxar 1/4 de volta).
-
-### Resultado esperado
-
-#### Critério de validação
-
-POST completa. RAM reconhecida com capacidade, frequência e timings corretos no BIOS. MemTest86 sem erros.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Alto
-
-#### Fonte oficial
-
-AMI Aptio V Status Codes
-
-### Próximos passos
-
-- Ficha da camada: [Camada 3: Memória](../08-diagnostico-por-camada.md#camada-3--memória-ram)
-- **Código ambíguo.** Confira o critério de diferenciação em [Ambiguidade de códigos](../11-ambiguidades.md#1-longo--3-curtos) antes de aplicar o procedimento.
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+O POST deve completar dando imagem no monitor. A GPU deve ser corretamente listada no BIOS e no Gerenciador de Dispositivos do sistema operacional, permanecendo estável sob carga (benchmark).
 
 ---
 
-## Próximos passos
+## 1 Bipe Longo + 3 Curtos: Falha de Treinamento de Memória (RAM)
 
-| Se você… | Vá para |
-| --- | --- |
-| não encontrou o código aqui | [Índice de códigos POST](00-indice-codigos.md) — catálogo completo |
-| suspeita que o código tem outro significado | [Ambiguidade de códigos](../11-ambiguidades.md) |
-| quer saber o que testar naquele subsistema | [Diagnóstico por camada](../08-diagnostico-por-camada.md) |
-| aplicou a correção e precisa fechar o atendimento | [Validação final por componente](../13-validacao-final.md) |
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *Conventional/Extended Memory Failure* (RAM mal encaixada/incompatível) |
+| **Componente afetado** | RAM (Módulos DIMM) |
+| **Fase / Camada** | Memory Training (PEI) / Camada 3: Memória |
+| **Criticidade** | Alto |
 
+### Causas
+Falha crítica no processo de *memory training* (treinamento da memória) durante a fase PEI. A controladora da placa-mãe/CPU não consegue estabelecer sincronia e comunicação com os módulos DIMM. Este erro é cada vez mais frequente em plataformas DDR5, que exigem rotinas de treinamento mais longas.
+* Módulo DIMM mal encaixado (a trava plástica não fechou ou fechou de forma irregular).
+* Povoamento incorreto dos slots (ex: inserir no slot `A1` quando o manual exige `A2` como primário).
+* Módulos misturados ou incompatíveis (diferentes frequências, *ranks* ou PMICs).
+* Em DDR5: Defeito no PMIC (Power Management IC) interno do próprio pente de memória.
+* Pressão excessiva no aperto do *cooler* da CPU, causando leve empenamento do *socket* LGA e isolando os pinos da memória.
+
+### Diagnóstico e Resolução
+**Ferramentas:** Manual da placa-mãe (QVL), Módulo de memória sabidamente bom.
+1. Efetue um *power drain* completo.
+2. Remova todos os módulos DIMM. Verifique se as travas estão sendo empurradas com firmeza até o fim de curso (o "clique" precisa ser limpo e uniforme).
+3. Insira **apenas 1 módulo** no slot primário designado pelo manual (usualmente o slot `A2`).
+4. Ligue o sistema. **Nota para DDR5:** Aguarde pacientemente. O primeiro boot de treinamento pode levar de 1 a 3 minutos sem exibir imagem no monitor.
+5. Se o POST for bem-sucedido, adicione os demais módulos um a um.
+6. Se falhar, teste outro módulo de memória listado na QVL da placa.
+7. Se ainda falhar com um módulo compatível e funcional, afrouxe levemente os parafusos do *cooler* da CPU (cerca de 1/4 de volta) para aliviar a pressão no soquete.
+
+### Validação
+POST completado com sucesso e bipes normais. A RAM deve ser identificada com sua capacidade, frequência e *timings* corretos no BIOS. Teste em *MemTest86* limpo, sem erros.
 
 ---
 
-| | |
-| --- | --- |
-| **Fonte primária deste documento** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
+## Consulte também
+
+Para aprofundamento técnico ou informações sobre o fluxo de atendimento, consulte os documentos relacionados:
+
+* **[Ambiguidade de códigos](../11-ambiguidades.md):** Estes códigos são ambíguos. Verifique o critério de diferenciação antes de aplicar os procedimentos.
+* **[Camada 3: Memória](../08-diagnostico-por-camada.md#camada-3--memória-ram) / [Camada 4: Vídeo](../08-diagnostico-por-camada.md#camada-4--vídeo-gpuigpu):** Aprofunde-se no diagnóstico da camada correspondente.
+* **[Índice de códigos POST](00-indice-codigos.md):** Catálogo completo caso não tenha encontrado o código esperado.
+* **[Fluxo de diagnóstico POST](../06-fluxo-post.md):** Como chegar até este código partindo de um sintoma generalizado.
+* **[Validação final por componente](../13-validacao-final.md):** Testes recomendados para fechar o atendimento com segurança.
+* **[Índices cruzados](../18-indices-cruzados.md):** Outros códigos do mesmo componente ou nível de risco.
+
+---
+
+| Metadados do Artigo | |
+| :--- | :--- |
+| **Fonte oficial** | AMI Aptio V Status Codes / Fabricante da placa-mãe |
+| **Fonte primária interna** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
+| **Última verificação** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da doc.** | `doc-2.0.0` |
