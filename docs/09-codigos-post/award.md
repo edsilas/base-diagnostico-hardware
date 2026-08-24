@@ -2,408 +2,163 @@
 
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Códigos POST — Award BIOS**
 
-# Códigos POST — Award BIOS
+# Referência de Códigos de Erro POST: Award BIOS
 
-> Fichas completas dos códigos de POST da família Award BIOS, com causa raiz, diagnóstico, correção e critério de validação.
+**Aplica-se a:** Equipamentos com BIOS `Award BIOS` (Desktops Legados)
 
-
-**Aplica-se a:** Equipamentos com BIOS `Award BIOS`
-
-## Neste documento
-
-- [POST-22 — 1 Longo + 2 Curtos](#post-22--1-longo--2-curtos)
-- [POST-23 — 1 Longo + 3 Curtos](#post-23--1-longo--3-curtos)
-- [POST-24 — Repetitivo (Sirene contínua)](#post-24--repetitivo-sirene-contínua)
-- [POST-25 — Contínuo Longo (ininterrupto)](#post-25--contínuo-longo-ininterrupto)
-- [Próximos passos](#próximos-passos)
-
-## Contexto
-
-Fichas completas dos códigos de POST atribuídos, na fonte, ao fabricante de BIOS `Award BIOS`. Cada ficha reproduz integralmente os campos registrados na planilha de origem.
-
-## Escopo
-
-Os 4 código(s) da família `Award BIOS` presentes na fonte, com interpretação, causa raiz, método de diagnóstico, procedimento de correção, critério de validação, risco e fonte oficial.
-
-## Fora do escopo
-
-Códigos de outras famílias de BIOS; fluxos de decisão; cenários sistêmicos (pós-boot); guias de ferramentas.
-
-## Relação com outros documentos
-
-- [Índice de códigos POST](00-indice-codigos.md)
-- [Fluxo de diagnóstico POST](../06-fluxo-post.md)
-- [Camadas de diagnóstico](../08-diagnostico-por-camada.md)
-- [Ambiguidade de códigos](../11-ambiguidades.md)
+Este artigo fornece a referência completa de diagnóstico e resolução para os códigos sonoros (bipes) de erro POST da família de BIOS Award. Utilize o índice abaixo para navegar diretamente para o código de erro apresentado pelo equipamento.
 
 ---
 
-## POST-22 — 1 Longo + 2 Curtos
+## Neste artigo
 
-**Fabricante BIOS:** Award BIOS  
-**Fabricante / plataforma:** Award — Desktop Legado  
-**Tipo de sinal:** Beep Sonoro  
-**Código:** `1 Longo + 2 Curtos`
-
-### Identificação
-
-#### Interpretação oficial
-
-Video Adapter Error — Falha no adaptador gráfico
-
-#### Componente afetado
-
-GPU / Adaptador Gráfico
-
-#### Camada de diagnóstico
-
-Camada 4: Vídeo
-
-#### Fase POST
-
-Video Init
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-O BIOS Award não consegue inicializar o adaptador de vídeo. Em sistemas legados Award, algumas placas exigiam carga resistiva no conector VGA para detectar monitor.
-
-#### Condições que geram o erro
-
-1. GPU não detectada ou com defeito.  
-2. Slot AGP/PCIe com mau contato.  
-3. Monitor não conectado (Award antigo pode exigir presença de monitor).  
-4. Cabos de vídeo defeituosos.
-
-#### Método de diagnóstico técnico
-
-1. Remover e limpar GPU.  
-2. Verificar se monitor está conectado e ligado.  
-3. Em sistemas AGP: verificar chave de voltagem AGP.  
-4. Teste cruzado GPU.
-
-#### Ferramentas oficiais
-
-GPU known-good / Cabo VGA/DVI known-good
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Desligar, remover AC.  
-2. Remover GPU, limpar contatos com borracha branca.  
-3. Limpar slot com ar comprimido.  
-4. Reinserir GPU.  
-5. Conectar monitor e verificar que está ligado.  
-6. Ligar sistema.  
-7. Se persistir: testar outra GPU.  
-8. Em sistemas muito antigos (AGP): verificar compatibilidade de voltagem AGP.
-
-### Resultado esperado
-
-#### Critério de validação
-
-POST completa com vídeo. Imagem estável no monitor.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Alto
-
-#### Fonte oficial
-
-Award BIOS Beep Code Reference
-
-### Próximos passos
-
-- Ficha da camada: [Camada 4: Vídeo](../08-diagnostico-por-camada.md#camada-4--vídeo-gpuigpu)
-- **Código ambíguo.** Confira o critério de diferenciação em [Ambiguidade de códigos](../11-ambiguidades.md#1-longo--2-curtos) antes de aplicar o procedimento.
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+- [1 Bipe Longo + 2 Curtos: Falha no Adaptador Gráfico](#1-bipe-longo--2-curtos-falha-no-adaptador-gráfico)
+- [1 Bipe Longo + 3 Curtos: Falha na VRAM da GPU](#1-bipe-longo--3-curtos-falha-na-vram-da-gpu)
+- [Bipe Repetitivo (Sirene): Superaquecimento ou Tensão Irregular](#bipe-repetitivo-sirene-superaquecimento-ou-tensão-irregular)
+- [Bipe Contínuo Longo: RAM Ausente ou Não Detectada](#bipe-contínuo-longo-ram-ausente-ou-não-detectada)
+- [Consulte também](#consulte-também)
 
 ---
 
-## POST-23 — 1 Longo + 3 Curtos
+## 1 Bipe Longo + 2 Curtos: Falha no Adaptador Gráfico
 
-**Fabricante BIOS:** Award BIOS  
-**Fabricante / plataforma:** Award — Desktop Legado  
-**Tipo de sinal:** Beep Sonoro  
-**Código:** `1 Longo + 3 Curtos`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *Video Adapter Error* (Falha no adaptador gráfico) |
+| **Componente afetado** | GPU / Adaptador Gráfico |
+| **Fase / Camada** | Video Init / Camada 4: Vídeo |
+| **Criticidade** | Alto |
 
-### Identificação
+### Causas
+O BIOS Award não consegue inicializar o adaptador de vídeo. Em sistemas legados Award, algumas placas exigiam carga resistiva no conector VGA para detectar a presença do monitor.
+* GPU não detectada ou com defeito de hardware.
+* Mau contato no slot AGP ou PCIe.
+* Monitor não conectado ou desligado (aplicável a sistemas Award muito antigos).
+* Cabos de vídeo (ex: VGA) com fios rompidos.
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+**Ferramentas:** GPU de teste (known-good), Cabo VGA/DVI funcional.
+1. Desligue a máquina e remova a energia (AC).
+2. Remova a placa de vídeo e limpe os contatos dourados com uma borracha branca. Limpe o slot (AGP/PCIe) com ar comprimido.
+3. Reinserir a GPU certificando-se do encaixe correto.
+4. Conecte firmemente o monitor à placa e assegure-se de que ele esteja ligado e selecionado na entrada correta.
+5. Se for um sistema antigo com slot AGP, verifique os jumpers/chaves de voltagem AGP na placa-mãe (3.3V vs 1.5V).
+6. Se o problema persistir, teste com outra placa de vídeo para confirmar a condenação da placa original.
 
-Video Adapter Error / VRAM — Falha na VRAM da GPU
-
-#### Componente afetado
-
-GPU / VRAM
-
-#### Camada de diagnóstico
-
-Camada 4: Vídeo
-
-#### Fase POST
-
-Video VRAM Test
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-Similar ao anterior, mas especificamente indica falha no teste de memória de vídeo (VRAM). Pode indicar chips de memória da GPU com defeito.
-
-#### Condições que geram o erro
-
-1. VRAM da GPU com defeito.  
-2. Capacitores da GPU com defeito (inchados).  
-3. GPU com solda BGA fraturada (cold solder joint).  
-4. Alimentação insuficiente para GPU.
-
-#### Método de diagnóstico técnico
-
-1. Mesmo procedimento do erro anterior.  
-2. Inspecionar capacitores da GPU (inchados?).  
-3. Verificar alimentação PCIe (6/8 pinos).  
-4. Teste cruzado GPU.
-
-#### Ferramentas oficiais
-
-Inspeção visual GPU / GPU known-good
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Seguir procedimento do código anterior (1L+2C).  
-2. Adicionalmente: inspecionar capacitores da GPU com lupa.  
-3. Verificar fonte — potência suficiente para GPU?  
-4. Se GPU com capacitores inchados: condenação ou reparo especializado.
-
-### Resultado esperado
-
-#### Critério de validação
-
-POST completa com vídeo. Sem artefatos visuais. FurMark estável.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Alto
-
-#### Fonte oficial
-
-Award BIOS Beep Code Reference
-
-### Próximos passos
-
-- Ficha da camada: [Camada 4: Vídeo](../08-diagnostico-por-camada.md#camada-4--vídeo-gpuigpu)
-- **Código ambíguo.** Confira o critério de diferenciação em [Ambiguidade de códigos](../11-ambiguidades.md#1-longo--3-curtos) antes de aplicar o procedimento.
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+O POST deve completar, emitindo 1 bipe curto (sucesso), e apresentar vídeo estável no monitor.
 
 ---
 
-## POST-24 — Repetitivo (Sirene contínua)
+## 1 Bipe Longo + 3 Curtos: Falha na VRAM da GPU
 
-**Fabricante BIOS:** Award BIOS  
-**Fabricante / plataforma:** Award — Desktop Legado  
-**Tipo de sinal:** Beep Sonoro  
-**Código:** `Repetitivo (Sirene contínua)`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *Video Adapter Error / VRAM* (Falha na VRAM da GPU) |
+| **Componente afetado** | GPU / VRAM |
+| **Fase / Camada** | Video VRAM Test / Camada 4: Vídeo |
+| **Criticidade** | Alto |
 
-### Identificação
+### Causas
+Similar ao erro de inicialização gráfica (1L+2C), porém este código denota especificamente uma falha detectada durante o teste dos bancos de memória de vídeo (VRAM).
+* Módulos de VRAM soldados na GPU com células inoperantes.
+* Capacitores da GPU com defeito (estufados ou vazando).
+* Trincas na solda BGA sob o processador gráfico ou sob os chips de memória (*cold solder joint*).
+* Fornecimento de energia insuficiente para a placa de vídeo.
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+**Ferramentas:** Inspeção visual (Lupa), GPU de teste.
+1. Execute a limpeza e o reposicionamento da GPU conforme descrito no código `1 Longo + 2 Curtos`.
+2. Efetue uma minuciosa inspeção visual na placa de vídeo, especialmente buscando por capacitores eletrolíticos ou sólidos estufados.
+3. Certifique-se de que o conector PCIe de força adicional (6 ou 8 pinos) está conectado, se o modelo exigir.
+4. Verifique se a fonte de alimentação atende aos requisitos de potência da GPU.
+5. Em caso de defeito físico (capacitores ou BGA), a GPU necessitará de reparo especializado ou substituição.
 
-CPU Overheating / Voltage Out of Range — Superaquecimento ou tensão fora de faixa
-
-#### Componente afetado
-
-CPU / PSU / Cooler
-
-#### Camada de diagnóstico
-
-Camada 1: Energia / Camada 2: CPU
-
-#### Fase POST
-
-Thermal/Voltage Monitor
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-O BIOS detectou temperatura da CPU acima do limiar de segurança ou tensão fora da faixa especificada. O padrão de sirene é distinto e repetitivo, não deve ser confundido com beeps discretos.
-
-#### Condições que geram o erro
-
-1. Cooler da CPU desconectado ou não funcionando.  
-2. Pasta térmica seca/ausente.  
-3. Fluxo de ar do gabinete obstruído.  
-4. Fonte de alimentação entregando voltagem incorreta.  
-5. Overclock com VCore excessivo.
-
-#### Método de diagnóstico técnico
-
-1. Verificar imediatamente se cooler está girando.  
-2. Medir temperatura com termômetro IR no heatsink.  
-3. Medir tensões da fonte (12V, 5V, 3.3V) com multímetro.  
-4. Verificar BIOS Hardware Monitor.
-
-#### Ferramentas oficiais
-
-Termômetro IR / Multímetro (tensões da fonte) / BIOS Hardware Monitor
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. DESLIGAR IMEDIATAMENTE para evitar dano à CPU.  
-2. Verificar se cooler está conectado ao header CPU_FAN.  
-3. Verificar se fan gira livremente (debris?).  
-4. Remover cooler, limpar pasta térmica antiga.  
-5. Reaplicar pasta térmica (grão de arroz no centro do IHS).  
-6. Reinstalar cooler com pressão uniforme.  
-7. Medir tensões da fonte:  
-
-   12V: 11.4-12.6V  
-   5V: 4.75-5.25V  
-   3.3V: 3.14-3.47V  
-8. Se tensões fora de spec: trocar fonte.  
-9. Se OC: reverter para defaults.
-
-### Resultado esperado
-
-#### Critério de validação
-
-POST sem alarme. BIOS Hardware Monitor mostra temperaturas normais (idle < 50°C). Tensões dentro de spec ATX. Stress test estável (30 min).
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Crítico
-
-#### Fonte oficial
-
-Award BIOS Reference / ATX PSU Specification
-
-### Próximos passos
-
-- Camada declarada: `Camada 1: Energia / Camada 2: CPU` — valor composto ou variável; ver [Taxonomia de camadas](../03-taxonomia-camadas.md)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+POST com sucesso, sem distorções na imagem (artefatos). Testes de estresse como o *FurMark* não devem causar travamentos ou *flickering*.
 
 ---
 
-## POST-25 — Contínuo Longo (ininterrupto)
+## Bipe Repetitivo (Sirene): Superaquecimento ou Tensão Irregular
 
-**Fabricante BIOS:** Award BIOS  
-**Fabricante / plataforma:** Award — Desktop Legado  
-**Tipo de sinal:** Beep Sonoro  
-**Código:** `Contínuo Longo (ininterrupto)`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *CPU Overheating / Voltage Out of Range* |
+| **Componente afetado** | CPU / PSU (Fonte) / Cooler |
+| **Fase / Camada** | Thermal/Voltage Monitor / Camadas 1 (Energia) e 2 (CPU) |
+| **Criticidade** | Crítico |
 
-### Identificação
+### Causas
+O monitoramento de hardware do BIOS detectou que a CPU ultrapassou o limiar de temperatura segura ou que as tensões da fonte estão foras da faixa de tolerância ATX. Este código soa como uma sirene de ambulância ou alarme constante e de duas frequências.
+* Cooler (ventoinha) do processador travado ou desconectado do *header* `CPU_FAN`.
+* Pasta térmica totalmente ressecada, impedindo a dissipação de calor.
+* Fonte de alimentação entregando voltagem incorreta (ex: flutuações na linha de 12V ou 5V).
+* Overclock agressivo com tensão excessiva (VCore).
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+**Ferramentas:** Termômetro IR, Multímetro, BIOS Hardware Monitor.
+1. **Desligue imediatamente** o sistema para mitigar danos físicos à CPU.
+2. Verifique visualmente se a ventoinha do *cooler* gira livremente e se o conector está devidamente plugado em `CPU_FAN`.
+3. Remova o bloco do dissipador, limpe completamente os resíduos, e aplique nova pasta térmica (tamanho de um grão de ervilha/arroz) antes de reinstalar.
+4. Caso o alarme permaneça após tratar a refrigeração, meça as tensões primárias nos chicotes da fonte com um multímetro:
+   * **12V:** 11.4 a 12.6V
+   * **5V:** 4.75 a 5.25V
+   * **3.3V:** 3.14 a 3.47V
+5. Se as medições estiverem fora destes limites, substitua imediatamente a fonte de alimentação. Se houver configuração de *overclock*, aplique o Reset do CMOS.
 
-Memory Not Installed or Not Detected — RAM ausente ou não reconhecida
-
-#### Componente afetado
-
-RAM
-
-#### Camada de diagnóstico
-
-Camada 3: Memória
-
-#### Fase POST
-
-Memory Detect
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-Beep contínuo e ininterrupto indica que nenhum módulo de memória foi detectado. O BIOS não encontrou RAM funcional em nenhum slot.
-
-#### Condições que geram o erro
-
-1. Nenhum módulo DIMM instalado.  
-2. Todos os módulos mal encaixados.  
-3. Tensão VDRAM ausente (VRM de memória com defeito).  
-4. Todos os slots com defeito.  
-5. Incompatibilidade total de memória.
-
-#### Método de diagnóstico técnico
-
-1. Verificar se há módulos instalados.  
-2. Remover e reinstalar com pressão firme.  
-3. Limpar contatos.  
-4. Medir VDRAM nos pinos de alimentação do slot.  
-5. Testar módulo known-good.
-
-#### Ferramentas oficiais
-
-Multímetro (VDRAM no slot DIMM) / Módulo known-good
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Verificar se módulos estão fisicamente presentes.  
-2. Remover todos, limpar contatos com borracha branca + isopropanol.  
-3. Limpar slots com ar comprimido.  
-4. Inserir 1 módulo no slot primário.  
-5. Ligar sistema.  
-6. Se beep persiste: medir VDRAM no slot (DDR3: 1.5V, DDR4: 1.2V).  
-7. Se VDRAM = 0V: VRM de memória com defeito → placa condenada.  
-8. Se VDRAM OK mas nenhum módulo funciona: controladora de memória (CPU) com defeito.
-
-### Resultado esperado
-
-#### Critério de validação
-
-POST completa com beep de sucesso (1 curto). RAM reconhecida com capacidade correta.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Alto
-
-#### Fonte oficial
-
-Award BIOS Reference
-
-### Próximos passos
-
-- Ficha da camada: [Camada 3: Memória](../08-diagnostico-por-camada.md#camada-3--memória-ram)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+Equipamento não emite mais o alarme. O monitoramento pelo BIOS (ou via software como HWiNFO64) deve acusar tensões estáveis e temperatura de CPU em *idle* inferior a 50°C.
 
 ---
 
-## Próximos passos
+## Bipe Contínuo Longo: RAM Ausente ou Não Detectada
 
-| Se você… | Vá para |
-| --- | --- |
-| não encontrou o código aqui | [Índice de códigos POST](00-indice-codigos.md) — catálogo completo |
-| suspeita que o código tem outro significado | [Ambiguidade de códigos](../11-ambiguidades.md) |
-| quer saber o que testar naquele subsistema | [Diagnóstico por camada](../08-diagnostico-por-camada.md) |
-| aplicou a correção e precisa fechar o atendimento | [Validação final por componente](../13-validacao-final.md) |
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *Memory Not Installed or Not Detected* |
+| **Componente afetado** | RAM |
+| **Fase / Camada** | Memory Detect / Camada 3: Memória |
+| **Criticidade** | Alto |
 
+### Causas
+O equipamento não encontrou **nenhum** módulo de RAM acessível ou operante para iniciar o uso. O aviso sonoro é um longo bipe ininterrupto (sem pausas).
+* Nenhum pente de memória foi colocado nos bancos.
+* Todos os pentes inseridos estão mal encaixados.
+* Falha no fornecimento de energia (VDRAM) causado por defeito nos circuitos reguladores de tensão (VRM) da memória na placa-mãe.
+* Controladora de memória avariada ou pinos defeituosos no soquete.
+
+### Diagnóstico e Resolução
+**Ferramentas:** Multímetro, Módulo de RAM de teste.
+1. Inspecione fisicamente os slots DIMM para confirmar a presença das memórias.
+2. Remova os pentes, limpe os contatos (borracha/isopropanol) e remova poeira dos slots. Reencaixe garantindo o bloqueio seguro das travas nas extremidades.
+3. Tente iniciar utilizando apenas 1 pente de memória sabidamente funcional no slot primário.
+4. Se o problema se mantiver com o módulo validado, utilize o multímetro nos terminais de alimentação do slot DIMM para aferir se há fornecimento da VDRAM (Ex: `1.5V` para DDR3).
+5. Se a tensão apontar 0V, o circuito (VRM de memória) está defeituoso. Se a tensão estiver correta mas nada for lido, o problema está nas rotas do processador ou placa (Condenação).
+
+### Validação
+Ao inicializar, a placa deverá soar o clássico bipe curto e único de sucesso do POST, carregando a configuração da BIOS sem interrupções e identificando a capacidade da memória correta.
 
 ---
 
-| | |
-| --- | --- |
-| **Fonte primária deste documento** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
+## Consulte também
+
+Para aprofundamento técnico ou informações sobre o fluxo de atendimento, consulte os documentos relacionados:
+
+* **[Ambiguidade de códigos](../11-ambiguidades.md):** Alguns códigos de bipes são ambíguos a depender do fabricante de BIOS (ex: [1 Longo + 2 Curtos](../11-ambiguidades.md#1-longo--2-curtos), [1 Longo + 3 Curtos](../11-ambiguidades.md#1-longo--3-curtos)). Verifique a divergência de interpretações.
+* **[Taxonomia de camadas](../03-taxonomia-camadas.md):** Para casos complexos onde falhas podem englobar mais de uma camada de diagnóstico (ex: CPU + Energia).
+* **[Índice de códigos POST](00-indice-codigos.md):** Catálogo completo.
+* **[Diagnóstico por camada](../08-diagnostico-por-camada.md):** Metodologia de testes nos subsistemas de hardware.
+* **[Fluxo de diagnóstico POST](../06-fluxo-post.md):** Como chegar até o código partindo de um sintoma generalizado.
+* **[Validação final por componente](../13-validacao-final.md):** Testes para fechamento de atendimento.
+* **[Índices cruzados](../18-indices-cruzados.md):** Outros códigos do mesmo componente ou nível de risco.
+
+---
+
+| Metadados do Artigo | |
+| :--- | :--- |
+| **Fonte oficial** | Award BIOS Beep Code Reference / ATX PSU Spec |
+| **Fonte primária interna** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
+| **Última verificação** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da doc.** | `doc-2.0.0` |
