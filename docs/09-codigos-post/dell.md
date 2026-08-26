@@ -2,673 +2,238 @@
 
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Códigos POST — Dell (LED de diagnóstico)**
 
-# Códigos POST — Dell (LED de diagnóstico)
+# Referência de Códigos de Erro POST: Dell (LED de diagnóstico)
 
-> Fichas completas dos códigos de POST da família Dell (LED de diagnóstico), com causa raiz, diagnóstico, correção e critério de validação.
+**Aplica-se a:** Equipamentos com BIOS `Proprietário Dell` (OptiPlex, XPS, Latitude, AIO)
 
-
-**Aplica-se a:** Equipamentos com BIOS `Proprietário Dell`
-
-## Neste documento
-
-- [POST-31 — 2 Âmbar + 1 Branco](#post-31--2-âmbar--1-branco)
-- [POST-32 — 2 Âmbar + 2 Branco](#post-32--2-âmbar--2-branco)
-- [POST-33 — 2 Âmbar + 3 Branco](#post-33--2-âmbar--3-branco)
-- [POST-34 — 2 Âmbar + 7 Branco](#post-34--2-âmbar--7-branco)
-- [POST-35 — 3 Âmbar + 1 Branco](#post-35--3-âmbar--1-branco)
-- [POST-36 — 3 Âmbar + 3 Branco](#post-36--3-âmbar--3-branco)
-- [POST-37 — 3 Âmbar + 5 Branco](#post-37--3-âmbar--5-branco)
-- [Próximos passos](#próximos-passos)
-
-## Contexto
-
-Fichas completas dos códigos de POST atribuídos, na fonte, ao fabricante de BIOS `Proprietário Dell`. Cada ficha reproduz integralmente os campos registrados na planilha de origem.
-
-## Escopo
-
-Os 7 código(s) da família `Proprietário Dell` presentes na fonte, com interpretação, causa raiz, método de diagnóstico, procedimento de correção, critério de validação, risco e fonte oficial.
-
-## Fora do escopo
-
-Códigos de outras famílias de BIOS; fluxos de decisão; cenários sistêmicos (pós-boot); guias de ferramentas.
-
-## Relação com outros documentos
-
-- [Índice de códigos POST](00-indice-codigos.md)
-- [Fluxo de diagnóstico POST](../06-fluxo-post.md)
-- [Camadas de diagnóstico](../08-diagnostico-por-camada.md)
-- [Ambiguidade de códigos](../11-ambiguidades.md)
+Este artigo fornece a referência completa de diagnóstico e resolução para os códigos de erro baseados em piscadas de LED (Âmbar e Branco) presentes na BIOS proprietária da Dell. Utilize o índice abaixo para navegar diretamente para o código exibido pelo equipamento.
 
 ---
 
-## POST-31 — 2 Âmbar + 1 Branco
+## Neste artigo
 
-**Fabricante BIOS:** Proprietário Dell  
-**Fabricante / plataforma:** Dell — OptiPlex / XPS / Latitude  
-**Tipo de sinal:** LED Diagnóstico (Âmbar/Branco)  
-**Código:** `2 Âmbar + 1 Branco`
-
-### Identificação
-
-#### Interpretação oficial
-
-CPU Failure — Processador não detectado ou com falha
-
-#### Componente afetado
-
-CPU
-
-#### Camada de diagnóstico
-
-Camada 2: CPU
-
-#### Fase POST
-
-CPU Init
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-O sistema Dell não detectou a CPU ou a CPU falhou durante a inicialização. O padrão LED Dell usa combinações de LEDs âmbar (erro) e branco (contagem).
-
-#### Condições que geram o erro
-
-1. CPU não encaixada corretamente no socket.  
-2. Pinos do socket LGA tortos.  
-3. CPU incompatível.  
-4. Falha elétrica da CPU.
-
-#### Método de diagnóstico técnico
-
-1. Reseat do socket (remover e reinstalar CPU).  
-2. Inspecionar pinos do socket.  
-3. Verificar compatibilidade CPU.  
-4. Teste cruzado de CPU.
-
-#### Ferramentas oficiais
-
-Dell SupportAssist Diagnostics / Lupa para socket
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Desligar, remover AC.  
-2. Abrir sistema (Dell: geralmente trava lateral sem parafusos).  
-3. Remover heatsink (girar para soltar pasta).  
-4. Levantar alavanca do socket, remover CPU.  
-5. Inspecionar pinos LGA com lupa.  
-6. Se pinos OK: reinstalar CPU alinhando triângulo.  
-7. Fechar alavanca, reaplicar pasta, reinstalar heatsink.  
-8. Se persistir: CPU com defeito → substituir por modelo listado na service manual Dell.
-
-### Resultado esperado
-
-#### Critério de validação
-
-LED de diagnóstico apaga. POST completa. Dell Diagnostics (F12 → Diagnostics) passa sem erros.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Crítico
-
-#### Fonte oficial
-
-Dell OptiPlex Service Manual / Dell LED Diagnostic Codes
-
-### Próximos passos
-
-- Ficha da camada: [Camada 2: CPU](../08-diagnostico-por-camada.md#camada-2--cpu-processador)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+- [2 Âmbar + 1 Branco: Falha no Processador (CPU)](#2-âmbar--1-branco-falha-no-processador-cpu)
+- [2 Âmbar + 2 Branco: Falha Geral (Placa-mãe/Fonte/Cabos)](#2-âmbar--2-branco-falha-geral-placa-mãefontecabos)
+- [2 Âmbar + 3 Branco: Falha de Memória (RAM)](#2-âmbar--3-branco-falha-de-memória-ram)
+- [2 Âmbar + 7 Branco: Falha de Tela (LCD) ou GPU](#2-âmbar--7-branco-falha-de-tela-lcd-ou-gpu)
+- [3 Âmbar + 1 Branco: Falha na Bateria CMOS](#3-âmbar--1-branco-falha-na-bateria-cmos)
+- [3 Âmbar + 3 Branco: Imagem de Recuperação BIOS Ausente](#3-âmbar--3-branco-imagem-de-recuperação-bios-ausente)
+- [3 Âmbar + 5 Branco: Falha em Trilha de Alimentação (Power Rail)](#3-âmbar--5-branco-falha-em-trilha-de-alimentação-power-rail)
+- [Consulte também](#consulte-também)
 
 ---
 
-## POST-32 — 2 Âmbar + 2 Branco
+## 2 Âmbar + 1 Branco: Falha no Processador (CPU)
 
-**Fabricante BIOS:** Proprietário Dell  
-**Fabricante / plataforma:** Dell — OptiPlex / XPS / Latitude  
-**Tipo de sinal:** LED Diagnóstico (Âmbar/Branco)  
-**Código:** `2 Âmbar + 2 Branco`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *CPU Failure* (Processador não detectado ou com falha) |
+| **Componente afetado** | CPU |
+| **Fase / Camada** | CPU Init / Camada 2: CPU |
+| **Criticidade** | Crítico |
 
-### Identificação
+### Causas
+O sistema não detectou a CPU ou o processador falhou na inicialização.
+* CPU não encaixada corretamente no soquete.
+* Pinos do soquete LGA tortos.
+* CPU fisicamente incompatível com a placa-mãe.
+* Falha elétrica no *die* do processador.
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+**Ferramentas:** Lupa, CPU de teste.
+1. Efetue um *power drain* (remova a energia e sangre capacitores).
+2. Abra o equipamento, remova o dissipador (girando para quebrar o selo da pasta) e retire a CPU.
+3. Inspecione o soquete com a lupa em busca de pinos tortos.
+4. Se íntegro, limpe e reinstale a CPU, aplicando nova pasta térmica.
+5. Se o erro persistir, o processador está avariado. Substitua por um modelo idêntico ou validado no *Service Manual*.
 
-System Board / PSU / Cabling — Falha placa-mãe, fonte ou cabeamento
-
-#### Componente afetado
-
-Placa-mãe / PSU
-
-#### Camada de diagnóstico
-
-Camada 1: Energia / Camada 5: Chipset
-
-#### Fase POST
-
-Power/Board Init
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-Erro genérico indicando problema na placa-mãe, fonte de alimentação, ou cabeamento interno. Dell recomenda teste BIST da PSU como primeiro passo.
-
-#### Condições que geram o erro
-
-1. Fonte de alimentação com defeito.  
-2. Cabo de alimentação interno mal conectado.  
-3. Placa-mãe com curto.  
-4. Periférico causando curto (GPU, M.2, etc.).
-
-#### Método de diagnóstico técnico
-
-1. Teste BIST da fonte Dell (botão na traseira da PSU — LED verde = OK).  
-2. Desconectar todos periféricos.  
-3. Reset CMOS.  
-4. Boot mínimo.
-
-#### Ferramentas oficiais
-
-Botão BIST da PSU Dell / Multímetro
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Teste BIST da PSU Dell:  
-
-   a. Desconectar cabo AC.  
-   b. Pressionar e segurar botão BIST na traseira da fonte.  
-   c. Conectar cabo AC mantendo botão pressionado.  
-   d. LED verde = fonte OK. Sem LED = fonte com defeito.  
-2. Se fonte OK:  
-
-   a. Desconectar TODOS os periféricos (GPU, discos, headers).  
-   b. Reset CMOS (jumper na placa Dell, conforme service manual).  
-   c. Ligar com mínimo (CPU + RAM + fonte).  
-   d. Se POST OK: reconectar periféricos um a um.  
-3. Se fonte defeituosa: substituir por modelo Dell compatível.
-
-### Resultado esperado
-
-#### Critério de validação
-
-LED de diagnóstico apaga. POST completa. Dell Diagnostics sem erros. Sistema estável.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Crítico
-
-#### Fonte oficial
-
-Dell OptiPlex Service Manual
-
-### Próximos passos
-
-- Camada declarada: `Camada 1: Energia / Camada 5: Chipset` — valor composto ou variável; ver [Taxonomia de camadas](../03-taxonomia-camadas.md)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+O LED apaga, permitindo o POST. O sistema conclui o `Dell Diagnostics` (`F12`) sem erros relativos a CPU.
 
 ---
 
-## POST-33 — 2 Âmbar + 3 Branco
+## 2 Âmbar + 2 Branco: Falha Geral (Placa-mãe/Fonte/Cabos)
 
-**Fabricante BIOS:** Proprietário Dell  
-**Fabricante / plataforma:** Dell — OptiPlex / XPS / Latitude  
-**Tipo de sinal:** LED Diagnóstico (Âmbar/Branco)  
-**Código:** `2 Âmbar + 3 Branco`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *System Board / PSU / Cabling* (Falha placa-mãe, fonte ou cabeamento) |
+| **Componente afetado** | Placa-mãe / PSU |
+| **Fase / Camada** | Power/Board Init / Camadas 1 (Energia) e 5 (Chipset) |
+| **Criticidade** | Crítico |
 
-### Identificação
+### Causas
+Erro generalizado apontando problemas de inicialização elétrica, comumente relacionado à fonte, cabos soltos ou curto na placa.
+* Fonte de alimentação avariada.
+* Cabo principal mal encaixado na placa.
+* Curto estrutural na placa-mãe ou em periféricos (GPU, M.2).
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+**Ferramentas:** Botão BIST da PSU Dell, Multímetro.
+1. Desconecte o cabo AC.
+2. Acione o botão de teste de BIST (traseira da fonte Dell). Mantenha pressionado e conecte o cabo AC.
+3. Se o LED verde ascender, a fonte está funcional. Sem LED, a fonte tem defeito.
+4. Se a fonte passar no teste: remova os periféricos e cabos sobressalentes.
+5. Execute um Reset no CMOS via *jumper* e teste o boot em estado mínimo.
+6. Se funcionar, adicione um periférico de cada vez até recriar o defeito.
 
-Memory / RAM Failure — Falha de memória RAM
-
-#### Componente afetado
-
-RAM
-
-#### Camada de diagnóstico
-
-Camada 3: Memória
-
-#### Fase POST
-
-Memory Detect/Init
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-O sistema Dell não consegue detectar ou inicializar a memória RAM.
-
-#### Condições que geram o erro
-
-1. Módulos DIMM mal encaixados.  
-2. Módulos incompatíveis (verificar specs Dell).  
-3. Slots DIMM com defeito.  
-4. Se RAM ok em teste cruzado: falha na placa-mãe.
-
-#### Método de diagnóstico técnico
-
-1. Testar 1 pente por vez em cada slot.  
-2. Usar módulo known-good (specs Dell).  
-3. Se persistir com RAM boa: falha na placa-mãe.
-
-#### Ferramentas oficiais
-
-Memória validada (compatível Dell) / Dell SupportAssist
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Desligar, remover AC.  
-2. Remover todos os módulos.  
-3. Limpar contatos.  
-4. Inserir 1 módulo no slot primário (conforme service manual Dell — geralmente slot 1 mais próximo da CPU).  
-5. Ligar.  
-6. Se OK: adicionar módulos.  
-7. Se falhar: trocar por módulo known-good compatível Dell.  
-8. Se falhar com módulo bom: slot ou placa com defeito.
-
-### Resultado esperado
-
-#### Critério de validação
-
-LED apaga. RAM reconhecida. Dell Diagnostics Memory Test sem erros.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Alto
-
-#### Fonte oficial
-
-Dell Service Manual / Dell LED Codes
-
-### Próximos passos
-
-- Ficha da camada: [Camada 3: Memória](../08-diagnostico-por-camada.md#camada-3--memória-ram)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+Extinção do código LED, boot completo do sistema operacional. Estabilidade sob a carga do *Dell Diagnostics*.
 
 ---
 
-## POST-34 — 2 Âmbar + 7 Branco
+## 2 Âmbar + 3 Branco: Falha de Memória (RAM)
 
-**Fabricante BIOS:** Proprietário Dell  
-**Fabricante / plataforma:** Dell — OptiPlex / XPS / Latitude / AIO  
-**Tipo de sinal:** LED Diagnóstico (Âmbar/Branco)  
-**Código:** `2 Âmbar + 7 Branco`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *Memory / RAM Failure* (Falha de memória RAM) |
+| **Componente afetado** | RAM |
+| **Fase / Camada** | Memory Detect/Init / Camada 3: Memória |
+| **Criticidade** | Alto |
 
-### Identificação
+### Causas
+O sistema não consegue inicializar a memória RAM.
+* Módulos soltos ou não "clicados" totalmente.
+* Módulos de memória de marca não-homologada ou especificações diferentes das aceitas pela Dell.
+* Defeito nos conectores (DIMM slots).
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+**Ferramentas:** Módulo RAM compatível.
+1. Retire a força e drene a energia.
+2. Retire todos os módulos e passe uma borracha nos contatos.
+3. Popule apenas o primeiro slot designado no manual (geralmente o slot `1`).
+4. Ligue a máquina. Se houver falha, insira a RAM de teste.
+5. Se falhar mesmo com módulo validado, a placa (slot ou *Memory Controller* interno) possui problema estrutural.
 
-LCD Failure (Notebook) / GPU Failure — Falha na tela ou GPU
-
-#### Componente afetado
-
-LCD / GPU / Cabo eDP
-
-#### Camada de diagnóstico
-
-Camada 4: Vídeo
-
-#### Fase POST
-
-Video/LCD Init
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-Em notebooks/AIO Dell: falha na tela LCD ou no cabo flat (LVDS/eDP). Em desktops: falha na GPU.
-
-#### Condições que geram o erro
-
-1. Cabo flat LCD (LVDS/eDP) desconectado ou rompido.  
-2. Tela LCD com defeito.  
-3. GPU com defeito (desktop).  
-4. Conector do cabo na placa com mau contato.
-
-#### Método de diagnóstico técnico
-
-1. Dell BIST de tela: segurar tecla 'D' + Power (tela deve exibir cores sólidas).  
-2. Conectar monitor externo (se imagem no externo: problema na tela/cabo).  
-3. Reconectar cabo flat.  
-4. Testar com outra tela.
-
-#### Ferramentas oficiais
-
-Teste BIST Tela Dell (D + Power) / Monitor Externo
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-NOTEBOOK:  
-1. BIST de tela: segurar 'D' + pressionar Power.  
-
-   — Se tela exibe cores sólidas: tela OK, problema pode ser GPU/driver.  
-   — Se tela preta: cabo flat ou tela com defeito.  
-2. Conectar monitor externo:  
-
-   — Se externo funciona: cabo flat LVDS/eDP rompido ou tela LCD com defeito.  
-   — Se externo também sem imagem: GPU/placa com defeito.  
-3. Se cabo flat: abrir moldura da tela, verificar conexão do cabo eDP na placa e no painel.  
-
-DESKTOP: Seguir procedimento de GPU (reseat, teste cruzado).
-
-### Resultado esperado
-
-#### Critério de validação
-
-BIST de tela mostra cores sólidas. Imagem estável. Dell Diagnostics Display Test OK.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Médio
-
-#### Fonte oficial
-
-Dell Service Manual / Dell LCD Diagnostics
-
-### Próximos passos
-
-- Ficha da camada: [Camada 4: Vídeo](../08-diagnostico-por-camada.md#camada-4--vídeo-gpuigpu)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+Nenhum LED de alerta. Conclusão livre de erros na etapa de *Memory Test* do `Dell Diagnostics`.
 
 ---
 
-## POST-35 — 3 Âmbar + 1 Branco
+## 2 Âmbar + 7 Branco: Falha de Tela (LCD) ou GPU
 
-**Fabricante BIOS:** Proprietário Dell  
-**Fabricante / plataforma:** Dell — OptiPlex / XPS  
-**Tipo de sinal:** LED Diagnóstico (Âmbar/Branco)  
-**Código:** `3 Âmbar + 1 Branco`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *LCD Failure (Notebook) / GPU Failure* (Falha na tela ou GPU) |
+| **Componente afetado** | LCD / GPU / Cabo eDP |
+| **Fase / Camada** | Video/LCD Init / Camada 4: Vídeo |
+| **Criticidade** | Médio |
 
-### Identificação
+### Causas
+Problemas na malha de exibição de vídeo (comum em Latitude, XPS e OptiPlex AIO).
+* Cabo Flat (LVDS/eDP) da tela rasgado ou frouxo.
+* O próprio painel de cristal líquido quebrou as vias internas.
+* Defeito da placa de vídeo dedicada (Desktops).
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+**Ferramentas:** Teste BIST de tela (D + Power), Monitor Externo.
+1. **Em Notebooks/AIO:** Com a máquina desligada, mantenha pressionada a tecla `D` e pressione `Power`.
+2. Se a tela apresentar o ciclo de cores sólidas, o painel está fisicamente perfeito (problema é na GPU ou *drivers*).
+3. Conecte um monitor externo via HDMI. Se tiver imagem, o cabo da tela interna pode estar rompido.
+4. Efetue a abertura da moldura e reconecte o cabo do *display*.
+5. **Em Desktops (Torre):** Proceda com a reinstalação e limpeza da GPU no slot PCIe ou efetue teste cruzado.
 
-CMOS Battery Failure — Bateria CMOS esgotada
-
-#### Componente afetado
-
-Bateria CR2032
-
-#### Camada de diagnóstico
-
-Camada 5: Chipset / Motherboard
-
-#### Fase POST
-
-CMOS Init
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-A bateria CR2032 do CMOS está com tensão abaixo do limiar mínimo. Sistema pode perder data/hora e configurações do BIOS a cada desligamento.
-
-#### Condições que geram o erro
-
-1. Bateria CR2032 com tensão < 2.8V.  
-2. Suporte da bateria com mau contato (oxidação).
-
-#### Método de diagnóstico técnico
-
-1. Medir tensão da bateria (deve ser ≥ 2.9V).  
-2. Verificar contato no suporte (lâminas oxidadas?).
-
-#### Ferramentas oficiais
-
-Multímetro (medir 3V na bateria) / Bateria CR2032 nova
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Desligar, remover AC.  
-2. Localizar bateria CR2032 na placa-mãe.  
-3. Remover bateria (puxar trava do suporte).  
-4. Medir tensão: < 2.8V = trocar.  
-5. Inserir bateria nova (+ para cima).  
-6. Limpar contatos do suporte com isopropanol se oxidados.  
-7. Ligar, entrar no BIOS Setup (F2), configurar data/hora.  
-8. Salvar e reiniciar.
-
-### Resultado esperado
-
-#### Critério de validação
-
-LED apaga. Data/hora mantidas após desligamento prolongado. BIOS mantém configurações.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Baixo
-
-#### Fonte oficial
-
-Dell Service Manual
-
-### Próximos passos
-
-- Ficha da camada: [Camada 5: Chipset / Motherboard](../08-diagnostico-por-camada.md#camada-5--chipset--motherboard)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+Display sem cintilações e operando perfeitamente. Ferramenta de *Display Test* da BIOS com veredito "OK".
 
 ---
 
-## POST-36 — 3 Âmbar + 3 Branco
+## 3 Âmbar + 1 Branco: Falha na Bateria CMOS
 
-**Fabricante BIOS:** Proprietário Dell  
-**Fabricante / plataforma:** Dell — OptiPlex / XPS  
-**Tipo de sinal:** LED Diagnóstico (Âmbar/Branco)  
-**Código:** `3 Âmbar + 3 Branco`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *CMOS Battery Failure* (Bateria CMOS esgotada) |
+| **Componente afetado** | Bateria CR2032 |
+| **Fase / Camada** | CMOS Init / Camada 5: Chipset / Motherboard |
+| **Criticidade** | Baixo |
 
-### Identificação
+### Causas
+A célula tipo moeda CR2032 que retém dados voláteis perdeu sua tensão nominal, forçando zeramento dos parâmetros e desconfigurando horários a cada inicialização sem AC.
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+1. Remova a célula da placa mãe.
+2. Utilize multímetro e afira a tensão; menos de `2.8V` requer substituição.
+3. Se houver tensão (ex `3.0V`), o defeito pode ser por oxidação nos terminais do "berço" da bateria. Limpe-os com álcool isopropílico.
+4. Após substituição, entre no Setup (`F2`), aplique configurações corretas de data e armazenamento e salve.
 
-BIOS Recovery Image Not Found — Imagem de recuperação não encontrada
-
-#### Componente afetado
-
-BIOS / Firmware
-
-#### Camada de diagnóstico
-
-Camada 6: Firmware
-
-#### Fase POST
-
-BIOS Recovery
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-O sistema Dell entrou em modo de BIOS Recovery mas não encontrou a imagem de recuperação no pendrive ou internamente.
-
-#### Condições que geram o erro
-
-1. BIOS corrompida e recovery não encontra arquivo.  
-2. Pendrive sem o arquivo correto.  
-3. Formato do pendrive incorreto (deve ser FAT32).  
-4. Arquivo com nome incorreto.
-
-#### Método de diagnóstico técnico
-
-1. Baixar BIOS recovery do suporte Dell.  
-2. Renomear para BIOS_IMG.rcv (ou conforme modelo).  
-3. Colocar na raiz de pendrive FAT32.  
-4. Executar recovery (Ctrl+Esc ao ligar).
-
-#### Ferramentas oficiais
-
-Pendrive FAT32 / Arquivo BIOS recovery Dell / Outro PC
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Em outro PC: baixar BIOS mais recente do site support.dell.com (buscar por Service Tag).  
-2. Extrair o arquivo .exe (Dell BIOS geralmente é auto-extraível).  
-3. Renomear o arquivo .bin/.rom para BIOS_IMG.rcv (verificar no manual o nome exato para o modelo).  
-4. Copiar para raiz de pendrive FAT32 (≤ 16GB recomendado).  
-5. No sistema Dell:  
-
-   a. Inserir pendrive na porta USB.  
-   b. Desligado, segurar Ctrl + Esc.  
-   c. Pressionar botão Power mantendo Ctrl+Esc.  
-   d. Soltar após ~5s — processo de recovery inicia (LEDs piscam, pode demorar 2-5 min).  
-6. NÃO desligar durante o processo.  
-7. Sistema reinicia automaticamente.
-
-### Resultado esperado
-
-#### Critério de validação
-
-POST completa. BIOS Setup acessível (F2). Versão de BIOS atualizada. Sistema estável.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Alto
-
-#### Fonte oficial
-
-Dell BIOS Recovery Guide / Dell Support
-
-### Próximos passos
-
-- Ficha da camada: [Camada 6: Firmware](../08-diagnostico-por-camada.md#camada-6--firmware-biosuefi)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+Ao desconectar totalmente da energia e esperar um período, o equipamento deve religar ostentando o horário correto da configuração.
 
 ---
 
-## POST-37 — 3 Âmbar + 5 Branco
+## 3 Âmbar + 3 Branco: Imagem de Recuperação BIOS Ausente
 
-**Fabricante BIOS:** Proprietário Dell  
-**Fabricante / plataforma:** Dell — OptiPlex / XPS  
-**Tipo de sinal:** LED Diagnóstico (Âmbar/Branco)  
-**Código:** `3 Âmbar + 5 Branco`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *BIOS Recovery Image Not Found* |
+| **Componente afetado** | BIOS / Firmware |
+| **Fase / Camada** | BIOS Recovery / Camada 6: Firmware |
+| **Criticidade** | Alto |
 
-### Identificação
+### Causas
+A proteção do sistema tentou puxar o ambiente de reescrita (Recovery) em resposta a uma corrupção interna da ROM, porém falhou em encontrar a mídia com a imagem apropriada.
+* Flash de recuperação inexistente.
+* Pendrive no formato não suportado ou corrompido.
+* Arquivo da BIOS mal nomeado.
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+**Ferramentas:** Outro PC, Pendrive (≤ 16GB, formatado em FAT32).
+1. No PC funcional, utilize a etiqueta *Service Tag* no `support.dell.com` e obtenha o `.exe` contendo o BIOS do modelo.
+2. Renomeie o arquivo extraído ou principal para `BIOS_IMG.rcv` (Confira o manual, em alguns casos o nome diverge).
+3. Transfira para a raiz do pendrive FAT32.
+4. Retorne à Dell afetada, com ela desligada, insira o pendrive e pressione `Ctrl + Esc` + `Power`. Solte o *Power* após ~5 segundos, segurando as teclas.
+5. O console de recuperação subirá. Prossiga com a instalação. **Aviso:** Não interfira no fornecimento elétrico do sistema, mesmo que demore até 5 minutos.
 
-Power Rail Failure (EC/SIO) — Falha em trilha de alimentação secundária
-
-#### Componente afetado
-
-VRM / Power Rails / EC
-
-#### Camada de diagnóstico
-
-Camada 1: Energia
-
-#### Fase POST
-
-Power Sequencing
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-Uma das trilhas de alimentação secundárias (3.3V, 5V, ou outra rail gerenciada pelo Embedded Controller/SIO) está em curto ou ausente.
-
-#### Condições que geram o erro
-
-1. Curto-circuito em uma das rails secundárias (3.3V, 5V, 1.05V, etc.).  
-2. Capacitor em curto na placa.  
-3. Componente em curto (USB, M.2, etc.) puxando rail para baixo.  
-4. Embedded Controller (EC) com defeito.
-
-#### Método de diagnóstico técnico
-
-1. Medir todas as tensões nos pontos de teste.  
-2. Desconectar todos periféricos.  
-3. Verificar se há componentes visivelmente queimados.  
-4. Injeção de tensão controlada (bancada avançada).
-
-#### Ferramentas oficiais
-
-Multímetro / Fonte de bancada (injeção de tensão) / Câmera térmica (opcional)
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Desconectar TUDO (periféricos, discos, GPU).  
-2. Medir standby 5VSB no conector de alimentação.  
-3. Se 5VSB ausente: verificar fonte.  
-4. Se 5VSB presente: ligar e medir 12V, 5V, 3.3V.  
-5. Rail ausente ou muito baixo: curto na placa.  
-6. Desconectar headers um a um medindo a rail.  
-7. Se rail volta com header desconectado: componente no header em curto.  
-8. Se rail ausente mesmo sem nada: placa em curto interno.  
-
-Este tipo de falha geralmente requer reparo em bancada especializada ou troca da placa-mãe.
-
-### Resultado esperado
-
-#### Critério de validação
-
-Todas as rails dentro de spec. POST completa. Sistema estável sob carga.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Crítico
-
-#### Fonte oficial
-
-Dell Service Manual / Dell Power Supply Specs
-
-### Próximos passos
-
-- Ficha da camada: [Camada 1: Energia](../08-diagnostico-por-camada.md#camada-1--energia-psuvrm)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+Ciclo encerrado. Boot completo e acesso viabilizado ao menu *Setup*.
 
 ---
 
-## Próximos passos
+## 3 Âmbar + 5 Branco: Falha em Trilha de Alimentação (Power Rail)
 
-| Se você… | Vá para |
-| --- | --- |
-| não encontrou o código aqui | [Índice de códigos POST](00-indice-codigos.md) — catálogo completo |
-| suspeita que o código tem outro significado | [Ambiguidade de códigos](../11-ambiguidades.md) |
-| quer saber o que testar naquele subsistema | [Diagnóstico por camada](../08-diagnostico-por-camada.md) |
-| aplicou a correção e precisa fechar o atendimento | [Validação final por componente](../13-validacao-final.md) |
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *Power Rail Failure (EC/SIO)* |
+| **Componente afetado** | VRM / Power Rails / EC |
+| **Fase / Camada** | Power Sequencing / Camada 1: Energia |
+| **Criticidade** | Crítico |
 
+### Causas
+Interrupção ou curto no barramento gerenciado pelo Controlador Embarcado (*Embedded Controller* / SIO). Tensões como 3.3V, 5V ou similares essenciais para *handshake* não estão de pé.
+* Capacitor SMD entrou em curto puxando a *rail* ao terra.
+* O próprio SIO ou PCH superaqueceu e "morreu".
+* Dispositivo problemático operando na malha elétrica.
+
+### Diagnóstico e Resolução
+**Ferramentas Avançadas:** Fonte de Bancada (Injeção de corrente), Câmera Térmica, Multímetro.
+1. Extraia o maquinário de todos periféricos possíveis e meça, na entrada da placa (em *standby*), a via de `5VSB`.
+2. Dando *Power-on*, meça os polos dinâmicos. A *rail* que entregar 0V é a defeituosa.
+3. Se ao desligar um determinado flat/cabo de áudio/USB frontal a voltagem ressurgir, troque/conserte aquela subplaca.
+4. Caso a voltagem falhe sem periféricos, há curto puro no PCB, implicando na troca absoluta da placa-mãe para o usuário final, ou injeção direcionada de corrente por especialista.
+
+### Validação
+Todas as linhas vitais estão nos limites de especificação; o processamento do POST prossegue sem alarmes visuais.
 
 ---
 
-| | |
-| --- | --- |
-| **Fonte primária deste documento** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
+## Consulte também
+
+Para aprofundamento técnico ou informações sobre o fluxo de atendimento, consulte os documentos relacionados:
+
+* **[Índice de códigos POST](00-indice-codigos.md):** Catálogo completo.
+* **[Ambiguidade de códigos](../11-ambiguidades.md):** Verifique divergências de sinais entre fabricantes.
+* **[Taxonomia de camadas](../03-taxonomia-camadas.md):** Entenda como uma falha interliga Energia e Chipset.
+* **[Diagnóstico por camada](../08-diagnostico-por-camada.md):** Metodologia de testes nos subsistemas de hardware.
+* **[Fluxo de diagnóstico POST](../06-fluxo-post.md):** Como chegar até o código partindo de um sintoma generalizado.
+* **[Validação final por componente](../13-validacao-final.md):** Testes para fechamento de atendimento.
+* **[Índices cruzados](../18-indices-cruzados.md):** Outros códigos do mesmo componente ou nível de risco.
+
+---
+
+| Metadados do Artigo | |
+| :--- | :--- |
+| **Fonte oficial** | Dell Service Manual / Dell LED Diagnostic Codes |
+| **Fonte primária interna** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
+| **Última verificação** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da doc.** | `doc-2.0.0` |
