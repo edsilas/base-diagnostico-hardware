@@ -2,598 +2,209 @@
 
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Códigos POST — HP (LED piscante)**
 
-# Códigos POST — HP (LED piscante)
+# Referência de Códigos de Erro POST: HP (LED piscante)
 
-> Fichas completas dos códigos de POST da família HP (LED piscante), com causa raiz, diagnóstico, correção e critério de validação.
+**Aplica-se a:** Equipamentos com BIOS `Proprietário HP` (ProBook, EliteBook, ProDesk, EliteDesk, etc.)
 
-
-**Aplica-se a:** Equipamentos com BIOS `Proprietário HP`
-
-## Neste documento
-
-- [POST-38 — 2 Longos + 2 Curtos (2.2)](#post-38--2-longos--2-curtos-22)
-- [POST-39 — 3 Longos + 2 Curtos (3.2)](#post-39--3-longos--2-curtos-32)
-- [POST-40 — 3 Longos + 3 Curtos (3.3)](#post-40--3-longos--3-curtos-33)
-- [POST-41 — 3 Longos + 4 Curtos (3.4)](#post-41--3-longos--4-curtos-34)
-- [POST-42 — 4 Longos + 2 Curtos (4.2)](#post-42--4-longos--2-curtos-42)
-- [POST-43 — 5 Longos (5.0)](#post-43--5-longos-50)
-- [Próximos passos](#próximos-passos)
-
-## Contexto
-
-Fichas completas dos códigos de POST atribuídos, na fonte, ao fabricante de BIOS `Proprietário HP`. Cada ficha reproduz integralmente os campos registrados na planilha de origem.
-
-## Escopo
-
-Os 6 código(s) da família `Proprietário HP` presentes na fonte, com interpretação, causa raiz, método de diagnóstico, procedimento de correção, critério de validação, risco e fonte oficial.
-
-## Fora do escopo
-
-Códigos de outras famílias de BIOS; fluxos de decisão; cenários sistêmicos (pós-boot); guias de ferramentas.
-
-## Relação com outros documentos
-
-- [Índice de códigos POST](00-indice-codigos.md)
-- [Fluxo de diagnóstico POST](../06-fluxo-post.md)
-- [Camadas de diagnóstico](../08-diagnostico-por-camada.md)
-- [Ambiguidade de códigos](../11-ambiguidades.md)
+Este artigo fornece a referência completa de diagnóstico e resolução para os códigos de erro baseados em piscadas de LED (Caps Lock e Num Lock) presentes na BIOS proprietária da HP. O padrão de diagnóstico é lido pela sequência de piscadas longas seguidas de piscadas curtas. Utilize o índice abaixo para navegar diretamente para o código exibido pelo equipamento.
 
 ---
 
-## POST-38 — 2 Longos + 2 Curtos (2.2)
+## Neste artigo
 
-**Fabricante BIOS:** Proprietário HP  
-**Fabricante / plataforma:** HP — ProBook / EliteBook / ProDesk / EliteDesk  
-**Tipo de sinal:** LED Piscante (Caps/Num Lock)  
-**Código:** `2 Longos + 2 Curtos (2.2)`
-
-### Identificação
-
-#### Interpretação oficial
-
-BIOS Corruption — Firmware BIOS corrompido
-
-#### Componente afetado
-
-BIOS / SPI Flash
-
-#### Camada de diagnóstico
-
-Camada 6: Firmware
-
-#### Fase POST
-
-BIOS Verify
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-O HP detectou que o firmware BIOS está corrompido. HP usa padrão de LEDs Caps Lock e Num Lock para diagnóstico (Longos.Curtos).
-
-#### Condições que geram o erro
-
-1. BIOS corrompida por update falho.  
-2. Degradação da SPI Flash.  
-3. Ataque de firmware.  
-4. Falha de energia durante atualização.
-
-#### Método de diagnóstico técnico
-
-1. Tentar HP BIOS Recovery: Win + B ao ligar.  
-2. Pendrive com HP Diagnostics.  
-3. Se recovery falha: regravação externa.
-
-#### Ferramentas oficiais
-
-Combinação de teclas Win+B / Pendrive FAT32 / HP BIOS Recovery
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. HP BIOS Recovery (método primário):  
-
-   a. Desligar completamente.  
-   b. Segurar Win + B.  
-   c. Pressionar e soltar Power mantendo Win+B.  
-   d. Aguardar ~3s, soltar teclas.  
-   e. Tela pode piscar ou ficar preta por 2-3 min.  
-   f. Processo de recovery automático inicia.  
-2. Se não funcionar:  
-
-   a. Baixar BIOS do support.hp.com.  
-   b. Extrair e copiar para pendrive FAT32.  
-   c. Inserir pendrive e repetir Win+B.  
-3. Se tudo falhar: regravação via CH341A.
-
-### Resultado esperado
-
-#### Critério de validação
-
-POST completa. BIOS Setup (F10) acessível. Versão de BIOS correta.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Crítico
-
-#### Fonte oficial
-
-HP BIOS Recovery Guide / HP LED Flash Codes
-
-### Próximos passos
-
-- Ficha da camada: [Camada 6: Firmware](../08-diagnostico-por-camada.md#camada-6--firmware-biosuefi)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+- [2 Longos + 2 Curtos (2.2): Firmware BIOS Corrompido](#2-longos--2-curtos-22-firmware-bios-corrompido)
+- [3 Longos + 2 Curtos (3.2): Falha de Inicialização da Memória](#3-longos--2-curtos-32-falha-de-inicialização-da-memória)
+- [3 Longos + 3 Curtos (3.3): Erro no Controlador Gráfico (GPU)](#3-longos--3-curtos-33-erro-no-controlador-gráfico-gpu)
+- [3 Longos + 4 Curtos (3.4): Falha de Alimentação (Energia)](#3-longos--4-curtos-34-falha-de-alimentação-energia)
+- [4 Longos + 2 Curtos (4.2): Desligamento por Superaquecimento](#4-longos--2-curtos-42-desligamento-por-superaquecimento)
+- [5 Longos (5.0): Falha Geral da Placa-mãe](#5-longos-50-falha-geral-da-placa-mãe)
+- [Consulte também](#consulte-também)
 
 ---
 
-## POST-39 — 3 Longos + 2 Curtos (3.2)
+## 2 Longos + 2 Curtos (2.2): Firmware BIOS Corrompido
 
-**Fabricante BIOS:** Proprietário HP  
-**Fabricante / plataforma:** HP — ProBook / EliteBook / ProDesk / EliteDesk  
-**Tipo de sinal:** LED Piscante (Caps/Num Lock)  
-**Código:** `3 Longos + 2 Curtos (3.2)`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *BIOS Corruption* (Firmware BIOS corrompido) |
+| **Componente afetado** | BIOS / SPI Flash |
+| **Fase / Camada** | BIOS Verify / Camada 6: Firmware |
+| **Criticidade** | Crítico |
 
-### Identificação
+### Causas
+O sistema detectou que o firmware da placa-mãe está danificado, impedindo o avanço lógico do POST.
+* Interrupção/Falha de energia durante uma atualização de BIOS recente.
+* Degradação natural ou falha física do chip SPI Flash.
+* Possível ataque de firmware ou corrupção de sistema.
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+**Ferramentas:** Combinação `Win + B`, Pendrive (FAT32), HP BIOS Recovery.
+1. **Recuperação Automática (Primária):** Com o PC desligado, mantenha pressionadas as teclas `Windows + B`. Pressione o botão *Power* por 1 segundo e solte, mas continue segurando `Win + B` por mais ~3 segundos.
+2. A tela pode piscar ou ficar preta por alguns minutos antes do assistente de recuperação da HP iniciar automaticamente.
+3. **Recuperação por Mídia:** Se o método acima não surtir efeito, em outro computador, baixe a versão correta da BIOS no `support.hp.com`. Extraia a ferramenta para criar um Pendrive de Recuperação e repita o processo `Win + B` com o pendrive inserido na máquina defeituosa.
+4. Falha absoluta em todos os métodos lógicos pode requerer a regravação externa da EPROM via alicate/programadora (CH341A) ou a substituição da placa.
 
-Memory Initialization Failure — Falha na inicialização da memória
-
-#### Componente afetado
-
-RAM
-
-#### Camada de diagnóstico
-
-Camada 3: Memória
-
-#### Fase POST
-
-Memory Init
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-A RAM não pode ser inicializada. Em notebooks HP, frequentemente causado por oxidação no slot SO-DIMM.
-
-#### Condições que geram o erro
-
-1. Módulo SO-DIMM/DIMM mal encaixado.  
-2. Oxidação nos contatos (comum em ambientes úmidos).  
-3. Módulo incompatível.  
-4. Slot com defeito.
-
-#### Método de diagnóstico técnico
-
-1. Reseat RAM.  
-2. Limpar contatos com borracha branca.  
-3. Testar slot individual.  
-4. Se notebook: verificar oxidação no slot SO-DIMM.
-
-#### Ferramentas oficiais
-
-Borracha branca / Isopropanol / RAM compatível HP
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-NOTEBOOK HP:  
-1. Remover bateria e AC.  
-2. Remover tampa inferior (parafusos + clipes).  
-3. Soltar módulos SO-DIMM (puxar travas laterais).  
-4. Limpar contatos dourados com borracha branca (movimentos em uma direção).  
-5. Limpar slot com escova antiestática e isopropanol.  
-6. Inserir módulo a 30°, pressionar até travas clicarem.  
-7. Remontar e testar.  
-
-DESKTOP HP:  
-1. Remover painel lateral.  
-2. Remover todos os DIMM, limpar, reinserir.  
-3. Testar slot individual.
-
-### Resultado esperado
-
-#### Critério de validação
-
-LEDs param de piscar. POST completa. Memória reconhecida. HP Diagnostics Memory Test OK.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Alto
-
-#### Fonte oficial
-
-HP LED Flash Codes / HP Service Manual
-
-### Próximos passos
-
-- Ficha da camada: [Camada 3: Memória](../08-diagnostico-por-camada.md#camada-3--memória-ram)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+A conclusão normal do POST, visualização da logomarca HP e a possibilidade de acessar o *Setup* (`F10`) verificando a versão atualizada e íntegra.
 
 ---
 
-## POST-40 — 3 Longos + 3 Curtos (3.3)
+## 3 Longos + 2 Curtos (3.2): Falha de Inicialização da Memória
 
-**Fabricante BIOS:** Proprietário HP  
-**Fabricante / plataforma:** HP — ProBook / EliteBook / ProDesk / EliteDesk  
-**Tipo de sinal:** LED Piscante (Caps/Num Lock)  
-**Código:** `3 Longos + 3 Curtos (3.3)`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *Memory Initialization Failure* (Falha na inicialização da memória) |
+| **Componente afetado** | RAM |
+| **Fase / Camada** | Memory Init / Camada 3: Memória |
+| **Criticidade** | Alto |
 
-### Identificação
+### Causas
+A RAM não conseguiu ser reconhecida ou falhou nos testes iniciais, travando o sistema. Em notebooks corporativos da HP, isso ocorre com alta frequência por umidade e oxidação ambiental.
+* Oxidação nos contatos dourados (memória ou *slot*).
+* Módulo de RAM mal encaixado após manuseio.
+* Incompatibilidade de barramento ou capacidade.
+* Defeito estrutural do *slot* DIMM/SO-DIMM.
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+**Ferramentas:** Borracha branca, Álcool Isopropílico, Pincel Antiestático.
+1. Remova a fonte de energia (e a bateria do notebook, se não for interna). Drene a carga residual pressionando o botão de ligar.
+2. Extraia os módulos de RAM. Utilize a borracha branca esfregando suavemente os contatos do módulo, sempre em uma única direção.
+3. Limpe o *slot* da placa-mãe com um pincel antiestático e um pouco de álcool isopropílico, garantindo a secagem completa.
+4. Em notebooks, insira o pente a um ângulo de 30° e pressione para baixo até que os clipes de metal "cliquem" firmemente.
+5. Em caso de falha persistente, alterne os pentes de memória e os *slots* para isolar se o defeito é no pente ou na placa-mãe.
 
-Graphics Controller Error — Erro no controlador gráfico
-
-#### Componente afetado
-
-GPU / iGPU
-
-#### Camada de diagnóstico
-
-Camada 4: Vídeo
-
-#### Fase POST
-
-Video Init
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-O controlador gráfico (dedicado ou integrado) falhou na inicialização.
-
-#### Condições que geram o erro
-
-1. GPU dedicada com defeito (BGA com solda fria).  
-2. Se UMA (APU/iGPU): pode indicar falha na CPU ou RAM (memória compartilhada).  
-3. Driver de vídeo no firmware com conflito.
-
-#### Método de diagnóstico técnico
-
-1. Se GPU dedicada: reflow é diagnóstico arriscado.  
-2. Se iGPU/UMA: problema pode ser CPU ou RAM.  
-3. Testar saída de vídeo externa.  
-4. Reset CMOS.
-
-#### Ferramentas oficiais
-
-Soprador térmico (diagnóstico arriscado para BGA) / Monitor externo
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Conectar monitor externo:  
-
-   — Se externo funciona: tela ou cabo com defeito.  
-   — Se externo sem imagem: GPU/placa com defeito.  
-2. Se GPU dedicada (notebook): solda BGA fraturada — reparo profissional ou troca da placa.  
-3. Se iGPU:  
-
-   a. Testar RAM (iGPU usa memória compartilhada).  
-   b. Reset CMOS.  
-   c. Se persistir: falha na CPU (GPU integrada no die).  
-4. Desktop com GPU dedicada: trocar GPU.
-
-### Resultado esperado
-
-#### Critério de validação
-
-LEDs param. Vídeo funcional. HP Diagnostics Video Test OK.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Alto
-
-#### Fonte oficial
-
-HP LED Flash Codes
-
-### Próximos passos
-
-- Ficha da camada: [Camada 4: Vídeo](../08-diagnostico-por-camada.md#camada-4--vídeo-gpuigpu)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+Os LEDs Caps/Num Lock param de piscar. O equipamento dá tela e a suíte *HP Diagnostics* (Memory Test) conclui sem alertas vermelhos.
 
 ---
 
-## POST-41 — 3 Longos + 4 Curtos (3.4)
+## 3 Longos + 3 Curtos (3.3): Erro no Controlador Gráfico (GPU)
 
-**Fabricante BIOS:** Proprietário HP  
-**Fabricante / plataforma:** HP — ProBook / EliteBook / ProDesk / EliteDesk  
-**Tipo de sinal:** LED Piscante (Caps/Num Lock)  
-**Código:** `3 Longos + 4 Curtos (3.4)`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *Graphics Controller Error* (Erro no controlador gráfico) |
+| **Componente afetado** | GPU / iGPU |
+| **Fase / Camada** | Video Init / Camada 4: Vídeo |
+| **Criticidade** | Alto |
 
-### Identificação
+### Causas
+Falha de *handshake* ou avaria crítica no subsistema que gera vídeo.
+* Trincas ou solda fria na base BGA da GPU dedicada.
+* Nas arquiteturas com gráfico integrado (UMA/iGPU), como a memória gráfica é compartilhada, o defeito pode estar no processador ou na memória RAM.
+* Conflito interno de *driver* contido no firmware nativo.
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+**Ferramentas:** Monitor externo.
+1. Conecte um monitor à saída lateral ou traseira do equipamento (HDMI, DP, VGA).
+   * Se o externo apresentar imagem perfeitamente, o defeito restringe-se à tela original do computador ou ao cabo *flat/LVDS*.
+   * Se não houver imagem nem externamente, a placa gráfica não está ativando.
+2. Em equipamentos com vídeo integrado (Intel HD/UHD, AMD Radeon Graphics), realize um *Reset* do CMOS e aplique a rotina de teste de memórias RAM, que afetam diretamente o vídeo.
+3. Se a máquina possui placa de vídeo dedicada e a RAM está hígida, o processador gráfico está danificado. Requer reparo especializado (substituição do *chip* / placa) em laboratório.
 
-Power Supply / System Board Voltage — Falha de alimentação
-
-#### Componente afetado
-
-PSU / DC-DC Converters
-
-#### Camada de diagnóstico
-
-Camada 1: Energia
-
-#### Fase POST
-
-Power Sequencing
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-Falha interna de alimentação. Os conversores DC-DC da placa não estão entregando tensões corretas.
-
-#### Condições que geram o erro
-
-1. Conversores DC-DC (buck/boost) com defeito.  
-2. Capacitores em curto.  
-3. Fonte externa (AC adapter) com defeito (notebook).  
-4. Jack DC com mau contato (notebook).
-
-#### Método de diagnóstico técnico
-
-1. Testar com outro AC adapter HP compatível.  
-2. Medir tensões nos pontos de teste.  
-3. Verificar jack DC (notebook).  
-4. Requer esquema elétrico para diagnóstico avançado.
-
-#### Ferramentas oficiais
-
-Esquema elétrico da placa / Multímetro / AC Adapter known-good
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-NOTEBOOK:  
-1. Testar com outro AC adapter HP compatível (mesma voltagem/potência).  
-2. Verificar jack DC: movimentar conector e observar LED de carga.  
-3. Se LED de carga não acende: jack ou circuito de carga com defeito.  
-4. Requer reparo em nível de componente.  
-
-DESKTOP:  
-1. Testar PSU BIST (se disponível).  
-2. Medir tensões com multímetro.  
-3. Se tensões fora de spec: trocar fonte.  
-4. Se tensões OK: placa-mãe com DC-DC converter defeituoso.
-
-### Resultado esperado
-
-#### Critério de validação
-
-LEDs param. Tensões corretas. Sistema estável. HP Diagnostics sem erros.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Crítico
-
-#### Fonte oficial
-
-HP LED Flash Codes / HP Power Supply Specs
-
-### Próximos passos
-
-- Ficha da camada: [Camada 1: Energia](../08-diagnostico-por-camada.md#camada-1--energia-psuvrm)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+Extinção do código intermitente. O painel interno acende exibindo caracteres e o ambiente pré-boot.
 
 ---
 
-## POST-42 — 4 Longos + 2 Curtos (4.2)
+## 3 Longos + 4 Curtos (3.4): Falha de Alimentação (Energia)
 
-**Fabricante BIOS:** Proprietário HP  
-**Fabricante / plataforma:** HP — ProBook / EliteBook / ProDesk / EliteDesk  
-**Tipo de sinal:** LED Piscante (Caps/Num Lock)  
-**Código:** `4 Longos + 2 Curtos (4.2)`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *Power Supply / System Board Voltage* (Falha de alimentação) |
+| **Componente afetado** | PSU / DC-DC Converters |
+| **Fase / Camada** | Power Sequencing / Camada 1: Energia |
+| **Criticidade** | Crítico |
 
-### Identificação
+### Causas
+O monitoramento elétrico acusou falta, subida abrupta ou queda em uma tensão crucial da placa-mãe.
+* Conversores DC-DC ou capacitores primários entraram em curto.
+* Carregador AC (*Power Adapter*) original com ruído elétrico ou defeito interno.
+* Mau contato ou curto-circuito no *Jack DC* (conector de carga do notebook).
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+**Ferramentas:** Multímetro, Carregador AC extra confiável, Esquema Elétrico.
+1. Comece eliminando a causa externa: conecte uma fonte/carregador HP sabidamente funcional, de mesma ponta (ex: ponta azul inteligente) e mesma voltagem/amperagem.
+2. Inspecione visual e mecanicamente o conector de energia do computador (*Jack DC*). Veja se o pino central (Agulha) está torto ou quebrado. Observe se o LED de recepção de carga acende na lateral do PC.
+3. Em *Desktops*, teste a fonte de alimentação de forma isolada ou utilize o botão de auto-teste da fonte. Se apresentar tensões instáveis, substitua-a.
+4. Se carregador e *Jack* estão OK e o problema persiste em notebooks, trata-se de um problema complexo na placa-mãe exigindo solda de precisão baseada em esquema elétrico.
 
-Thermal Shutdown — Desligamento por superaquecimento
-
-#### Componente afetado
-
-CPU / Fan / Sistema térmico
-
-#### Camada de diagnóstico
-
-Camada 2: CPU / Camada 1: Energia
-
-#### Fase POST
-
-Thermal Monitor
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-O sistema desligou ou falhou no POST por temperatura excessiva da CPU.
-
-#### Condições que geram o erro
-
-1. Fan da CPU parado (poeira, motor queimado).  
-2. Pasta térmica seca.  
-3. Heatsink desconectado ou mal assentado.  
-4. Fluxo de ar bloqueado (notebook: ventilação obstruída).
-
-#### Método de diagnóstico técnico
-
-1. Verificar se fan gira ao ligar.  
-2. Limpar poeira com ar comprimido.  
-3. Verificar sinal tacômetro (header CPU_FAN).  
-4. Trocar pasta térmica.
-
-#### Ferramentas oficiais
-
-Fonte de bancada (testar fan isolado) / Ar comprimido / Pasta térmica
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Verificar se fan da CPU gira ao ligar.  
-2. Se não gira:  
-
-   a. Verificar conexão no header CPU_FAN.  
-   b. Testar fan com fonte de bancada (12V para desktop, 5V para notebook).  
-   c. Se fan não gira isolado: substituir fan.  
-3. Se fan gira:  
-
-   a. Limpar heatsink com ar comprimido.  
-   b. Remover heatsink, limpar pasta antiga.  
-   c. Reaplicar pasta térmica.  
-   d. Reinstalar heatsink.  
-4. NOTEBOOK: desmontar, limpar todo o sistema de refrigeração, trocar pasta.
-
-### Resultado esperado
-
-#### Critério de validação
-
-LEDs param. POST completa. Temperatura idle < 50°C. Fan silencioso e funcional.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Médio
-
-#### Fonte oficial
-
-HP LED Flash Codes / HP Thermal Design Guide
-
-### Próximos passos
-
-- Camada declarada: `Camada 2: CPU / Camada 1: Energia` — valor composto ou variável; ver [Taxonomia de camadas](../03-taxonomia-camadas.md)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+Toda a arvore de voltagens sobe corretamente, não gerando alarmes para o *Embedded Controller*. O equipamento opera com estabilidade energética e carrega a bateria.
 
 ---
 
-## POST-43 — 5 Longos (5.0)
+## 4 Longos + 2 Curtos (4.2): Desligamento por Superaquecimento
 
-**Fabricante BIOS:** Proprietário HP  
-**Fabricante / plataforma:** HP — ProBook / EliteBook / ProDesk / EliteDesk  
-**Tipo de sinal:** LED Piscante (Caps/Num Lock)  
-**Código:** `5 Longos (5.0)`
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *Thermal Shutdown* (Desligamento por superaquecimento) |
+| **Componente afetado** | CPU / Fan / Sistema térmico |
+| **Fase / Camada** | Thermal Monitor / Camada 2: CPU / Camada 1: Energia |
+| **Criticidade** | Médio |
 
-### Identificação
+### Causas
+A proteção do hardware armou-se para prevenir danos derretendo silício após a placa não conseguir dissipar calor efetivamente.
+* Ventilador (*Fan/Cooler*) obstruído por sujeira maciça, fios travando a hélice, ou motor inoperante.
+* Interface térmica (pasta térmica, *pads*) profundamente ressecada.
+* Dissipador de calor afrouxado por transporte mecânico brusco.
+* Bloqueio severo das saídas de exaustão do gabinete/carcaça.
 
-#### Interpretação oficial
+### Diagnóstico e Resolução
+**Ferramentas:** Ar comprimido, Pasta Térmica (Ex: Prata/Cerâmica), Fonte de Bancada.
+1. Acione o botão *Power* com a carcaça aberta e monitore o comportamento acústico e visual da ventoinha.
+2. Se não girar: Confirme se o cabo do *Fan* está no *header* `CPU_FAN` da placa. Teste-o recebendo 5V (notebooks) ou 12V (desktops) em bancada. Se morto, compre uma peça de reposição.
+3. Se girar normalmente: A falha é na transferência térmica. Remova o dissipador, efetue limpeza exaustiva com álcool isopropílico no *die* do processador e na chapa de cobre.
+4. Aplique uma gota central de pasta térmica de alta condutividade e aperte os parafusos do dissipador cruzando-os em 'X'. Utilize ar comprimido na grade da carcaça.
 
-General System Board Failure — Falha geral da placa-mãe
-
-#### Componente afetado
-
-Placa-mãe / KBC / SIO
-
-#### Camada de diagnóstico
-
-Camada 5: Chipset / Motherboard
-
-#### Fase POST
-
-Board Init
-
-### Diagnóstico
-
-#### Causa raiz (documentação oficial)
-
-Falha genérica da placa-mãe. Geralmente indica falha no Embedded Controller (EC), KBC, ou Super I/O — componentes fundamentais que controlam a sequência de power-on.
-
-#### Condições que geram o erro
-
-1. Embedded Controller (EC) com firmware corrompido.  
-2. Super I/O chip com defeito.  
-3. KBC não responde.  
-4. Falha estrutural na placa (trilha, via, etc.).
-
-#### Método de diagnóstico técnico
-
-1. Reset CMOS.  
-2. Desconectar bateria CMOS por 30 min.  
-3. Se notebook: desconectar bateria interna e manter power pressionado 60s.  
-4. Se persistir: placa condenada.
-
-#### Ferramentas oficiais
-
-N/A — Condenação da placa-mãe na maioria dos casos
-
-### Execução da correção
-
-#### Procedimento de correção (passo a passo)
-
-1. Reset CMOS completo:  
-
-   a. Remover AC/bateria.  
-   b. Remover bateria CMOS.  
-   c. Segurar power 60 segundos.  
-   d. Aguardar 30 minutos.  
-   e. Reinstalar bateria CMOS.  
-   f. Conectar AC e ligar.  
-2. Se persistir: placa-mãe condenada.  
-3. Em ambiente corporativo: acionar garantia HP ou substituir placa-mãe.
-
-### Resultado esperado
-
-#### Critério de validação
-
-Se resolvido: POST completa. Se condenação: N/A — substituir placa.
-
-### Risco e origem
-
-#### Risco / criticidade
-
-Crítico
-
-#### Fonte oficial
-
-HP LED Flash Codes
-
-### Próximos passos
-
-- Ficha da camada: [Camada 5: Chipset / Motherboard](../08-diagnostico-por-camada.md#camada-5--chipset--motherboard)
-- Outros códigos do mesmo componente ou risco: [Índices cruzados](../18-indices-cruzados.md)
-- Como chegar até este código: [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+### Validação
+Os LEDs cessam as piscadas. POST segue sem acionar os "limites máximos" do ventilador. Monitoramento atesta temperas *Idle* inferiores a `50°C`.
 
 ---
 
-## Próximos passos
+## 5 Longos (5.0): Falha Geral da Placa-mãe
 
-| Se você… | Vá para |
-| --- | --- |
-| não encontrou o código aqui | [Índice de códigos POST](00-indice-codigos.md) — catálogo completo |
-| suspeita que o código tem outro significado | [Ambiguidade de códigos](../11-ambiguidades.md) |
-| quer saber o que testar naquele subsistema | [Diagnóstico por camada](../08-diagnostico-por-camada.md) |
-| aplicou a correção e precisa fechar o atendimento | [Validação final por componente](../13-validacao-final.md) |
+| Atributo | Detalhe |
+| :--- | :--- |
+| **Mensagem oficial** | *General System Board Failure* (Falha geral da placa-mãe) |
+| **Componente afetado** | Placa-mãe / KBC / SIO |
+| **Fase / Camada** | Board Init / Camada 5: Chipset / Motherboard |
+| **Criticidade** | Crítico |
 
+### Causas
+Os controladores mestre (*Embedded Controller*, *Super I/O*, *KBC*) pararam de se comunicar adequadamente, ou um dano físico/elétrico no PCB interrompeu trilhas vitais do sistema. É uma falha terminal sem refinamento secundário.
+
+### Diagnóstico e Resolução
+1. Para exclusão de pane temporária (lixo elétrico ou *bug* persistente de estado), realize um *hard reset*:
+   * Remova totalmente qualquer alimentação AC e Baterias Principais.
+   * Remova a bateria *Moeda* (*Coin Cell CMOS*).
+   * Mantenha o botão *Power* pressionado por 60 segundos contínuos.
+   * Abandone a placa desenergizada por 30 minutos.
+2. Após o tempo estipulado, remonte minimamente a estrutura e tente ligar.
+3. Se o código 5.0 reaparecer, a placa-mãe está definitivamente avariada. Deve-se providenciar reparo de PCB por laboratório avançado ou substituir a placa (Em caso de parques corporativos com garantia HP válida, este é o momento de acioná-la para troca da *Motherboard*).
+
+### Validação
+Em caso de "ressurreição" pelo *reset*, a placa completa o POST. Nos demais cenários, aplica-se a substituição do ativo.
 
 ---
 
-| | |
-| --- | --- |
-| **Fonte primária deste documento** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
+## Consulte também
+
+Para aprofundamento técnico ou informações sobre o fluxo de atendimento, consulte os documentos relacionados:
+
+* **[Índice de códigos POST](00-indice-codigos.md):** Catálogo completo.
+* **[Ambiguidade de códigos](../11-ambiguidades.md):** Verifique divergências de sinais entre fabricantes.
+* **[Taxonomia de camadas](../03-taxonomia-camadas.md):** Entenda como o thermal monitor (Código 4.2) exige atenção em múltiplas camadas.
+* **[Diagnóstico por camada](../08-diagnostico-por-camada.md):** Metodologia de testes nos subsistemas de hardware.
+* **[Fluxo de diagnóstico POST](../06-fluxo-post.md):** Como chegar até o código partindo de um sintoma generalizado.
+* **[Validação final por componente](../13-validacao-final.md):** Testes recomendados para fechamento de atendimento com segurança.
+
+---
+
+| Metadados do Artigo | |
+| :--- | :--- |
+| **Fonte oficial** | HP LED Flash Codes / HP Service Manual |
+| **Fonte primária interna** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
 | **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
+| **Última verificação** | 2026-08-27 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da doc.** | `doc-2.0.0` |
