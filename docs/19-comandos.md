@@ -1,4 +1,9 @@
-<!-- Gerado a partir de `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `TABELA_PRINCIPAL`, coluna `Comandos Técnicos`. Não editar manualmente sem atualizar a fonte. -->
+---
+title: Referência de comandos técnicos
+description: Todos os comandos declarados nos cenários, reunidos com camada, risco e link para a ficha completa.
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../README.md) › [Consulte a referência](../README.md#consulte-a-referência) › **Referência de comandos técnicos**
 
@@ -36,7 +41,7 @@ Comandos citados dentro de outros campos (método de diagnóstico, correção) �
 ---
 
 > [!CAUTION]
-> Os comandos abaixo são transcrição literal da fonte e vários **alteram o sistema**:
+> Os comandos abaixo são reproduzidos literalmente e vários **alteram o sistema**:
 > `chkdsk /r /f` e `sfc /scannow`, por exemplo, modificam disco e arquivos de sistema. Consulte a
 > ficha do cenário antes de executar — ela traz pré-requisitos, risco declarado e critério de
 > validação.
@@ -208,7 +213,6 @@ Agrupamento por ocorrência do nome do executável ou utilitário no texto acima
 | AIDA64 | [TR-01](10-cenarios/travamentos-freeze.md#tr-01), [SA-01](10-cenarios/superaquecimento.md#sa-01), [FI-01](10-cenarios/falhas-intermitentes.md#fi-01) |
 
 > A tabela acima é montada por correspondência de texto sobre a mesma coluna transcrita acima.
-> Nível de confiança: **Confirmado** (os comandos) / **Inferido** (o agrupamento).
 
 ## Próximos passos
 
@@ -221,10 +225,7 @@ Agrupamento por ocorrência do nome do executável ou utilitário no texto acima
 
 ---
 
-| | |
+| Atributo | Valor |
 | --- | --- |
-| **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → `TABELA_PRINCIPAL`, coluna `Comandos Técnicos` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

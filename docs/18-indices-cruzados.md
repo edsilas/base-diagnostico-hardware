@@ -1,4 +1,9 @@
-<!-- Gerado a partir de Derivado das colunas de `Tabela Diagnóstico POST` e `TABELA_PRINCIPAL`. Não editar manualmente sem atualizar a fonte. -->
+---
+title: Índices cruzados
+description: Os mesmos registros reagrupados por componente, camada, risco, fase do POST, tipo de sinal e ferramenta — para quem não chega pelo sintoma.
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../README.md) › [Consulte a referência](../README.md#consulte-a-referência) › **Índices cruzados**
 
@@ -254,8 +259,7 @@ Use este índice quando a pergunta for "o equipamento está emitindo *isto*; o q
 | Tom Sonoro | [POST-46](09-codigos-post/apple.md#post-46--1-tom-repetido-a-cada-5-segundos), [POST-47](09-codigos-post/apple.md#post-47--3-tons-repetidos-a-cada-5-segundos), [POST-48](09-codigos-post/apple.md#post-48--3-longos--3-curtos--3-longos-sos) | Speaker interno |
 
 > A coluna *Onde observar* resume o local físico do sinal a partir do próprio nome do tipo
-> declarado na fonte e das descrições das fichas. Nível de confiança: **Inferido**.
-
+> declarado e das descrições das fichas.
 ## Índice por ferramenta
 
 Onde cada ferramenta é exigida. Os nomes seguem a grafia das colunas `FERRAMENTAS OFICIAIS` e
@@ -316,10 +320,7 @@ Ordem declarada na coluna `Ordem de Execução`, com os pré-requisitos da colun
 
 ---
 
-| | |
+| Atributo | Valor |
 | --- | --- |
-| **Fonte primária deste documento** | Derivado das colunas de `Tabela Diagnóstico POST` e `TABELA_PRINCIPAL` |
-| **Status de confiança** | Confirmado (agrupamentos) / Inferido (coluna *Onde observar*) |
-| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

@@ -1,4 +1,9 @@
-<!-- Gerado a partir de `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → aba `CORRELACOES`. Não editar manualmente sem atualizar a fonte. -->
+---
+title: Correlações entre camadas (efeitos em cascata)
+description: Falhas que se manifestam em outro subsistema e levam à troca do componente errado, com o critério para separar causa de sintoma.
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../README.md) › [Resolva](../README.md#resolva) › **Correlações entre camadas (efeitos em cascata)**
 
@@ -100,9 +105,6 @@ Trocar RAM ou reinstalar Windows sem verificar PSU. O problema retorna com compo
 
 SE problema persiste após trocar RAM E disco → PSU é o culpado oculto. Log CSV do AIDA64 mostrará queda de +12V precedendo cada falha.
 
-### Fonte
-
-ATX12V PSU Design Guide v2.53 §3.2.1; Intel Voltage Regulator Module Guidelines
 
 ---
 
@@ -131,9 +133,6 @@ Formatar o Windows repetidamente sem testar a RAM. O Windows corrompido é SINTO
 
 SE sfc /scannow encontra erros que retornam após correção → RAM corrompendo dados durante a gravação. MemTest86 confirma.
 
-### Fonte
-
-JEDEC JESD79-4/5; Microsoft Docs: sfc /scannow; MemTest86 Documentation
 
 ---
 
@@ -162,9 +161,6 @@ Comprar CPU/RAM nova e assumir que é defeituosa sem atualizar BIOS. Devolver co
 
 Verificar CPU/Memory Support List no site da placa-mãe. SE componente listado apenas em BIOS versão X+ → atualizar BIOS primeiro.
 
-### Fonte
-
-Intel Microcode Update Guidance; AMD AGESA Changelog; UEFI Specification 2.10; OEM BIOS Release Notes
 
 ---
 
@@ -193,9 +189,6 @@ Reinstalar Windows ou trocar PSU sem verificar temperatura. O problema é térmi
 
 AIDA64 OSD durante uso normal: SE CPU > 90°C em idle → problema térmico (não de software). SE desligamento precedido por pico térmico no log → não é PSU.
 
-### Fonte
-
-Intel Thermal Design Guide; AMD Ryzen Thermal Solution Design Guide
 
 ---
 
@@ -224,9 +217,6 @@ Executar MemTest86 que retorna limpo (RAM OK), mas BSOD persiste. Técnico troca
 
 BSOD 0x7A (KERNEL_DATA_INPAGE_ERROR) aponta especificamente para falha de I/O, não de RAM. Victoria S.M.A.R.T. ID C5/C6 > 0 confirma disco.
 
-### Fonte
-
-Microsoft Docs: Bug Check 0x7A; Seagate SMART Attribute Reference; Victoria Documentation
 
 ---
 
@@ -255,9 +245,6 @@ Culpar GPU como defeituosa quando o problema é driver de software. Enviar GPU p
 
 SE BSOD VIDEO_TDR_FAILURE → DDU (Display Driver Uninstaller) em Safe Mode → instalar driver limpo. SE problema resolve → era driver, não hardware.
 
-### Fonte
-
-Microsoft Docs: TDR Registry Keys; NVIDIA/AMD Driver Release Notes; DDU Documentation
 
 ---
 
@@ -273,10 +260,7 @@ Microsoft Docs: TDR Registry Keys; NVIDIA/AMD Driver Release Notes; DDU Document
 
 ---
 
-| | |
+| Atributo | Valor |
 | --- | --- |
-| **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → aba `CORRELACOES` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

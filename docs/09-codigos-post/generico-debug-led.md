@@ -1,4 +1,9 @@
-<!-- Gerado a partir de `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST`. Não editar manualmente sem atualizar a fonte. -->
+---
+title: "Referência de Códigos de Erro POST: Genérico (Debug LED)"
+description: Este artigo fornece a referência completa de diagnóstico e resolução para os códigos visuais informados pelos 4 LEDs de status (CPU, DRAM, VGA, BOOT) presentes na maioria das placas-mãe modernas. Utilize o índice abaixo para navegar diretamente para o LED que permanece aceso estaticamente na placa.
+author: Edsilas
+date: 2026-08-25
+---
 
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Códigos POST — Genérico — Debug LED**
 
@@ -10,20 +15,41 @@ Este artigo fornece a referência completa de diagnóstico e resolução para os
 
 ---
 
-## Neste artigo
+## Neste documento
 
-- [LED CPU (Vermelho): Falha na CPU](#led-cpu-vermelho-falha-na-cpu)
-- [LED DRAM (Amarelo): Falha no Treinamento de Memória](#led-dram-amarelo-falha-no-treinamento-de-memória)
-- [LED VGA (Branco): GPU Não Detectada](#led-vga-branco-gpu-não-detectada)
-- [LED BOOT (Verde): Dispositivo de Boot Não Encontrado](#led-boot-verde-dispositivo-de-boot-não-encontrado)
-- [Consulte também](#consulte-também)
+- [POST-51 — LED CPU (Vermelho): Falha na CPU](#post-51--led-cpu-vermelho)
+- [POST-52 — LED DRAM (Amarelo): Falha no Treinamento de Memória](#post-52--led-dram-amarelo)
+- [POST-53 — LED VGA (Branco): GPU Não Detectada](#post-53--led-vga-branco)
+- [POST-54 — LED BOOT (Verde): Dispositivo de Boot Não Encontrado](#post-54--led-boot-verde)
+- [Próximos passos](#próximos-passos)
+
+## Contexto
+
+Fichas completas dos códigos de POST atribuídos ao fabricante de BIOS `Genérico (Múltiplos)`. Cada ficha reproduz integralmente os campos técnicos do código.
+
+## Escopo
+
+Os 4 códigos da família `Genérico (Múltiplos)`, com interpretação, causa raiz, método de diagnóstico, procedimento de correção, critério de validação e risco.
+
+## Fora do escopo
+
+Códigos de outras famílias de BIOS; fluxos de decisão; cenários sistêmicos (pós-boot); guias de ferramentas.
+
+## Relação com outros documentos
+
+- [Índice de códigos POST](00-indice-codigos.md)
+- [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+- [Camadas de diagnóstico](../08-diagnostico-por-camada.md)
+- [Ambiguidade de códigos](../11-ambiguidades.md)
 
 ---
 
-## LED CPU (Vermelho): Falha na CPU
+## POST-51 — LED CPU (Vermelho)
+
+**Falha na CPU**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *CPU Not Detected / Fail* (CPU não detectada ou com falha) |
 | **Componente afetado** | CPU / VRM / EPS |
 | **Fase / Camada** | SEC/PEI (CPU Init) / Camada 2: CPU |
@@ -31,11 +57,11 @@ Este artigo fornece a referência completa de diagnóstico e resolução para os
 
 ### Causas
 O LED de diagnóstico travado na indicação da CPU aponta falha primária na inicialização do processador.
-* Cabo EPS 8-pin (alimentação da CPU) desconectado da fonte ou da placa.
-* Pinos do soquete LGA tortos.
-* BIOS instalada não suporta a geração do processador instalado.
-* Defeito elétrico/estrutural na CPU.
-* Circuito regulador de tensão (VRM) da placa-mãe com avaria.
+- Cabo EPS 8-pin (alimentação da CPU) desconectado da fonte ou da placa.
+- Pinos do soquete LGA tortos.
+- BIOS instalada não suporta a geração do processador instalado.
+- Defeito elétrico/estrutural na CPU.
+- Circuito regulador de tensão (VRM) da placa-mãe com avaria.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Multímetro (EPS 12V), Lupa 10x, BIOS Flashback.
@@ -50,10 +76,12 @@ O LED vermelho correspondente à CPU apaga, e a sequência passa para o LED DRAM
 
 ---
 
-## LED DRAM (Amarelo): Falha no Treinamento de Memória
+## POST-52 — LED DRAM (Amarelo)
+
+**Falha no Treinamento de Memória**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Memory Training Fail* (Falha no treinamento de memória) |
 | **Componente afetado** | RAM / Controladora |
 | **Fase / Camada** | PEI (Memory Training) / Camada 3: Memória |
@@ -61,11 +89,11 @@ O LED vermelho correspondente à CPU apaga, e a sequência passa para o LED DRAM
 
 ### Causas
 O LED DRAM aceso indica que o sistema empacou ao tentar sincronizar e treinar as frequências/timings da memória.
-* **Aviso para DDR5:** O treinamento normal pode demorar até 3 minutos ou mais na primeira vez (Não se trata de falha).
-* Módulo de RAM mal encaixado nos *slots*.
-* Povoamento incorreto dos *slots* (ex: ignorar a recomendação de preencher primeiro o `A2`).
-* Módulos incompatíveis ou de velocidades conflitantes misturados.
-* Cache de configurações antigas no CMOS que impedem o *boot* da nova memória.
+- **Aviso para DDR5:** O treinamento normal pode demorar até 3 minutos ou mais na primeira vez (Não se trata de falha).
+- Módulo de RAM mal encaixado nos *slots*.
+- Povoamento incorreto dos *slots* (ex: ignorar a recomendação de preencher primeiro o `A2`).
+- Módulos incompatíveis ou de velocidades conflitantes misturados.
+- Cache de configurações antigas no CMOS que impedem o *boot* da nova memória.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Cronômetro, QVL do fabricante da Placa, Módulo RAM de teste.
@@ -81,10 +109,12 @@ O LED amarelo apaga, passando o bastão para o LED VGA e, sucessivamente, conclu
 
 ---
 
-## LED VGA (Branco): GPU Não Detectada
+## POST-53 — LED VGA (Branco)
+
+**GPU Não Detectada**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *VGA Not Detected* (GPU não detectada) |
 | **Componente afetado** | GPU / Slot PCIe |
 | **Fase / Camada** | DXE (Video Init) / Camada 4: Vídeo |
@@ -92,11 +122,11 @@ O LED amarelo apaga, passando o bastão para o LED VGA e, sucessivamente, conclu
 
 ### Causas
 O sistema ligou processador e memória, mas paralisou por não encontrar hardware para prover saída gráfica.
-* Placa de vídeo (GPU) dedicada mal encaixada no barramento PCIe.
-* Cabos auxiliares de energia da GPU (6+2 pinos) não conectados.
-* **Peculiaridade de algumas placas:** O LED pode acender se o cabo do monitor estiver desconectado ou o monitor desligado, pois a BIOS não completa o *handshake* (comum em conexões DisplayPort).
-* Cabo HDMI/DP avariado.
-* Placa de vídeo danificada.
+- Placa de vídeo (GPU) dedicada mal encaixada no barramento PCIe.
+- Cabos auxiliares de energia da GPU (6+2 pinos) não conectados.
+- **Peculiaridade de algumas placas:** O LED pode acender se o cabo do monitor estiver desconectado ou o monitor desligado, pois a BIOS não completa o *handshake* (comum em conexões DisplayPort).
+- Cabo HDMI/DP avariado.
+- Placa de vídeo danificada.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Cabo de vídeo funcional, Monitor energizado, GPU de teste.
@@ -111,10 +141,12 @@ O LED VGA branco apaga, o fabricante logomarca sobe na tela e o último LED pisc
 
 ---
 
-## LED BOOT (Verde): Dispositivo de Boot Não Encontrado
+## POST-54 — LED BOOT (Verde)
+
+**Dispositivo de Boot Não Encontrado**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Boot Device Missing* (Dispositivo de boot não encontrado) |
 | **Componente afetado** | SSD / HDD / NVMe / Config BIOS |
 | **Fase / Camada** | BDS (Boot Device Selection) / Camada 7: Periféricos Críticos |
@@ -122,17 +154,17 @@ O LED VGA branco apaga, o fabricante logomarca sobe na tela e o último LED pisc
 
 ### Causas
 O POST de *hardware* já passou perfeitamente (Processador, RAM e GPU estão operacionais). A máquina travou porque não localizou nenhum arquivo de Sistema Operacional (`bootloader`) ou disco inicializável.
-* SSD, NVMe ou HDD inoperante (queimado).
-* Instalação do Windows/Linux gravemente corrompida (setor de boot apagado).
-* Conflito de configuração: SO instalado em modo Legacy/CSM, mas BIOS atualizada e travada em modo puramente UEFI (ou vice-versa).
-* Ordem de boot (`Boot Priority`) desconfigurada.
-* SSD M.2 mal conectado ou com folga no parafuso; Cabo SATA solto.
+- SSD, NVMe ou HDD inoperante (queimado).
+- Instalação do Windows/Linux gravemente corrompida (setor de boot apagado).
+- Conflito de configuração: SO instalado em modo Legacy/CSM, mas BIOS atualizada e travada em modo puramente UEFI (ou vice-versa).
+- Ordem de boot (`Boot Priority`) desconfigurada.
+- SSD M.2 mal conectado ou com folga no parafuso; Cabo SATA solto.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Pendrive Bootável (Linux Live / Win PE), Acesso ao BIOS Setup.
 1. Reinicie e entre imediatamente no Setup da BIOS (`Del` ou `F2`).
 2. Vá à aba de Armazenamento/Storage e verifique se o SSD/HDD é listado eletronicamente.
-   * **Se o disco não aparecer:** Desligue. Remova, limpe e reinstale o M.2. Para SSDs SATA, substitua o cabo de dados e verifique o de energia.
+   - **Se o disco não aparecer:** Desligue. Remova, limpe e reinstale o M.2. Para SSDs SATA, substitua o cabo de dados e verifique o de energia.
 3. Se o disco for listado, verifique a ordem de inicialização (Boot Order) e garanta que o Windows Boot Manager seja o primeiro.
 4. Alterne o suporte CSM (*Compatibility Support Module*). Se o seu Windows é antigo (Legacy), ligue o CSM. Se for moderno (UEFI), desligue o CSM e ative o Secure Boot. Salve e reinicie.
 5. Empaque persistente exige o uso de um Pendrive Bootável com ferramentas do Windows (`bootrec /rebuildbcd`) para reparar o setor de boot da unidade, ou sua eventual formatação e reinstalação.
@@ -142,23 +174,22 @@ O LED BOOT (Geralmente Verde ou Amarelo-esverdeado) acende rapidamente para vali
 
 ---
 
-## Consulte também
+## Próximos passos
 
-Para aprofundamento técnico ou informações sobre o fluxo de atendimento, consulte os documentos relacionados:
+| Se você… | Vá para |
+| --- | --- |
+| não encontrou o código aqui | [Índice de códigos POST](00-indice-codigos.md) — catálogo completo |
+| suspeita que o código tem outro significado | [Ambiguidade de códigos](../11-ambiguidades.md) |
+| quer saber o que testar naquele subsistema | [Diagnóstico por camada](../08-diagnostico-por-camada.md) |
+| aplicou a correção e precisa fechar o atendimento | [Validação final por componente](../13-validacao-final.md) |
 
-* **[Índice de códigos POST](00-indice-codigos.md):** Catálogo completo.
-* **[Ambiguidade de códigos](../11-ambiguidades.md):** Verifique divergências de sinais entre fabricantes.
-* **[Diagnóstico por camada](../08-diagnostico-por-camada.md):** Metodologia de testes nos subsistemas de hardware.
-* **[Fluxo de diagnóstico POST](../06-fluxo-post.md):** Como chegar até o código partindo de um sintoma generalizado.
-* **[Validação final por componente](../13-validacao-final.md):** Testes recomendados para fechamento de atendimento com segurança.
+**Para aprofundar**
+
+- **[Fluxo de diagnóstico POST](../06-fluxo-post.md):** Como chegar até o código partindo de um sintoma generalizado.
 
 ---
 
-| Metadados do Artigo | |
-| :--- | :--- |
-| **Fonte oficial** | Manuais da Placa-mãe (ASUS, MSI, GIGABYTE, ASRock) / Microsoft Boot Recovery |
-| **Fonte primária interna** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação** | 2026-08-25 |
+| Atributo | Valor |
+| --- | --- |
 | **Autoria** | Edsilas |
-| **Versão da doc.** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

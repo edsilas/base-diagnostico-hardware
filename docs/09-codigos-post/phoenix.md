@@ -1,4 +1,9 @@
-<!-- Gerado a partir de `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST`. Não editar manualmente sem atualizar a fonte. -->
+---
+title: "Referência de Códigos de Erro POST: Phoenix BIOS"
+description: "Este artigo fornece a referência completa de diagnóstico e resolução para os códigos de erro baseados em bipes sonoros presentes nas placas com Phoenix BIOS. O padrão de diagnóstico da Phoenix é caracterizado por bipes agrupados em sequências (ex: 1 bipe, pausa, 2 bipes, pausa, etc.). Utilize o índice abaixo para navegar diretamente para a sequência identificada."
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Códigos POST — Phoenix BIOS**
 
@@ -10,21 +15,42 @@ Este artigo fornece a referência completa de diagnóstico e resolução para os
 
 ---
 
-## Neste artigo
+## Neste documento
 
-- [1-1-1-3: Falha de Modo Real (CPU/MB)](#1-1-1-3-falha-de-modo-real-cpumb)
-- [1-2-2-3: Falha de Integridade do Firmware (ROM)](#1-2-2-3-falha-de-integridade-do-firmware-rom)
-- [1-3-1-1: Falha no Teste de Refresh da RAM](#1-3-1-1-falha-no-teste-de-refresh-da-ram)
-- [1-3-4-1: Falha em Linha de Endereço da RAM](#1-3-4-1-falha-em-linha-de-endereço-da-ram)
-- [1-4-2-1: Falha no Clock RTC do CMOS](#1-4-2-1-falha-no-clock-rtc-do-cmos)
-- [Consulte também](#consulte-também)
+- [POST-26 — 1-1-1-3: Falha de Modo Real (CPU/MB)](#post-26--1-1-1-3)
+- [POST-27 — 1-2-2-3: Falha de Integridade do Firmware (ROM)](#post-27--1-2-2-3)
+- [POST-28 — 1-3-1-1: Falha no Teste de Refresh da RAM](#post-28--1-3-1-1)
+- [POST-29 — 1-3-4-1: Falha em Linha de Endereço da RAM](#post-29--1-3-4-1)
+- [POST-30 — 1-4-2-1: Falha no Clock RTC do CMOS](#post-30--1-4-2-1)
+- [Próximos passos](#próximos-passos)
+
+## Contexto
+
+Fichas completas dos códigos de POST atribuídos ao fabricante de BIOS `Phoenix BIOS`. Cada ficha reproduz integralmente os campos técnicos do código.
+
+## Escopo
+
+Os 5 códigos da família `Phoenix BIOS`, com interpretação, causa raiz, método de diagnóstico, procedimento de correção, critério de validação e risco.
+
+## Fora do escopo
+
+Códigos de outras famílias de BIOS; fluxos de decisão; cenários sistêmicos (pós-boot); guias de ferramentas.
+
+## Relação com outros documentos
+
+- [Índice de códigos POST](00-indice-codigos.md)
+- [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+- [Camadas de diagnóstico](../08-diagnostico-por-camada.md)
+- [Ambiguidade de códigos](../11-ambiguidades.md)
 
 ---
 
-## 1-1-1-3: Falha de Modo Real (CPU/MB)
+## POST-26 — 1-1-1-3
+
+**Falha de Modo Real (CPU/MB)**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Verify Real Mode* (CPU/MB falha ao entrar em modo real x86) |
 | **Componente afetado** | CPU / Placa-mãe |
 | **Fase / Camada** | SEC Phase (Real Mode Init) / Camada 2: CPU |
@@ -32,17 +58,17 @@ Este artigo fornece a referência completa de diagnóstico e resolução para os
 
 ### Causas
 A CPU não consegue iniciar o modo real (*Real Mode*), primeiro modo de operação arquitetural x86 após o acionamento de energia. Indica falha crítica primária.
-* Processador morto ou em curto (não executa nenhuma instrução).
-* Falha grave no barramento de comunicação da CPU na placa-mãe.
-* Circuito regulador de tensão (VRM) da placa sem saída de energia.
-* Danos severos nos pinos do *socket* da placa-mãe.
+- Processador morto ou em curto (não executa nenhuma instrução).
+- Falha grave no barramento de comunicação da CPU na placa-mãe.
+- Circuito regulador de tensão (VRM) da placa sem saída de energia.
+- Danos severos nos pinos do *socket* da placa-mãe.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Multímetro (Leitura de VCore), CPU de Teste Homologada.
 1. Ligue o equipamento e verifique se há sinais de vida secundários (ventoinhas girando, LEDs). Se as ventoinhas giram, mas o erro surge, a CPU não está operando.
 2. Com o multímetro, afira a tensão VCore nos pontos de teste ou indutores do VRM próximos ao processador.
-   * Se o `VCore = 0V`, o VRM está defeituoso ou a CPU apresenta um curto-circuito grave desarmando a fonte.
-   * Se a tensão VCore estiver presente e correta, a probabilidade é que a CPU esteja inoperante.
+   - Se o `VCore = 0V`, o VRM está defeituoso ou a CPU apresenta um curto-circuito grave desarmando a fonte.
+   - Se a tensão VCore estiver presente e correta, a probabilidade é que a CPU esteja inoperante.
 3. Teste o processador defeituoso em outra placa ou utilize uma CPU funcional (*known-good*) na placa em bancada.
 4. Se o erro 1-1-1-3 continuar com uma CPU sabidamente boa, a placa-mãe deve ser condenada.
 
@@ -51,10 +77,12 @@ O equipamento passa no POST, a CPU avança do modo real para o modo protegido e 
 
 ---
 
-## 1-2-2-3: Falha de Integridade do Firmware (ROM)
+## POST-27 — 1-2-2-3
+
+**Falha de Integridade do Firmware (ROM)**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *BIOS ROM Checksum* (Falha de integridade do firmware) |
 | **Componente afetado** | BIOS / EEPROM |
 | **Fase / Camada** | BIOS Verify / Camada 6: Firmware |
@@ -62,9 +90,9 @@ O equipamento passa no POST, a CPU avança do modo real para o modo protegido e 
 
 ### Causas
 A validação criptográfica (Checksum) do arquivo de BIOS falhou, o que significa que o código necessário para ligar a máquina está ilegível ou incompleto.
-* Desligamento repentino ou falha elétrica durante uma atualização de BIOS.
-* Chip SPI Flash/EEPROM degradado por tempo de vida útil ou pico elétrico.
-* Bateria CR2032 esgotada, gerando lixo na memória e corrupção das configurações.
+- Desligamento repentino ou falha elétrica durante uma atualização de BIOS.
+- Chip SPI Flash/EEPROM degradado por tempo de vida útil ou pico elétrico.
+- Bateria CR2032 esgotada, gerando lixo na memória e corrupção das configurações.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Bateria CR2032 Nova, Pendrive FAT32, Programadora EPROM (CH341A).
@@ -77,10 +105,12 @@ Os bipes cessam, o POST completa sem erros. É possível acessar o *Setup* da BI
 
 ---
 
-## 1-3-1-1: Falha no Teste de Refresh da RAM
+## POST-28 — 1-3-1-1
+
+**Falha no Teste de Refresh da RAM**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *DRAM Refresh Test* (Falha no teste de refresh da DRAM) |
 | **Componente afetado** | RAM / Slots DIMM |
 | **Fase / Camada** | Memory Init / Camada 3: Memória |
@@ -88,9 +118,9 @@ Os bipes cessam, o POST completa sem erros. É possível acessar o *Setup* da BI
 
 ### Causas
 As memórias dinâmicas necessitam de um ciclo de *refresh* elétrico contínuo para não perderem dados. A placa acusou falha nesse circuito.
-* O próprio pente de memória (Módulo DIMM) está avariado.
-* Pinos amassados ou oxidados no interior do *slot* DIMM da placa-mãe.
-* Controladora de memória (interna à CPU) apresentando instabilidade.
+- O próprio pente de memória (Módulo DIMM) está avariado.
+- Pinos amassados ou oxidados no interior do *slot* DIMM da placa-mãe.
+- Controladora de memória (interna à CPU) apresentando instabilidade.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Lupa de Bancada (10x), RAM de Teste Homologada.
@@ -104,10 +134,12 @@ Extinção dos bipes e POST bem-sucedido. Recomenda-se rodar o *MemTest86* por p
 
 ---
 
-## 1-3-4-1: Falha em Linha de Endereço da RAM
+## POST-29 — 1-3-4-1
+
+**Falha em Linha de Endereço da RAM**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *RAM Failure on Address Line* (Falha em linha de endereço da RAM) |
 | **Componente afetado** | RAM / Trilhas da Placa-mãe |
 | **Fase / Camada** | Memory Address Test / Camada 3: Memória |
@@ -115,18 +147,18 @@ Extinção dos bipes e POST bem-sucedido. Recomenda-se rodar o *MemTest86* por p
 
 ### Causas
 Erro de hardware altamente específico em que a controladora consegue energizar a RAM, mas não consegue endereçar/localizar um bloco específico de memória (Address Bus).
-* *Chip* lógico individual de memória (CI preto no pente) defeituoso.
-* Trilha microscópica rompida na placa-mãe no percurso entre a CPU e o *slot* DIMM.
-* Microfissuras ou solda fria nas soldagens inferiores do *slot* DIMM na placa.
-* Controladora de memória (CPU) parcialmente queimada.
+- *Chip* lógico individual de memória (CI preto no pente) defeituoso.
+- Trilha microscópica rompida na placa-mãe no percurso entre a CPU e o *slot* DIMM.
+- Microfissuras ou solda fria nas soldagens inferiores do *slot* DIMM na placa.
+- Controladora de memória (CPU) parcialmente queimada.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Módulo RAM Funcional, Multímetro (Continuidade), Esquema Elétrico.
 1. O passo inicial isola o componente mais barato: remova o pente suspeito e coloque um que se saiba estar perfeito.
 2. Se o computador ligar bem, descarte a RAM original, pois a mesma está avariada.
 3. Se a falha persistir mesmo com a memória boa:
-   * Mude a memória para o *slot* secundário. Se no secundário funcionar, o *slot* primário possui trilha rompida ou solda fria profunda na placa-mãe.
-   * Se falhar identicamente em todos os *slots*, há um dano no barramento da controladora de memória contida na CPU.
+   - Mude a memória para o *slot* secundário. Se no secundário funcionar, o *slot* primário possui trilha rompida ou solda fria profunda na placa-mãe.
+   - Se falhar identicamente em todos os *slots*, há um dano no barramento da controladora de memória contida na CPU.
 4. Um reparo de trilha exige esquema elétrico para o teste de continuidade (Técnica avançada).
 
 ### Validação
@@ -134,10 +166,12 @@ POST limpo. O sistema identifica integralmente a capacidade total instalada, e f
 
 ---
 
-## 1-4-2-1: Falha no Clock RTC do CMOS
+## POST-30 — 1-4-2-1
+
+**Falha no Clock RTC do CMOS**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *CMOS Clock Test* (Falha no clock RTC do CMOS) |
 | **Componente afetado** | CMOS / RTC / Cristal 32kHz |
 | **Fase / Camada** | RTC Init / Camada 5: Chipset / Motherboard |
@@ -145,9 +179,9 @@ POST limpo. O sistema identifica integralmente a capacidade total instalada, e f
 
 ### Causas
 O relógio de tempo real da placa (RTC), fundamental para a criptografia e agendamento de eventos do sistema, parou de funcionar.
-* Bateria do CMOS (CR2032) entregando voltagem insuficiente (inferior a 2.8V).
-* Cristal oscilador SMD de 32.768 kHz inoperante ou com solda fria.
-* Circuito interno de RTC no Chipset (PCH/Southbridge) queimado.
+- Bateria do CMOS (CR2032) entregando voltagem insuficiente (inferior a 2.8V).
+- Cristal oscilador SMD de 32.768 kHz inoperante ou com solda fria.
+- Circuito interno de RTC no Chipset (PCH/Southbridge) queimado.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Multímetro, Osciloscópio, Bateria CR2032 Nova, Componente Cristal SMD (opcional).
@@ -155,31 +189,30 @@ O relógio de tempo real da placa (RTC), fundamental para a criptografia e agend
 2. Realize o reset completo (*Clear CMOS*), ligue a máquina e configure a data e a hora atualizadas dentro do *Setup*. Salve e saia.
 3. Desligue a máquina da tomada, aguarde cerca de 10 minutos e torne a ligá-la. Verifique se o erro retorna e a hora foi zerada.
 4. Se o problema for persistente com bateria nova: O cristal oscilador de 32.768 kHz falhou.
-   * Laboratórios equipados utilizam osciloscópio para validar a oscilação nos pinos do componente.
-   * Havendo experiência em microsolda (SMD), o cristal pode ser substituído (componente de baixíssimo custo). Sem isso, a placa deverá ser condenada ou o usuário terá que aceitar a inconveniência do relógio perdendo sincronismo a cada *reboot*.
+   - Laboratórios equipados utilizam osciloscópio para validar a oscilação nos pinos do componente.
+   - Havendo experiência em microsolda (SMD), o cristal pode ser substituído (componente de baixíssimo custo). Sem isso, a placa deverá ser condenada ou o usuário terá que aceitar a inconveniência do relógio perdendo sincronismo a cada *reboot*.
 
 ### Validação
 Relógio e datas mantidos intactos mesmo com o computador desconectado da tomada. Cristal comprovadamente oscilando com frequência estável em 32.768 kHz (tolerância ±20ppm).
 
 ---
 
-## Consulte também
+## Próximos passos
 
-Para aprofundamento técnico ou informações sobre o fluxo de atendimento, consulte os documentos relacionados:
+| Se você… | Vá para |
+| --- | --- |
+| não encontrou o código aqui | [Índice de códigos POST](00-indice-codigos.md) — catálogo completo |
+| suspeita que o código tem outro significado | [Ambiguidade de códigos](../11-ambiguidades.md) |
+| quer saber o que testar naquele subsistema | [Diagnóstico por camada](../08-diagnostico-por-camada.md) |
+| aplicou a correção e precisa fechar o atendimento | [Validação final por componente](../13-validacao-final.md) |
 
-* **[Índice de códigos POST](00-indice-codigos.md):** Catálogo completo.
-* **[Ambiguidade de códigos](../11-ambiguidades.md):** Verifique divergências de sinais entre fabricantes.
-* **[Diagnóstico por camada](../08-diagnostico-por-camada.md):** Metodologia de testes nos subsistemas de hardware.
-* **[Fluxo de diagnóstico POST](../06-fluxo-post.md):** Como chegar até o código partindo de um sintoma generalizado.
-* **[Validação final por componente](../13-validacao-final.md):** Testes recomendados para fechamento de atendimento com segurança.
+**Para aprofundar**
+
+- **[Fluxo de diagnóstico POST](../06-fluxo-post.md):** Como chegar até o código partindo de um sintoma generalizado.
 
 ---
 
-| Metadados do Artigo | |
-| :--- | :--- |
-| **Fonte oficial** | Phoenix BIOS Technical Reference Manual |
-| **Fonte primária interna** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação** | 2026-08-08 |
+| Atributo | Valor |
+| --- | --- |
 | **Autoria** | Edsilas |
-| **Versão da doc.** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

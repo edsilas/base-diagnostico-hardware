@@ -1,4 +1,9 @@
-<!-- Gerado a partir de Ambos os arquivos-fonte. Não editar manualmente sem atualizar a fonte. -->
+---
+title: Índice da base de conhecimento
+description: Mapa completo da documentação, na ordem lógica de uso, com uma linha por documento.
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../README.md) › [Comece aqui](../README.md#comece-aqui) › **Índice da base de conhecimento**
 
@@ -13,7 +18,7 @@
 
 - [Mapa da documentação](#mapa-da-documentação)
 - [Todos os documentos](#todos-os-documentos)
-- [Convenção de níveis de confiança](#convenção-de-níveis-de-confiança)
+- [Conteúdo da base](#conteúdo-da-base)
 - [Próximos passos](#próximos-passos)
 
 ## Contexto
@@ -71,7 +76,7 @@ flowchart LR
         F4["15 Segurança e<br/>boas práticas"]
         F5["16 FAQ"]
     end
-    subgraph MA["Manutenção e rastreabilidade"]
+    subgraph MA["Manutenção"]
         G1["02 Arquitetura"]
         G2["references/"]
     end
@@ -124,6 +129,7 @@ abaixo é exatamente o mesmo.
 | [10-cenarios/](10-cenarios/00-indice-cenarios.md) | Os 13 procedimentos de falha pós-boot, em 9 agrupamentos. |
 | [11-ambiguidades.md](11-ambiguidades.md) | Os 5 sinais com mais de um significado, e o teste que desempata. |
 | [12-correlacoes.md](12-correlacoes.md) | As 6 falhas que se manifestam em outro subsistema. |
+| [20-dispositivos-windows.md](20-dispositivos-windows.md) | Os 18 códigos do Gerenciador de Dispositivos: peça não detectada, driver com problema, dispositivo desativado. **Fonte externa.** |
 
 ### Feche o atendimento
 
@@ -150,13 +156,11 @@ abaixo é exatamente o mesmo.
 | [16-faq.md](16-faq.md) | Dúvidas derivadas do conteúdo documentado. |
 | [15-seguranca-e-boas-praticas.md](15-seguranca-e-boas-praticas.md) | Precauções de bancada e procedimentos transversais canônicos. |
 
-### Manutenção e rastreabilidade
+### Manutenção
 
 | Documento | Finalidade |
 | --- | --- |
 | [02-arquitetura.md](02-arquitetura.md) | Como o conhecimento está organizado e de qual aba cada documento saiu. |
-| [references/fontes.md](references/fontes.md) | Inventário das fontes, do que foi extraído de cada aba e das verificações externas. |
-| [references/matriz-rastreabilidade.md](references/matriz-rastreabilidade.md) | Informação → coluna de origem → documento → nível de confiança. |
 | [references/changelog.md](references/changelog.md) | O que mudou em cada versão da documentação. |
 | [CONTRIBUTING.md](../CONTRIBUTING.md) | Regras de conteúdo, padrão dos documentos e fluxo de alteração. |
 
@@ -165,15 +169,22 @@ abaixo é exatamente o mesmo.
 > [05-utilizacao.md](05-utilizacao.md#ordem-de-leitura-para-quem-está-chegando-agora), com o
 > diagrama da sequência.
 
-## Convenção de níveis de confiança
+## Conteúdo da base
 
-| Nível | Significado |
+| Métrica | Valor |
 | --- | --- |
-| **Confirmado** | Identificado diretamente na fonte primária (célula da planilha). |
-| **Oficial** | Confirmado por documentação oficial de fabricante citada pela própria fonte. |
-| **Inferido** | Conclusão técnica ou organizacional derivada das informações, sempre sinalizada. |
-| **Não confirmado** | Informação encontrada, mas sem evidência suficiente. |
-| **Necessita validação** | Informação insuficiente, ausente ou conflitante entre fontes. |
+| Códigos de POST | 54 |
+| Códigos do Gerenciador de Dispositivos | 18 |
+| Cenários (IDs) | 13 |
+| Cenários (agrupamentos) | 9 |
+| Camadas do modelo POST | 7 |
+| Camadas do modelo sistêmico | 10 (1–10) |
+| Etapas do fluxo de POST | 7 |
+| Nós do fluxo sistêmico | 17 |
+| Casos de ambiguidade | 5 |
+| Correlações | 6 |
+| Componentes na validação final | 10 |
+| Etapas de ferramentas | 64 |
 
 ## Próximos passos
 
@@ -181,15 +192,11 @@ abaixo é exatamente o mesmo.
 | --- | --- |
 | quer entrar pelo sintoma | [README](../README.md) |
 | vai alterar a documentação | [Como contribuir](../CONTRIBUTING.md) |
-| quer rastrear uma informação até a célula de origem | [Matriz de rastreabilidade](references/matriz-rastreabilidade.md) |
 
 
 ---
 
-| | |
+| Atributo | Valor |
 | --- | --- |
-| **Fonte primária deste documento** | Ambos os arquivos-fonte |
-| **Status de confiança** | Confirmado (estrutura) — documento organizacional |
-| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

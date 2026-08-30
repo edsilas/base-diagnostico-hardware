@@ -5,8 +5,6 @@ author: Edsilas
 date: 2026-08-08
 ---
 
-<!-- Gerado a partir de `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → aba `REF_AIDA64`. Não editar manualmente sem atualizar a fonte. -->
-
 [Início](../../README.md) › [Opere as ferramentas](../../README.md#opere-as-ferramentas) › **Guia operacional — AIDA64 (etapas 31 a 45)**
 
 # Guia operacional — AIDA64 (etapas 31 a 45)
@@ -16,10 +14,11 @@ date: 2026-08-08
 
 **Aplica-se a:** Sistemas que carregam o Windows — sensores, stress test e relatórios
 
-## Neste artigo
+## Neste documento
 
 - [Contexto](#contexto)
 - [Escopo](#escopo)
+- [Fora do escopo](#fora-do-escopo)
 - [Relação com outros documentos](#relação-com-outros-documentos)
 - [Etapas](#etapas)
 - [Próximos passos](#próximos-passos)
@@ -32,7 +31,9 @@ Procedimento de uso do AIDA64 para monitoramento, teste de estabilidade, benchma
 
 As etapas 31 a 45 registradas na fonte, com todos os campos originais.
 
-**Fora do escopo:** Interpretação clínica dos resultados fora do que a fonte declara; procedimentos de outras ferramentas; critérios de validação por componente (ver documento 13).
+## Fora do escopo
+
+Interpretação clínica dos resultados fora do que a fonte declara; procedimentos de outras ferramentas; critérios de validação por componente (ver documento 13).
 
 ## Relação com outros documentos
 
@@ -48,7 +49,7 @@ As etapas 31 a 45 registradas na fonte, com todos os campos originais.
 ## Etapas
 
 | Nº | Fase do processo | Risco | Tempo estimado |
-| :--- | :--- | :--- | :--- |
+| --- | --- | --- | --- |
 | [31](#etapa-31--calibração-de-sensores-offset) | Calibração de Sensores (Offset) | Crítico | 10 min |
 | [32](#etapa-32--identificação-de-hardware-desconhecido) | Identificação de Hardware Desconhecido | Baixo | 2 min |
 | [33](#etapa-33--monitoramento-de-no-break-ups) | Monitoramento de No-Break (UPS) | Alto (Servidor) | 3 min |
@@ -850,7 +851,7 @@ Reverter alterações de energia feitas na Etapa 01 (Restaurar plano "Equilibrad
 ## Próximos passos
 
 | Se você… | Vá para |
-| :--- | :--- |
+| --- | --- |
 | terminou o teste e precisa fechar o atendimento | [Validação final por componente](../13-validacao-final.md) |
 | quer o procedimento do sintoma que motivou o teste | [Índice de cenários](../10-cenarios/00-indice-cenarios.md) |
 | precisa de outra ferramenta | [Índice de ferramentas](00-indice-ferramentas.md) |
@@ -858,9 +859,6 @@ Reverter alterações de energia feitas na Etapa 01 (Restaurar plano "Equilibrad
 ---
 
 | Atributo | Valor |
-| :--- | :--- |
-| **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → aba `REF_AIDA64` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
+| --- | --- |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

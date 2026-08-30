@@ -1,4 +1,9 @@
-<!-- Gerado a partir de Ambos os arquivos-fonte. Não editar manualmente sem atualizar a fonte. -->
+---
+title: Como utilizar esta base
+description: "Roteiro de entrada: por onde começar conforme o sintoma, em que ordem ler e quais regras seguir ao aplicar os procedimentos."
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../README.md) › [Comece aqui](../README.md#comece-aqui) › **Como utilizar esta base**
 
@@ -98,13 +103,9 @@ flowchart TD
 
 ## Consulta automatizada
 
-Cada documento é autocontido: traz contexto, escopo, fora de escopo, relação com outros documentos
-e a aba de origem no rodapé. É possível carregar apenas o documento relevante sem perder a noção de
-onde ele se encaixa. Os documentos derivados das planilhas trazem, na primeira linha, um comentário
-HTML com a aba de origem.
-
-Para rastrear qualquer afirmação até a célula de origem, use
-[references/matriz-rastreabilidade.md](references/matriz-rastreabilidade.md).
+Cada documento é autocontido: traz contexto, escopo, fora de escopo e relação com outros
+documentos. É possível carregar apenas o documento relevante sem perder a noção de onde ele se
+encaixa.
 
 ## Próximos passos
 
@@ -118,10 +119,7 @@ Para rastrear qualquer afirmação até a célula de origem, use
 
 ---
 
-| | |
+| Atributo | Valor |
 | --- | --- |
-| **Fonte primária deste documento** | Ambos os arquivos-fonte |
-| **Status de confiança** | Inferido (roteiro de navegação) sobre conteúdo Confirmado |
-| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

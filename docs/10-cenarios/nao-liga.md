@@ -5,8 +5,6 @@ author: Edsilas
 date: 2026-08-18
 ---
 
-<!-- Gerado a partir de `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `TABELA_PRINCIPAL` e `INDICE_CENARIOS`. Não editar manualmente sem atualizar a fonte. -->
-
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Cenário — Não liga**
 
 # Cenário — Não liga
@@ -16,10 +14,11 @@ date: 2026-08-18
 
 **Aplica-se a:** Equipamentos que concluem o POST — falhas percebidas em uso
 
-## Neste artigo
+## Neste documento
 
 - [Contexto](#contexto)
 - [Escopo](#escopo)
+- [Fora do escopo](#fora-do-escopo)
 - [Relação com outros documentos](#relação-com-outros-documentos)
 - [Entrada rápida (registro do índice de cenários)](#entrada-rápida-registro-do-índice-de-cenários)
 - [NL-01](#nl-01)
@@ -28,18 +27,20 @@ date: 2026-08-18
 
 ## Contexto
 
-Fichas de diagnóstico do cenário `Não liga` conforme registado na fonte. Cada ficha corresponde a um ID da tabela principal e reproduz integralmente os seus campos.
+Fichas de diagnóstico do cenário `Não liga` conforme registrado na fonte. Cada ficha corresponde a um ID da tabela principal e reproduz integralmente seus campos.
 
 ## Escopo
 
-IDs NL-01, NL-02 — sintoma, causa raiz, método de diagnóstico, comandos, correção, validação, risco e fonte oficial.
+IDs NL-01, NL-02 — sintoma, causa raiz, método de diagnóstico, comandos, correção, validação e risco.
 
-**Fora do escopo:** Outros cenários; catálogo de códigos POST; guias detalhados das ferramentas.
+## Fora do escopo
+
+Outros cenários; catálogo de códigos POST; guias detalhados das ferramentas.
 
 ## Relação com outros documentos
 
 - [Índice de cenários](00-indice-cenarios.md)
-- [Fluxo de diagnóstico sistémico](../07-fluxo-sistemico.md)
+- [Fluxo de diagnóstico sistêmico](../07-fluxo-sistemico.md)
 - [Correlações entre camadas](../12-correlacoes.md)
 - [Validação final por componente](../13-validacao-final.md)
 
@@ -62,7 +63,7 @@ IDs NL-01, NL-02 — sintoma, causa raiz, método de diagnóstico, comandos, cor
 - **Sintoma observado:** Equipamento não liga: sem LEDs, sem ventoinhas, sem sinal de vida.
 - **Camada afetada:** 1 - Energia
 - **Componente suspeito:** PSU (Fonte de Alimentação)
-- **Condição de ocorrência:** Ao pressionar o botão Power. Nenhuma resposta elétrica detetada.
+- **Condição de ocorrência:** Ao pressionar o botão Power. Nenhuma resposta elétrica detectada.
 
 ### Pré-requisitos
 
@@ -72,7 +73,7 @@ IDs NL-01, NL-02 — sintoma, causa raiz, método de diagnóstico, comandos, cor
 
 ### Diagnóstico
 
-**Causa raiz:** Falha na PSU: condensadores de saída degradados, fusível interno rompido, ou circuito de standby (+5VSB) inoperante. Ref: *ATX12V Power Supply Design Guide v2.53*, *Intel §2.2 DC Output*.
+**Causa raiz:** Falha na PSU: condensadores de saída degradados, fusível interno rompido, ou circuito de standby (+5VSB) inoperante.
 
 **Método de diagnóstico (passo a passo):**
 
@@ -114,13 +115,9 @@ N/A (teste elétrico físico)
 > [!CAUTION]
 > **Risco crítico:** Risco de choque elétrico severo. Certifique-se sempre de que o cabo AC está desconectado e os condensadores descarregados antes de manusear ou substituir a fonte de alimentação.
 
-### Origem
-
-**Fonte oficial:** Intel ATX12V PSU Design Guide v2.53; IEC 62368-1 (Segurança Elétrica)
-
 ### Próximos passos (NL-01)
 
-- Alcançado pelos nós [F01](../07-fluxo-sistemico.md#f01), [F02](../07-fluxo-sistemico.md#f02) do fluxo sistémico
+- Alcançado pelos nós [F01](../07-fluxo-sistemico.md#f01), [F02](../07-fluxo-sistemico.md#f02) do fluxo sistêmico
 - É pré-requisito de [NL-02](nao-liga.md#nl-02), [SV-01](liga-sem-video.md#sv-01), [BS-02](bsod.md#bs-02), [DN-01](disco-nao-reconhecido.md#dn-01), [SA-01](superaquecimento.md#sa-01)
 - Comando desta ficha na [referência consolidada de comandos](../19-comandos.md#nl-01--equipamento-não-liga-sem-leds-sem-ventoinhas-sem-sinal-de-vida)
 - Critérios de encerramento: [Validação final por componente](../13-validacao-final.md)
@@ -144,7 +141,7 @@ N/A (teste elétrico físico)
 
 ### Diagnóstico
 
-**Causa raiz:** Curto-circuito na placa-mãe (VRM em curto, condensador estufado), front panel header desconectado ou botão Power defeituoso. Ref: *OEM Hardware Maintenance Manual (seção Power-on Circuit)*.
+**Causa raiz:** Curto-circuito na placa-mãe (VRM em curto, condensador estufado), front panel header desconectado ou botão Power defeituoso.
 
 **Método de diagnóstico (passo a passo):**
 
@@ -183,13 +180,9 @@ N/A (teste físico)
 > [!WARNING]
 > **Risco alto:** Ao curto-circuitar os pinos PWR_SW para diagnóstico, certifique-se de tocar **apenas** nos dois pinos corretos identificados no manual para evitar curto-circuitos não intencionais na placa-mãe.
 
-### Origem
-
-**Fonte oficial:** Manual de Manutenção OEM (Dell/HP/Lenovo); ASUS/Gigabyte/MSI Motherboard User Manual (Front Panel Header pinout)
-
 ### Próximos passos (NL-02)
 
-- Alcançado pelos nós [F02b](../07-fluxo-sistemico.md#f02b) do fluxo sistémico
+- Alcançado pelos nós [F02b](../07-fluxo-sistemico.md#f02b) do fluxo sistêmico
 - Depende de [NL-01](nao-liga.md#nl-01) — execute-os antes
 - É pré-requisito de [SV-01](liga-sem-video.md#sv-01)
 - Comando desta ficha na [referência consolidada de comandos](../19-comandos.md#nl-02--psu-funcional-teste-paperclip-ok-mas-sistema-não-liga-ao-conectar-na-placa-mãe)
@@ -200,18 +193,15 @@ N/A (teste físico)
 ## Próximos passos
 
 | Se você… | Vá para |
-| :--- | :--- |
+| --- | --- |
 | o problema voltou depois da troca de peça | [Correlações entre camadas](../12-correlacoes.md) |
 | aplicou a correção e precisa validar | [Validação final por componente](../13-validacao-final.md) |
 | precisa operar AIDA64, MemTest86 ou Victoria | [Guias de ferramentas](../14-ferramentas/00-indice-ferramentas.md) |
-| quer conferir onde este cenário entra no fluxo | [Fluxo de diagnóstico sistémico](../07-fluxo-sistemico.md) |
+| quer conferir onde este cenário entra no fluxo | [Fluxo de diagnóstico sistêmico](../07-fluxo-sistemico.md) |
 
 ---
 
 | Atributo | Valor |
-| :--- | :--- |
-| **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `TABELA_PRINCIPAL` e `INDICE_CENARIOS` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-18 |
+| --- | --- |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

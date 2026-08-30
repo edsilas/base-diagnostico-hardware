@@ -5,8 +5,6 @@ author: Edsilas
 date: 2026-08-18
 ---
 
-<!-- Gerado a partir de `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `TABELA_PRINCIPAL` e `INDICE_CENARIOS`. Não editar manualmente sem atualizar a fonte. -->
-
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Cenário — Liga sem vídeo**
 
 # Cenário — Liga sem vídeo
@@ -16,10 +14,11 @@ date: 2026-08-18
 
 **Aplica-se a:** Equipamentos que concluem o POST — falhas percebidas em uso
 
-## Neste artigo
+## Neste documento
 
 - [Contexto](#contexto)
 - [Escopo](#escopo)
+- [Fora do escopo](#fora-do-escopo)
 - [Relação com outros documentos](#relação-com-outros-documentos)
 - [Entrada rápida (registro do índice de cenários)](#entrada-rápida-registro-do-índice-de-cenários)
 - [SV-01](#sv-01)
@@ -28,18 +27,20 @@ date: 2026-08-18
 
 ## Contexto
 
-Fichas de diagnóstico do cenário `Liga sem vídeo` conforme registado na fonte. Cada ficha corresponde a um ID da tabela principal e reproduz integralmente os seus campos.
+Fichas de diagnóstico do cenário `Liga sem vídeo` conforme registrado na fonte. Cada ficha corresponde a um ID da tabela principal e reproduz integralmente seus campos.
 
 ## Escopo
 
-IDs SV-01, SV-02 — sintoma, causa raiz, método de diagnóstico, comandos, correção, validação, risco e fonte oficial.
+IDs SV-01, SV-02 — sintoma, causa raiz, método de diagnóstico, comandos, correção, validação e risco.
 
-**Fora do escopo:** Outros cenários; catálogo de códigos POST; guias detalhados das ferramentas.
+## Fora do escopo
+
+Outros cenários; catálogo de códigos POST; guias detalhados das ferramentas.
 
 ## Relação com outros documentos
 
 - [Índice de cenários](00-indice-cenarios.md)
-- [Fluxo de diagnóstico sistémico](../07-fluxo-sistemico.md)
+- [Fluxo de diagnóstico sistêmico](../07-fluxo-sistemico.md)
 - [Correlações entre camadas](../12-correlacoes.md)
 - [Validação final por componente](../13-validacao-final.md)
 
@@ -72,7 +73,7 @@ IDs SV-01, SV-02 — sintoma, causa raiz, método de diagnóstico, comandos, cor
 
 ### Diagnóstico
 
-**Causa raiz:** Falha na inicialização de memória (*Memory Training failure*): módulos mal encaixados, incompatíveis ou defeituosos. SPD não lido corretamente. Ref: *JEDEC JESD79-5 (DDR5 SDRAM Standard)*; *Intel Memory Reference Code (MRC) documentation*.
+**Causa raiz:** Falha na inicialização de memória (*Memory Training failure*): módulos mal encaixados, incompatíveis ou defeituosos. SPD não lido corretamente.
 
 **Método de diagnóstico (passo a passo):**
 
@@ -98,7 +99,7 @@ N/A (teste físico). Pós-reparo: MemTest86 via boot USB
 2. Soprar slot DIMM com ar comprimido.
 3. Reinstalar módulo com pressão firme até travas encaixarem.
 4. `SE` módulo defeituoso identificado `ENTÃO`: substituir e iniciar RMA.
-5. `SE` slot defeituoso `ENTÃO`: testar noutro slot; se confirmado, placa-mãe com defeito.
+5. `SE` slot defeituoso `ENTÃO`: testar em outro slot; se confirmado, placa-mãe com defeito.
 6. Redefinir BIOS para defaults (CMOS Clear) se XMP/DOCP causou falha de training.
 
 ### Resultado esperado
@@ -114,13 +115,9 @@ N/A (teste físico). Pós-reparo: MemTest86 via boot USB
 > [!WARNING]
 > **Risco alto:** Descarregue sempre a eletricidade estática antes de manipular os módulos de memória (RAM) e evite tocar nos contactos dourados para prevenir danos por ESD (Descarga Eletrostática).
 
-### Origem
-
-**Fonte oficial:** JEDEC JESD79-4/5 (DDR4/DDR5 Standards); Intel MRC; Manual OEM da placa-mãe (Memory QVL)
-
 ### Próximos passos (SV-01)
 
-- Alcançado pelos nós [F03](../07-fluxo-sistemico.md#f03), [F04](../07-fluxo-sistemico.md#f04) do fluxo sistémico
+- Alcançado pelos nós [F03](../07-fluxo-sistemico.md#f03), [F04](../07-fluxo-sistemico.md#f04) do fluxo sistêmico
 - Depende de [NL-01](nao-liga.md#nl-01), [NL-02](nao-liga.md#nl-02) — execute-os antes
 - É pré-requisito de [SV-02](liga-sem-video.md#sv-02), [TR-01](travamentos-freeze.md#tr-01), [SA-01](superaquecimento.md#sa-01)
 - Comando desta ficha na [referência consolidada de comandos](../19-comandos.md#sv-01--sistema-liga-ventoinhas-giram-leds-acendem-mas-sem-saída-de-vídeo-monitor-em-standby)
@@ -145,7 +142,7 @@ N/A (teste físico). Pós-reparo: MemTest86 via boot USB
 
 ### Diagnóstico
 
-**Causa raiz:** GPU sem contacto adequado no slot PCIe, alimentação auxiliar (6/8-pin) desconectada, GPU defeituosa, ou iGPU desativada na BIOS. Ref: *PCI Express Base Specification Rev 5.0*; *OEM GPU User Guide*.
+**Causa raiz:** GPU sem contacto adequado no slot PCIe, alimentação auxiliar (6/8-pin) desconectada, GPU defeituosa, ou iGPU desativada na BIOS.
 
 **Método de diagnóstico (passo a passo):**
 
@@ -154,7 +151,7 @@ N/A (teste físico). Pós-reparo: MemTest86 via boot USB
 3. Conectar monitor na saída de vídeo da placa-mãe (iGPU).
 4. `SE` o vídeo voltar `ENTÃO`: GPU dedicada ou slot defeituoso.
 5. Reinstalar GPU com pressão firme. Verificar cabos de alimentação auxiliar (6+2 pin).
-6. Testar GPU noutro slot PCIe ou noutro sistema known-good.
+6. Testar GPU em outro slot PCIe ou em outro sistema known-good.
 7. `SE` a iGPU também não der vídeo `ENTÃO`: suspeitar de CPU ou firmware.
 
 **Comandos técnicos:**
@@ -176,7 +173,7 @@ N/A (teste físico)
 
 ### Resultado esperado
 
-- **Critério de validação técnica:** POST completa, imagem exibida no monitor. GPU detetada no Device Manager sem erros.
+- **Critério de validação técnica:** POST completa, imagem exibida no monitor. GPU detectada no Device Manager sem erros.
 - **Evidência de sucesso:** Debug LED avança além de VGA. Driver de vídeo carrega sem código 43. Resolução nativa atingida.
 
 ### Risco e impacto
@@ -187,13 +184,9 @@ N/A (teste físico)
 > [!WARNING]
 > **Risco médio:** A remoção forçada da GPU sem libertar a trava do slot PCIe pode arrancar a ranhura da motherboard. Realize os testes físicos com cuidado.
 
-### Origem
-
-**Fonte oficial:** PCI Express Base Spec Rev 5.0; NVIDIA/AMD GPU User Guides; Manual OEM da placa-mãe
-
 ### Próximos passos (SV-02)
 
-- Alcançado pelos nós [F05](../07-fluxo-sistemico.md#f05) do fluxo sistémico
+- Alcançado pelos nós [F05](../07-fluxo-sistemico.md#f05) do fluxo sistêmico
 - Depende de [SV-01](liga-sem-video.md#sv-01) — execute-os antes
 - Comando desta ficha na [referência consolidada de comandos](../19-comandos.md#sv-02--sistema-liga-sem-vídeo-ram-validada-debug-led-estaciona-em-vga)
 - Critérios de encerramento: [Validação final por componente](../13-validacao-final.md)
@@ -203,18 +196,15 @@ N/A (teste físico)
 ## Próximos passos
 
 | Se você… | Vá para |
-| :--- | :--- |
+| --- | --- |
 | o problema voltou depois da troca de peça | [Correlações entre camadas](../12-correlacoes.md) |
 | aplicou a correção e precisa validar | [Validação final por componente](../13-validacao-final.md) |
 | precisa operar AIDA64, MemTest86 ou Victoria | [Guias de ferramentas](../14-ferramentas/00-indice-ferramentas.md) |
-| quer conferir onde este cenário entra no fluxo | [Fluxo de diagnóstico sistémico](../07-fluxo-sistemico.md) |
+| quer conferir onde este cenário entra no fluxo | [Fluxo de diagnóstico sistêmico](../07-fluxo-sistemico.md) |
 
 ---
 
 | Atributo | Valor |
-| :--- | :--- |
-| **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `TABELA_PRINCIPAL` e `INDICE_CENARIOS` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-18 |
+| --- | --- |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

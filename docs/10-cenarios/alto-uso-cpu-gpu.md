@@ -5,8 +5,6 @@ author: Edsilas
 date: 2026-08-08
 ---
 
-<!-- Gerado a partir de `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `TABELA_PRINCIPAL` e `INDICE_CENARIOS`. Não editar manualmente sem atualizar a fonte. -->
-
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Cenário — Alto uso CPU/GPU**
 
 # Cenário — Alto uso CPU/GPU
@@ -16,10 +14,11 @@ date: 2026-08-08
 
 **Aplica-se a:** Equipamentos que concluem o POST — falhas percebidas em uso
 
-## Neste artigo
+## Neste documento
 
 - [Contexto](#contexto)
 - [Escopo](#escopo)
+- [Fora do escopo](#fora-do-escopo)
 - [Relação com outros documentos](#relação-com-outros-documentos)
 - [Entrada rápida (registro do índice de cenários)](#entrada-rápida-registro-do-índice-de-cenários)
 - [AU-01](#au-01)
@@ -27,18 +26,20 @@ date: 2026-08-08
 
 ## Contexto
 
-Fichas de diagnóstico do cenário `Alto uso CPU/GPU` conforme registado na fonte. Cada ficha corresponde a um ID da tabela principal e reproduz integralmente os seus campos.
+Fichas de diagnóstico do cenário `Alto uso CPU/GPU` conforme registrado na fonte. Cada ficha corresponde a um ID da tabela principal e reproduz integralmente seus campos.
 
 ## Escopo
 
-IDs AU-01 — sintoma, causa raiz, método de diagnóstico, comandos, correção, validação, risco e fonte oficial.
+IDs AU-01 — sintoma, causa raiz, método de diagnóstico, comandos, correção, validação e risco.
 
-**Fora do escopo:** Outros cenários; catálogo de códigos POST; guias detalhados das ferramentas.
+## Fora do escopo
+
+Outros cenários; catálogo de códigos POST; guias detalhados das ferramentas.
 
 ## Relação com outros documentos
 
 - [Índice de cenários](00-indice-cenarios.md)
-- [Fluxo de diagnóstico sistémico](../07-fluxo-sistemico.md)
+- [Fluxo de diagnóstico sistêmico](../07-fluxo-sistemico.md)
 - [Correlações entre camadas](../12-correlacoes.md)
 - [Validação final por componente](../13-validacao-final.md)
 
@@ -71,7 +72,7 @@ IDs AU-01 — sintoma, causa raiz, método de diagnóstico, comandos, correção
 
 ### Diagnóstico
 
-**Causa raiz:** Windows Update em download/instalação, Windows Search a indexar, driver com polling excessivo, ou malware (cryptominer). Ref: *Microsoft Docs: Troubleshoot high CPU usage*.
+**Causa raiz:** Windows Update em download/instalação, Windows Search indexando, driver com polling excessivo, ou malware (cryptominer).
 
 **Método de diagnóstico (passo a passo):**
 
@@ -117,15 +118,11 @@ MpCmdRun.exe -Scan -ScanType 2
 - **Impacto no sistema:** Degradação de performance. Consumo energético elevado. `SE` malware: risco de roubo de dados.
 
 > [!WARNING]
-> **Risco médio:** Atenção para não interromper processos críticos do sistema que possam causar ecrã azul ou corrupção do Windows.
-
-### Origem
-
-**Fonte oficial:** Microsoft Docs: Troubleshoot high CPU usage; Sysinternals Process Explorer Documentation; Microsoft Security Intelligence
+> **Risco médio:** Atenção para não interromper processos críticos do sistema que possam causar tela azul ou corrupção do Windows.
 
 ### Próximos passos (AU-01)
 
-- Alcançado pelos nós [F09c](../07-fluxo-sistemico.md#f09c) do fluxo sistémico
+- Alcançado pelos nós [F09c](../07-fluxo-sistemico.md#f09c) do fluxo sistêmico
 - Depende de [TR-01](travamentos-freeze.md#tr-01) — execute-os antes
 - Comando desta ficha na [referência consolidada de comandos](../19-comandos.md#au-01--cpu-em-100-de-uso-constante-sem-carga-aparente-do-usuário-sistema-lento)
 - Critérios de encerramento: [Validação final por componente](../13-validacao-final.md)
@@ -135,18 +132,15 @@ MpCmdRun.exe -Scan -ScanType 2
 ## Próximos passos
 
 | Se você… | Vá para |
-| :--- | :--- |
+| --- | --- |
 | o problema voltou depois da troca de peça | [Correlações entre camadas](../12-correlacoes.md) |
 | aplicou a correção e precisa validar | [Validação final por componente](../13-validacao-final.md) |
 | precisa operar AIDA64, MemTest86 ou Victoria | [Guias de ferramentas](../14-ferramentas/00-indice-ferramentas.md) |
-| quer conferir onde este cenário entra no fluxo | [Fluxo de diagnóstico sistémico](../07-fluxo-sistemico.md) |
+| quer conferir onde este cenário entra no fluxo | [Fluxo de diagnóstico sistêmico](../07-fluxo-sistemico.md) |
 
 ---
 
 | Atributo | Valor |
-| :--- | :--- |
-| **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `TABELA_PRINCIPAL` e `INDICE_CENARIOS` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
+| --- | --- |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

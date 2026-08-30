@@ -1,4 +1,9 @@
-<!-- Gerado a partir de `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → aba `VALIDACAO_FINAL`. Não editar manualmente sem atualizar a fonte. -->
+---
+title: Validação final por componente
+description: Critérios objetivos de aprovação e reprovação por componente, com tempo de observação e encaminhamento em caso de falha.
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../README.md) › [Feche o atendimento](../README.md#feche-o-atendimento) › **Validação final por componente**
 
@@ -451,10 +456,7 @@ Reaplicar pasta. Verificar cooler. Melhorar airflow. Substituir cooler se inadeq
 
 ---
 
-| | |
+| Atributo | Valor |
 | --- | --- |
-| **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → aba `VALIDACAO_FINAL` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

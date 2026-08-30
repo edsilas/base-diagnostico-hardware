@@ -1,4 +1,9 @@
-<!-- Gerado a partir de Ambos os arquivos-fonte. Não editar manualmente sem atualizar a fonte. -->
+---
+title: Glossário
+description: 47 termos técnicos usados no material, com a definição empregada nesta base e a expansão de cada sigla.
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../README.md) › [Consulte a referência](../README.md#consulte-a-referência) › **Glossário**
 
@@ -59,20 +64,20 @@
 - [Hammer Test (Teste 13)](#hammer-test-teste-13)
 - [PSREF (Product Specifications Reference)](#psref-product-specifications-reference)
 - [Siglas de fase do POST](#siglas-de-fase-do-post)
-- [Siglas expandidas fora da fonte primária](#siglas-expandidas-fora-da-fonte-primária)
+- [Siglas expandidas nesta base](#siglas-expandidas-nesta-base)
 - [Próximos passos](#próximos-passos)
 
 ## Contexto
 
-Termos técnicos efetivamente usados no material, definidos a partir do que as fontes dizem sobre eles. Termos que a fonte usa sem definir estão marcados como tal.
+Termos técnicos efetivamente usados no material, com a definição empregada nesta base.
 
 ## Escopo
 
-Definição, nível de confiança e documento onde o termo é aplicado.
+Definição e documento onde o termo é aplicado.
 
 ## Fora do escopo
 
-Termos genéricos de informática sem relação com os procedimentos documentados; expansões de siglas que a fonte não fornece.
+Termos genéricos de informática sem relação com os procedimentos documentados.
 
 ## Relação com outros documentos
 
@@ -82,15 +87,13 @@ Termos genéricos de informática sem relação com os procedimentos documentado
 
 ---
 
-> **Critério de inclusão.** Só entram termos que aparecem nas fontes e cuja definição pode ser
-> sustentada pelo que elas dizem. Onde a fonte usa a sigla sem expandi-la, isso está registrado no
-> nível de confiança em vez de completado por conhecimento externo.
+> **Critério de inclusão.** Só entram termos que aparecem no material e cuja definição pode ser
+> sustentada pelo que ele diz.
 
 ## 5VSB (standby 5 V)
 
 Tensão de standby presente no conector ATX de 24 pinos com o cabo AC conectado, mesmo com o equipamento desligado. A fonte localiza a medição no pino 9, fio roxo, e define 5,0 V ±5% como valor esperado. Sua ausência é o primeiro indicador de fonte morta ou cabo AC com problema.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 08-diagnostico-por-camada.md, 10-cenarios/nao-liga.md
 
 ---
@@ -99,7 +102,6 @@ Tensão de standby presente no conector ATX de 24 pinos com o cabo AC conectado,
 
 Fase do POST em que o firmware seleciona o dispositivo de boot. Expansão fornecida pela própria fonte no campo `FASE POST`.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 09-codigos-post/
 
 ---
@@ -108,10 +110,9 @@ Fase do POST em que o firmware seleciona o dispositivo de boot. Expansão fornec
 
 Autoteste embutido. A base o cita em dois usos: o autoteste da fonte de alimentação, acionado por
 botão próprio na traseira de desktops Dell, e um autoteste de tela acionado por `D` + Power. No
-autoteste de fonte, o critério publicado pela Dell é **LED sólido e ventoinha girando**; ventoinha
+autoteste de fonte, o critério é **LED sólido e ventoinha girando**; ventoinha
 parada reprova o teste mesmo com o LED aceso.
 
-**Nível de confiança:** Confirmado (uso, pela fonte primária) / Confirmado (expansão e critério, por documentação Dell)  
 **Aplicado em:** 09-codigos-post/dell.md
 
 ---
@@ -123,7 +124,6 @@ Configuração reduzida para isolar a falha. A base define **duas composições 
 anterior mais saída de vídeo e monitor), escolhidas conforme o equipamento tenha ou não Debug LED,
 Q-Code ou speaker. O cooler é obrigatório nas duas.
 
-**Nível de confiança:** Confirmado — composições definidas em [15-seguranca-e-boas-praticas.md](15-seguranca-e-boas-praticas.md#boot-mínimo-as-duas-composições-canônicas)  
 **Aplicado em:** 06-fluxo-post.md, 07-fluxo-sistemico.md, 15-seguranca-e-boas-praticas.md
 
 ---
@@ -135,7 +135,6 @@ um por escopo: o *modelo POST* (7 camadas, notação `Camada N: NOME`) e o *mode
 (10 camadas, notação `N - Nome`). O formato do texto identifica o modelo; os números **não** se
 correspondem entre eles.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 03-taxonomia-camadas.md
 
 ---
@@ -144,7 +143,6 @@ correspondem entre eles.
 
 Programadora de EPROM citada para regravação física do chip de BIOS, usada com clamp SOIC-8 e software de gravação (a fonte cita flashrom e AsProgrammer).
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 08-diagnostico-por-camada.md
 
 ---
@@ -153,7 +151,6 @@ Programadora de EPROM citada para regravação física do chip de BIOS, usada co
 
 LEDs de diagnóstico presentes em placas-mãe, que a fonte descreve seguindo a sequência CPU → DRAM → VGA → BOOT. O LED em que a sequência trava indica a camada com problema.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 06-fluxo-post.md, 09-codigos-post/generico-debug-led.md
 
 ---
@@ -162,7 +159,6 @@ LEDs de diagnóstico presentes em placas-mãe, que a fonte descreve seguindo a s
 
 Utilitário citado para remoção completa de driver de vídeo em Modo de Segurança, antes de instalar driver limpo. Expansão fornecida pela fonte.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 12-correlacoes.md
 
 ---
@@ -171,7 +167,6 @@ Utilitário citado para remoção completa de driver de vídeo em Modo de Segura
 
 Controladora de memória integrada à CPU. A fonte a aponta como suspeita quando módulos *known-good* falham em todos os slots. Expansão fornecida pela fonte.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 12-correlacoes.md, 10-cenarios/
 
 ---
@@ -180,7 +175,6 @@ Controladora de memória integrada à CPU. A fonte a aponta como suspeita quando
 
 Evento do Visualizador de Eventos do Windows usado pela fonte como evidência de reinício sem desligamento limpo. O critério PASS de fonte exige zero ocorrências.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 13-validacao-final.md, 10-cenarios/reinicializacao-aleatoria.md
 
 ---
@@ -189,7 +183,6 @@ Evento do Visualizador de Eventos do Windows usado pela fonte como evidência de
 
 Componente comprovadamente funcional, usado como referência em teste cruzado. A fonte exige que o substituto tenha a mesma especificação (frequência, CL, tensão).
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 06-fluxo-post.md, 09-codigos-post/
 
 ---
@@ -198,7 +191,6 @@ Componente comprovadamente funcional, usado como referência em teste cruzado. A
 
 Chipset da placa-mãe. Expansão fornecida pela fonte na descrição da camada de chipset.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 08-diagnostico-por-camada.md
 
 ---
@@ -208,7 +200,6 @@ Chipset da placa-mãe. Expansão fornecida pela fonte na descrição da camada d
 Ciclo completo da bateria de testes. Segundo a documentação do desenvolvedor, a bateria padrão executa os testes **0 a 13 — quatorze
 testes**. O critério de aprovação adotado pela base é zero erro em **4 passes**.
 
-**Nível de confiança:** Confirmado (critério, pela fonte primária; contagem de testes, pela documentação PassMark)  
 **Aplicado em:** 14-ferramentas/memtest86.md
 
 ---
@@ -219,7 +210,6 @@ Descarga dos capacitores residuais antes de manipular componentes — chamado *f
 e *residual electrical charge* pela HP. A base adota **30 s** com o botão Power pressionado e o
 cabo AC removido, valor que satisfaz e supera os mínimos publicados por Dell (15–20 s) e HP (≈15 s).
 
-**Nível de confiança:** Confirmado — ver [procedimento canônico](15-seguranca-e-boas-praticas.md#procedimento-canônico-de-power-drain)  
 **Aplicado em:** 09-codigos-post/, 10-cenarios/nao-liga.md, 15-seguranca-e-boas-praticas.md
 
 ---
@@ -228,7 +218,6 @@ cabo AC removido, valor que satisfaz e supera os mínimos publicados por Dell (1
 
 Proteção térmica que, segundo a fonte, em caso extremo provoca desligamento abrupto indistinguível de falha de fonte.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 12-correlacoes.md
 
 ---
@@ -237,7 +226,6 @@ Proteção térmica que, segundo a fonte, em caso extremo provoca desligamento a
 
 Código hexadecimal de dois dígitos exibido em display na placa-mãe. A fonte distingue código **fixo** (travamento — consultar a ficha) de código **progredindo** (POST em andamento).
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 06-fluxo-post.md, 09-codigos-post/ami-q-code.md
 
 ---
@@ -246,7 +234,6 @@ Código hexadecimal de dois dígitos exibido em display na placa-mãe. A fonte d
 
 Lista de módulos de memória homologados pelo fabricante da placa-mãe. Expansão fornecida pela fonte.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 08-diagnostico-por-camada.md
 
 ---
@@ -255,7 +242,6 @@ Lista de módulos de memória homologados pelo fabricante da placa-mãe. Expans�
 
 Ação que força a controladora do disco a remapear blocos defeituosos para a área de reserva. A fonte a associa ao atributo S.M.A.R.T. C5.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 14-ferramentas/victoria.md
 
 ---
@@ -264,7 +250,6 @@ Ação que força a controladora do disco a remapear blocos defeituosos para a �
 
 Reencaixe do componente no slot, com pressão uniforme. Aparece como primeiro procedimento em falhas de memória e de vídeo.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 08-diagnostico-por-camada.md
 
 ---
@@ -273,7 +258,6 @@ Reencaixe do componente no slot, com pressão uniforme. Aparece como primeiro pr
 
 Ondulação residual na saída da fonte. A fonte define tolerância de 120 mV pico a pico na linha +12 V e indica osciloscópio para a medição.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 08-diagnostico-por-camada.md
 
 ---
@@ -282,7 +266,6 @@ Ondulação residual na saída da fonte. A fonte define tolerância de 120 mV pi
 
 Atributos críticos de saúde do disco. A fonte os identifica como ID 05 (*Reallocated Sectors*), C5 (*Current Pending*) e C6 (*Uncorrectable*), e exige valor zero nos três como critério de aprovação.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 13-validacao-final.md, 07-fluxo-sistemico.md, 10-cenarios/bsod.md
 
 ---
@@ -291,7 +274,6 @@ Atributos críticos de saúde do disco. A fonte os identifica como ID 05 (*Reall
 
 Conjunto de tabelas de firmware que descrevem o hardware ao sistema operacional. A fonte registra que erros de ACPI levam a falhas de suspensão/hibernação e à tela azul DRIVER_POWER_STATE_FAILURE, e que atualizar a BIOS costuma corrigir tabelas corrompidas.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 14-ferramentas/aida64-etapas-16-30.md, 12-correlacoes.md
 
 ---
@@ -300,7 +282,6 @@ Conjunto de tabelas de firmware que descrevem o hardware ao sistema operacional.
 
 Estruturas alojadas nos primeiros 64 KB de memória. A fonte explica que essa região é crítica justamente por contê-las, o que torna sua falha impeditiva do POST.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 09-codigos-post/ami-legacy.md
 
 ---
@@ -309,7 +290,6 @@ Estruturas alojadas nos primeiros 64 KB de memória. A fonte explica que essa re
 
 Fase do POST em que os drivers do firmware são executados. A fonte registra que travamento nessa fase indica que a CPU começou a executar mas não concluiu. Expansão fornecida pela fonte.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 09-codigos-post/ami-q-code.md
 
 ---
@@ -318,7 +298,6 @@ Fase do POST em que os drivers do firmware são executados. A fonte registra que
 
 Área de reserva do disco para onde o comando de Remap move endereços LBA defeituosos. A fonte registra que, quando a G-List lota, o disco deixa de aceitar novos remapeamentos.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 14-ferramentas/victoria.md
 
 ---
@@ -327,7 +306,6 @@ Fase do POST em que os drivers do firmware são executados. A fonte registra que
 
 Protocolo de saída de vídeo em ambiente UEFI. A fonte o cita como causa de tela preta ao tentar iniciar o MemTest86 em placas incompatíveis.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 14-ferramentas/memtest86.md
 
 ---
@@ -336,7 +314,6 @@ Protocolo de saída de vídeo em ambiente UEFI. A fonte o cita como causa de tel
 
 Manual de manutenção do fabricante. A fonte o indica, junto ao Lenovo PSREF, como consulta final quando o procedimento documentado não resolve.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 09-codigos-post/lenovo.md
 
 ---
@@ -345,7 +322,6 @@ Manual de manutenção do fabricante. A fonte o indica, junto ao Lenovo PSREF, c
 
 Controlador de teclado. A fonte registra que ele comanda o Gate A20 e que, em sistemas legados, era responsável por habilitar a linha de endereço correspondente — daí falhas de teclado bloquearem o POST.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 09-codigos-post/ami-legacy.md
 
 ---
@@ -354,7 +330,6 @@ Controlador de teclado. A fonte registra que ele comanda o Gate A20 e que, em si
 
 Firmware listado pela fonte entre os componentes da camada de firmware, ao lado do SPI Flash, da EEPROM, da NVRAM do CMOS, das Option ROMs e dos patches de microcode.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 08-diagnostico-por-camada.md
 
 ---
@@ -365,7 +340,6 @@ Proteções da fonte de alimentação: a primeira atua por excesso de corrente n
 por excesso de potência total. A base registra o disparo de OCP/OPP como causa de a PSU não
 sustentar carga de pico, e o desarme por OCP como erro possível durante stress test.
 
-**Nível de confiança:** Confirmado (uso) / Inferido (expansão de OPP, pela nomenclatura corrente do setor)  
 **Aplicado em:** 10-cenarios/reinicializacao-aleatoria.md, 14-ferramentas/aida64-etapas-01-15.md
 
 ---
@@ -374,7 +348,6 @@ sustentar carga de pico, e o desarme por OCP como erro possível durante stress 
 
 Falha em que o acesso repetido a uma linha de memória faz a carga elétrica vazar para a linha vizinha e inverter um bit. A fonte a verifica pelo Teste 13 do MemTest86 e registra que módulos DDR3/DDR4 antigos costumam não ter proteção.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 14-ferramentas/memtest86.md
 
 ---
@@ -383,7 +356,6 @@ Falha em que o acesso repetido a uma linha de memória faz a carga elétrica vaz
 
 Sinal sonoro em forma de melodia usado por equipamentos Lenovo, interpretável pelo aplicativo Lenovo PC Diagnostics.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 09-codigos-post/lenovo.md
 
 ---
@@ -392,7 +364,6 @@ Sinal sonoro em forma de melodia usado por equipamentos Lenovo, interpretável p
 
 Chip do módulo de memória que guarda as temporizações. A fonte o cita como origem de incompatibilidade com a controladora e indica o AIDA64 para ler seus dados brutos. Expansão fornecida pela fonte.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 09-codigos-post/, 14-ferramentas/aida64-etapas-01-15.md
 
 ---
@@ -401,7 +372,6 @@ Chip do módulo de memória que guarda as temporizações. A fonte o cita como o
 
 Chip de segurança. A fonte registra seu uso em ThinkPads para criptografia BitLocker e autenticação, lista as causas de falha (firmware corrompido, desabilitação incorreta, defeito físico, reset após atualização de BIOS) e define o critério de validação: TPM reconhecido no BIOS e `tpm.msc` reportando o chip pronto.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 09-codigos-post/lenovo.md, 14-ferramentas/aida64-etapas-16-30.md
 
 ---
@@ -410,7 +380,6 @@ Chip de segurança. A fonte registra seu uso em ThinkPads para criptografia BitL
 
 Mecanismo cujo disparo reinicia o driver de vídeo, podendo gerar tela azul. A fonte o usa como indicador de problema de driver, não de hardware. Expansão fornecida pela fonte.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 12-correlacoes.md
 
 ---
@@ -419,7 +388,6 @@ Mecanismo cujo disparo reinicia o driver de vídeo, podendo gerar tela azul. A f
 
 Instalação do componente suspeito em outro sistema. A fonte define o critério de decisão: falha em dois sistemas condena o componente; funcionamento em outro sistema condena a placa-mãe.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 06-fluxo-post.md
 
 ---
@@ -428,7 +396,6 @@ Instalação do componente suspeito em outro sistema. A fonte define o critério
 
 Acionamento da fonte fora da placa-mãe, curto-circuitando PS_ON (pino 16, fio verde) ao COM (pino 17, fio preto) do conector de 24 pinos.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 10-cenarios/nao-liga.md
 
 ---
@@ -441,7 +408,6 @@ descrever o sintoma de superaquecimento; a Intel informa que o limite varia por 
 entre **100 °C e 110 °C**. É o teto físico que ancora a escala de limiares desta base — não uma
 meta operacional.
 
-**Nível de confiança:** Confirmado (uso, pela fonte primária; faixa por produto, pela documentação Intel)  
 **Aplicado em:** 10-cenarios/superaquecimento.md, 13-validacao-final.md, 15-seguranca-e-boas-praticas.md
 
 ---
@@ -450,7 +416,6 @@ meta operacional.
 
 Queda de tensão sob carga. A fonte a associa à proteção OCP/OPP da fonte e ao VRM que não sustenta a carga da CPU.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 10-cenarios/, 12-correlacoes.md
 
 ---
@@ -459,7 +424,6 @@ Queda de tensão sob carga. A fonte a associa à proteção OCP/OPP da fonte e a
 
 Indicador de desgaste de SSD lido via S.M.A.R.T. O critério FAIL registrado é acima de 90 %; o indicador de sucesso é abaixo de 80 %.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 13-validacao-final.md
 
 ---
@@ -468,7 +432,6 @@ Indicador de desgaste de SSD lido via S.M.A.R.T. O critério FAIL registrado é 
 
 Depurador usado pela fonte para analisar o minidump gerado por uma tela azul. O comando registrado é `!analyze -v`, para identificar o driver em falha. Expansão fornecida pela fonte.
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 10-cenarios/bsod.md, 19-comandos.md
 
 ---
@@ -477,7 +440,6 @@ Depurador usado pela fonte para analisar o minidump gerado por uma tela azul. O 
 
 Ambiente de execução independente do Windows instalado, recomendado pela fonte para rodar o Victoria sem interferência do sistema hospedeiro (a fonte cita Sergei Strelec como exemplo).
 
-**Nível de confiança:** Confirmado  
 **Aplicado em:** 14-ferramentas/victoria.md
 
 ---
@@ -496,7 +458,6 @@ padrão por frequência, temporizações e tensão validadas pelo fabricante da 
 A base exige que o perfil esteja **ativo** durante o teste com MemTest86, para não mascarar
 instabilidade que só aparece na frequência anunciada.
 
-**Nível de confiança:** Confirmado (uso, pela fonte primária; expansões, por documentação ASUS)  
 **Aplicado em:** 14-ferramentas/memtest86.md
 
 ---
@@ -508,7 +469,6 @@ componentes suscetíveis a partir de **100 V** no modelo de corpo humano e **200
 dispositivo carregado — valores abaixo do limiar que uma pessoa percebe. Daí a regra de bancada:
 não sentir choque não significa que não houve descarga.
 
-**Nível de confiança:** Confirmado — ANSI/ESD S20.20-2021 (EOS/ESD Association)  
 **Aplicado em:** 15-seguranca-e-boas-praticas.md, 04-requisitos-e-ferramentas.md
 
 ---
@@ -519,7 +479,6 @@ Nome usado pela Dell para a carga residual retida nos capacitores depois de o eq
 desligado. A HP chama o mesmo fenômeno de *residual electrical charge*. Ver
 [Power drain](#power-drain).
 
-**Nível de confiança:** Confirmado — documentação de suporte da Dell e da HP  
 **Aplicado em:** 15-seguranca-e-boas-praticas.md
 
 ---
@@ -529,7 +488,6 @@ desligado. A HP chama o mesmo fenômeno de *residual electrical charge*. Ver
 Teste do MemTest86 que verifica a suscetibilidade do módulo a
 [Row Hammer](#row-hammer). É o último da bateria padrão, que vai do teste 0 ao teste 13.
 
-**Nível de confiança:** Confirmado — documentação PassMark  
 **Aplicado em:** 14-ferramentas/memtest86.md
 
 ---
@@ -539,7 +497,6 @@ Teste do MemTest86 que verifica a suscetibilidade do módulo a
 Base pública de especificações de produto da Lenovo, citada pela fonte como consulta final quando o
 procedimento documentado não resolve, ao lado do [HMM](#hmm-hardware-maintenance-manual).
 
-**Nível de confiança:** Confirmado (uso, pela fonte primária; expansão, pelo portal Lenovo)  
 **Aplicado em:** 09-codigos-post/lenovo.md
 
 ---
@@ -555,23 +512,20 @@ A fonte usa `SEC`, `PEI`, `DXE` e `BDS` no campo `FASE POST`, sempre nesta ordem
 | DXE | *Driver Execution Environment* | Executa os drivers do firmware e inicializa o restante do hardware |
 | BDS | *Boot Device Selection* | Seleciona o dispositivo de boot e passa o controle ao carregador do sistema |
 
-**Nível de confiança:** Confirmado — DXE e BDS expandidos pela própria fonte; SEC e PEI conferidos
 na *Platform Initialization Specification* do UEFI Forum. A ordem SEC → PEI → DXE → BDS é a
 declarada pela especificação e coincide com a usada no campo `FASE POST`.
 
-## Siglas expandidas fora da fonte primária
+## Siglas expandidas nesta base
 
-As siglas abaixo são usadas pelas planilhas sem expansão. Cada uma foi conferida na publicação de
-quem a define, e a expansão está registrada aqui em vez de ficar em aberto. O registro das
-consultas está em
-[Fontes](references/fontes.md#verificações-independentes-realizadas).
+As siglas abaixo aparecem no material sem expansão. A expansão adotada está registrada aqui em vez
+de ficar em aberto.
 
-| Termo | Situação | Onde foi confirmado |
-| --- | --- | --- |
-| BIST | *Built-In Self-Test* | Documentação de suporte da Dell |
-| XMP / EXPO / DOCP | *Extreme Memory Profile* / *EXtended Profiles for Overclocking* / *Direct Over Clock Profile* | Documentação de suporte da ASUS |
-| SEC, PEI | *Security* e *Pre-EFI Initialization* | *Platform Initialization Specification*, UEFI Forum |
-| OPP | *Over Power Protection* — nomenclatura corrente do setor, ao lado de OCP | Inferido pelo uso |
+| Termo | Expansão |
+| --- | --- |
+| BIST | *Built-In Self-Test* |
+| XMP / EXPO / DOCP | *Extreme Memory Profile* / *EXtended Profiles for Overclocking* / *Direct Over Clock Profile* |
+| SEC, PEI | *Security* e *Pre-EFI Initialization* |
+| OPP | *Over Power Protection* — nomenclatura corrente do setor, ao lado de OCP (**Inferido**) |
 | PSREF | *Product Specifications Reference* — base pública de especificações da Lenovo | Portal PSREF da Lenovo |
 | QVL | *Qualified Vendor List* — obtida na página do modelo da placa-mãe, no site do fabricante | Expandida pela própria fonte |
 
@@ -586,10 +540,7 @@ consultas está em
 
 ---
 
-| | |
+| Atributo | Valor |
 | --- | --- |
-| **Fonte primária deste documento** | Ambos os arquivos-fonte |
-| **Status de confiança** | Confirmado para os termos definidos pela fonte; lacunas sinalizadas por termo |
-| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

@@ -1,4 +1,9 @@
-<!-- Gerado a partir de `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → aba `FLUXO_LOGICO`. Não editar manualmente sem atualizar a fonte. -->
+---
+title: Fluxo de diagnóstico sistêmico (F01 → F14)
+description: "Árvore de decisão de ponta a ponta: do botão Power até o laudo final, passando por energia, vídeo, boot, estabilidade, disco e memória."
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../README.md) › [Diagnostique](../README.md#diagnostique) › **Fluxo de diagnóstico sistêmico (F01 → F14)**
 
@@ -164,7 +169,6 @@ flowchart TD
 
 > Losangos são nós de decisão; retângulos são ações terminais declaradas na fonte. Os textos foram
 > condensados para caber no diagrama — o conteúdo integral está abaixo, sem cortes.
-> Nível de confiança: **Confirmado** (topologia e ramos) / **Inferido** (condensação dos rótulos).
 
 ---
 
@@ -720,10 +724,7 @@ referenciar. Todos os nós que executam ação apontam para pelo menos um ID.
 
 ---
 
-| | |
+| Atributo | Valor |
 | --- | --- |
-| **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → aba `FLUXO_LOGICO` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

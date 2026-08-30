@@ -1,4 +1,9 @@
-<!-- Gerado a partir de `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST`. Não editar manualmente sem atualizar a fonte. -->
+---
+title: "Referência de Códigos de Erro POST: AMI BIOS Legacy"
+description: Este artigo fornece a referência completa de diagnóstico e resolução para os códigos sonoros (bipes) de erro POST da família AMI BIOS Legacy. Utilize o índice abaixo para navegar diretamente para o código de erro apresentado pelo equipamento.
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Códigos POST — AMI BIOS Legacy**
 
@@ -10,26 +15,47 @@ Este artigo fornece a referência completa de diagnóstico e resolução para os
 
 ---
 
-## Neste artigo
+## Neste documento
 
-- [1 Bipe Curto: Falha de Refresh da DRAM](#1-bipe-curto-falha-de-refresh-da-dram)
-- [2 ou 3 Bipes Curtos: Falha na Memória Base (64KB)](#2-ou-3-bipes-curtos-falha-na-memória-base-64kb)
-- [4 Bipes Curtos: Falha no Timer do Sistema](#4-bipes-curtos-falha-no-timer-do-sistema)
-- [5 Bipes Curtos: Erro de Processador (CPU)](#5-bipes-curtos-erro-de-processador-cpu)
-- [6 Bipes Curtos: Erro no Gate A20 (KBC)](#6-bipes-curtos-erro-no-gate-a20-kbc)
-- [7 Bipes Curtos: Erro de Exceção da CPU](#7-bipes-curtos-erro-de-exceção-da-cpu)
-- [8 Bipes Curtos: Falha na Memória de Vídeo (VRAM)](#8-bipes-curtos-falha-na-memória-de-vídeo-vram)
-- [9 Bipes Curtos: Erro de Checksum da ROM (BIOS)](#9-bipes-curtos-erro-de-checksum-da-rom-bios)
-- [10 Bipes Curtos: Falha no Registro de Shutdown do CMOS](#10-bipes-curtos-falha-no-registro-de-shutdown-do-cmos)
-- [11 Bipes Curtos: Falha na Memória Cache (CPU)](#11-bipes-curtos-falha-na-memória-cache-cpu)
-- [Consulte também](#consulte-também)
+- [POST-01 — 1 Beep Curto: Falha de Refresh da DRAM](#post-01--1-beep-curto)
+- [POST-02 — 2 ou 3 Beeps Curtos: Falha na Memória Base (64KB)](#post-02--2-ou-3-beeps-curtos)
+- [POST-03 — 4 Beeps Curtos: Falha no Timer do Sistema](#post-03--4-beeps-curtos)
+- [POST-04 — 5 Beeps Curtos: Erro de Processador (CPU)](#post-04--5-beeps-curtos)
+- [POST-05 — 6 Beeps Curtos: Erro no Gate A20 (KBC)](#post-05--6-beeps-curtos)
+- [POST-06 — 7 Beeps Curtos: Erro de Exceção da CPU](#post-06--7-beeps-curtos)
+- [POST-07 — 8 Beeps Curtos: Falha na Memória de Vídeo (VRAM)](#post-07--8-beeps-curtos)
+- [POST-08 — 9 Beeps Curtos: Erro de Checksum da ROM (BIOS)](#post-08--9-beeps-curtos)
+- [POST-09 — 10 Beeps Curtos: Falha no Registro de Shutdown do CMOS](#post-09--10-beeps-curtos)
+- [POST-10 — 11 Beeps Curtos: Falha na Memória Cache (CPU)](#post-10--11-beeps-curtos)
+- [Próximos passos](#próximos-passos)
+
+## Contexto
+
+Fichas completas dos códigos de POST atribuídos ao fabricante de BIOS `AMI (Legacy BIOS)`. Cada ficha reproduz integralmente os campos técnicos do código.
+
+## Escopo
+
+Os 10 códigos da família `AMI (Legacy BIOS)`, com interpretação, causa raiz, método de diagnóstico, procedimento de correção, critério de validação e risco.
+
+## Fora do escopo
+
+Códigos de outras famílias de BIOS; fluxos de decisão; cenários sistêmicos (pós-boot); guias de ferramentas.
+
+## Relação com outros documentos
+
+- [Índice de códigos POST](00-indice-codigos.md)
+- [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+- [Camadas de diagnóstico](../08-diagnostico-por-camada.md)
+- [Ambiguidade de códigos](../11-ambiguidades.md)
 
 ---
 
-## 1 Bipe Curto: Falha de Refresh da DRAM
+## POST-01 — 1 Beep Curto
+
+**Falha de Refresh da DRAM**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *DRAM Refresh Failure* (Falha no circuito de refresh da DRAM) |
 | **Componente afetado** | RAM (Módulos DIMM) |
 | **Fase / Camada** | Memory Init (PEI) / Camada 3: Memória |
@@ -37,10 +63,10 @@ Este artigo fornece a referência completa de diagnóstico e resolução para os
 
 ### Causas
 O circuito de refresh da DRAM não responde. O timer de refresh (controladora de memória integrada à CPU ou northbridge) não consegue atualizar os capacitores das células DRAM dentro do intervalo especificado (tipicamente 64ms). Condições comuns incluem:
-* Módulo DIMM com defeito físico (célula morta).
-* Slot DIMM com oxidação ou pino torto.
-* Tensão VDRAM fora de especificação (ex: DDR4: 1.2V ±5%).
-* Incompatibilidade de timing SPD vs controladora.
+- Módulo DIMM com defeito físico (célula morta).
+- Slot DIMM com oxidação ou pino torto.
+- Tensão VDRAM fora de especificação (ex: DDR4: 1.2V ±5%).
+- Incompatibilidade de timing SPD vs controladora.
 
 ### Diagnóstico
 **Ferramentas:** MemTest86 (bootável), Multímetro digital (VDRAM), Lupa 10x.
@@ -62,15 +88,17 @@ O circuito de refresh da DRAM não responde. O timer de refresh (controladora de
 **Notebooks:** Remova a bateria e o cabo AC, acesse o compartimento SO-DIMM e siga o mesmo procedimento de limpeza e teste individual.
 
 ### Validação
-* O POST deve completar com 1 bipe curto (padrão de sucesso AMI) ou silêncio seguido de vídeo.
-* MemTest86 sem erros em 4 passes completos. VDRAM estável (ex: 1.2V para DDR4 / 1.1V para DDR5).
+- O POST deve completar com 1 bipe curto (padrão de sucesso AMI) ou silêncio seguido de vídeo.
+- MemTest86 sem erros em 4 passes completos. VDRAM estável (ex: 1.2V para DDR4 / 1.1V para DDR5).
 
 ---
 
-## 2 ou 3 Bipes Curtos: Falha na Memória Base (64KB)
+## POST-02 — 2 ou 3 Beeps Curtos
+
+**Falha na Memória Base (64KB)**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Base 64K Memory Failure* (Falha nos primeiros 64KB de RAM) |
 | **Componente afetado** | RAM (Base Memory) |
 | **Fase / Camada** | Memory Init (PEI) / Camada 3: Memória |
@@ -78,10 +106,10 @@ O circuito de refresh da DRAM não responde. O timer de refresh (controladora de
 
 ### Causas
 Os primeiros 64KB de memória não passam no teste de leitura/escrita. Região crítica que contém a IVT e a BDA em modo real.
-* Primeiro módulo DIMM defeituoso.
-* Falha no canal primário de memória (Channel A).
-* Controladora de memória com defeito.
-* BIOS não consegue treinar a memória no timing correto.
+- Primeiro módulo DIMM defeituoso.
+- Falha no canal primário de memória (Channel A).
+- Controladora de memória com defeito.
+- BIOS não consegue treinar a memória no timing correto.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Teste Cruzado com RAM validada, POST Card (opcional).
@@ -96,10 +124,12 @@ POST completa com sucesso. MemTest86 sem erros. Estabilidade do sistema sob carg
 
 ---
 
-## 4 Bipes Curtos: Falha no Timer do Sistema
+## POST-03 — 4 Beeps Curtos
+
+**Falha no Timer do Sistema**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *System Timer Failure* (Falha no Timer do Sistema) |
 | **Componente afetado** | Timer / Chipset (PCH/SIO) |
 | **Fase / Camada** | Chipset Init / Camada 5: Chipset / Motherboard |
@@ -107,9 +137,9 @@ POST completa com sucesso. MemTest86 sem erros. Estabilidade do sistema sob carg
 
 ### Causas
 O timer programável (8254 PIT ou integrado ao PCH/SIO) não responde ou gera frequência incorreta.
-* Cristal de 32.768 kHz defeituoso.
-* Bateria CR2032 descarregada (< 2.8V).
-* Chip PCH/Southbridge com defeito ou trilha interrompida.
+- Cristal de 32.768 kHz defeituoso.
+- Bateria CR2032 descarregada (< 2.8V).
+- Chip PCH/Southbridge com defeito ou trilha interrompida.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Osciloscópio (cristal 32kHz), Multímetro (bateria).
@@ -123,10 +153,12 @@ O RTC mantém data/hora após o desligamento. O POST completa sem erros. O crist
 
 ---
 
-## 5 Bipes Curtos: Erro de Processador (CPU)
+## POST-04 — 5 Beeps Curtos
+
+**Erro de Processador (CPU)**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *CPU Error* (Processador não responde ou falha de instrução) |
 | **Componente afetado** | CPU (Processador) |
 | **Fase / Camada** | CPU Init (SEC/PEI) / Camada 2: CPU |
@@ -134,10 +166,10 @@ O RTC mantém data/hora após o desligamento. O POST completa sem erros. O crist
 
 ### Causas
 O processador não executa instruções ou não é detectado.
-* Pinos LGA tortos ou contaminados.
-* Alimentação EPS 12V (4+4 ou 8 pin) desconectada/defeituosa.
-* CPU incompatível com a versão do BIOS ou pasta térmica vazada no socket.
-* VRM da placa-mãe com defeito (VCore ausente).
+- Pinos LGA tortos ou contaminados.
+- Alimentação EPS 12V (4+4 ou 8 pin) desconectada/defeituosa.
+- CPU incompatível com a versão do BIOS ou pasta térmica vazada no socket.
+- VRM da placa-mãe com defeito (VCore ausente).
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Multímetro (VCore, EPS), Lupa 10x.
@@ -152,10 +184,12 @@ POST completa. CPU reconhecida corretamente no BIOS (modelo e *stepping*). VCore
 
 ---
 
-## 6 Bipes Curtos: Erro no Gate A20 (KBC)
+## POST-05 — 6 Beeps Curtos
+
+**Erro no Gate A20 (KBC)**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Gate A20 Error* (Falha no controlador de teclado - KBC) |
 | **Componente afetado** | KBC / Super I/O |
 | **Fase / Camada** | KBC Init / Camada 5: Chipset / Motherboard |
@@ -163,9 +197,9 @@ POST completa. CPU reconhecida corretamente no BIOS (modelo e *stepping*). VCore
 
 ### Causas
 O Gate A20 não alterna corretamente (gerenciado pelo Super I/O ou PCH em sistemas modernos).
-* Chip Super I/O com defeito/oxidação.
-* Teclado PS/2 em curto.
-* Firmware corrompido ou trilha interrompida.
+- Chip Super I/O com defeito/oxidação.
+- Teclado PS/2 em curto.
+- Firmware corrompido ou trilha interrompida.
 
 ### Diagnóstico e Resolução
 1. Desconecte todos os teclados (PS/2 e USB).
@@ -179,10 +213,12 @@ POST completa. Teclado funcional dentro do BIOS Setup.
 
 ---
 
-## 7 Bipes Curtos: Erro de Exceção da CPU
+## POST-06 — 7 Beeps Curtos
+
+**Erro de Exceção da CPU**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Processor Exception Interrupt Error* (Erro de exceção da CPU) |
 | **Componente afetado** | CPU (Processador) |
 | **Fase / Camada** | CPU Init / Camada 2: CPU |
@@ -190,10 +226,10 @@ POST completa. Teclado funcional dentro do BIOS Setup.
 
 ### Causas
 A CPU gerou uma exceção inesperada durante o POST.
-* Overclock instável.
-* VCore insuficiente.
-* Dano físico no *die* do processador (degradação).
-* Instabilidade na alimentação VRM.
+- Overclock instável.
+- VCore insuficiente.
+- Dano físico no *die* do processador (degradação).
+- Instabilidade na alimentação VRM.
 
 ### Diagnóstico e Resolução
 1. Faça o Reset do CMOS para restaurar os padrões de fábrica (remove *overclock*).
@@ -206,10 +242,12 @@ POST completa em *defaults*. CPU estável em *stress test* (Prime95 Small FFTs) 
 
 ---
 
-## 8 Bipes Curtos: Falha na Memória de Vídeo (VRAM)
+## POST-07 — 8 Beeps Curtos
+
+**Falha na Memória de Vídeo (VRAM)**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Display Memory R/W Error* (Falha na memória de vídeo) |
 | **Componente afetado** | GPU / VRAM |
 | **Fase / Camada** | Video Init / Camada 4: Vídeo |
@@ -217,9 +255,9 @@ POST completa em *defaults*. CPU estável em *stress test* (Prime95 Small FFTs) 
 
 ### Causas
 Falha na leitura/escrita da memória de vídeo.
-* VRAM da GPU dedicada com defeito.
-* GPU mal encaixada ou slot PCIe oxidado.
-* Em iGPU: RAM do sistema com defeito (memória compartilhada).
+- VRAM da GPU dedicada com defeito.
+- GPU mal encaixada ou slot PCIe oxidado.
+- Em iGPU: RAM do sistema com defeito (memória compartilhada).
 
 ### Diagnóstico e Resolução
 1. Remova a GPU dedicada e limpe os contatos com borracha branca e isopropanol. Limpe o slot PCIe com ar comprimido.
@@ -232,10 +270,12 @@ Vídeo funcional no POST. Sem artefatos visuais. GPU-Z reconhecendo a VRAM corre
 
 ---
 
-## 9 Bipes Curtos: Erro de Checksum da ROM (BIOS)
+## POST-08 — 9 Beeps Curtos
+
+**Erro de Checksum da ROM (BIOS)**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *ROM Checksum Error* (BIOS Corrompida) |
 | **Componente afetado** | BIOS / EEPROM |
 | **Fase / Camada** | BIOS Verify / Camada 6: Firmware |
@@ -247,8 +287,8 @@ O firmware armazenado na flash EEPROM/SPI está corrompido (falha de energia dur
 ### Diagnóstico e Resolução
 1. Substitua a bateria CR2032.
 2. Tente métodos de *BIOS Recovery* nativos:
-   * **ASUS:** Pendrive FAT32 na porta USB Flashback, segure o botão Flashback por 3s.
-   * **GIGABYTE/MSI:** Utilize o botão Q-Flash Plus / Flash BIOS com pendrive formatado.
+   - **ASUS:** Pendrive FAT32 na porta USB Flashback, segure o botão Flashback por 3s.
+   - **GIGABYTE/MSI:** Utilize o botão Q-Flash Plus / Flash BIOS com pendrive formatado.
 3. Se não houver recuperação nativa: Remova o chip (ou use alicate SOIC-8) e regrave o firmware usando uma programadora EEPROM (ex: CH341A) com o arquivo oficial.
 
 ### Validação
@@ -256,10 +296,12 @@ Acesso restaurado ao BIOS Setup. Versão correta de firmware exibida e data/hora
 
 ---
 
-## 10 Bipes Curtos: Falha no Registro de Shutdown do CMOS
+## POST-09 — 10 Beeps Curtos
+
+**Falha no Registro de Shutdown do CMOS**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *CMOS Shutdown Register R/W Error* |
 | **Componente afetado** | CMOS / Super I/O |
 | **Fase / Camada** | CMOS Init / Camada 5: Chipset / Motherboard |
@@ -280,10 +322,12 @@ O CMOS deve reter as configurações e a data/hora após a remoção da alimenta
 
 ---
 
-## 11 Bipes Curtos: Falha na Memória Cache (CPU)
+## POST-10 — 11 Beeps Curtos
+
+**Falha na Memória Cache (CPU)**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Cache Memory Error* (Falha na cache L1/L2/L3 da CPU) |
 | **Componente afetado** | CPU (Cache) |
 | **Fase / Camada** | CPU Cache Init / Camada 2: CPU |
@@ -296,7 +340,7 @@ Falha estrutural irreversível no processador. A cache integrada sofreu degrada�
 **Não há reparo possível para cache integrada danificada.**
 1. Execute o Reset do CMOS para restaurar as frequências e tensões padrão.
 2. Se persistir, confirme o diagnóstico cruzando as peças:
-   * Teste a CPU em uma placa-mãe boa (O erro acompanhará a CPU).
+   - Teste a CPU em uma placa-mãe boa (O erro acompanhará a CPU).
 3. Substitua o processador por um modelo compatível.
 4. *Aviso:* Não tente realizar *overclock* em uma CPU apresentando falhas de cache.
 
@@ -305,23 +349,22 @@ POST completa com a CPU substituta. Testes de estresse (IntelBurnTest/Prime95) e
 
 ---
 
-## Consulte também
+## Próximos passos
 
-Para aprofundamento técnico ou informações sobre o fluxo de atendimento, consulte os documentos relacionados:
+| Se você… | Vá para |
+| --- | --- |
+| não encontrou o código aqui | [Índice de códigos POST](00-indice-codigos.md) — catálogo completo |
+| suspeita que o código tem outro significado | [Ambiguidade de códigos](../11-ambiguidades.md) |
+| quer saber o que testar naquele subsistema | [Diagnóstico por camada](../08-diagnostico-por-camada.md) |
+| aplicou a correção e precisa fechar o atendimento | [Validação final por componente](../13-validacao-final.md) |
 
-* **[Índice de códigos POST](00-indice-codigos.md):** Catálogo completo.
-* **[Ambiguidade de códigos](../11-ambiguidades.md):** Verifique divergências de sinais entre fabricantes.
-* **[Diagnóstico por camada](../08-diagnostico-por-camada.md):** Metodologia de testes nos subsistemas de hardware.
-* **[Fluxo de diagnóstico POST](../06-fluxo-post.md):** Como chegar até o código partindo de um sintoma generalizado.
-* **[Validação final por componente](../13-validacao-final.md):** Testes para fechamento de atendimento.
+**Para aprofundar**
+
+- **[Fluxo de diagnóstico POST](../06-fluxo-post.md):** Como chegar até o código partindo de um sintoma generalizado.
 
 ---
 
-| Metadados do Artigo | |
-| :--- | :--- |
-| **Fonte oficial** | AMI BIOS Beep Code Reference / Technical Documentation |
-| **Fonte primária interna** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação** | 2026-08-08 |
+| Atributo | Valor |
+| --- | --- |
 | **Autoria** | Edsilas |
-| **Versão da doc.** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

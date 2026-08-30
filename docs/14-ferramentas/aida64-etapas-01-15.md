@@ -5,8 +5,6 @@ author: Edsilas
 date: 2026-08-08
 ---
 
-<!-- Gerado a partir de `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → aba `REF_AIDA64`. Não editar manualmente sem atualizar a fonte. -->
-
 [Início](../../README.md) › [Opere as ferramentas](../../README.md#opere-as-ferramentas) › **Guia operacional — AIDA64 (etapas 01 a 15)**
 
 # Guia operacional — AIDA64 (etapas 01 a 15)
@@ -16,10 +14,11 @@ date: 2026-08-08
 
 **Aplica-se a:** Sistemas que carregam o Windows — sensores, stress test e relatórios
 
-## Neste artigo
+## Neste documento
 
 - [Contexto](#contexto)
 - [Escopo](#escopo)
+- [Fora do escopo](#fora-do-escopo)
 - [Relação com outros documentos](#relação-com-outros-documentos)
 - [Etapas](#etapas)
 - [Próximos passos](#próximos-passos)
@@ -32,7 +31,9 @@ Procedimento de uso do AIDA64 para monitoramento, teste de estabilidade, benchma
 
 As etapas 1 a 15 registradas na fonte, com todos os campos originais.
 
-**Fora do escopo:** Interpretação clínica dos resultados fora do que a fonte declara; procedimentos de outras ferramentas; critérios de validação por componente (ver documento 13).
+## Fora do escopo
+
+Interpretação clínica dos resultados fora do que a fonte declara; procedimentos de outras ferramentas; critérios de validação por componente (ver documento 13).
 
 ## Relação com outros documentos
 
@@ -48,7 +49,7 @@ As etapas 1 a 15 registradas na fonte, com todos os campos originais.
 ## Etapas
 
 | Nº | Fase do processo | Risco | Tempo estimado |
-| :--- | :--- | :--- | :--- |
+| --- | --- | --- | --- |
 | [1](#etapa-1--inicialização-e-licenciamento) | Inicialização e Licenciamento | Baixo | 2 min |
 | [2](#etapa-2--configuração-de-sensores-monitoring) | Configuração de Sensores (Monitoring) | Médio | 5 min |
 | [3](#etapa-3--preparação-do-teste-de-estabilidade) | Preparação do Teste de Estabilidade | Baixo | 3 min |
@@ -872,7 +873,7 @@ Linhas em branco ou valores genéricos "Unknown".
 ## Próximos passos
 
 | Se você… | Vá para |
-| :--- | :--- |
+| --- | --- |
 | terminou o teste e precisa fechar o atendimento | [Validação final por componente](../13-validacao-final.md) |
 | quer o procedimento do sintoma que motivou o teste | [Índice de cenários](../10-cenarios/00-indice-cenarios.md) |
 | precisa de outra ferramenta | [Índice de ferramentas](00-indice-ferramentas.md) |
@@ -880,9 +881,6 @@ Linhas em branco ou valores genéricos "Unknown".
 ---
 
 | Atributo | Valor |
-| :--- | :--- |
-| **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → aba `REF_AIDA64` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
+| --- | --- |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

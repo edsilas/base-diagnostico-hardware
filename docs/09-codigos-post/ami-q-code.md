@@ -1,4 +1,9 @@
-<!-- Gerado a partir de `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST`. Não editar manualmente sem atualizar a fonte. -->
+---
+title: "Referência de Códigos de Erro POST: AMI Q-Code Hex"
+description: Este artigo fornece a referência completa de diagnóstico e resolução para os códigos hexadecimais de erro POST (Q-Code display) da família AMI. Utilize o índice abaixo para navegar diretamente para o código exibido no display da placa-mãe.
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Códigos POST — AMI Q-Code Hex**
 
@@ -10,26 +15,47 @@ Este artigo fornece a referência completa de diagnóstico e resolução para os
 
 ---
 
-## Neste artigo
+## Neste documento
 
-- [Código 00 / D0: Erro de Inicialização da CPU](#código-00--d0-erro-de-inicialização-da-cpu)
-- [Código 50 a 55: Erro de Inicialização de Memória](#código-50-a-55-erro-de-inicialização-de-memória)
-- [Código 63 a 67: Falha na Fase DXE da CPU (VCore/VRM)](#código-63-a-67-falha-na-fase-dxe-da-cpu-vcorevrm)
-- [Código 99 / 9A / 9C: Problema em Periféricos USB/PCIe](#código-99--9a--9c-problema-em-periféricos-usbpcie)
-- [Código A0 a A2: Falha na Inicialização de Armazenamento](#código-a0-a-a2-falha-na-inicialização-de-armazenamento)
-- [Código B4: Erro de Hot Plug USB (Curto/Dano)](#código-b4-erro-de-hot-plug-usb-curtodano)
-- [Código D6 / D7: GPU Não Detectada](#código-d6--d7-gpu-não-detectada)
-- [Código FE: Travamento Pré-POST (Curto/Estrutural)](#código-fe-travamento-pré-post-curtoestrutural)
-- [Código FF: Boot Normal ou Falha Crítica](#código-ff-boot-normal-ou-falha-crítica)
-- [Código 7F: Aguardando Ação do Usuário](#código-7f-aguardando-ação-do-usuário)
-- [Consulte também](#consulte-também)
+- [POST-13 — 00 / D0: Erro de Inicialização da CPU](#post-13--00--d0)
+- [POST-14 — 50 — 55: Erro de Inicialização de Memória](#post-14--50--55)
+- [POST-15 — 63 — 67: Falha na Fase DXE da CPU (VCore/VRM)](#post-15--63--67)
+- [POST-16 — 99 / 9A / 9C: Problema em Periféricos USB/PCIe](#post-16--99--9a--9c)
+- [POST-17 — A0 — A2: Falha na Inicialização de Armazenamento](#post-17--a0--a2)
+- [POST-18 — B4: Erro de Hot Plug USB (Curto/Dano)](#post-18--b4)
+- [POST-19 — D6 / D7: GPU Não Detectada](#post-19--d6--d7)
+- [POST-20 — FE: Travamento Pré-POST (Curto/Estrutural)](#post-20--fe)
+- [POST-21 — FF: Boot Normal ou Falha Crítica](#post-21--ff)
+- [POST-50 — 7F: Aguardando Ação do Usuário](#post-50--7f)
+- [Próximos passos](#próximos-passos)
+
+## Contexto
+
+Fichas completas dos códigos de POST atribuídos ao fabricante de BIOS `AMI (Q-Code Hex)`. Cada ficha reproduz integralmente os campos técnicos do código.
+
+## Escopo
+
+Os 10 códigos da família `AMI (Q-Code Hex)`, com interpretação, causa raiz, método de diagnóstico, procedimento de correção, critério de validação e risco.
+
+## Fora do escopo
+
+Códigos de outras famílias de BIOS; fluxos de decisão; cenários sistêmicos (pós-boot); guias de ferramentas.
+
+## Relação com outros documentos
+
+- [Índice de códigos POST](00-indice-codigos.md)
+- [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+- [Camadas de diagnóstico](../08-diagnostico-por-camada.md)
+- [Ambiguidade de códigos](../11-ambiguidades.md)
 
 ---
 
-## Código 00 / D0: Erro de Inicialização da CPU
+## POST-13 — 00 / D0
+
+**Erro de Inicialização da CPU**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *CPU Initialization Error* (Microcode não encontrado ou CPU não responde) |
 | **Componente afetado** | CPU |
 | **Fase / Camada** | SEC Phase (CPU Init) / Camada 2: CPU |
@@ -37,11 +63,11 @@ Este artigo fornece a referência completa de diagnóstico e resolução para os
 
 ### Causas
 A CPU não é inicializada. O BIOS não encontra microcode compatível para a revisão (*stepping*) do processador, ou a CPU fisicamente não responde. Na prática, `00` indica que o POST sequer iniciou.
-* CPU não suportada pela versão atual do BIOS.
-* Pinos do socket LGA tortos ou danificados.
-* Conector EPS 8-pin (alimentação da CPU) desconectado.
-* VRM da placa-mãe com defeito.
-* CPU fisicamente danificada.
+- CPU não suportada pela versão atual do BIOS.
+- Pinos do socket LGA tortos ou danificados.
+- Conector EPS 8-pin (alimentação da CPU) desconectado.
+- VRM da placa-mãe com defeito.
+- CPU fisicamente danificada.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Multímetro (12V EPS, VCore), Lupa 10x, BIOS Flashback.
@@ -56,10 +82,12 @@ Q-Code avança para além de `00` / `D0`. A CPU é reconhecida e o POST completa
 
 ---
 
-## Código 50 a 55: Erro de Inicialização de Memória
+## POST-14 — 50 — 55
+
+**Erro de Inicialização de Memória**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Memory Initialization Error* (RAM não detectada ou treinamento falhou) |
 | **Componente afetado** | RAM / Controladora de Memória |
 | **Fase / Camada** | PEI (Memory Training) / Camada 3: Memória |
@@ -67,10 +95,10 @@ Q-Code avança para além de `00` / `D0`. A CPU é reconhecida e o POST completa
 
 ### Causas
 Ocorre erro (sendo o `55` o mais comum) durante o treinamento inicial da RAM. Nenhum módulo DIMM é detectado ou falhou na validação de timmings.
-* Nenhum módulo DIMM instalado ou instalados em slots incorretos.
-* Contatos da CPU sujos (controladora de memória integrada).
-* Cooler com pressão excessiva, empenando os pinos de contato do socket.
-* Módulo de memória incompatível (fora da QVL).
+- Nenhum módulo DIMM instalado ou instalados em slots incorretos.
+- Contatos da CPU sujos (controladora de memória integrada).
+- Cooler com pressão excessiva, empenando os pinos de contato do socket.
+- Módulo de memória incompatível (fora da QVL).
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Isopropanol 99%, Lupa 10x, Escova antiestática, Lista QVL.
@@ -86,10 +114,12 @@ Q-Code avança além de `55`. RAM reconhecida com capacidade e velocidade corret
 
 ---
 
-## Código 63 a 67: Falha na Fase DXE da CPU (VCore/VRM)
+## POST-15 — 63 — 67
+
+**Falha na Fase DXE da CPU (VCore/VRM)**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *CPU DXE Initialization Started* (Travamento indica falha VCore/VRM) |
 | **Componente afetado** | CPU / VRM |
 | **Fase / Camada** | DXE Phase / Camada 2: CPU |
@@ -97,10 +127,10 @@ Q-Code avança além de `55`. RAM reconhecida com capacidade e velocidade corret
 
 ### Causas
 A fase DXE iniciou, mas travou. A CPU começou a executar rotinas avançadas, mas encontrou instabilidade geralmente ligada a alimentação.
-* Capacitores do VRM defeituosos (inchados, vazando).
-* VCore instável ou insuficiente entregue à CPU.
-* CPU com defeito estrutural parcial.
-* BIOS corrompida na região de execução.
+- Capacitores do VRM defeituosos (inchados, vazando).
+- VCore instável ou insuficiente entregue à CPU.
+- CPU com defeito estrutural parcial.
+- BIOS corrompida na região de execução.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Multímetro (VCore), Inspeção visual.
@@ -115,10 +145,12 @@ Q-Code passa de `67` e avança no POST. O sistema fica estável em carga alta (s
 
 ---
 
-## Código 99 / 9A / 9C: Problema em Periféricos USB/PCIe
+## POST-16 — 99 / 9A / 9C
+
+**Problema em Periféricos USB/PCIe**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Super IO Initialization / USB Detect* (Problema em periféricos) |
 | **Componente afetado** | Super I/O / USB / PCIe |
 | **Fase / Camada** | DXE I/O Init / Camada 7: Periféricos Críticos |
@@ -126,10 +158,10 @@ Q-Code passa de `67` e avança no POST. O sistema fica estável em carga alta (s
 
 ### Causas
 Travamento na detecção e inicialização via Super I/O. Indica conflito ou curto em dispositivo conectado externamente ou via headers internos.
-* Dispositivo USB defeituoso ou em curto.
-* Front Panel (USB/Audio) do gabinete com conector danificado.
-* Placa de expansão PCIe causando conflito.
-* Chip Super I/O com avaria.
+- Dispositivo USB defeituoso ou em curto.
+- Front Panel (USB/Audio) do gabinete com conector danificado.
+- Placa de expansão PCIe causando conflito.
+- Chip Super I/O com avaria.
 
 ### Diagnóstico e Resolução
 1. Desconecte TODOS os periféricos USB (traseiros e frontais).
@@ -143,10 +175,12 @@ Q-Code avança de `9C`. Todos os dispositivos USB são alocados sem travar a ini
 
 ---
 
-## Código A0 a A2: Falha na Inicialização de Armazenamento
+## POST-17 — A0 — A2
+
+**Falha na Inicialização de Armazenamento**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *IDE/SATA Initialization* (Travamento por disco/SSD) |
 | **Componente afetado** | SATA / M.2 / NVMe |
 | **Fase / Camada** | DXE Storage Init / Camada 7: Periféricos Críticos |
@@ -154,10 +188,10 @@ Q-Code avança de `9C`. Todos os dispositivos USB são alocados sem travar a ini
 
 ### Causas
 Bios tentando enumerar e iniciar controladores IDE/SATA/NVMe falhou.
-* SSD/HDD com firmware travado (estado *busy/hung*).
-* Cabo SATA defeituoso ou conector danificado.
-* SSD M.2 mal encaixado nos contatos do slot.
-* Fonte falhando na tensão SATA.
+- SSD/HDD com firmware travado (estado *busy/hung*).
+- Cabo SATA defeituoso ou conector danificado.
+- SSD M.2 mal encaixado nos contatos do slot.
+- Fonte falhando na tensão SATA.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Teste SMART, Cabos SATA de reposição.
@@ -172,10 +206,12 @@ O Q-Code passa rapidamente pelas fases A0-A2, reconhece os discos de inicializa�
 
 ---
 
-## Código B4: Erro de Hot Plug USB (Curto/Dano)
+## POST-18 — B4
+
+**Erro de Hot Plug USB (Curto/Dano)**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *USB Hot Plug Error* (USB em curto ou porta danificada) |
 | **Componente afetado** | USB |
 | **Fase / Camada** | DXE USB Init / Camada 7: Periféricos Críticos |
@@ -195,10 +231,12 @@ POST completa sem travamentos. Dispositivos USB funcionam sem desconexões aleat
 
 ---
 
-## Código D6 / D7: GPU Não Detectada
+## POST-19 — D6 / D7
+
+**GPU Não Detectada**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *No Console Output Devices Found* (GPU não detectada p/ vídeo) |
 | **Componente afetado** | GPU / Saída de Vídeo |
 | **Fase / Camada** | DXE Console Init / Camada 4: Vídeo |
@@ -206,10 +244,10 @@ POST completa sem travamentos. Dispositivos USB funcionam sem desconexões aleat
 
 ### Causas
 O BIOS concluiu que não há nenhum dispositivo para renderizar o console de saída. A placa de vídeo simplesmente não apareceu no barramento PCIe.
-* GPU não inserida completamente no slot PCIe.
-* GPU com vBIOS corrompida (ou *switch* dual BIOS na posição intermediária/defeituosa).
-* Defeito na trilha/slot PCIe.
-* GPU demasiadamente legada que não suporta inicialização UEFI (GOP driver ausente).
+- GPU não inserida completamente no slot PCIe.
+- GPU com vBIOS corrompida (ou *switch* dual BIOS na posição intermediária/defeituosa).
+- Defeito na trilha/slot PCIe.
+- GPU demasiadamente legada que não suporta inicialização UEFI (GOP driver ausente).
 
 ### Diagnóstico e Resolução
 1. Efetue um *power drain* no sistema. Remova a GPU.
@@ -224,10 +262,12 @@ Vídeo devidamente exibido, placa reconhecida. Q-Code avança do bloco D.
 
 ---
 
-## Código FE: Travamento Pré-POST (Curto/Estrutural)
+## POST-20 — FE
+
+**Travamento Pré-POST (Curto/Estrutural)**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Reserved / Pre-POST Hang* (Travamento antes do POST iniciar) |
 | **Componente afetado** | Placa-mãe (Estrutural) |
 | **Fase / Camada** | Pre-SEC / Camada 5: Chipset / Motherboard |
@@ -235,8 +275,8 @@ Vídeo devidamente exibido, placa reconhecida. Q-Code avança do bloco D.
 
 ### Causas
 Código reservado que, no mundo real das assistências, denota que o sistema *freezou* nos primeiros ciclos de energia.
-* Curto-circuito grave no PCH/Chipset, trilhas internas ou malha do VRM.
-* Fonte de alimentação sem capacidade de fornecer os trilhos primários de corrente.
+- Curto-circuito grave no PCH/Chipset, trilhas internas ou malha do VRM.
+- Fonte de alimentação sem capacidade de fornecer os trilhos primários de corrente.
 
 ### Diagnóstico e Resolução
 1. Desconecte discos, periféricos, placa de vídeo, ventoinhas (exceto cooler CPU) e deixe 1 módulo de RAM.
@@ -250,10 +290,12 @@ Se for apenas fonte, a inicialização ocorre sem sustos. Se houver falha de PCB
 
 ---
 
-## Código FF: Boot Normal ou Falha Crítica
+## POST-21 — FF
+
+**Boot Normal ou Falha Crítica**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Recovery/Boot* (A depender do timing) |
 | **Componente afetado** | Variável |
 | **Fase / Camada** | Variável / Camadas 6 (Firmware) ou 2 (CPU) |
@@ -274,10 +316,12 @@ Passagem bem sucedida para o Windows/Linux (se final) ou diagnóstico elétrico 
 
 ---
 
-## Código 7F: Aguardando Ação do Usuário
+## POST-50 — 7F
+
+**Aguardando Ação do Usuário**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Check User Input (Waiting)* (Sistema pausado aguardando input) |
 | **Componente afetado** | Teclado / BIOS Setup |
 | **Fase / Camada** | BDS (Boot Device Selection) / Camada 7: Periféricos Críticos |
@@ -297,23 +341,22 @@ Q-Code prossegue o boot; códigos vinculados à passagem de sistema operacional 
 
 ---
 
-## Consulte também
+## Próximos passos
 
-Para aprofundamento técnico ou informações sobre o fluxo de atendimento, consulte os documentos relacionados:
+| Se você… | Vá para |
+| --- | --- |
+| não encontrou o código aqui | [Índice de códigos POST](00-indice-codigos.md) — catálogo completo |
+| suspeita que o código tem outro significado | [Ambiguidade de códigos](../11-ambiguidades.md) |
+| quer saber o que testar naquele subsistema | [Diagnóstico por camada](../08-diagnostico-por-camada.md) |
+| aplicou a correção e precisa fechar o atendimento | [Validação final por componente](../13-validacao-final.md) |
 
-* **[Índice de códigos POST](00-indice-codigos.md):** Catálogo completo.
-* **[Ambiguidade de códigos](../11-ambiguidades.md):** Verifique divergências de sinais entre fabricantes.
-* **[Diagnóstico por camada](../08-diagnostico-por-camada.md):** Metodologia de testes nos subsistemas de hardware.
-* **[Fluxo de diagnóstico POST](../06-fluxo-post.md):** Como chegar até o código partindo de um sintoma generalizado.
-* **[Validação final por componente](../13-validacao-final.md):** Testes para fechamento de atendimento.
+**Para aprofundar**
+
+- **[Fluxo de diagnóstico POST](../06-fluxo-post.md):** Como chegar até o código partindo de um sintoma generalizado.
 
 ---
 
-| Metadados do Artigo | |
-| :--- | :--- |
-| **Fonte oficial** | ASUS Q-Code Reference / GIGABYTE Debug Code List / AMI |
-| **Fonte primária interna** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação** | 2026-08-08 |
+| Atributo | Valor |
+| --- | --- |
 | **Autoria** | Edsilas |
-| **Versão da doc.** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

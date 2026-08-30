@@ -5,8 +5,6 @@ author: Edsilas
 date: 2026-08-18
 ---
 
-<!-- Gerado a partir de `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `TABELA_PRINCIPAL` e `INDICE_CENARIOS`. Não editar manualmente sem atualizar a fonte. -->
-
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Cenário — Superaquecimento**
 
 # Cenário — Superaquecimento
@@ -16,10 +14,11 @@ date: 2026-08-18
 
 **Aplica-se a:** Equipamentos que concluem o POST — falhas percebidas em uso
 
-## Neste artigo
+## Neste documento
 
 - [Contexto](#contexto)
 - [Escopo](#escopo)
+- [Fora do escopo](#fora-do-escopo)
 - [Relação com outros documentos](#relação-com-outros-documentos)
 - [Entrada rápida (registro do índice de cenários)](#entrada-rápida-registro-do-índice-de-cenários)
 - [SA-01](#sa-01)
@@ -27,18 +26,20 @@ date: 2026-08-18
 
 ## Contexto
 
-Fichas de diagnóstico do cenário `Superaquecimento` conforme registado na fonte. Cada ficha corresponde a um ID da tabela principal e reproduz integralmente os seus campos.
+Fichas de diagnóstico do cenário `Superaquecimento` conforme registrado na fonte. Cada ficha corresponde a um ID da tabela principal e reproduz integralmente seus campos.
 
 ## Escopo
 
-IDs SA-01 — sintoma, causa raiz, método de diagnóstico, comandos, correção, validação, risco e fonte oficial.
+IDs SA-01 — sintoma, causa raiz, método de diagnóstico, comandos, correção, validação e risco.
 
-**Fora do escopo:** Outros cenários; catálogo de códigos POST; guias detalhados das ferramentas.
+## Fora do escopo
+
+Outros cenários; catálogo de códigos POST; guias detalhados das ferramentas.
 
 ## Relação com outros documentos
 
 - [Índice de cenários](00-indice-cenarios.md)
-- [Fluxo de diagnóstico sistémico](../07-fluxo-sistemico.md)
+- [Fluxo de diagnóstico sistêmico](../07-fluxo-sistemico.md)
 - [Correlações entre camadas](../12-correlacoes.md)
 - [Validação final por componente](../13-validacao-final.md)
 
@@ -71,7 +72,7 @@ IDs SA-01 — sintoma, causa raiz, método de diagnóstico, comandos, correção
 
 ### Diagnóstico
 
-**Causa raiz:** Pasta térmica seca/ausente, cooler mal encaixado (pressão desigual nos pinos/parafusos), bomba de AIO inoperante, ou fluxo de ar da caixa obstruído. Ref: *Intel Thermal Design Guide*; *AMD Thermal Solution Design Guide*.
+**Causa raiz:** Pasta térmica seca/ausente, cooler mal encaixado (pressão desigual nos pinos/parafusos), bomba de AIO inoperante, ou fluxo de ar da caixa obstruído.
 
 **Método de diagnóstico (passo a passo):**
 
@@ -117,13 +118,9 @@ AIDA64: Ferramentas > Teste de Estabilidade > Stress FPU
 > [!CAUTION]
 > **Risco crítico:** O sobreaquecimento extremo pode causar degradação irreversível do silício da CPU. Em hardware antigo (sem proteção térmica automática), o componente pode queimar fisicamente em poucos minutos.
 
-### Origem
-
-**Fonte oficial:** Intel Thermal Design Guide (TDP/TjMax); AMD Ryzen Thermal Solution Design Guide; Noctua Application Notes
-
 ### Próximos passos (SA-01)
 
-- Alcançado pelos nós [F11](../07-fluxo-sistemico.md#f11) do fluxo sistémico
+- Alcançado pelos nós [F11](../07-fluxo-sistemico.md#f11) do fluxo sistêmico
 - Depende de [NL-01](nao-liga.md#nl-01), [SV-01](liga-sem-video.md#sv-01) — execute-os antes
 - Comando desta ficha na [referência consolidada de comandos](../19-comandos.md#sa-01--cpu-operando-acima-de-90c-em-idle-ou-atingindo-tjmax-100-105c-rapidamente-sob-carga)
 - Critérios de encerramento: [Validação final por componente](../13-validacao-final.md)
@@ -133,18 +130,15 @@ AIDA64: Ferramentas > Teste de Estabilidade > Stress FPU
 ## Próximos passos
 
 | Se você… | Vá para |
-| :--- | :--- |
+| --- | --- |
 | o problema voltou depois da troca de peça | [Correlações entre camadas](../12-correlacoes.md) |
 | aplicou a correção e precisa validar | [Validação final por componente](../13-validacao-final.md) |
 | precisa operar AIDA64, MemTest86 ou Victoria | [Guias de ferramentas](../14-ferramentas/00-indice-ferramentas.md) |
-| quer conferir onde este cenário entra no fluxo | [Fluxo de diagnóstico sistémico](../07-fluxo-sistemico.md) |
+| quer conferir onde este cenário entra no fluxo | [Fluxo de diagnóstico sistêmico](../07-fluxo-sistemico.md) |
 
 ---
 
 | Atributo | Valor |
-| :--- | :--- |
-| **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `TABELA_PRINCIPAL` e `INDICE_CENARIOS` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-18 |
+| --- | --- |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

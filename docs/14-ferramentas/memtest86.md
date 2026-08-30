@@ -5,8 +5,6 @@ author: Edsilas
 date: 2026-08-08
 ---
 
-<!-- Gerado a partir de `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → aba `REF_MemTest86`. Não editar manualmente sem atualizar a fonte. -->
-
 [Início](../../README.md) › [Opere as ferramentas](../../README.md#opere-as-ferramentas) › **Guia operacional — MemTest86**
 
 # Guia operacional — MemTest86
@@ -16,10 +14,11 @@ date: 2026-08-08
 
 **Aplica-se a:** Módulos DIMM e SO-DIMM — teste em ambiente bootável, com XMP ativo
 
-## Neste artigo
+## Neste documento
 
 - [Contexto](#contexto)
 - [Escopo](#escopo)
+- [Fora do escopo](#fora-do-escopo)
 - [Relação com outros documentos](#relação-com-outros-documentos)
 - [Etapas](#etapas)
 - [Critérios de decisão pós-MemTest86](#critérios-de-decisão-pós-memtest86)
@@ -33,7 +32,9 @@ Procedimento completo de teste de memória com MemTest86, da criação da mídia
 
 As 10 etapas do procedimento registradas na fonte, mais o bloco de critérios de decisão pós-teste presente na última linha da aba.
 
-**Fora do escopo:** Interpretação clínica dos resultados fora do que a fonte declara; procedimentos de outras ferramentas; critérios de validação por componente (ver documento 13).
+## Fora do escopo
+
+Interpretação clínica dos resultados fora do que a fonte declara; procedimentos de outras ferramentas; critérios de validação por componente (ver documento 13).
 
 ## Relação com outros documentos
 
@@ -46,7 +47,7 @@ As 10 etapas do procedimento registradas na fonte, mais o bloco de critérios de
 ## Etapas
 
 | Nº | Fase do processo | Risco | Tempo estimado |
-| :--- | :--- | :--- | :--- |
+| --- | --- | --- | --- |
 | [1](#etapa-1--criação-da-mídia-bootável) | Criação da Mídia Bootável | Baixo | 5 min |
 | [2](#etapa-2--configuração-de-biosuefi) | Configuração de BIOS/UEFI | Médio | 2 min |
 | [3](#etapa-3--seleção-de-processamento-smp) | Seleção de Processamento (SMP) | Baixo | 1 min |
@@ -89,7 +90,7 @@ As 10 etapas do procedimento registradas na fonte, mais o bloco de critérios de
 > **Observações técnicas:** O MemTest86 v10+ requer UEFI. Para PCs antigos (Legacy BIOS), deve-se usar a versão v4.3.7 (que vem junto no pacote, mas é limitada).
 
 > [!IMPORTANT]
-> **A v4 deixou de acompanhar o pacote.** Segundo o histórico de versões do desenvolvedor, o MemTest86 v4 (BIOS) foi retirado das imagens de boot: as versões atuais são **exclusivamente UEFI**, e o pacote não é mais de boot duplo. Para máquinas com BIOS legado, a v4 precisa ser baixada à parte, na área de versões antigas do site do PassMark. Se o equipamento não oferece boot UEFI, baixar apenas o pacote atual deixa você sem ferramenta.
+> **A v4 deixou de acompanhar o pacote.** O MemTest86 v4 (BIOS) foi retirado das imagens de boot: as versões atuais são **exclusivamente UEFI**, e o pacote não é mais de boot duplo. Para máquinas com BIOS legado, a v4 precisa ser baixada à parte, na área de versões antigas. Se o equipamento não oferece boot UEFI, baixar apenas o pacote atual deixa você sem ferramenta.
 
 ### Solução de problemas
 
@@ -252,7 +253,7 @@ Deixar o teste rodar automaticamente até completar 100% do "Pass 1".
 - **Verificação antes de executar:** Confirmar que o número de pentes e tamanho total (ex: 16GB) está correto no topo da tela.
 
 > [!NOTE]
-> **Conferência com a documentação do desenvolvedor:** O manual do MemTest86 (PassMark) descreve a bateria padrão como os testes **0 a 13 — quatorze testes**, e não treze. A numeração começa em zero, o que explica a diferença: o último teste é o de número 13, o [*Hammer Test*](#etapa-5--teste-de-row-hammer-teste-13). Nada muda na execução — a etapa continua sendo deixar o Pass 1 completar —, mas a contagem correta é quatorze.
+> **Contagem da bateria padrão:** são os testes **0 a 13 — quatorze testes**, e não treze. A numeração começa em zero, o que explica a diferença: o último teste é o de número 13, o [*Hammer Test*](#etapa-5--teste-de-row-hammer-teste-13). Nada muda na execução — a etapa continua sendo deixar o Pass 1 completar —, mas a contagem correta é quatorze.
 
 > [!TIP]
 > **Boas práticas:** Se o tempo for curto, rodar apenas Teste 6 e 8 manualmente (Menu Test Selection).
@@ -604,7 +605,7 @@ Tela azul de BitLocker.
 
 ## Critérios de decisão pós-MemTest86
 
-> Este bloco ocupa, na planilha de origem, a última linha da aba, na coluna `Nº da Etapa`. **Não é uma etapa do procedimento** — é um critério de decisão. Título literal na fonte: **Critérios de Decisão Pós-MemTest86**. Reproduzido integralmente abaixo.
+> **Não é uma etapa do procedimento** — é um critério de decisão, reproduzido integralmente abaixo.
 
 - **0 Erros após 4 Passes:** Memória 100% Saudável. Pode vender/usar.
 - **1 a 10 Erros (Aleatórios):** Memória instável. Tentar limpar contatos, aumentar levemente a voltagem (DDR4 1.35v -> 1.36v) ou reduzir clock. Retestar. Se persistir = Lixo.
@@ -614,7 +615,7 @@ Tela azul de BitLocker.
 ## Próximos passos
 
 | Se você… | Vá para |
-| :--- | :--- |
+| --- | --- |
 | terminou o teste e precisa fechar o atendimento | [Validação final por componente](../13-validacao-final.md) |
 | quer o procedimento do sintoma que motivou o teste | [Índice de cenários](../10-cenarios/00-indice-cenarios.md) |
 | precisa de outra ferramenta | [Índice de ferramentas](00-indice-ferramentas.md) |
@@ -622,9 +623,6 @@ Tela azul de BitLocker.
 ---
 
 | Atributo | Valor |
-| :--- | :--- |
-| **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → aba `REF_MemTest86` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
+| --- | --- |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

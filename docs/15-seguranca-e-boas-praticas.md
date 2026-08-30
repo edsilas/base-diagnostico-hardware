@@ -1,3 +1,10 @@
+---
+title: Segurança de bancada e boas práticas
+description: "O que fazer antes de encostar no equipamento: energia residual, proteção contra descarga eletrostática, proteção dos dados do cliente e registro do atendimento."
+author: Edsilas
+date: 2026-08-08
+---
+
 [Início](../README.md) › [Comece aqui](../README.md#comece-aqui) › **Segurança de bancada e boas práticas**
 
 # Segurança de bancada e boas práticas
@@ -65,7 +72,7 @@ Antes de qualquer procedimento, confira três coisas na ficha que você vai exec
 
 > [!NOTE]
 > A escala de risco usada nas fichas — Crítico, Alto, Médio, Baixo, Variável — é a declarada pelas
-> planilhas de origem, que não definem o significado de cada nível. Trate-a como **ordem relativa**
+> escala não define o significado de cada nível. Trate-a como **ordem relativa**
 > entre procedimentos, não como medida absoluta. Para ver tudo agrupado por risco, use
 > [Índice por risco declarado](18-indices-cruzados.md#índice-por-risco-declarado).
 
@@ -272,10 +279,7 @@ Registre, no mínimo:
 
 ---
 
-| | |
+| Atributo | Valor |
 | --- | --- |
-| **Fonte primária deste documento** | Campos de risco e pré-requisitos de ambos os arquivos-fonte, complementados por documentação oficial de fabricante e norma técnica (ver [Fontes](references/fontes.md#nível-3--fontes-externas-verificadas)) |
-| **Status de confiança** | Confirmado — cada valor rastreado à fonte primária ou à publicação oficial citada |
-| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

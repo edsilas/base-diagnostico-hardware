@@ -1,4 +1,9 @@
-<!-- Gerado a partir de `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Camadas de Diagnóstico`. Não editar manualmente sem atualizar a fonte. -->
+---
+title: Diagnóstico por camada (modelo POST, 7 camadas)
+description: "O que testar em cada subsistema: componentes, sintomas típicos, testes primários, ferramentas e indicadores de falha."
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../README.md) › [Diagnostique](../README.md#diagnostique) › **Diagnóstico por camada (modelo POST, 7 camadas)**
 
@@ -39,7 +44,7 @@ O modelo de camadas de 10 níveis usado pelo arquivo de fluxo sistêmico (ver ta
 
 > [!IMPORTANT]
 > As camadas descritas aqui pertencem ao modelo de **7 camadas** do arquivo
-> `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx`. O arquivo `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` usa uma
+> O modelo sistêmico usa uma
 > numeração **diferente e incompatível**: camada 3 é *Memória* aqui e *CPU* lá.
 > Confira sempre o formato do número antes de usá-lo — ver
 > [Taxonomia de camadas](03-taxonomia-camadas.md).
@@ -64,7 +69,6 @@ flowchart LR
 > As camadas 1 a 4 e a 7 seguem a sequência de inicialização declarada nas fichas
 > (`Fase POST`: energia → CPU → memória → vídeo → periféricos). As camadas 5 e 6 aparecem
 > tracejadas porque a fonte as descreve como transversais: falham em qualquer ponto da sequência.
-> Nível de confiança: **Confirmado** (as sete camadas e seus conteúdos) /
 > **Inferido** (a representação da ordem).
 
 ## Título declarado na fonte
@@ -399,10 +403,7 @@ LED BOOT (verde), Q-Code A0-A2/B4, Disco não detectado no BIOS, USB causando tr
 
 ---
 
-| | |
+| Atributo | Valor |
 | --- | --- |
-| **Fonte primária deste documento** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Camadas de Diagnóstico` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

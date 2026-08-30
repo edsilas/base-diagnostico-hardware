@@ -1,4 +1,9 @@
-<!-- Gerado a partir de `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST`. Não editar manualmente sem atualizar a fonte. -->
+---
+title: "Referência de Códigos de Erro POST: Dell (LED de diagnóstico)"
+description: Este artigo fornece a referência completa de diagnóstico e resolução para os códigos de erro baseados em piscadas de LED (Âmbar e Branco) presentes na BIOS proprietária da Dell. Utilize o índice abaixo para navegar diretamente para o código exibido pelo equipamento.
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Códigos POST — Dell (LED de diagnóstico)**
 
@@ -10,23 +15,44 @@ Este artigo fornece a referência completa de diagnóstico e resolução para os
 
 ---
 
-## Neste artigo
+## Neste documento
 
-- [2 Âmbar + 1 Branco: Falha no Processador (CPU)](#2-âmbar--1-branco-falha-no-processador-cpu)
-- [2 Âmbar + 2 Branco: Falha Geral (Placa-mãe/Fonte/Cabos)](#2-âmbar--2-branco-falha-geral-placa-mãefontecabos)
-- [2 Âmbar + 3 Branco: Falha de Memória (RAM)](#2-âmbar--3-branco-falha-de-memória-ram)
-- [2 Âmbar + 7 Branco: Falha de Tela (LCD) ou GPU](#2-âmbar--7-branco-falha-de-tela-lcd-ou-gpu)
-- [3 Âmbar + 1 Branco: Falha na Bateria CMOS](#3-âmbar--1-branco-falha-na-bateria-cmos)
-- [3 Âmbar + 3 Branco: Imagem de Recuperação BIOS Ausente](#3-âmbar--3-branco-imagem-de-recuperação-bios-ausente)
-- [3 Âmbar + 5 Branco: Falha em Trilha de Alimentação (Power Rail)](#3-âmbar--5-branco-falha-em-trilha-de-alimentação-power-rail)
-- [Consulte também](#consulte-também)
+- [POST-31 — 2 Âmbar + 1 Branco: Falha no Processador (CPU)](#post-31--2-âmbar--1-branco)
+- [POST-32 — 2 Âmbar + 2 Branco: Falha Geral (Placa-mãe/Fonte/Cabos)](#post-32--2-âmbar--2-branco)
+- [POST-33 — 2 Âmbar + 3 Branco: Falha de Memória (RAM)](#post-33--2-âmbar--3-branco)
+- [POST-34 — 2 Âmbar + 7 Branco: Falha de Tela (LCD) ou GPU](#post-34--2-âmbar--7-branco)
+- [POST-35 — 3 Âmbar + 1 Branco: Falha na Bateria CMOS](#post-35--3-âmbar--1-branco)
+- [POST-36 — 3 Âmbar + 3 Branco: Imagem de Recuperação BIOS Ausente](#post-36--3-âmbar--3-branco)
+- [POST-37 — 3 Âmbar + 5 Branco: Falha em Trilha de Alimentação (Power Rail)](#post-37--3-âmbar--5-branco)
+- [Próximos passos](#próximos-passos)
+
+## Contexto
+
+Fichas completas dos códigos de POST atribuídos ao fabricante de BIOS `Proprietário Dell`. Cada ficha reproduz integralmente os campos técnicos do código.
+
+## Escopo
+
+Os 7 códigos da família `Proprietário Dell`, com interpretação, causa raiz, método de diagnóstico, procedimento de correção, critério de validação e risco.
+
+## Fora do escopo
+
+Códigos de outras famílias de BIOS; fluxos de decisão; cenários sistêmicos (pós-boot); guias de ferramentas.
+
+## Relação com outros documentos
+
+- [Índice de códigos POST](00-indice-codigos.md)
+- [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+- [Camadas de diagnóstico](../08-diagnostico-por-camada.md)
+- [Ambiguidade de códigos](../11-ambiguidades.md)
 
 ---
 
-## 2 Âmbar + 1 Branco: Falha no Processador (CPU)
+## POST-31 — 2 Âmbar + 1 Branco
+
+**Falha no Processador (CPU)**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *CPU Failure* (Processador não detectado ou com falha) |
 | **Componente afetado** | CPU |
 | **Fase / Camada** | CPU Init / Camada 2: CPU |
@@ -34,10 +60,10 @@ Este artigo fornece a referência completa de diagnóstico e resolução para os
 
 ### Causas
 O sistema não detectou a CPU ou o processador falhou na inicialização.
-* CPU não encaixada corretamente no soquete.
-* Pinos do soquete LGA tortos.
-* CPU fisicamente incompatível com a placa-mãe.
-* Falha elétrica no *die* do processador.
+- CPU não encaixada corretamente no soquete.
+- Pinos do soquete LGA tortos.
+- CPU fisicamente incompatível com a placa-mãe.
+- Falha elétrica no *die* do processador.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Lupa, CPU de teste.
@@ -52,10 +78,12 @@ O LED apaga, permitindo o POST. O sistema conclui o `Dell Diagnostics` (`F12`) s
 
 ---
 
-## 2 Âmbar + 2 Branco: Falha Geral (Placa-mãe/Fonte/Cabos)
+## POST-32 — 2 Âmbar + 2 Branco
+
+**Falha Geral (Placa-mãe/Fonte/Cabos)**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *System Board / PSU / Cabling* (Falha placa-mãe, fonte ou cabeamento) |
 | **Componente afetado** | Placa-mãe / PSU |
 | **Fase / Camada** | Power/Board Init / Camadas 1 (Energia) e 5 (Chipset) |
@@ -63,9 +91,9 @@ O LED apaga, permitindo o POST. O sistema conclui o `Dell Diagnostics` (`F12`) s
 
 ### Causas
 Erro generalizado apontando problemas de inicialização elétrica, comumente relacionado à fonte, cabos soltos ou curto na placa.
-* Fonte de alimentação avariada.
-* Cabo principal mal encaixado na placa.
-* Curto estrutural na placa-mãe ou em periféricos (GPU, M.2).
+- Fonte de alimentação avariada.
+- Cabo principal mal encaixado na placa.
+- Curto estrutural na placa-mãe ou em periféricos (GPU, M.2).
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Botão BIST da PSU Dell, Multímetro.
@@ -81,10 +109,12 @@ Extinção do código LED, boot completo do sistema operacional. Estabilidade so
 
 ---
 
-## 2 Âmbar + 3 Branco: Falha de Memória (RAM)
+## POST-33 — 2 Âmbar + 3 Branco
+
+**Falha de Memória (RAM)**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Memory / RAM Failure* (Falha de memória RAM) |
 | **Componente afetado** | RAM |
 | **Fase / Camada** | Memory Detect/Init / Camada 3: Memória |
@@ -92,9 +122,9 @@ Extinção do código LED, boot completo do sistema operacional. Estabilidade so
 
 ### Causas
 O sistema não consegue inicializar a memória RAM.
-* Módulos soltos ou não "clicados" totalmente.
-* Módulos de memória de marca não-homologada ou especificações diferentes das aceitas pela Dell.
-* Defeito nos conectores (DIMM slots).
+- Módulos soltos ou não "clicados" totalmente.
+- Módulos de memória de marca não-homologada ou especificações diferentes das aceitas pela Dell.
+- Defeito nos conectores (DIMM slots).
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Módulo RAM compatível.
@@ -109,10 +139,12 @@ Nenhum LED de alerta. Conclusão livre de erros na etapa de *Memory Test* do `De
 
 ---
 
-## 2 Âmbar + 7 Branco: Falha de Tela (LCD) ou GPU
+## POST-34 — 2 Âmbar + 7 Branco
+
+**Falha de Tela (LCD) ou GPU**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *LCD Failure (Notebook) / GPU Failure* (Falha na tela ou GPU) |
 | **Componente afetado** | LCD / GPU / Cabo eDP |
 | **Fase / Camada** | Video/LCD Init / Camada 4: Vídeo |
@@ -120,9 +152,9 @@ Nenhum LED de alerta. Conclusão livre de erros na etapa de *Memory Test* do `De
 
 ### Causas
 Problemas na malha de exibição de vídeo (comum em Latitude, XPS e OptiPlex AIO).
-* Cabo Flat (LVDS/eDP) da tela rasgado ou frouxo.
-* O próprio painel de cristal líquido quebrou as vias internas.
-* Defeito da placa de vídeo dedicada (Desktops).
+- Cabo Flat (LVDS/eDP) da tela rasgado ou frouxo.
+- O próprio painel de cristal líquido quebrou as vias internas.
+- Defeito da placa de vídeo dedicada (Desktops).
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Teste BIST de tela (D + Power), Monitor Externo.
@@ -137,10 +169,12 @@ Display sem cintilações e operando perfeitamente. Ferramenta de *Display Test*
 
 ---
 
-## 3 Âmbar + 1 Branco: Falha na Bateria CMOS
+## POST-35 — 3 Âmbar + 1 Branco
+
+**Falha na Bateria CMOS**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *CMOS Battery Failure* (Bateria CMOS esgotada) |
 | **Componente afetado** | Bateria CR2032 |
 | **Fase / Camada** | CMOS Init / Camada 5: Chipset / Motherboard |
@@ -160,10 +194,12 @@ Ao desconectar totalmente da energia e esperar um período, o equipamento deve r
 
 ---
 
-## 3 Âmbar + 3 Branco: Imagem de Recuperação BIOS Ausente
+## POST-36 — 3 Âmbar + 3 Branco
+
+**Imagem de Recuperação BIOS Ausente**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *BIOS Recovery Image Not Found* |
 | **Componente afetado** | BIOS / Firmware |
 | **Fase / Camada** | BIOS Recovery / Camada 6: Firmware |
@@ -171,9 +207,9 @@ Ao desconectar totalmente da energia e esperar um período, o equipamento deve r
 
 ### Causas
 A proteção do sistema tentou puxar o ambiente de reescrita (Recovery) em resposta a uma corrupção interna da ROM, porém falhou em encontrar a mídia com a imagem apropriada.
-* Flash de recuperação inexistente.
-* Pendrive no formato não suportado ou corrompido.
-* Arquivo da BIOS mal nomeado.
+- Flash de recuperação inexistente.
+- Pendrive no formato não suportado ou corrompido.
+- Arquivo da BIOS mal nomeado.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Outro PC, Pendrive (≤ 16GB, formatado em FAT32).
@@ -188,10 +224,12 @@ Ciclo encerrado. Boot completo e acesso viabilizado ao menu *Setup*.
 
 ---
 
-## 3 Âmbar + 5 Branco: Falha em Trilha de Alimentação (Power Rail)
+## POST-37 — 3 Âmbar + 5 Branco
+
+**Falha em Trilha de Alimentação (Power Rail)**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Power Rail Failure (EC/SIO)* |
 | **Componente afetado** | VRM / Power Rails / EC |
 | **Fase / Camada** | Power Sequencing / Camada 1: Energia |
@@ -199,9 +237,9 @@ Ciclo encerrado. Boot completo e acesso viabilizado ao menu *Setup*.
 
 ### Causas
 Interrupção ou curto no barramento gerenciado pelo Controlador Embarcado (*Embedded Controller* / SIO). Tensões como 3.3V, 5V ou similares essenciais para *handshake* não estão de pé.
-* Capacitor SMD entrou em curto puxando a *rail* ao terra.
-* O próprio SIO ou PCH superaqueceu e "morreu".
-* Dispositivo problemático operando na malha elétrica.
+- Capacitor SMD entrou em curto puxando a *rail* ao terra.
+- O próprio SIO ou PCH superaqueceu e "morreu".
+- Dispositivo problemático operando na malha elétrica.
 
 ### Diagnóstico e Resolução
 **Ferramentas Avançadas:** Fonte de Bancada (Injeção de corrente), Câmera Térmica, Multímetro.
@@ -215,25 +253,24 @@ Todas as linhas vitais estão nos limites de especificação; o processamento do
 
 ---
 
-## Consulte também
+## Próximos passos
 
-Para aprofundamento técnico ou informações sobre o fluxo de atendimento, consulte os documentos relacionados:
+| Se você… | Vá para |
+| --- | --- |
+| não encontrou o código aqui | [Índice de códigos POST](00-indice-codigos.md) — catálogo completo |
+| suspeita que o código tem outro significado | [Ambiguidade de códigos](../11-ambiguidades.md) |
+| quer saber o que testar naquele subsistema | [Diagnóstico por camada](../08-diagnostico-por-camada.md) |
+| aplicou a correção e precisa fechar o atendimento | [Validação final por componente](../13-validacao-final.md) |
 
-* **[Índice de códigos POST](00-indice-codigos.md):** Catálogo completo.
-* **[Ambiguidade de códigos](../11-ambiguidades.md):** Verifique divergências de sinais entre fabricantes.
-* **[Taxonomia de camadas](../03-taxonomia-camadas.md):** Entenda como uma falha interliga Energia e Chipset.
-* **[Diagnóstico por camada](../08-diagnostico-por-camada.md):** Metodologia de testes nos subsistemas de hardware.
-* **[Fluxo de diagnóstico POST](../06-fluxo-post.md):** Como chegar até o código partindo de um sintoma generalizado.
-* **[Validação final por componente](../13-validacao-final.md):** Testes para fechamento de atendimento.
-* **[Índices cruzados](../18-indices-cruzados.md):** Outros códigos do mesmo componente ou nível de risco.
+**Para aprofundar**
+
+- **[Taxonomia de camadas](../03-taxonomia-camadas.md):** Entenda como uma falha interliga Energia e Chipset.
+- **[Fluxo de diagnóstico POST](../06-fluxo-post.md):** Como chegar até o código partindo de um sintoma generalizado.
+- **[Índices cruzados](../18-indices-cruzados.md):** Outros códigos do mesmo componente ou nível de risco.
 
 ---
 
-| Metadados do Artigo | |
-| :--- | :--- |
-| **Fonte oficial** | Dell Service Manual / Dell LED Diagnostic Codes |
-| **Fonte primária interna** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação** | 2026-08-08 |
+| Atributo | Valor |
+| --- | --- |
 | **Autoria** | Edsilas |
-| **Versão da doc.** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

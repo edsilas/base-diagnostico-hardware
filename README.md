@@ -1,3 +1,10 @@
+---
+title: Base de Diagnóstico de Hardware
+description: "Ponto de entrada da base: do sinal de erro emitido no POST até a validação final que fecha o atendimento."
+author: Edsilas
+date: 2026-08-30
+---
+
 # Base de Diagnóstico de Hardware
 
 <img alt="Tipo" src="https://img.shields.io/badge/Tipo-Base_Documental-0F172A?labelColor=020617&style=for-the-badge"><img alt="Estrutura" src="https://img.shields.io/badge/Conteúdo-Fluxos_e_Procedimentos-3F3F46?labelColor=18181B&style=for-the-badge"> <a href="LICENSE"><img alt="Licença" src="https://img.shields.io/badge/Licença-MIT-166534?labelColor=064E3B&style=for-the-badge"></a>
@@ -24,12 +31,14 @@ flowchart TD
     B -->|"Liga e carrega<br/>o sistema"| C{"Funciona<br/>bem?"}
 
     C -->|"Trava, reinicia, tela azul,<br/>esquenta, está lento"| S1["Cenários de falha<br/>13 procedimentos"]
+    C -->|"Uma peça não aparece<br/>ou está com aviso amarelo"| W1["Códigos do Gerenciador<br/>de Dispositivos<br/>18 códigos do Windows"]
     C -->|"Sim, quero apenas<br/>validar o equipamento"| V1["Validação final<br/>PASS / FAIL por componente"]
 
     P1 --> S1
     P2 --> P3
     P3 --> R{"Aplicou a<br/>correção?"}
     S1 --> R
+    W1 --> R
     R -->|"Sim"| V1
     R -->|"O problema voltou"| X["Correlações entre camadas<br/>a peça trocada não era a causa"]
     X --> S1
@@ -47,6 +56,8 @@ flowchart TD
 | Toca uma melodia em vez de bipes | ThinkPad e ThinkStation com SmartBeep | [Códigos Lenovo](docs/09-codigos-post/lenovo.md) |
 | O mesmo bipe tem dois significados | O padrão consta de mais de um fabricante | [Ambiguidade de códigos](docs/11-ambiguidades.md) |
 | Trava, reinicia ou dá tela azul | Já carrega o sistema, mas não se sustenta | [Cenários de falha](docs/10-cenarios/00-indice-cenarios.md) |
+| Uma peça sumiu do Windows | Não aparece, ou aparece com aviso amarelo no Gerenciador de Dispositivos | [Códigos do Gerenciador de Dispositivos](docs/20-dispositivos-windows.md) |
+| O Windows diz que há um problema com o dispositivo | Mensagem terminada em `(Code 10)`, `(Code 43)`, `(Code 28)`… | [Códigos do Gerenciador de Dispositivos](docs/20-dispositivos-windows.md) |
 | Esquenta demais ou desliga sozinho | Desligamento sem aviso, ventoinha acelerada | [Superaquecimento](docs/10-cenarios/superaquecimento.md) |
 | Um disco sumiu do sistema | A unidade não aparece no sistema ou na BIOS | [Disco não reconhecido](docs/10-cenarios/disco-nao-reconhecido.md) |
 | Falha só às vezes, sem padrão | Não reproduz sob demanda | [Falhas intermitentes](docs/10-cenarios/falhas-intermitentes.md) |
@@ -84,9 +95,9 @@ equipamento.
 > substitui prática de bancada.
 
 > [!NOTE]
-> A escala de risco — Crítico, Alto, Médio, Baixo, Variável — é a declarada pelas planilhas de
-> origem, que não definem o significado de cada nível. Trate-a como ordem relativa, não como medida
-> absoluta. Para ver tudo agrupado por risco, use
+> A escala de risco — Crítico, Alto, Médio, Baixo, Variável — não define o significado de cada
+> nível. Trate-a como ordem relativa, não como medida absoluta. Para ver tudo agrupado por risco,
+> use
 > [Índice por risco declarado](docs/18-indices-cruzados.md#índice-por-risco-declarado).
 
 ---
@@ -103,6 +114,8 @@ equipamento.
 - **5 casos de ambiguidade** — o mesmo sinal com significados diferentes conforme o fabricante.
 - **6 correlações em cascata** — falhas que aparecem como sintoma de outro subsistema.
 - **10 critérios de validação final** por componente, com PASS, FAIL e tempo de observação.
+- **18 códigos do Gerenciador de Dispositivos** do Windows — peça não detectada, driver ausente,
+  incompatível ou corrompido, dispositivo desativado e conflito de recursos.
 - **64 etapas operacionais** dos guias de Victoria, AIDA64 e MemTest86.
 - **Procedimentos transversais canônicos**: descarga de energia residual, boot mínimo e leitura dos
   limiares térmicos, unificados em [Segurança e boas práticas](docs/15-seguranca-e-boas-praticas.md).
@@ -146,6 +159,7 @@ Da causa identificada até a correção aplicada.
 | [Cenários de falha](docs/10-cenarios/00-indice-cenarios.md) | Os 13 procedimentos pós-boot, com pré-requisitos, comandos e evidência de sucesso. |
 | [Ambiguidade de códigos](docs/11-ambiguidades.md) | Os 5 sinais que significam coisas diferentes, e o teste que desempata. |
 | [Correlações entre camadas](docs/12-correlacoes.md) | As 6 falhas que aparecem em outro subsistema e fazem trocar a peça errada. |
+| [Códigos do Gerenciador de Dispositivos](docs/20-dispositivos-windows.md) | Os 18 códigos do Windows para peça não detectada, driver com problema e dispositivo desativado. |
 
 ---
 
@@ -180,13 +194,11 @@ Da causa identificada até a correção aplicada.
 
 ---
 
-## Manutenção e rastreabilidade
+## Manutenção
 
 | Documento | O que resolve |
 | --- | --- |
-| [Arquitetura da documentação](docs/02-arquitetura.md) | Como o conhecimento está organizado e de qual aba cada documento saiu. |
-| [Fontes](docs/references/fontes.md) | Inventário das fontes, com hash de verificação e o registro das verificações externas. |
-| [Matriz de rastreabilidade](docs/references/matriz-rastreabilidade.md) | Informação → coluna de origem → documento → nível de confiança. |
+| [Arquitetura da documentação](docs/02-arquitetura.md) | Como o conhecimento está organizado. |
 | [Histórico](docs/references/changelog.md) | O que mudou em cada versão da documentação. |
 | [Como contribuir](CONTRIBUTING.md) | Regras de conteúdo, padrão dos documentos e fluxo de alteração. |
 
@@ -233,9 +245,8 @@ docs/
 ├── 17-glossario.md                 Termos técnicos
 ├── 18-indices-cruzados.md          Busca por componente, camada, risco, fase, sinal, ferramenta
 ├── 19-comandos.md                  Todos os comandos técnicos reunidos
+├── 20-dispositivos-windows.md      Códigos do Gerenciador de Dispositivos do Windows
 └── references/
-    ├── fontes.md                   Origem de cada informação e verificações externas
-    ├── matriz-rastreabilidade.md   Informação → fonte → documento → confiança
     └── changelog.md                Histórico desta documentação
 
 CONTRIBUTING.md                     Regras de conteúdo e fluxo de alteração
@@ -254,26 +265,18 @@ Todo documento segue a mesma estrutura, para que você saiba onde procurar sem r
 6. **Conteúdo**, com procedimentos organizados em identificação → pré-requisitos → diagnóstico →
    execução → resultado esperado → risco → próximos passos;
 7. **Próximos passos** — para onde ir a partir dali;
-8. **Rodapé** com fonte primária, nível de confiança, autoria e versão.
+8. **Rodapé** com autoria e versão.
 
-Os avisos seguem convenção fixa: **NOTE** para procedência e nível de confiança, **TIP** para
+Os avisos seguem convenção fixa: **NOTE** para observação de leitura, **TIP** para
 atalhos de navegação, **IMPORTANT** para pré-requisito que muda o resultado, **WARNING** para risco
 de erro de diagnóstico e **CAUTION** para risco elétrico, perda de dados ou dano a componente.
 
-## Como esta base é mantida
+## Regras de conteúdo
 
-Todo campo técnico é transcrição literal da célula correspondente nas planilhas de origem. Isso
-elimina paráfrase acidental: o que está aqui é o que a fonte diz, com a mesma grafia e os mesmos
-valores.
+Duas regras sustentam a confiabilidade do material:
 
-Três regras sustentam a confiabilidade do material:
-
-- **Lacuna se declara.** Campo sem informação na origem vira
-  *"Informação não identificada na fonte analisada"*, nunca uma dedução plausível.
-- **Divergência se resolve com fonte primária.** Quando as planilhas apresentavam valores
-  diferentes para o mesmo procedimento, a decisão foi tomada contra a documentação oficial do
-  fabricante ou a norma aplicável, e o critério ficou registrado no ponto de uso. O registro de
-  cada verificação está em [Fontes](docs/references/fontes.md#nível-3--fontes-externas-verificadas).
+- **Lacuna se declara.** Campo sem informação vira
+  *"Informação não identificada"*, nunca uma dedução plausível.
 - **Inferência se marca.** Conclusão derivada leva o rótulo **Inferido** no ponto de uso.
 
 Regras completas e fluxo de alteração em [CONTRIBUTING.md](CONTRIBUTING.md).
@@ -288,7 +291,4 @@ repositório.
 **Edsilas** — autor e responsável pelo projeto
 ([`edsilas`](https://github.com/edsilas)).
 
-O conteúdo técnico deriva de duas planilhas de referência de autoria de Edsilas. As referências a
-documentação de fabricantes citadas dentro do material são declarações da fonte original; as que
-foram conferidas de forma independente estão identificadas em
-[fontes](docs/references/fontes.md).
+Todo o conteúdo técnico é de autoria de Edsilas.

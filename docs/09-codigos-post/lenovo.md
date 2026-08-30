@@ -1,4 +1,9 @@
-<!-- Gerado a partir de `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST`. Não editar manualmente sem atualizar a fonte. -->
+---
+title: Códigos POST — Lenovo (SmartBeep / beep binário)
+description: Fichas completas dos códigos de POST da família Lenovo (SmartBeep / beep binário), com causa raiz, diagnóstico, correção e critério de validação.
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Códigos POST — Lenovo (SmartBeep / beep binário)**
 
@@ -17,11 +22,11 @@
 
 ## Contexto
 
-Fichas completas dos códigos de POST atribuídos, na fonte, ao fabricante de BIOS `Proprietário Lenovo`. Cada ficha reproduz integralmente os campos registrados na planilha de origem.
+Fichas completas dos códigos de POST atribuídos ao fabricante de BIOS `Proprietário Lenovo`. Cada ficha reproduz integralmente os campos técnicos do código.
 
 ## Escopo
 
-Os 2 código(s) da família `Proprietário Lenovo` presentes na fonte, com interpretação, causa raiz, método de diagnóstico, procedimento de correção, critério de validação, risco e fonte oficial.
+Os 2 código(s) da família `Proprietário Lenovo`, com interpretação, causa raiz, método de diagnóstico, procedimento de correção, critério de validação e risco.
 
 ## Fora do escopo
 
@@ -63,7 +68,7 @@ Variável
 
 ### Diagnóstico
 
-#### Causa raiz (documentação oficial)
+#### Causa raiz
 
 Lenovo ThinkPads modernos usam o sistema SmartBeep: uma sequência melódica que pode ser decodificada pelo app 'Lenovo PC Diagnostics' no smartphone. O app ouve o padrão sonoro e traduz em código de erro específico.
 
@@ -105,12 +110,11 @@ App 'Lenovo PC Diagnostics' (smartphone iOS/Android)
 App identifica código e procedimento resolve o erro. POST completa. Lenovo Diagnostics (F10) sem erros.
 
 > [!IMPORTANT]
-> **Passo que a fonte primária não registrava.** O manual do fabricante acrescenta uma ação
-> indispensável quando o bipe já ocorreu e não se repete sozinho: **pressionar a tecla Fn no
-> computador para emitir o bipe novamente**, com o aplicativo já em execução e o smartphone
-> próximo. Sem isso não há sinal a decodificar.
+> **Passo indispensável.** Quando o bipe já ocorreu e não se repete sozinho, é preciso
+> **pressionar a tecla Fn no computador para emitir o bipe novamente**, com o aplicativo já em
+> execução e o smartphone próximo. Sem isso não há sinal a decodificar.
 >
-> O procedimento oficial completo tem quatro passos:
+> O procedimento completo tem quatro passos:
 >
 > 1. Acessar `https://support.lenovo.com/smartbeep`.
 > 2. Baixar o aplicativo de diagnóstico e instalá-lo no smartphone.
@@ -118,20 +122,15 @@ App identifica código e procedimento resolve o erro. POST completa. Lenovo Diag
 > 4. Pressionar **Fn** no computador para emitir o bipe novamente. O aplicativo decodifica o erro e
 >    mostra as soluções possíveis.
 >
-> O recurso se aplica a sintomas de **tela preta acompanhada de bipes**. A Lenovo **não publica**
-> tabela de melodia → significado: a decodificação existe apenas no aplicativo. Verificado no
-> *User Guide* ThinkPad, tópico *Beep errors* — ver
-> [Fontes](../references/fontes.md#verificações-independentes-realizadas).
+> O recurso se aplica a sintomas de **tela preta acompanhada de bipes**. Não existe tabela de
+> melodia → significado: a decodificação existe apenas no aplicativo.
 
-### Risco e origem
+### Risco
 
 #### Risco / criticidade
 
 Variável
 
-#### Fonte oficial
-
-Lenovo SmartBeep Documentation / Lenovo HMM
 
 ### Próximos passos
 
@@ -168,7 +167,7 @@ Security Init
 
 ### Diagnóstico
 
-#### Causa raiz (documentação oficial)
+#### Causa raiz
 
 O chip TPM (Trusted Platform Module) não responde ou apresenta erro. Em ThinkPads, o TPM é usado para criptografia BitLocker, autenticação, e funções de segurança empresarial.
 
@@ -215,15 +214,12 @@ BIOS Setup (F1) / Lenovo BIOS Update
 
 TPM reconhecido no BIOS. BitLocker funcional (se aplicável). tpm.msc no Windows reporta TPM pronto.
 
-### Risco e origem
+### Risco
 
 #### Risco / criticidade
 
 Alto
 
-#### Fonte oficial
-
-Lenovo ThinkPad HMM / Lenovo BIOS Guide
 
 ### Próximos passos
 
@@ -245,10 +241,7 @@ Lenovo ThinkPad HMM / Lenovo BIOS Guide
 
 ---
 
-| | |
+| Atributo | Valor |
 | --- | --- |
-| **Fonte primária deste documento** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

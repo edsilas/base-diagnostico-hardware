@@ -1,4 +1,9 @@
-<!-- Gerado a partir de `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST`. Não editar manualmente sem atualizar a fonte. -->
+---
+title: "Referência de Códigos de Erro POST: Award BIOS"
+description: Este artigo fornece a referência completa de diagnóstico e resolução para os códigos sonoros (bipes) de erro POST da família de BIOS Award. Utilize o índice abaixo para navegar diretamente para o código de erro apresentado pelo equipamento.
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Códigos POST — Award BIOS**
 
@@ -10,20 +15,41 @@ Este artigo fornece a referência completa de diagnóstico e resolução para os
 
 ---
 
-## Neste artigo
+## Neste documento
 
-- [1 Bipe Longo + 2 Curtos: Falha no Adaptador Gráfico](#1-bipe-longo--2-curtos-falha-no-adaptador-gráfico)
-- [1 Bipe Longo + 3 Curtos: Falha na VRAM da GPU](#1-bipe-longo--3-curtos-falha-na-vram-da-gpu)
-- [Bipe Repetitivo (Sirene): Superaquecimento ou Tensão Irregular](#bipe-repetitivo-sirene-superaquecimento-ou-tensão-irregular)
-- [Bipe Contínuo Longo: RAM Ausente ou Não Detectada](#bipe-contínuo-longo-ram-ausente-ou-não-detectada)
-- [Consulte também](#consulte-também)
+- [POST-22 — 1 Longo + 2 Curtos: Falha no Adaptador Gráfico](#post-22--1-longo--2-curtos)
+- [POST-23 — 1 Longo + 3 Curtos: Falha na VRAM da GPU](#post-23--1-longo--3-curtos)
+- [POST-24 — Repetitivo (Sirene contínua): Superaquecimento ou Tensão Irregular](#post-24--repetitivo-sirene-contínua)
+- [POST-25 — Contínuo Longo (ininterrupto): RAM Ausente ou Não Detectada](#post-25--contínuo-longo-ininterrupto)
+- [Próximos passos](#próximos-passos)
+
+## Contexto
+
+Fichas completas dos códigos de POST atribuídos ao fabricante de BIOS `Award BIOS`. Cada ficha reproduz integralmente os campos técnicos do código.
+
+## Escopo
+
+Os 4 códigos da família `Award BIOS`, com interpretação, causa raiz, método de diagnóstico, procedimento de correção, critério de validação e risco.
+
+## Fora do escopo
+
+Códigos de outras famílias de BIOS; fluxos de decisão; cenários sistêmicos (pós-boot); guias de ferramentas.
+
+## Relação com outros documentos
+
+- [Índice de códigos POST](00-indice-codigos.md)
+- [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+- [Camadas de diagnóstico](../08-diagnostico-por-camada.md)
+- [Ambiguidade de códigos](../11-ambiguidades.md)
 
 ---
 
-## 1 Bipe Longo + 2 Curtos: Falha no Adaptador Gráfico
+## POST-22 — 1 Longo + 2 Curtos
+
+**Falha no Adaptador Gráfico**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Video Adapter Error* (Falha no adaptador gráfico) |
 | **Componente afetado** | GPU / Adaptador Gráfico |
 | **Fase / Camada** | Video Init / Camada 4: Vídeo |
@@ -31,10 +57,10 @@ Este artigo fornece a referência completa de diagnóstico e resolução para os
 
 ### Causas
 O BIOS Award não consegue inicializar o adaptador de vídeo. Em sistemas legados Award, algumas placas exigiam carga resistiva no conector VGA para detectar a presença do monitor.
-* GPU não detectada ou com defeito de hardware.
-* Mau contato no slot AGP ou PCIe.
-* Monitor não conectado ou desligado (aplicável a sistemas Award muito antigos).
-* Cabos de vídeo (ex: VGA) com fios rompidos.
+- GPU não detectada ou com defeito de hardware.
+- Mau contato no slot AGP ou PCIe.
+- Monitor não conectado ou desligado (aplicável a sistemas Award muito antigos).
+- Cabos de vídeo (ex: VGA) com fios rompidos.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** GPU de teste (known-good), Cabo VGA/DVI funcional.
@@ -50,10 +76,12 @@ O POST deve completar, emitindo 1 bipe curto (sucesso), e apresentar vídeo est�
 
 ---
 
-## 1 Bipe Longo + 3 Curtos: Falha na VRAM da GPU
+## POST-23 — 1 Longo + 3 Curtos
+
+**Falha na VRAM da GPU**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Video Adapter Error / VRAM* (Falha na VRAM da GPU) |
 | **Componente afetado** | GPU / VRAM |
 | **Fase / Camada** | Video VRAM Test / Camada 4: Vídeo |
@@ -61,10 +89,10 @@ O POST deve completar, emitindo 1 bipe curto (sucesso), e apresentar vídeo est�
 
 ### Causas
 Similar ao erro de inicialização gráfica (1L+2C), porém este código denota especificamente uma falha detectada durante o teste dos bancos de memória de vídeo (VRAM).
-* Módulos de VRAM soldados na GPU com células inoperantes.
-* Capacitores da GPU com defeito (estufados ou vazando).
-* Trincas na solda BGA sob o processador gráfico ou sob os chips de memória (*cold solder joint*).
-* Fornecimento de energia insuficiente para a placa de vídeo.
+- Módulos de VRAM soldados na GPU com células inoperantes.
+- Capacitores da GPU com defeito (estufados ou vazando).
+- Trincas na solda BGA sob o processador gráfico ou sob os chips de memória (*cold solder joint*).
+- Fornecimento de energia insuficiente para a placa de vídeo.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Inspeção visual (Lupa), GPU de teste.
@@ -79,10 +107,12 @@ POST com sucesso, sem distorções na imagem (artefatos). Testes de estresse com
 
 ---
 
-## Bipe Repetitivo (Sirene): Superaquecimento ou Tensão Irregular
+## POST-24 — Repetitivo (Sirene contínua)
+
+**Superaquecimento ou Tensão Irregular**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *CPU Overheating / Voltage Out of Range* |
 | **Componente afetado** | CPU / PSU (Fonte) / Cooler |
 | **Fase / Camada** | Thermal/Voltage Monitor / Camadas 1 (Energia) e 2 (CPU) |
@@ -90,10 +120,10 @@ POST com sucesso, sem distorções na imagem (artefatos). Testes de estresse com
 
 ### Causas
 O monitoramento de hardware do BIOS detectou que a CPU ultrapassou o limiar de temperatura segura ou que as tensões da fonte estão foras da faixa de tolerância ATX. Este código soa como uma sirene de ambulância ou alarme constante e de duas frequências.
-* Cooler (ventoinha) do processador travado ou desconectado do *header* `CPU_FAN`.
-* Pasta térmica totalmente ressecada, impedindo a dissipação de calor.
-* Fonte de alimentação entregando voltagem incorreta (ex: flutuações na linha de 12V ou 5V).
-* Overclock agressivo com tensão excessiva (VCore).
+- Cooler (ventoinha) do processador travado ou desconectado do *header* `CPU_FAN`.
+- Pasta térmica totalmente ressecada, impedindo a dissipação de calor.
+- Fonte de alimentação entregando voltagem incorreta (ex: flutuações na linha de 12V ou 5V).
+- Overclock agressivo com tensão excessiva (VCore).
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Termômetro IR, Multímetro, BIOS Hardware Monitor.
@@ -101,9 +131,9 @@ O monitoramento de hardware do BIOS detectou que a CPU ultrapassou o limiar de t
 2. Verifique visualmente se a ventoinha do *cooler* gira livremente e se o conector está devidamente plugado em `CPU_FAN`.
 3. Remova o bloco do dissipador, limpe completamente os resíduos, e aplique nova pasta térmica (tamanho de um grão de ervilha/arroz) antes de reinstalar.
 4. Caso o alarme permaneça após tratar a refrigeração, meça as tensões primárias nos chicotes da fonte com um multímetro:
-   * **12V:** 11.4 a 12.6V
-   * **5V:** 4.75 a 5.25V
-   * **3.3V:** 3.14 a 3.47V
+   - **12V:** 11.4 a 12.6V
+   - **5V:** 4.75 a 5.25V
+   - **3.3V:** 3.14 a 3.47V
 5. Se as medições estiverem fora destes limites, substitua imediatamente a fonte de alimentação. Se houver configuração de *overclock*, aplique o Reset do CMOS.
 
 ### Validação
@@ -111,10 +141,12 @@ Equipamento não emite mais o alarme. O monitoramento pelo BIOS (ou via software
 
 ---
 
-## Bipe Contínuo Longo: RAM Ausente ou Não Detectada
+## POST-25 — Contínuo Longo (ininterrupto)
+
+**RAM Ausente ou Não Detectada**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Memory Not Installed or Not Detected* |
 | **Componente afetado** | RAM |
 | **Fase / Camada** | Memory Detect / Camada 3: Memória |
@@ -122,10 +154,10 @@ Equipamento não emite mais o alarme. O monitoramento pelo BIOS (ou via software
 
 ### Causas
 O equipamento não encontrou **nenhum** módulo de RAM acessível ou operante para iniciar o uso. O aviso sonoro é um longo bipe ininterrupto (sem pausas).
-* Nenhum pente de memória foi colocado nos bancos.
-* Todos os pentes inseridos estão mal encaixados.
-* Falha no fornecimento de energia (VDRAM) causado por defeito nos circuitos reguladores de tensão (VRM) da memória na placa-mãe.
-* Controladora de memória avariada ou pinos defeituosos no soquete.
+- Nenhum pente de memória foi colocado nos bancos.
+- Todos os pentes inseridos estão mal encaixados.
+- Falha no fornecimento de energia (VDRAM) causado por defeito nos circuitos reguladores de tensão (VRM) da memória na placa-mãe.
+- Controladora de memória avariada ou pinos defeituosos no soquete.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Multímetro, Módulo de RAM de teste.
@@ -140,25 +172,25 @@ Ao inicializar, a placa deverá soar o clássico bipe curto e único de sucesso 
 
 ---
 
-## Consulte também
+## Próximos passos
 
-Para aprofundamento técnico ou informações sobre o fluxo de atendimento, consulte os documentos relacionados:
+| Se você… | Vá para |
+| --- | --- |
+| não encontrou o código aqui | [Índice de códigos POST](00-indice-codigos.md) — catálogo completo |
+| suspeita que o código tem outro significado | [Ambiguidade de códigos](../11-ambiguidades.md) |
+| quer saber o que testar naquele subsistema | [Diagnóstico por camada](../08-diagnostico-por-camada.md) |
+| aplicou a correção e precisa fechar o atendimento | [Validação final por componente](../13-validacao-final.md) |
 
-* **[Ambiguidade de códigos](../11-ambiguidades.md):** Alguns códigos de bipes são ambíguos a depender do fabricante de BIOS (ex: [1 Longo + 2 Curtos](../11-ambiguidades.md#1-longo--2-curtos), [1 Longo + 3 Curtos](../11-ambiguidades.md#1-longo--3-curtos)). Verifique a divergência de interpretações.
-* **[Taxonomia de camadas](../03-taxonomia-camadas.md):** Para casos complexos onde falhas podem englobar mais de uma camada de diagnóstico (ex: CPU + Energia).
-* **[Índice de códigos POST](00-indice-codigos.md):** Catálogo completo.
-* **[Diagnóstico por camada](../08-diagnostico-por-camada.md):** Metodologia de testes nos subsistemas de hardware.
-* **[Fluxo de diagnóstico POST](../06-fluxo-post.md):** Como chegar até o código partindo de um sintoma generalizado.
-* **[Validação final por componente](../13-validacao-final.md):** Testes para fechamento de atendimento.
-* **[Índices cruzados](../18-indices-cruzados.md):** Outros códigos do mesmo componente ou nível de risco.
+**Para aprofundar**
+
+- **[Ambiguidade de códigos](../11-ambiguidades.md):** Alguns códigos de bipes são ambíguos a depender do fabricante de BIOS (ex: [1 Longo + 2 Curtos](../11-ambiguidades.md#1-longo--2-curtos), [1 Longo + 3 Curtos](../11-ambiguidades.md#1-longo--3-curtos)). Verifique a divergência de interpretações.
+- **[Taxonomia de camadas](../03-taxonomia-camadas.md):** Para casos complexos onde falhas podem englobar mais de uma camada de diagnóstico (ex: CPU + Energia).
+- **[Fluxo de diagnóstico POST](../06-fluxo-post.md):** Como chegar até o código partindo de um sintoma generalizado.
+- **[Índices cruzados](../18-indices-cruzados.md):** Outros códigos do mesmo componente ou nível de risco.
 
 ---
 
-| Metadados do Artigo | |
-| :--- | :--- |
-| **Fonte oficial** | Award BIOS Beep Code Reference / ATX PSU Spec |
-| **Fonte primária interna** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação** | 2026-08-08 |
+| Atributo | Valor |
+| --- | --- |
 | **Autoria** | Edsilas |
-| **Versão da doc.** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

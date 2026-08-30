@@ -1,4 +1,9 @@
-<!-- Gerado a partir de `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST`. Não editar manualmente sem atualizar a fonte. -->
+---
+title: "Referência de Códigos de Erro POST: HP (LED piscante)"
+description: Este artigo fornece a referência completa de diagnóstico e resolução para os códigos de erro baseados em piscadas de LED (Caps Lock e Num Lock) presentes na BIOS proprietária da HP. O padrão de diagnóstico é lido pela sequência de piscadas longas seguidas de piscadas curtas. Utilize o índice abaixo para navegar diretamente para o código exibido pelo equipamento.
+author: Edsilas
+date: 2026-08-27
+---
 
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Códigos POST — HP (LED piscante)**
 
@@ -10,22 +15,43 @@ Este artigo fornece a referência completa de diagnóstico e resolução para os
 
 ---
 
-## Neste artigo
+## Neste documento
 
-- [2 Longos + 2 Curtos (2.2): Firmware BIOS Corrompido](#2-longos--2-curtos-22-firmware-bios-corrompido)
-- [3 Longos + 2 Curtos (3.2): Falha de Inicialização da Memória](#3-longos--2-curtos-32-falha-de-inicialização-da-memória)
-- [3 Longos + 3 Curtos (3.3): Erro no Controlador Gráfico (GPU)](#3-longos--3-curtos-33-erro-no-controlador-gráfico-gpu)
-- [3 Longos + 4 Curtos (3.4): Falha de Alimentação (Energia)](#3-longos--4-curtos-34-falha-de-alimentação-energia)
-- [4 Longos + 2 Curtos (4.2): Desligamento por Superaquecimento](#4-longos--2-curtos-42-desligamento-por-superaquecimento)
-- [5 Longos (5.0): Falha Geral da Placa-mãe](#5-longos-50-falha-geral-da-placa-mãe)
-- [Consulte também](#consulte-também)
+- [POST-38 — 2 Longos + 2 Curtos (2.2): Firmware BIOS Corrompido](#post-38--2-longos--2-curtos-22)
+- [POST-39 — 3 Longos + 2 Curtos (3.2): Falha de Inicialização da Memória](#post-39--3-longos--2-curtos-32)
+- [POST-40 — 3 Longos + 3 Curtos (3.3): Erro no Controlador Gráfico (GPU)](#post-40--3-longos--3-curtos-33)
+- [POST-41 — 3 Longos + 4 Curtos (3.4): Falha de Alimentação (Energia)](#post-41--3-longos--4-curtos-34)
+- [POST-42 — 4 Longos + 2 Curtos (4.2): Desligamento por Superaquecimento](#post-42--4-longos--2-curtos-42)
+- [POST-43 — 5 Longos (5.0): Falha Geral da Placa-mãe](#post-43--5-longos-50)
+- [Próximos passos](#próximos-passos)
+
+## Contexto
+
+Fichas completas dos códigos de POST atribuídos ao fabricante de BIOS `Proprietário HP`. Cada ficha reproduz integralmente os campos técnicos do código.
+
+## Escopo
+
+Os 6 códigos da família `Proprietário HP`, com interpretação, causa raiz, método de diagnóstico, procedimento de correção, critério de validação e risco.
+
+## Fora do escopo
+
+Códigos de outras famílias de BIOS; fluxos de decisão; cenários sistêmicos (pós-boot); guias de ferramentas.
+
+## Relação com outros documentos
+
+- [Índice de códigos POST](00-indice-codigos.md)
+- [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+- [Camadas de diagnóstico](../08-diagnostico-por-camada.md)
+- [Ambiguidade de códigos](../11-ambiguidades.md)
 
 ---
 
-## 2 Longos + 2 Curtos (2.2): Firmware BIOS Corrompido
+## POST-38 — 2 Longos + 2 Curtos (2.2)
+
+**Firmware BIOS Corrompido**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *BIOS Corruption* (Firmware BIOS corrompido) |
 | **Componente afetado** | BIOS / SPI Flash |
 | **Fase / Camada** | BIOS Verify / Camada 6: Firmware |
@@ -33,9 +59,9 @@ Este artigo fornece a referência completa de diagnóstico e resolução para os
 
 ### Causas
 O sistema detectou que o firmware da placa-mãe está danificado, impedindo o avanço lógico do POST.
-* Interrupção/Falha de energia durante uma atualização de BIOS recente.
-* Degradação natural ou falha física do chip SPI Flash.
-* Possível ataque de firmware ou corrupção de sistema.
+- Interrupção/Falha de energia durante uma atualização de BIOS recente.
+- Degradação natural ou falha física do chip SPI Flash.
+- Possível ataque de firmware ou corrupção de sistema.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Combinação `Win + B`, Pendrive (FAT32), HP BIOS Recovery.
@@ -49,10 +75,12 @@ A conclusão normal do POST, visualização da logomarca HP e a possibilidade de
 
 ---
 
-## 3 Longos + 2 Curtos (3.2): Falha de Inicialização da Memória
+## POST-39 — 3 Longos + 2 Curtos (3.2)
+
+**Falha de Inicialização da Memória**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Memory Initialization Failure* (Falha na inicialização da memória) |
 | **Componente afetado** | RAM |
 | **Fase / Camada** | Memory Init / Camada 3: Memória |
@@ -60,10 +88,10 @@ A conclusão normal do POST, visualização da logomarca HP e a possibilidade de
 
 ### Causas
 A RAM não conseguiu ser reconhecida ou falhou nos testes iniciais, travando o sistema. Em notebooks corporativos da HP, isso ocorre com alta frequência por umidade e oxidação ambiental.
-* Oxidação nos contatos dourados (memória ou *slot*).
-* Módulo de RAM mal encaixado após manuseio.
-* Incompatibilidade de barramento ou capacidade.
-* Defeito estrutural do *slot* DIMM/SO-DIMM.
+- Oxidação nos contatos dourados (memória ou *slot*).
+- Módulo de RAM mal encaixado após manuseio.
+- Incompatibilidade de barramento ou capacidade.
+- Defeito estrutural do *slot* DIMM/SO-DIMM.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Borracha branca, Álcool Isopropílico, Pincel Antiestático.
@@ -78,10 +106,12 @@ Os LEDs Caps/Num Lock param de piscar. O equipamento dá tela e a suíte *HP Dia
 
 ---
 
-## 3 Longos + 3 Curtos (3.3): Erro no Controlador Gráfico (GPU)
+## POST-40 — 3 Longos + 3 Curtos (3.3)
+
+**Erro no Controlador Gráfico (GPU)**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Graphics Controller Error* (Erro no controlador gráfico) |
 | **Componente afetado** | GPU / iGPU |
 | **Fase / Camada** | Video Init / Camada 4: Vídeo |
@@ -89,15 +119,15 @@ Os LEDs Caps/Num Lock param de piscar. O equipamento dá tela e a suíte *HP Dia
 
 ### Causas
 Falha de *handshake* ou avaria crítica no subsistema que gera vídeo.
-* Trincas ou solda fria na base BGA da GPU dedicada.
-* Nas arquiteturas com gráfico integrado (UMA/iGPU), como a memória gráfica é compartilhada, o defeito pode estar no processador ou na memória RAM.
-* Conflito interno de *driver* contido no firmware nativo.
+- Trincas ou solda fria na base BGA da GPU dedicada.
+- Nas arquiteturas com gráfico integrado (UMA/iGPU), como a memória gráfica é compartilhada, o defeito pode estar no processador ou na memória RAM.
+- Conflito interno de *driver* contido no firmware nativo.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Monitor externo.
 1. Conecte um monitor à saída lateral ou traseira do equipamento (HDMI, DP, VGA).
-   * Se o externo apresentar imagem perfeitamente, o defeito restringe-se à tela original do computador ou ao cabo *flat/LVDS*.
-   * Se não houver imagem nem externamente, a placa gráfica não está ativando.
+   - Se o externo apresentar imagem perfeitamente, o defeito restringe-se à tela original do computador ou ao cabo *flat/LVDS*.
+   - Se não houver imagem nem externamente, a placa gráfica não está ativando.
 2. Em equipamentos com vídeo integrado (Intel HD/UHD, AMD Radeon Graphics), realize um *Reset* do CMOS e aplique a rotina de teste de memórias RAM, que afetam diretamente o vídeo.
 3. Se a máquina possui placa de vídeo dedicada e a RAM está hígida, o processador gráfico está danificado. Requer reparo especializado (substituição do *chip* / placa) em laboratório.
 
@@ -106,10 +136,12 @@ Extinção do código intermitente. O painel interno acende exibindo caracteres 
 
 ---
 
-## 3 Longos + 4 Curtos (3.4): Falha de Alimentação (Energia)
+## POST-41 — 3 Longos + 4 Curtos (3.4)
+
+**Falha de Alimentação (Energia)**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Power Supply / System Board Voltage* (Falha de alimentação) |
 | **Componente afetado** | PSU / DC-DC Converters |
 | **Fase / Camada** | Power Sequencing / Camada 1: Energia |
@@ -117,9 +149,9 @@ Extinção do código intermitente. O painel interno acende exibindo caracteres 
 
 ### Causas
 O monitoramento elétrico acusou falta, subida abrupta ou queda em uma tensão crucial da placa-mãe.
-* Conversores DC-DC ou capacitores primários entraram em curto.
-* Carregador AC (*Power Adapter*) original com ruído elétrico ou defeito interno.
-* Mau contato ou curto-circuito no *Jack DC* (conector de carga do notebook).
+- Conversores DC-DC ou capacitores primários entraram em curto.
+- Carregador AC (*Power Adapter*) original com ruído elétrico ou defeito interno.
+- Mau contato ou curto-circuito no *Jack DC* (conector de carga do notebook).
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Multímetro, Carregador AC extra confiável, Esquema Elétrico.
@@ -133,10 +165,12 @@ Toda a arvore de voltagens sobe corretamente, não gerando alarmes para o *Embed
 
 ---
 
-## 4 Longos + 2 Curtos (4.2): Desligamento por Superaquecimento
+## POST-42 — 4 Longos + 2 Curtos (4.2)
+
+**Desligamento por Superaquecimento**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Thermal Shutdown* (Desligamento por superaquecimento) |
 | **Componente afetado** | CPU / Fan / Sistema térmico |
 | **Fase / Camada** | Thermal Monitor / Camada 2: CPU / Camada 1: Energia |
@@ -144,10 +178,10 @@ Toda a arvore de voltagens sobe corretamente, não gerando alarmes para o *Embed
 
 ### Causas
 A proteção do hardware armou-se para prevenir danos derretendo silício após a placa não conseguir dissipar calor efetivamente.
-* Ventilador (*Fan/Cooler*) obstruído por sujeira maciça, fios travando a hélice, ou motor inoperante.
-* Interface térmica (pasta térmica, *pads*) profundamente ressecada.
-* Dissipador de calor afrouxado por transporte mecânico brusco.
-* Bloqueio severo das saídas de exaustão do gabinete/carcaça.
+- Ventilador (*Fan/Cooler*) obstruído por sujeira maciça, fios travando a hélice, ou motor inoperante.
+- Interface térmica (pasta térmica, *pads*) profundamente ressecada.
+- Dissipador de calor afrouxado por transporte mecânico brusco.
+- Bloqueio severo das saídas de exaustão do gabinete/carcaça.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Ar comprimido, Pasta Térmica (Ex: Prata/Cerâmica), Fonte de Bancada.
@@ -161,10 +195,12 @@ Os LEDs cessam as piscadas. POST segue sem acionar os "limites máximos" do vent
 
 ---
 
-## 5 Longos (5.0): Falha Geral da Placa-mãe
+## POST-43 — 5 Longos (5.0)
+
+**Falha Geral da Placa-mãe**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *General System Board Failure* (Falha geral da placa-mãe) |
 | **Componente afetado** | Placa-mãe / KBC / SIO |
 | **Fase / Camada** | Board Init / Camada 5: Chipset / Motherboard |
@@ -175,10 +211,10 @@ Os controladores mestre (*Embedded Controller*, *Super I/O*, *KBC*) pararam de s
 
 ### Diagnóstico e Resolução
 1. Para exclusão de pane temporária (lixo elétrico ou *bug* persistente de estado), realize um *hard reset*:
-   * Remova totalmente qualquer alimentação AC e Baterias Principais.
-   * Remova a bateria *Moeda* (*Coin Cell CMOS*).
-   * Mantenha o botão *Power* pressionado por 60 segundos contínuos.
-   * Abandone a placa desenergizada por 30 minutos.
+   - Remova totalmente qualquer alimentação AC e Baterias Principais.
+   - Remova a bateria *Moeda* (*Coin Cell CMOS*).
+   - Mantenha o botão *Power* pressionado por 60 segundos contínuos.
+   - Abandone a placa desenergizada por 30 minutos.
 2. Após o tempo estipulado, remonte minimamente a estrutura e tente ligar.
 3. Se o código 5.0 reaparecer, a placa-mãe está definitivamente avariada. Deve-se providenciar reparo de PCB por laboratório avançado ou substituir a placa (Em caso de parques corporativos com garantia HP válida, este é o momento de acioná-la para troca da *Motherboard*).
 
@@ -187,24 +223,23 @@ Em caso de "ressurreição" pelo *reset*, a placa completa o POST. Nos demais ce
 
 ---
 
-## Consulte também
+## Próximos passos
 
-Para aprofundamento técnico ou informações sobre o fluxo de atendimento, consulte os documentos relacionados:
+| Se você… | Vá para |
+| --- | --- |
+| não encontrou o código aqui | [Índice de códigos POST](00-indice-codigos.md) — catálogo completo |
+| suspeita que o código tem outro significado | [Ambiguidade de códigos](../11-ambiguidades.md) |
+| quer saber o que testar naquele subsistema | [Diagnóstico por camada](../08-diagnostico-por-camada.md) |
+| aplicou a correção e precisa fechar o atendimento | [Validação final por componente](../13-validacao-final.md) |
 
-* **[Índice de códigos POST](00-indice-codigos.md):** Catálogo completo.
-* **[Ambiguidade de códigos](../11-ambiguidades.md):** Verifique divergências de sinais entre fabricantes.
-* **[Taxonomia de camadas](../03-taxonomia-camadas.md):** Entenda como o thermal monitor (Código 4.2) exige atenção em múltiplas camadas.
-* **[Diagnóstico por camada](../08-diagnostico-por-camada.md):** Metodologia de testes nos subsistemas de hardware.
-* **[Fluxo de diagnóstico POST](../06-fluxo-post.md):** Como chegar até o código partindo de um sintoma generalizado.
-* **[Validação final por componente](../13-validacao-final.md):** Testes recomendados para fechamento de atendimento com segurança.
+**Para aprofundar**
+
+- **[Taxonomia de camadas](../03-taxonomia-camadas.md):** Entenda como o thermal monitor (Código 4.2) exige atenção em múltiplas camadas.
+- **[Fluxo de diagnóstico POST](../06-fluxo-post.md):** Como chegar até o código partindo de um sintoma generalizado.
 
 ---
 
-| Metadados do Artigo | |
-| :--- | :--- |
-| **Fonte oficial** | HP LED Flash Codes / HP Service Manual |
-| **Fonte primária interna** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação** | 2026-08-27 |
+| Atributo | Valor |
+| --- | --- |
 | **Autoria** | Edsilas |
-| **Versão da doc.** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

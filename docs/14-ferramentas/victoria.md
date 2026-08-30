@@ -5,8 +5,6 @@ author: Edsilas
 date: 2026-08-08
 ---
 
-<!-- Gerado a partir de `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → aba `REF_Victoria`. Não editar manualmente sem atualizar a fonte. -->
-
 [Início](../../README.md) › [Opere as ferramentas](../../README.md#opere-as-ferramentas) › **Guia operacional — Victoria (HDD/SSD)**
 
 # Guia operacional — Victoria (HDD/SSD)
@@ -16,10 +14,11 @@ date: 2026-08-08
 
 **Aplica-se a:** HDDs e SSDs — leitura de S.M.A.R.T., varredura de superfície e remapeamento
 
-## Neste artigo
+## Neste documento
 
 - [Contexto](#contexto)
 - [Escopo](#escopo)
+- [Fora do escopo](#fora-do-escopo)
 - [Relação com outros documentos](#relação-com-outros-documentos)
 - [Etapas](#etapas)
 - [Próximos passos](#próximos-passos)
@@ -32,7 +31,9 @@ Procedimento completo de uso do Victoria para diagnóstico de armazenamento, da 
 
 As 9 etapas do procedimento registradas na fonte, com todos os campos originais.
 
-**Fora do escopo:** Interpretação clínica dos resultados fora do que a fonte declara; procedimentos de outras ferramentas; critérios de validação por componente (ver documento 13).
+## Fora do escopo
+
+Interpretação clínica dos resultados fora do que a fonte declara; procedimentos de outras ferramentas; critérios de validação por componente (ver documento 13).
 
 ## Relação com outros documentos
 
@@ -45,7 +46,7 @@ As 9 etapas do procedimento registradas na fonte, com todos os campos originais.
 ## Etapas
 
 | Nº | Fase do processo | Risco | Tempo estimado |
-| :--- | :--- | :--- | :--- |
+| --- | --- | --- | --- |
 | [1](#etapa-1--preparação-do-ambiente) | Preparação do Ambiente | Crítico | 10 min |
 | [2](#etapa-2--inicialização-do-software) | Inicialização do Software | Médio | 2 min |
 | [3](#etapa-3--seleção-da-unidade-pass-api) | Seleção da Unidade (Pass API) | Alto | 1 min |
@@ -579,7 +580,7 @@ S.M.A.R.T. ainda exibe C5 alto mesmo após dezenas de remapeamentos bem-sucedido
 ## Próximos passos
 
 | Se você… | Vá para |
-| :--- | :--- |
+| --- | --- |
 | terminou o teste e precisa fechar o atendimento | [Validação final por componente](../13-validacao-final.md) |
 | quer o procedimento do sintoma que motivou o teste | [Índice de cenários](../10-cenarios/00-indice-cenarios.md) |
 | precisa de outra ferramenta | [Índice de ferramentas](00-indice-ferramentas.md) |
@@ -587,9 +588,6 @@ S.M.A.R.T. ainda exibe C5 alto mesmo após dezenas de remapeamentos bem-sucedido
 ---
 
 | Atributo | Valor |
-| :--- | :--- |
-| **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → aba `REF_Victoria` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
+| --- | --- |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

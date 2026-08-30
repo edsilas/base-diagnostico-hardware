@@ -1,4 +1,9 @@
-<!-- Gerado a partir de Ambos os arquivos-fonte. Não editar manualmente sem atualizar a fonte. -->
+---
+title: Perguntas frequentes
+description: Dúvidas derivadas de ambiguidade, armadilha ou decisão explicitamente registrada nas fontes, com link para o documento que trata cada assunto.
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../README.md) › [Consulte a referência](../README.md#consulte-a-referência) › **Perguntas frequentes**
 
@@ -165,17 +170,13 @@ teste pontual. Ver
 
 ### Posso confiar que nada foi inventado?
 
-Os documentos técnicos foram **gerados programaticamente** a partir das células das planilhas, sem
-redação intermediária. Onde a origem é omissa, o texto registra a lacuna. A rastreabilidade está em
-[references/matriz-rastreabilidade.md](references/matriz-rastreabilidade.md).
+Os documentos técnicos reproduzem os campos técnicos sem redação intermediária. Onde a informação
+não existe, o texto registra a lacuna em vez de preenchê-la por dedução.
 
 ### Qual é a versão e quem é o autor deste material?
 
-O autor é **Edsilas**, e a licença é **MIT** — ambos confirmados por consulta ao repositório
-oficial. A versão publicada é a que aparece no rodapé de cada documento (`doc-2.0.0`) e, desde essa
-versão, ela cobre estrutura **e** conteúdo técnico. As planilhas de origem não trazem campo próprio
-de versão; o estado delas fica fixado pelos hashes SHA-256 registrados em
-[fontes](references/fontes.md#nível-1--fontes-primárias). A convenção completa está em
+O autor é **Edsilas**, e a licença é **MIT**. A versão publicada é a que aparece no rodapé de cada
+documento (`doc-3.0.0`) e cobre estrutura **e** conteúdo técnico. A convenção completa está em
 [Arquitetura da documentação](02-arquitetura.md#versionamento-do-conteúdo).
 
 ## Próximos passos
@@ -189,10 +190,7 @@ de versão; o estado delas fica fixado pelos hashes SHA-256 registrados em
 
 ---
 
-| | |
+| Atributo | Valor |
 | --- | --- |
-| **Fonte primária deste documento** | Ambos os arquivos-fonte |
-| **Status de confiança** | Confirmado (respostas) — perguntas derivadas do conteúdo |
-| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

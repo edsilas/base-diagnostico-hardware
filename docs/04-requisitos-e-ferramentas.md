@@ -1,4 +1,9 @@
-<!-- Gerado a partir de `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Camadas de Diagnóstico`; `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `INDICE_CENARIOS` e `VALIDACAO_FINAL`. Não editar manualmente sem atualizar a fonte. -->
+---
+title: Requisitos e ferramentas
+description: Inventário do instrumental exigido pelos procedimentos, organizado por camada, por cenário e por componente na validação.
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../README.md) › [Comece aqui](../README.md#comece-aqui) › **Requisitos e ferramentas**
 
@@ -72,8 +77,7 @@ flowchart TD
 
 > [!NOTE]
 > O agrupamento acima deriva das colunas de ferramentas por camada e por cenário, reproduzidas
-> integralmente abaixo. Nível de confiança: **Confirmado** (as ferramentas) /
-> **Inferido** (o agrupamento por estado do equipamento).
+> integralmente abaixo.> **Inferido** (o agrupamento por estado do equipamento).
 
 ## Ferramentas por camada de diagnóstico (modelo POST)
 
@@ -131,13 +135,12 @@ WinDbg, Process Explorer, FurMark, entre outras) aparecem apenas como menção d
 procedimentos, sem guia próprio.
 
 > [!NOTE]
-> Nível de confiança: **Confirmado** para todas as tabelas acima — transcrição literal das
 > colunas de origem.
 
 ## Instrumental de segurança
 
 Além das ferramentas de diagnóstico, a bancada precisa do instrumental que protege o operador e os
-componentes. Ele não aparece nas colunas de ferramentas das planilhas porque não é usado para
+componentes. Ele não aparece nas tabelas de ferramentas porque não é usado para
 diagnosticar — é usado para não danificar.
 
 | Item | Para quê | Referência |
@@ -166,10 +169,7 @@ diagnosticar — é usado para não danificar.
 
 ---
 
-| | |
+| Atributo | Valor |
 | --- | --- |
-| **Fonte primária deste documento** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Camadas de Diagnóstico`; `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `INDICE_CENARIOS` e `VALIDACAO_FINAL` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

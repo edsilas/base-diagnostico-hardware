@@ -1,4 +1,9 @@
-<!-- Gerado a partir de Ambos os arquivos-fonte (ver corpo do documento). Não editar manualmente sem atualizar a fonte. -->
+---
+title: Taxonomia de camadas
+description: A base usa dois modelos de camadas, um por escopo de diagnóstico. Leia antes de usar qualquer número de camada.
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../README.md) › [Comece aqui](../README.md#comece-aqui) › **Taxonomia de camadas**
 
@@ -96,8 +101,6 @@ POST separa.
 
 ## Modelo POST — 7 camadas
 
-**Origem:** `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx`, abas `Camadas de Diagnóstico` (tabela de
-definição) e `Tabela Diagnóstico POST` (coluna `CAMADA DE DIAGNÓSTICO`).
 **Notação literal:** `Camada N: NOME`.
 
 | Nº | Nome (literal na fonte) | Ficha técnica |
@@ -116,7 +119,6 @@ falha — o detalhamento completo está em
 
 ## Modelo sistêmico — 10 camadas
 
-**Origem:** `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx`, colunas `Camada Afetada` (`TABELA_PRINCIPAL`),
 `Camada Primária` (`INDICE_CENARIOS`) e `Falha Primária / Efeito Cascata` (`CORRELACOES`).
 **Notação literal:** `N - Nome`.
 
@@ -162,8 +164,7 @@ para o modelo POST.
 > [!NOTE]
 > A tabela acima **reorganiza** colunas já existentes nas abas `TABELA_PRINCIPAL`,
 > `INDICE_CENARIOS` e `CORRELACOES` — agrupando por camada o que a fonte registra por cenário.
-> Nenhum campo foi acrescentado. Nível de confiança: **Confirmado** (os valores) /
-> **Inferido (organizacional)** (o agrupamento por camada).
+> Nenhum campo foi acrescentado.> **Inferido (organizacional)** (o agrupamento por camada).
 
 ## Comparação direta dos números
 
@@ -200,9 +201,7 @@ Quando você precisa ir de um modelo ao outro, faça pelo **assunto**, não pelo
 
 > [!NOTE]
 > A equivalência por assunto é **organizacional**, derivada dos nomes das camadas nos dois modelos.
-> Ela não está nas planilhas de origem e não altera nenhum número. Nível de confiança:
-> **Inferido (organizacional)**.
-
+> Ela não altera nenhum número.
 ## Regra de notação obrigatória
 
 1. Todo número de camada é reproduzido **exatamente no formato da fonte** — `Camada 3: MEMÓRIA
@@ -210,7 +209,7 @@ Quando você precisa ir de um modelo ao outro, faça pelo **assunto**, não pelo
 2. Nenhum número de camada é convertido de um modelo para o outro. Quando um documento precisa
    citar o assunto nos dois escopos, cita os dois valores.
 3. Os nomes *modelo POST* e *modelo sistêmico* são desta documentação, criados para poder falar dos
-   dois sem ambiguidade. Nas planilhas eles não aparecem: lá, cada arquivo simplesmente usa o seu.
+   dois sem ambiguidade.
 4. Códigos cuja camada é declarada como `Variável` na fonte — caso do
    [SmartBeep Lenovo](09-codigos-post/lenovo.md#post-44--melodia-variável), em que a camada só é
    conhecida depois de o aplicativo decodificar o bipe — permanecem assim, e o documento indica o
@@ -227,10 +226,7 @@ Quando você precisa ir de um modelo ao outro, faça pelo **assunto**, não pelo
 
 ---
 
-| | |
+| Atributo | Valor |
 | --- | --- |
-| **Fonte primária deste documento** | Ambos os arquivos-fonte (ver corpo do documento) |
-| **Status de confiança** | Confirmado — modelo POST com tabela de definição própria; modelo sistêmico consolidado a partir das colunas de camada das três abas que o utilizam |
-| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

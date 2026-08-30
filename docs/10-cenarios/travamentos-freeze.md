@@ -1,11 +1,9 @@
 ---
 title: "Cenário — Travamentos (Freeze)"
 description: "Procedimento completo para o cenário Travamentos (Freeze) - pré-requisitos, diagnóstico, correção, resultado esperado e riscos."
-author: "Edsilas"
-date: "2026-08-18"
+author: Edsilas
+date: 2026-08-18
 ---
-
-<!-- Gerado a partir de `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `TABELA_PRINCIPAL` e `INDICE_CENARIOS`. Não editar manualmente sem atualizar a fonte. -->
 
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Cenário — Travamentos (Freeze)**
 
@@ -16,10 +14,11 @@ date: "2026-08-18"
 
 **Aplica-se a:** Equipamentos que concluem o POST — falhas percebidas durante o uso.
 
-## Neste artigo
+## Neste documento
 
 - [Contexto](#contexto)
 - [Escopo](#escopo)
+- [Fora do escopo](#fora-do-escopo)
 - [Relação com outros documentos](#relação-com-outros-documentos)
 - [Entrada rápida](#entrada-rápida)
 - [TR-01](#tr-01)
@@ -27,18 +26,20 @@ date: "2026-08-18"
 
 ## Contexto
 
-Ficha de diagnóstico do cenário `Travamentos (Freeze)` conforme registado na fonte. Cada ficha corresponde a um ID da tabela principal e reproduz os respectivos campos técnicos.
+Ficha de diagnóstico do cenário `Travamentos (Freeze)` conforme registrado na fonte. Cada ficha corresponde a um ID da tabela principal e reproduz os respectivos campos técnicos.
 
 ## Escopo
 
-ID `TR-01` — sintoma, causa raiz, método de diagnóstico, comandos, correção, validação, risco e fonte oficial.
+ID `TR-01` — sintoma, causa raiz, método de diagnóstico, comandos, correção, validação e risco.
 
-**Fora do escopo:** outros cenários, catálogo de códigos POST e guias detalhados das ferramentas.
+## Fora do escopo
+
+outros cenários, catálogo de códigos POST e guias detalhados das ferramentas.
 
 ## Relação com outros documentos
 
 - [Índice de cenários](00-indice-cenarios.md)
-- [Fluxo de diagnóstico sistémico](../07-fluxo-sistemico.md)
+- [Fluxo de diagnóstico sistêmico](../07-fluxo-sistemico.md)
 - [Correlações entre camadas](../12-correlacoes.md)
 - [Validação final por componente](../13-validacao-final.md)
 
@@ -47,7 +48,7 @@ ID `TR-01` — sintoma, causa raiz, método de diagnóstico, comandos, correçã
 ## Entrada rápida
 
 | Atributo | Valor |
-| :--- | :--- |
+| --- | --- |
 | **Cenário** | Travamentos (Freeze) |
 | **ID relacionado** | TR-01 |
 | **Camada primária** | 3 - CPU |
@@ -127,7 +128,7 @@ Filtro: WHEA-Logger
 ### Risco e impacto
 
 | Atributo | Classificação |
-| :--- | :--- |
+| --- | --- |
 | **Risco associado** | Crítico |
 | **Impacto no sistema** | Degradação acelerada do silício, aumento da frequência dos freezes e possibilidade de dano permanente à CPU |
 
@@ -144,7 +145,7 @@ Filtro: WHEA-Logger
 
 ### Próximos passos (TR-01)
 
-- Alcançado pelo nó [F09b](../07-fluxo-sistemico.md#f09b) do fluxo sistémico
+- Alcançado pelo nó [F09b](../07-fluxo-sistemico.md#f09b) do fluxo sistêmico
 - Depende de [SV-01](liga-sem-video.md#sv-01) e [RA-01](reinicializacao-aleatoria.md#ra-01) — execute-os antes
 - É pré-requisito de [AU-01](alto-uso-cpu-gpu.md#au-01)
 - Comando desta ficha na [referência consolidada de comandos](../19-comandos.md#tr-01--sistema-congela-completamente-freeze-mouse-e-teclado-não-respondem-sem-bsod)
@@ -155,18 +156,15 @@ Filtro: WHEA-Logger
 ## Próximos passos
 
 | Se você... | Vá para |
-| :--- | :--- |
+| --- | --- |
 | O problema voltou depois da troca de peça | [Correlações entre camadas](../12-correlacoes.md) |
 | Aplicou a correção e precisa validar | [Validação final por componente](../13-validacao-final.md) |
 | Precisa operar AIDA64, MemTest86 ou Victoria | [Guias de ferramentas](../14-ferramentas/00-indice-ferramentas.md) |
-| Quer conferir onde este cenário entra no fluxo | [Fluxo de diagnóstico sistémico](../07-fluxo-sistemico.md) |
+| Quer conferir onde este cenário entra no fluxo | [Fluxo de diagnóstico sistêmico](../07-fluxo-sistemico.md) |
 
 ---
 
 | Atributo | Valor |
-| :--- | :--- |
-| **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `TABELA_PRINCIPAL` e `INDICE_CENARIOS` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-18 |
+| --- | --- |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

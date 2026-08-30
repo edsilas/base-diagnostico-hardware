@@ -1,4 +1,9 @@
-<!-- Gerado a partir de `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST`. Não editar manualmente sem atualizar a fonte. -->
+---
+title: "Referência de Códigos de Erro POST: AMI UEFI / Aptio V"
+description: Este artigo fornece a referência completa de diagnóstico e resolução para os códigos sonoros (bipes) de erro POST da família AMI UEFI e Aptio V. Utilize o índice abaixo para navegar diretamente para o código de erro apresentado pelo equipamento.
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Códigos POST — AMI UEFI / Aptio V**
 
@@ -10,18 +15,39 @@ Este artigo fornece a referência completa de diagnóstico e resolução para os
 
 ---
 
-## Neste artigo
+## Neste documento
 
-- [1 Bipe Longo + 2 Curtos: Falha no Sistema de Vídeo (GPU)](#1-bipe-longo--2-curtos-falha-no-sistema-de-vídeo-gpu)
-- [1 Bipe Longo + 3 Curtos: Falha de Treinamento de Memória (RAM)](#1-bipe-longo--3-curtos-falha-de-treinamento-de-memória-ram)
-- [Consulte também](#consulte-também)
+- [POST-11 — 1 Longo + 2 Curtos: Falha no Sistema de Vídeo (GPU)](#post-11--1-longo--2-curtos)
+- [POST-12 — 1 Longo + 3 Curtos: Falha de Treinamento de Memória (RAM)](#post-12--1-longo--3-curtos)
+- [Próximos passos](#próximos-passos)
+
+## Contexto
+
+Fichas completas dos códigos de POST atribuídos ao fabricante de BIOS `AMI (UEFI/Aptio V)`. Cada ficha reproduz integralmente os campos técnicos do código.
+
+## Escopo
+
+Os 2 códigos da família `AMI (UEFI/Aptio V)`, com interpretação, causa raiz, método de diagnóstico, procedimento de correção, critério de validação e risco.
+
+## Fora do escopo
+
+Códigos de outras famílias de BIOS; fluxos de decisão; cenários sistêmicos (pós-boot); guias de ferramentas.
+
+## Relação com outros documentos
+
+- [Índice de códigos POST](00-indice-codigos.md)
+- [Fluxo de diagnóstico POST](../06-fluxo-post.md)
+- [Camadas de diagnóstico](../08-diagnostico-por-camada.md)
+- [Ambiguidade de códigos](../11-ambiguidades.md)
 
 ---
 
-## 1 Bipe Longo + 2 Curtos: Falha no Sistema de Vídeo (GPU)
+## POST-11 — 1 Longo + 2 Curtos
+
+**Falha no Sistema de Vídeo (GPU)**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Video System Failure* (GPU não detectada ou ROM Opcional falha) |
 | **Componente afetado** | GPU / PCIe |
 | **Fase / Camada** | DXE Video Init / Camada 4: Vídeo |
@@ -29,11 +55,11 @@ Este artigo fornece a referência completa de diagnóstico e resolução para os
 
 ### Causas
 O BIOS não consegue inicializar o adaptador gráfico. A GPU não é detectada no barramento PCIe, ou a *Option ROM* da placa de vídeo falha ao carregar. Em sistemas com GPU montada via *riser* (ex: cases compactos SFF ou mineração), pode indicar problema de compatibilidade com a geração do PCIe (Gen 3.0 / 4.0).
-* GPU mal encaixada no slot PCIe.
-* Cabo de alimentação PCIe (6+2 pinos) desconectado da fonte ou frouxo.
-* Placa de vídeo sem fornecimento de energia suficiente (fonte subdimensionada).
-* Cabo extensor/Riser PCIe com defeito ou incompatível.
-* Conflito de configuração no BIOS (configurada para iGPU forçada, mas apenas GPU dedicada está instalada).
+- GPU mal encaixada no slot PCIe.
+- Cabo de alimentação PCIe (6+2 pinos) desconectado da fonte ou frouxo.
+- Placa de vídeo sem fornecimento de energia suficiente (fonte subdimensionada).
+- Cabo extensor/Riser PCIe com defeito ou incompatível.
+- Conflito de configuração no BIOS (configurada para iGPU forçada, mas apenas GPU dedicada está instalada).
 
 ### Diagnóstico e Resolução
 **Ferramentas:** GPU de teste, Fonte com potência adequada, Multímetro (12V PCIe).
@@ -49,10 +75,12 @@ O POST deve completar dando imagem no monitor. A GPU deve ser corretamente lista
 
 ---
 
-## 1 Bipe Longo + 3 Curtos: Falha de Treinamento de Memória (RAM)
+## POST-12 — 1 Longo + 3 Curtos
+
+**Falha de Treinamento de Memória (RAM)**
 
 | Atributo | Detalhe |
-| :--- | :--- |
+| --- | --- |
 | **Mensagem oficial** | *Conventional/Extended Memory Failure* (RAM mal encaixada/incompatível) |
 | **Componente afetado** | RAM (Módulos DIMM) |
 | **Fase / Camada** | Memory Training (PEI) / Camada 3: Memória |
@@ -60,11 +88,11 @@ O POST deve completar dando imagem no monitor. A GPU deve ser corretamente lista
 
 ### Causas
 Falha crítica no processo de *memory training* (treinamento da memória) durante a fase PEI. A controladora da placa-mãe/CPU não consegue estabelecer sincronia e comunicação com os módulos DIMM. Este erro é cada vez mais frequente em plataformas DDR5, que exigem rotinas de treinamento mais longas.
-* Módulo DIMM mal encaixado (a trava plástica não fechou ou fechou de forma irregular).
-* Povoamento incorreto dos slots (ex: inserir no slot `A1` quando o manual exige `A2` como primário).
-* Módulos misturados ou incompatíveis (diferentes frequências, *ranks* ou PMICs).
-* Em DDR5: Defeito no PMIC (Power Management IC) interno do próprio pente de memória.
-* Pressão excessiva no aperto do *cooler* da CPU, causando leve empenamento do *socket* LGA e isolando os pinos da memória.
+- Módulo DIMM mal encaixado (a trava plástica não fechou ou fechou de forma irregular).
+- Povoamento incorreto dos slots (ex: inserir no slot `A1` quando o manual exige `A2` como primário).
+- Módulos misturados ou incompatíveis (diferentes frequências, *ranks* ou PMICs).
+- Em DDR5: Defeito no PMIC (Power Management IC) interno do próprio pente de memória.
+- Pressão excessiva no aperto do *cooler* da CPU, causando leve empenamento do *socket* LGA e isolando os pinos da memória.
 
 ### Diagnóstico e Resolução
 **Ferramentas:** Manual da placa-mãe (QVL), Módulo de memória sabidamente bom.
@@ -81,24 +109,24 @@ POST completado com sucesso e bipes normais. A RAM deve ser identificada com sua
 
 ---
 
-## Consulte também
+## Próximos passos
 
-Para aprofundamento técnico ou informações sobre o fluxo de atendimento, consulte os documentos relacionados:
+| Se você… | Vá para |
+| --- | --- |
+| não encontrou o código aqui | [Índice de códigos POST](00-indice-codigos.md) — catálogo completo |
+| suspeita que o código tem outro significado | [Ambiguidade de códigos](../11-ambiguidades.md) |
+| quer saber o que testar naquele subsistema | [Diagnóstico por camada](../08-diagnostico-por-camada.md) |
+| aplicou a correção e precisa fechar o atendimento | [Validação final por componente](../13-validacao-final.md) |
 
-* **[Ambiguidade de códigos](../11-ambiguidades.md):** Estes códigos são ambíguos. Verifique o critério de diferenciação antes de aplicar os procedimentos.
-* **[Camada 3: Memória](../08-diagnostico-por-camada.md#camada-3--memória-ram) / [Camada 4: Vídeo](../08-diagnostico-por-camada.md#camada-4--vídeo-gpuigpu):** Aprofunde-se no diagnóstico da camada correspondente.
-* **[Índice de códigos POST](00-indice-codigos.md):** Catálogo completo caso não tenha encontrado o código esperado.
-* **[Fluxo de diagnóstico POST](../06-fluxo-post.md):** Como chegar até este código partindo de um sintoma generalizado.
-* **[Validação final por componente](../13-validacao-final.md):** Testes recomendados para fechar o atendimento com segurança.
-* **[Índices cruzados](../18-indices-cruzados.md):** Outros códigos do mesmo componente ou nível de risco.
+**Para aprofundar**
+
+- **[Camada 3: Memória](../08-diagnostico-por-camada.md#camada-3--memória-ram) / [Camada 4: Vídeo](../08-diagnostico-por-camada.md#camada-4--vídeo-gpuigpu):** Aprofunde-se no diagnóstico da camada correspondente.
+- **[Fluxo de diagnóstico POST](../06-fluxo-post.md):** Como chegar até este código partindo de um sintoma generalizado.
+- **[Índices cruzados](../18-indices-cruzados.md):** Outros códigos do mesmo componente ou nível de risco.
 
 ---
 
-| Metadados do Artigo | |
-| :--- | :--- |
-| **Fonte oficial** | AMI Aptio V Status Codes / Fabricante da placa-mãe |
-| **Fonte primária interna** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação** | 2026-08-08 |
+| Atributo | Valor |
+| --- | --- |
 | **Autoria** | Edsilas |
-| **Versão da doc.** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

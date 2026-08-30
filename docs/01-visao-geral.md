@@ -1,4 +1,9 @@
-<!-- Gerado a partir de Ambos os arquivos-fonte. Não editar manualmente sem atualizar a fonte. -->
+---
+title: Visão geral
+description: O que esta base é, o que cobre, para quem foi escrita e o que ela deliberadamente não faz.
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../README.md) › [Comece aqui](../README.md#comece-aqui) › **Visão geral**
 
@@ -13,7 +18,6 @@
 
 - [Identidade oficial](#identidade-oficial)
 - [O que é](#o-que-é)
-- [O que as planilhas de origem declaram sobre si](#o-que-as-planilhas-de-origem-declaram-sobre-si)
 - [Propósito](#propósito)
 - [Conteúdo consolidado](#conteúdo-consolidado)
 - [Público-alvo](#público-alvo)
@@ -38,7 +42,6 @@ precauções de bancada (ver [documento 15](15-seguranca-e-boas-praticas.md)).
 - [Arquitetura da documentação](02-arquitetura.md)
 - [Como utilizar](05-utilizacao.md)
 - [Segurança e boas práticas](15-seguranca-e-boas-praticas.md)
-- [Fontes](references/fontes.md)
 
 ---
 
@@ -52,15 +55,12 @@ precauções de bancada (ver [documento 15](15-seguranca-e-boas-praticas.md)).
 | Descrição oficial | Base estruturada de conhecimento para diagnóstico de hardware, com fluxos, sintomas, códigos de erro, causas e procedimentos de análise e solução. |
 | Licença | MIT |
 | Proprietário do repositório | `edsilas` |
-| Versão | `doc-2.0.0` — versiona estrutura e conteúdo técnico ([convenção](02-arquitetura.md#versionamento-do-conteúdo)) |
-
-**Nível de confiança: Confirmado.** Todos os valores acima vêm do repositório informado pelo
-proprietário e consultado em 2026-08-07. Ver [references/fontes.md](references/fontes.md).
+| Versão | `doc-3.0.0` — versiona estrutura e conteúdo técnico ([convenção](02-arquitetura.md#versionamento-do-conteúdo)) |
 
 ## O que é
 
-Base de conhecimento técnica para **diagnóstico de falhas de hardware em computadores**,
-convertida a partir de duas planilhas de referência. Reúne, em um único corpo consultável:
+Base de conhecimento técnica para **diagnóstico de falhas de hardware em computadores**. Reúne, em
+um único corpo consultável:
 
 - o catálogo de sinais de erro emitidos durante o POST (beeps, Q-Codes, LEDs de diagnóstico) e o
   procedimento associado a cada um;
@@ -70,27 +70,7 @@ convertida a partir de duas planilhas de referência. Reúne, em um único corpo
 - os critérios objetivos de aprovação e reprovação usados para fechar o atendimento;
 - os procedimentos operacionais completos de três ferramentas: Victoria, AIDA64 e MemTest86.
 
-## O que as planilhas de origem declaram sobre si
-
-| Item | Situação nas planilhas | Situação após consulta ao repositório |
-| --- | --- | --- |
-| Nome do projeto | Não declarado | **Confirmado** — ver identidade oficial acima |
-| Autor / responsável | Não declarado | **Confirmado** — Edsilas |
-| Licença | Não declarada | **Confirmado** — MIT |
-| Versão do conteúdo técnico | Não declarada | **Confirmado** — a documentação publicada é a forma versionada do conteúdo: `doc-2.0.0` |
-| Idioma | Português (Brasil), com terminologia técnica em inglês preservada | Confirmado |
-
-> Os arquivos `.xlsx` não contêm `docProps/core.xml`, o registro interno onde o Excel grava autor,
-> título e datas. A identificação do projeto foi obtida do repositório, não das planilhas. O estado
-> das planilhas usado nesta versão está fixado pelos hashes SHA-256 registrados em
-> [fontes](references/fontes.md#nível-1--fontes-primárias).
-
 ## Propósito
-
-A subtítulo declarado na primeira planilha define o nível pretendido:
-
-> *"Referência Técnica Tier-3 — Baseado em documentação oficial AMI, Phoenix, Award, Dell, HP,
-> Lenovo, Apple, ASUS, Gigabyte"*
 
 O material assume um técnico capaz de operar multímetro, abrir equipamento, medir tensões em
 conector ATX e interpretar S.M.A.R.T. Não é material de suporte ao usuário final.
@@ -114,7 +94,7 @@ conector ATX e interpretar S.M.A.R.T. Não é material de suporte ao usuário fi
 
 ### Distribuição dos códigos por família de BIOS
 
-| Família (literal na fonte) | Códigos |
+| Família | Códigos |
 | --- | --- |
 | AMI (Legacy BIOS) | 10 |
 | AMI (Q-Code Hex) | 10 |
@@ -146,7 +126,7 @@ conector ATX e interpretar S.M.A.R.T. Não é material de suporte ao usuário fi
 
 - Técnicos de manutenção de hardware em bancada.
 - Equipes de suporte de nível 2 e 3 que precisam decidir entre reparo, troca de componente e RMA.
-- Sistemas de IA que precisem consultar procedimentos de diagnóstico com rastreabilidade de origem.
+- Sistemas de IA que precisem consultar procedimentos de diagnóstico estruturados.
 
 ## Fronteiras de cobertura
 
@@ -161,6 +141,14 @@ está na documentação do fabricante, não aqui.
 | Recomendação comercial de peças, fornecedores ou preços | A base identifica o componente a substituir; a escolha do modelo e do fornecedor é decisão de quem executa |
 | Substituição do manual do fabricante | Pinagem de front panel, seção de Q-Code da placa, QVL de memória e lista de CPUs suportadas vêm do manual do equipamento. A base indica **quando** consultá-lo |
 | Custo, tempo médio de reparo e disponibilidade de peças | Fora do escopo documental |
+
+### Camada de sistema operacional
+
+| Situação | O que a base faz |
+| --- | --- |
+| **Coberta** — dispositivo que o Windows reporta com problema | [Códigos do Gerenciador de Dispositivos](20-dispositivos-windows.md) cataloga os 18 códigos de peça não detectada, driver ausente, incompatível ou corrompido, dispositivo desativado e conflito de recursos. |
+| **Não coberto** — configuração, atualização e reparo do Windows em si | Corrupção de sistema de arquivos, atualização com falha, perfil de usuário, ativação e política de grupo ficam fora. A base entra quando o sintoma é de **hardware ou de driver de hardware** |
+| **Não coberto** — Linux, macOS e outros sistemas | Os códigos do Gerenciador de Dispositivos são específicos do Windows. Para as demais camadas, a base é independente de sistema operacional |
 
 ### Plataformas cobertas
 
@@ -191,10 +179,7 @@ está na documentação do fabricante, não aqui.
 
 ---
 
-| | |
+| Atributo | Valor |
 | --- | --- |
-| **Fonte primária deste documento** | Ambos os arquivos-fonte |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

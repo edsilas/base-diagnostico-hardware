@@ -5,8 +5,6 @@ author: Edsilas
 date: 2026-08-18
 ---
 
-<!-- Gerado a partir de `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `TABELA_PRINCIPAL` e `INDICE_CENARIOS`. Não editar manualmente sem atualizar a fonte. -->
-
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Cenário — Reinicialização aleatória**
 
 # Cenário — Reinicialização aleatória
@@ -16,10 +14,11 @@ date: 2026-08-18
 
 **Aplica-se a:** Equipamentos que concluem o POST — falhas percebidas em uso
 
-## Neste artigo
+## Neste documento
 
 - [Contexto](#contexto)
 - [Escopo](#escopo)
+- [Fora do escopo](#fora-do-escopo)
 - [Relação com outros documentos](#relação-com-outros-documentos)
 - [Entrada rápida (registro do índice de cenários)](#entrada-rápida-registro-do-índice-de-cenários)
 - [RA-01](#ra-01)
@@ -28,18 +27,20 @@ date: 2026-08-18
 
 ## Contexto
 
-Fichas de diagnóstico do cenário `Reinicialização aleatória` conforme registado na fonte. Cada ficha corresponde a um ID da tabela principal e reproduz integralmente os seus campos.
+Fichas de diagnóstico do cenário `Reinicialização aleatória` conforme registrado na fonte. Cada ficha corresponde a um ID da tabela principal e reproduz integralmente seus campos.
 
 ## Escopo
 
-IDs RA-01, RA-02 — sintoma, causa raiz, método de diagnóstico, comandos, correção, validação, risco e fonte oficial.
+IDs RA-01, RA-02 — sintoma, causa raiz, método de diagnóstico, comandos, correção, validação e risco.
 
-**Fora do escopo:** Outros cenários; catálogo de códigos POST; guias detalhados das ferramentas.
+## Fora do escopo
+
+Outros cenários; catálogo de códigos POST; guias detalhados das ferramentas.
 
 ## Relação com outros documentos
 
 - [Índice de cenários](00-indice-cenarios.md)
-- [Fluxo de diagnóstico sistémico](../07-fluxo-sistemico.md)
+- [Fluxo de diagnóstico sistêmico](../07-fluxo-sistemico.md)
 - [Correlações entre camadas](../12-correlacoes.md)
 - [Validação final por componente](../13-validacao-final.md)
 
@@ -72,7 +73,7 @@ IDs RA-01, RA-02 — sintoma, causa raiz, método de diagnóstico, comandos, cor
 
 ### Diagnóstico
 
-**Causa raiz:** PSU não sustenta carga de pico: proteção OCP/OPP a disparar, Vdrop excessivo na linha +12V, ou ripple acima da tolerância ATX (120mV p-p em +12V). Ref: *ATX12V PSU Design Guide v2.53 §3.2.1 Transient Load Response*.
+**Causa raiz:** PSU não sustenta carga de pico: proteção OCP/OPP a disparar, Vdrop excessivo na linha +12V, ou ripple acima da tolerância ATX (120mV p-p em +12V).
 
 **Método de diagnóstico (passo a passo):**
 
@@ -111,18 +112,14 @@ powercfg /energy /duration 60
 ### Risco e impacto
 
 - **Risco associado:** Crítico
-- **Impacto no sistema:** Reinícios sob carga podem corromper sistema de ficheiros e causar perda de dados. PSU instável pode danificar componentes.
+- **Impacto no sistema:** Reinícios sob carga podem corromper sistema de arquivos e causar perda de dados. PSU instável pode danificar componentes.
 
 > [!CAUTION]
-> **Risco crítico:** Uma fonte de alimentação (PSU) instável que cause desligamentos abruptos sob carga pode gerar picos de tensão reversa, danificando permanentemente a motherboard, a GPU ou corrompendo irreversivelmente o sistema de ficheiros.
-
-### Origem
-
-**Fonte oficial:** ATX12V PSU Design Guide v2.53 (Intel); Microsoft Docs: Kernel-Power Event ID 41; AIDA64 Documentation
+> **Risco crítico:** Uma fonte de alimentação (PSU) instável que cause desligamentos abruptos sob carga pode gerar picos de tensão reversa, danificando permanentemente a motherboard, a GPU ou corrompendo irreversivelmente o sistema de arquivos.
 
 ### Próximos passos (RA-01)
 
-- Alcançado pelos nós [F09](../07-fluxo-sistemico.md#f09) do fluxo sistémico
+- Alcançado pelos nós [F09](../07-fluxo-sistemico.md#f09) do fluxo sistêmico
 - É pré-requisito de [RA-02](reinicializacao-aleatoria.md#ra-02), [BS-01](bsod.md#bs-01), [TR-01](travamentos-freeze.md#tr-01)
 - Comando desta ficha na [referência consolidada de comandos](../19-comandos.md#ra-01--sistema-reinicia-sem-aviso-durante-uso-normal-ou-sob-carga-sem-bsod-prévio)
 - Critérios de encerramento: [Validação final por componente](../13-validacao-final.md)
@@ -146,12 +143,12 @@ powercfg /energy /duration 60
 
 ### Diagnóstico
 
-**Causa raiz:** Instabilidade de memória: XMP/DOCP instável, VDIMM insuficiente, binagem ruim do módulo, ou IMC (Integrated Memory Controller) da CPU não sustenta a frequência anunciada. Ref: *JEDEC JESD79-4/5*; *Intel/AMD Memory Overclocking Guides*.
+**Causa raiz:** Instabilidade de memória: XMP/DOCP instável, VDIMM insuficiente, binagem ruim do módulo, ou IMC (Integrated Memory Controller) da CPU não sustenta a frequência anunciada.
 
 **Método de diagnóstico (passo a passo):**
 
 1. Executar MemTest86 (boot USB) com XMP ativo: 4 passes mínimos.
-2. `SE` erros detetados `ENTÃO`: desativar XMP na BIOS e retestar em frequência JEDEC padrão.
+2. `SE` erros detectados `ENTÃO`: desativar XMP na BIOS e retestar em frequência JEDEC padrão.
 3. `SE` erros persistem em JEDEC `ENTÃO`: módulo defeituoso. Isolar com teste individual (um pente por vez).
 4. `SE` erros apenas com XMP `ENTÃO`: aumentar VDIMM em +0.02V incrementais (máx 1.45V DDR4 / 1.40V DDR5).
 5. Verificar se RAM está na QVL (Qualified Vendor List) da placa-mãe.
@@ -189,15 +186,11 @@ DISM /Online /Cleanup-Image /RestoreHealth
 - **Impacto no sistema:** Corrupção silenciosa de dados. BSODs intermitentes. Instabilidade progressiva do SO.
 
 > [!WARNING]
-> **Risco alto:** A instabilidade na memória RAM (RA-02) é uma das principais causas de corrupção silenciosa de dados, onde ficheiros são gravados no disco de forma defeituosa sem gerar um erro visível no momento.
-
-### Origem
-
-**Fonte oficial:** MemTest86 User Guide (PassMark); JEDEC JESD79-4/5; Intel/AMD Memory OC Guides; Manual OEM (Memory QVL)
+> **Risco alto:** A instabilidade na memória RAM (RA-02) é uma das principais causas de corrupção silenciosa de dados, onde arquivos são gravados no disco de forma defeituosa sem gerar um erro visível no momento.
 
 ### Próximos passos (RA-02)
 
-- Alcançado pelos nós [F09](../07-fluxo-sistemico.md#f09), [F13](../07-fluxo-sistemico.md#f13) do fluxo sistémico
+- Alcançado pelos nós [F09](../07-fluxo-sistemico.md#f09), [F13](../07-fluxo-sistemico.md#f13) do fluxo sistêmico
 - Depende de [RA-01](reinicializacao-aleatoria.md#ra-01) — execute-os antes
 - É pré-requisito de [BS-01](bsod.md#bs-01)
 - Comando desta ficha na [referência consolidada de comandos](../19-comandos.md#ra-02--reinicialização-aleatória-psu-validada-ocorre-principalmente-com-carga-em-ram)
@@ -208,18 +201,15 @@ DISM /Online /Cleanup-Image /RestoreHealth
 ## Próximos passos
 
 | Se você… | Vá para |
-| :--- | :--- |
+| --- | --- |
 | o problema voltou depois da troca de peça | [Correlações entre camadas](../12-correlacoes.md) |
 | aplicou a correção e precisa validar | [Validação final por componente](../13-validacao-final.md) |
 | precisa operar AIDA64, MemTest86 ou Victoria | [Guias de ferramentas](../14-ferramentas/00-indice-ferramentas.md) |
-| quer conferir onde este cenário entra no fluxo | [Fluxo de diagnóstico sistémico](../07-fluxo-sistemico.md) |
+| quer conferir onde este cenário entra no fluxo | [Fluxo de diagnóstico sistêmico](../07-fluxo-sistemico.md) |
 
 ---
 
 | Atributo | Valor |
-| :--- | :--- |
-| **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `TABELA_PRINCIPAL` e `INDICE_CENARIOS` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-18 |
+| --- | --- |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

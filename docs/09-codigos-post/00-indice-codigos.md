@@ -1,4 +1,9 @@
-<!-- Gerado a partir de `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST`. Não editar manualmente sem atualizar a fonte. -->
+---
+title: Índice de códigos POST
+description: "Ponto de entrada do catálogo: localize o código que o equipamento está emitindo e vá direto para a ficha."
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Índice de códigos POST**
 
@@ -76,11 +81,9 @@ flowchart TD
 ## Identificadores
 
 O campo **ID doc.** (`POST-NN`) é um identificador criado **nesta documentação** para permitir
-referência cruzada estável entre documentos. Ele **não existe na planilha de origem** e segue a
-ordem das linhas da aba `Tabela Diagnóstico POST`. O campo **Código** é o valor literal da fonte.
+referência cruzada estável entre documentos. Ele é criado nesta documentação e segue a
+ordem das fichas. O campo **Código** é o valor literal do sinal emitido.
 
-> Nível de confiança do campo `ID doc.`: **Inferido (organizacional)**.
-> Nível de confiança de todos os demais campos: **Confirmado**.
 
 ## Arquivos por família de BIOS
 
@@ -174,10 +177,7 @@ ordem das linhas da aba `Tabela Diagnóstico POST`. O campo **Código** é o val
 
 ---
 
-| | |
+| Atributo | Valor |
 | --- | --- |
-| **Fonte primária deste documento** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Tabela Diagnóstico POST` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

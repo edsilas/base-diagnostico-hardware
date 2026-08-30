@@ -5,8 +5,6 @@ author: Edsilas
 date: 2026-08-18
 ---
 
-<!-- Gerado a partir de `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `TABELA_PRINCIPAL` e `INDICE_CENARIOS`. Não editar manualmente sem atualizar a fonte. -->
-
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Cenário — Falhas intermitentes**
 
 # Cenário — Falhas intermitentes
@@ -16,10 +14,11 @@ date: 2026-08-18
 
 **Aplica-se a:** Equipamentos que concluem o POST — falhas percebidas em uso
 
-## Neste artigo
+## Neste documento
 
 - [Contexto](#contexto)
 - [Escopo](#escopo)
+- [Fora do escopo](#fora-do-escopo)
 - [Relação com outros documentos](#relação-com-outros-documentos)
 - [Entrada rápida (registro do índice de cenários)](#entrada-rápida-registro-do-índice-de-cenários)
 - [FI-01](#fi-01)
@@ -27,18 +26,20 @@ date: 2026-08-18
 
 ## Contexto
 
-Fichas de diagnóstico do cenário `Falhas intermitentes` conforme registado na fonte. Cada ficha corresponde a um ID da tabela principal e reproduz integralmente os seus campos.
+Fichas de diagnóstico do cenário `Falhas intermitentes` conforme registrado na fonte. Cada ficha corresponde a um ID da tabela principal e reproduz integralmente seus campos.
 
 ## Escopo
 
-IDs FI-01 — sintoma, causa raiz, método de diagnóstico, comandos, correção, validação, risco e fonte oficial.
+IDs FI-01 — sintoma, causa raiz, método de diagnóstico, comandos, correção, validação e risco.
 
-**Fora do escopo:** Outros cenários; catálogo de códigos POST; guias detalhados das ferramentas.
+## Fora do escopo
+
+Outros cenários; catálogo de códigos POST; guias detalhados das ferramentas.
 
 ## Relação com outros documentos
 
 - [Índice de cenários](00-indice-cenarios.md)
-- [Fluxo de diagnóstico sistémico](../07-fluxo-sistemico.md)
+- [Fluxo de diagnóstico sistêmico](../07-fluxo-sistemico.md)
 - [Correlações entre camadas](../12-correlacoes.md)
 - [Validação final por componente](../13-validacao-final.md)
 
@@ -71,7 +72,7 @@ IDs FI-01 — sintoma, causa raiz, método de diagnóstico, comandos, correção
 
 ### Diagnóstico
 
-**Causa raiz:** Mau contacto intermitente em conetor de energia (ATX 24-pin, CPU 8-pin, PCIe), micro-interrupções na rede elétrica sem UPS, ou capacitores de PSU em degradação inicial. Ref: *ATX12V PSU Design Guide (Transient Response)*; *IPC-A-610 (Acceptability of Electronic Assemblies)*.
+**Causa raiz:** Mau contacto intermitente em conetor de energia (ATX 24-pin, CPU 8-pin, PCIe), micro-interrupções na rede elétrica sem UPS, ou capacitores de PSU em degradação inicial.
 
 **Método de diagnóstico (passo a passo):**
 
@@ -110,7 +111,7 @@ powercfg /systempowerreport
 
 ### Resultado esperado
 
-- **Critério de validação técnica:** Sistema estável por 72h+ com AIDA64 Log ativo. Nenhuma interrupção registada.
+- **Critério de validação técnica:** Sistema estável por 72h+ com AIDA64 Log ativo. Nenhuma interrupção registrada.
 - **Evidência de sucesso:** CSV contínuo de 72h sem gaps. Event Viewer sem Kernel-Power 41. Reliability Monitor sem falhas.
 
 ### Risco e impacto
@@ -119,11 +120,7 @@ powercfg /systempowerreport
 - **Impacto no sistema:** Dificuldade de diagnóstico. Corrupção de dados silenciosa. Perda de produtividade do utilizador.
 
 > [!WARNING]
-> **Risco alto:** Falhas de energia intermitentes não diagnosticadas podem corromper silenciosamente o sistema de ficheiros e danificar componentes sensíveis a longo prazo.
-
-### Origem
-
-**Fonte oficial:** ATX12V PSU Design Guide v2.53 (Transient Response); Microsoft Docs: Kernel-Power 41; AIDA64 Sensor Logging Documentation
+> **Risco alto:** Falhas de energia intermitentes não diagnosticadas podem corromper silenciosamente o sistema de arquivos e danificar componentes sensíveis a longo prazo.
 
 ### Próximos passos (FI-01)
 
@@ -136,7 +133,7 @@ powercfg /systempowerreport
 ## Próximos passos
 
 | Se você… | Vá para |
-| :--- | :--- |
+| --- | --- |
 | o problema voltou depois da troca de peça | [Correlações entre camadas](../12-correlacoes.md) |
 | aplicou a correção e precisa validar | [Validação final por componente](../13-validacao-final.md) |
 | precisa operar AIDA64, MemTest86 ou Victoria | [Guias de ferramentas](../14-ferramentas/00-indice-ferramentas.md) |
@@ -145,9 +142,6 @@ powercfg /systempowerreport
 ---
 
 | Atributo | Valor |
-| :--- | :--- |
-| **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `TABELA_PRINCIPAL` e `INDICE_CENARIOS` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-18 |
+| --- | --- |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

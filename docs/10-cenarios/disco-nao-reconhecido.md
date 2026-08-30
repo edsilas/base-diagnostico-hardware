@@ -5,8 +5,6 @@ author: Edsilas
 date: 2026-08-17
 ---
 
-<!-- Gerado a partir de `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `TABELA_PRINCIPAL` e `INDICE_CENARIOS`. Não editar manualmente sem atualizar a fonte. -->
-
 [Início](../../README.md) › [Resolva](../../README.md#resolva) › **Cenário — Disco não reconhecido**
 
 # Cenário — Disco não reconhecido
@@ -16,10 +14,11 @@ date: 2026-08-17
 
 **Aplica-se a:** Equipamentos que concluem o POST — falhas percebidas em uso
 
-## Neste artigo
+## Neste documento
 
 - [Contexto](#contexto)
 - [Escopo](#escopo)
+- [Fora do escopo](#fora-do-escopo)
 - [Relação com outros documentos](#relação-com-outros-documentos)
 - [Entrada rápida (registro do índice de cenários)](#entrada-rápida-registro-do-índice-de-cenários)
 - [DN-01](#dn-01)
@@ -27,18 +26,20 @@ date: 2026-08-17
 
 ## Contexto
 
-Fichas de diagnóstico do cenário `Disco não reconhecido` conforme registado na fonte. Cada ficha corresponde a um ID da tabela principal e reproduz integralmente os seus campos.
+Fichas de diagnóstico do cenário `Disco não reconhecido` conforme registrado na fonte. Cada ficha corresponde a um ID da tabela principal e reproduz integralmente seus campos.
 
 ## Escopo
 
-IDs DN-01 — sintoma, causa raiz, método de diagnóstico, comandos, correção, validação, risco e fonte oficial.
+IDs DN-01 — sintoma, causa raiz, método de diagnóstico, comandos, correção, validação e risco.
 
-**Fora do escopo:** Outros cenários; catálogo de códigos POST; guias detalhados das ferramentas.
+## Fora do escopo
+
+Outros cenários; catálogo de códigos POST; guias detalhados das ferramentas.
 
 ## Relação com outros documentos
 
 - [Índice de cenários](00-indice-cenarios.md)
-- [Fluxo de diagnóstico sistémico](../07-fluxo-sistemico.md)
+- [Fluxo de diagnóstico sistêmico](../07-fluxo-sistemico.md)
 - [Correlações entre camadas](../12-correlacoes.md)
 - [Validação final por componente](../13-validacao-final.md)
 
@@ -61,17 +62,17 @@ IDs DN-01 — sintoma, causa raiz, método de diagnóstico, comandos, correção
 - **Sintoma observado:** Disco não aparece na BIOS/UEFI nem no Gestor de Dispositivos.
 - **Camada afetada:** 5 - Armazenamento
 - **Componente suspeito:** Disco HDD/SSD / Cabo SATA-Dados / Cabo SATA-Energia / Porta SATA/M.2
-- **Condição de ocorrência:** Disco recém-instalado ou disco existente que parou de ser detetado. Sem presença na BIOS.
+- **Condição de ocorrência:** Disco recém-instalado ou disco existente que parou de ser detectado. Sem presença na BIOS.
 
 ### Pré-requisitos
 
 - **Dependências:** NL-01 (energia presente e estável)
 - **Ordem de execução:** 10
-- **Ferramentas oficiais:** Victoria (se disco detetado parcialmente); Gestor de Discos (`diskmgmt.msc`); BIOS/UEFI Setup; Cabos SATA known-good
+- **Ferramentas oficiais:** Victoria (se disco detectado parcialmente); Gerenciamento de Disco (`diskmgmt.msc`); BIOS/UEFI Setup; Cabos SATA known-good
 
 ### Diagnóstico
 
-**Causa raiz:** Falha de comunicação no barramento: cabo de dados ou energia desconectado/defeituoso, porta SATA/M.2 desativada na BIOS, controladora PCB do disco em curto (BSY state), ou disco em falha catastrófica. Ref: *SATA-IO Specification Rev 3.5*; *NVMe Specification Rev 2.0*.
+**Causa raiz:** Falha de comunicação no barramento: cabo de dados ou energia desconectado/defeituoso, porta SATA/M.2 desativada na BIOS, controladora PCB do disco em curto (BSY state), ou disco em falha catastrófica.
 
 **Método de diagnóstico (passo a passo):**
 
@@ -80,9 +81,9 @@ IDs DN-01 — sintoma, causa raiz, método de diagnóstico, comandos, correção
 3. Testar noutra porta SATA da placa-mãe.
 4. Verificar BIOS: SATA Configuration → modo deve ser AHCI (não IDE/RAID se não intencional).
 5. Para M.2 NVMe: verificar se o slot suporta NVMe (nem todos os M.2 suportam).
-6. Conectar disco noutro sistema known-good.
-7. `SE` disco detetado noutro sistema `ENTÃO`: porta/controladora da placa original defeituosa.
-8. `SE` disco não detetado em nenhum sistema `ENTÃO`: PCB ou motor em falha.
+6. Conectar disco em outro sistema known-good.
+7. `SE` disco detectado em outro sistema `ENTÃO`: porta/controladora da placa original defeituosa.
+8. `SE` disco não detectado em nenhum sistema `ENTÃO`: PCB ou motor em falha.
 
 **Comandos técnicos:**
 
@@ -114,7 +115,7 @@ wmic diskdrive list brief
 
 ### Resultado esperado
 
-- **Critério de validação técnica:** Disco aparece na BIOS com modelo/capacidade corretos. Gestor de Discos exibe o disco. Victoria lê S.M.A.R.T. sem erros.
+- **Critério de validação técnica:** Disco aparece na BIOS com modelo/capacidade corretos. Gerenciamento de Disco exibe o disco. Victoria lê S.M.A.R.T. sem erros.
 - **Evidência de sucesso:** BIOS lista o disco. `diskmgmt.msc` mostra volume. S.M.A.R.T. status GOOD.
 
 ### Risco e impacto
@@ -125,13 +126,9 @@ wmic diskdrive list brief
 > [!WARNING]
 > **Risco alto:** A manipulação descuidada de cabos de energia e dados com o equipamento ligado pode causar curto-circuito na motherboard ou queimar o disco.
 
-### Origem
-
-**Fonte oficial:** SATA-IO Serial ATA Revision 3.5; NVM Express Specification Rev 2.0; Manual OEM da Placa-mãe (M.2 Compatibility Chart)
-
 ### Próximos passos (DN-01)
 
-- Alcançado pelos nós [F10](../07-fluxo-sistemico.md#f10) do fluxo sistémico
+- Alcançado pelos nós [F10](../07-fluxo-sistemico.md#f10) do fluxo sistêmico
 - Depende de [NL-01](nao-liga.md#nl-01) — execute-os antes
 - Comando desta ficha na [referência consolidada de comandos](../19-comandos.md#dn-01--disco-não-aparece-na-biosuefi-nem-no-gerenciador-de-dispositivos)
 - Critérios de encerramento: [Validação final por componente](../13-validacao-final.md)
@@ -141,18 +138,15 @@ wmic diskdrive list brief
 ## Próximos passos
 
 | Se você… | Vá para |
-| :--- | :--- |
+| --- | --- |
 | o problema voltou depois da troca de peça | [Correlações entre camadas](../12-correlacoes.md) |
 | aplicou a correção e precisa validar | [Validação final por componente](../13-validacao-final.md) |
 | precisa operar AIDA64, MemTest86 ou Victoria | [Guias de ferramentas](../14-ferramentas/00-indice-ferramentas.md) |
-| quer conferir onde este cenário entra no fluxo | [Fluxo de diagnóstico sistémico](../07-fluxo-sistemico.md) |
+| quer conferir onde este cenário entra no fluxo | [Fluxo de diagnóstico sistêmico](../07-fluxo-sistemico.md) |
 
 ---
 
 | Atributo | Valor |
-| :--- | :--- |
-| **Fonte primária deste documento** | `HW_HARDWARE_FLUXO_DIAGNOSTICO.xlsx` → abas `TABELA_PRINCIPAL` e `INDICE_CENARIOS` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-17 |
+| --- | --- |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

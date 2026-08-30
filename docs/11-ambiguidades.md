@@ -1,4 +1,9 @@
-<!-- Gerado a partir de `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Ambiguidade de Códigos`. Não editar manualmente sem atualizar a fonte. -->
+---
+title: Ambiguidade de códigos
+description: Sinais que significam coisas diferentes conforme o fabricante ou o momento em que aparecem, e o critério para diferenciá-los.
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../README.md) › [Resolva](../README.md#resolva) › **Ambiguidade de códigos**
 
@@ -223,10 +228,7 @@ flowchart TD
 
 ---
 
-| | |
+| Atributo | Valor |
 | --- | --- |
-| **Fonte primária deste documento** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Ambiguidade de Códigos` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |

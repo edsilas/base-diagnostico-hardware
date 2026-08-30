@@ -1,4 +1,9 @@
-<!-- Gerado a partir de `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Fluxo de Diagnóstico`. Não editar manualmente sem atualizar a fonte. -->
+---
+title: Fluxo de diagnóstico POST
+description: Sequência de decisão para equipamentos que não concluem o POST, da verificação de energia até a identificação do código de erro.
+author: Edsilas
+date: 2026-08-08
+---
 
 [Início](../README.md) › [Diagnostique](../README.md#diagnostique) › **Fluxo de diagnóstico POST**
 
@@ -64,7 +69,6 @@ de executar qualquer etapa que exija abrir o equipamento:
 | Composição do boot mínimo citada nas Etapas 2 e 7 | [Boot mínimo](15-seguranca-e-boas-praticas.md#boot-mínimo-as-duas-composições-canônicas) |
 | Multímetro, para a medição de 5VSB da Etapa 1 | [Requisitos e ferramentas](04-requisitos-e-ferramentas.md) |
 
-> Nível de confiança: **Confirmado** para o conteúdo das etapas; a seção "Quando utilizar" acima é
 > **Inferida** a partir da condição da Etapa 1.
 
 ## Visão geral das etapas
@@ -117,7 +121,6 @@ flowchart TD
 
 > O diagrama é uma representação das colunas de encadeamento da fonte. Os rótulos das setas e os
 > textos dos nós são resumos das células; o conteúdo integral está abaixo, sem cortes.
-> Nível de confiança: **Confirmado** (topologia) / **Inferido** (condensação dos rótulos).
 
 ---
 
@@ -340,7 +343,7 @@ Ambos estão transcritos integralmente na Etapa 7 acima.
 
 ## Observações
 
-A Etapa 4 remete à "Tabela Diagnóstico POST (Aba 1)" da planilha de origem. Nesta documentação,
+A Etapa 4 remete à tabela de diagnóstico de POST. Nesta documentação,
 esse conteúdo está em [09-codigos-post/](09-codigos-post/00-indice-codigos.md).
 
 ## Próximos passos
@@ -356,10 +359,7 @@ esse conteúdo está em [09-codigos-post/](09-codigos-post/00-indice-codigos.md)
 
 ---
 
-| | |
+| Atributo | Valor |
 | --- | --- |
-| **Fonte primária deste documento** | `HW_HARDWARE_CODIGOS_DE_ERROS.xlsx` → aba `Fluxo de Diagnóstico` |
-| **Status de confiança** | Confirmado — transcrito das células de origem |
-| **Última verificação contra a fonte** | 2026-08-08 |
 | **Autoria** | Edsilas |
-| **Versão da documentação** | `doc-2.0.0` |
+| **Versão da documentação** | `doc-3.0.0` |
