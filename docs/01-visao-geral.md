@@ -1,10 +1,3 @@
----
-title: Visão geral
-description: O que esta base é, o que cobre, para quem foi escrita e o que ela deliberadamente não faz.
-author: Edsilas
-date: 2026-08-08
----
-
 [Início](../README.md) › [Comece aqui](../README.md#comece-aqui) › **Visão geral**
 
 # Visão geral
