@@ -1,10 +1,3 @@
----
-title: Base de Diagnóstico de Hardware
-description: "Ponto de entrada da base: do sinal de erro emitido no POST até a validação final que fecha o atendimento."
-author: Edsilas
-date: 2026-08-30
----
-
 # Base de Diagnóstico de Hardware
 
 <img alt="Tipo" src="https://img.shields.io/badge/Tipo-Base_Documental-0F172A?labelColor=020617&style=for-the-badge"><img alt="Estrutura" src="https://img.shields.io/badge/Conteúdo-Fluxos_e_Procedimentos-3F3F46?labelColor=18181B&style=for-the-badge"> <a href="LICENSE"><img alt="Licença" src="https://img.shields.io/badge/Licença-MIT-166534?labelColor=064E3B&style=for-the-badge"></a>
