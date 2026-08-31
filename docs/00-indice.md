@@ -1,10 +1,3 @@
----
-title: Índice da base de conhecimento
-description: Mapa completo da documentação, na ordem lógica de uso, com uma linha por documento.
-author: Edsilas
-date: 2026-08-08
----
-
 [Início](../README.md) › [Comece aqui](../README.md#comece-aqui) › **Índice da base de conhecimento**
 
 # Índice da base de conhecimento
