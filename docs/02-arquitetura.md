@@ -1,10 +1,3 @@
----
-title: Arquitetura da documentação
-description: Como o conhecimento foi organizado, o que cada documento carrega e quais convenções todos seguem.
-author: Edsilas
-date: 2026-08-08
----
-
 [Início](../README.md) › [Manutenção](../README.md#manutenção) › **Arquitetura da documentação**
 
 # Arquitetura da documentação
