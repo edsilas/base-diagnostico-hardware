@@ -1,10 +1,3 @@
----
-title: Taxonomia de camadas
-description: A base usa dois modelos de camadas, um por escopo de diagnóstico. Leia antes de usar qualquer número de camada.
-author: Edsilas
-date: 2026-08-08
----
-
 [Início](../README.md) › [Comece aqui](../README.md#comece-aqui) › **Taxonomia de camadas**
 
 # Taxonomia de camadas
