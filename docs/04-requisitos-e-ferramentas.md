@@ -1,10 +1,3 @@
----
-title: Requisitos e ferramentas
-description: Inventário do instrumental exigido pelos procedimentos, organizado por camada, por cenário e por componente na validação.
-author: Edsilas
-date: 2026-08-08
----
-
 [Início](../README.md) › [Comece aqui](../README.md#comece-aqui) › **Requisitos e ferramentas**
 
 # Requisitos e ferramentas
