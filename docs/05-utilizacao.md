@@ -1,10 +1,3 @@
----
-title: Como utilizar esta base
-description: "Roteiro de entrada: por onde começar conforme o sintoma, em que ordem ler e quais regras seguir ao aplicar os procedimentos."
-author: Edsilas
-date: 2026-08-08
----
-
 [Início](../README.md) › [Comece aqui](../README.md#comece-aqui) › **Como utilizar esta base**
 
 # Como utilizar esta base
