@@ -1,10 +1,3 @@
----
-title: Fluxo de diagnóstico POST
-description: Sequência de decisão para equipamentos que não concluem o POST, da verificação de energia até a identificação do código de erro.
-author: Edsilas
-date: 2026-08-08
----
-
 [Início](../README.md) › [Diagnostique](../README.md#diagnostique) › **Fluxo de diagnóstico POST**
 
 # Fluxo de diagnóstico POST
