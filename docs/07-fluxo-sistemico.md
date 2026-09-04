@@ -1,10 +1,3 @@
----
-title: Fluxo de diagnóstico sistêmico (F01 → F14)
-description: "Árvore de decisão de ponta a ponta: do botão Power até o laudo final, passando por energia, vídeo, boot, estabilidade, disco e memória."
-author: Edsilas
-date: 2026-08-08
----
-
 [Início](../README.md) › [Diagnostique](../README.md#diagnostique) › **Fluxo de diagnóstico sistêmico (F01 → F14)**
 
 # Fluxo de diagnóstico sistêmico (F01 → F14)
