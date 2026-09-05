@@ -1,10 +1,3 @@
----
-title: Ambiguidade de códigos
-description: Sinais que significam coisas diferentes conforme o fabricante ou o momento em que aparecem, e o critério para diferenciá-los.
-author: Edsilas
-date: 2026-08-08
----
-
 [Início](../README.md) › [Resolva](../README.md#resolva) › **Ambiguidade de códigos**
 
 # Ambiguidade de códigos
