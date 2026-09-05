@@ -1,10 +1,3 @@
----
-title: Diagnóstico por camada (modelo POST, 7 camadas)
-description: "O que testar em cada subsistema: componentes, sintomas típicos, testes primários, ferramentas e indicadores de falha."
-author: Edsilas
-date: 2026-08-08
----
-
 [Início](../README.md) › [Diagnostique](../README.md#diagnostique) › **Diagnóstico por camada (modelo POST, 7 camadas)**
 
 # Diagnóstico por camada (modelo POST, 7 camadas)
