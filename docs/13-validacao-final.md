@@ -1,10 +1,3 @@
----
-title: Validação final por componente
-description: Critérios objetivos de aprovação e reprovação por componente, com tempo de observação e encaminhamento em caso de falha.
-author: Edsilas
-date: 2026-08-08
----
-
 [Início](../README.md) › [Feche o atendimento](../README.md#feche-o-atendimento) › **Validação final por componente**
 
 # Validação final por componente
