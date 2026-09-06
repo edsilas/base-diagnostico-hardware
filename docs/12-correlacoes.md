@@ -1,10 +1,3 @@
----
-title: Correlações entre camadas (efeitos em cascata)
-description: Falhas que se manifestam em outro subsistema e levam à troca do componente errado, com o critério para separar causa de sintoma.
-author: Edsilas
-date: 2026-08-08
----
-
 [Início](../README.md) › [Resolva](../README.md#resolva) › **Correlações entre camadas (efeitos em cascata)**
 
 # Correlações entre camadas (efeitos em cascata)
