@@ -1,10 +1,3 @@
----
-title: Perguntas frequentes
-description: Dúvidas derivadas de ambiguidade, armadilha ou decisão explicitamente registrada nas fontes, com link para o documento que trata cada assunto.
-author: Edsilas
-date: 2026-08-08
----
-
 [Início](../README.md) › [Consulte a referência](../README.md#consulte-a-referência) › **Perguntas frequentes**
 
 # Perguntas frequentes
