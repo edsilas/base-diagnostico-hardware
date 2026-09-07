@@ -1,10 +1,3 @@
----
-title: Glossário
-description: 47 termos técnicos usados no material, com a definição empregada nesta base e a expansão de cada sigla.
-author: Edsilas
-date: 2026-08-08
----
-
 [Início](../README.md) › [Consulte a referência](../README.md#consulte-a-referência) › **Glossário**
 
 # Glossário
