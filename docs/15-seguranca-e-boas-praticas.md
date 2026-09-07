@@ -1,10 +1,3 @@
----
-title: Segurança de bancada e boas práticas
-description: "O que fazer antes de encostar no equipamento: energia residual, proteção contra descarga eletrostática, proteção dos dados do cliente e registro do atendimento."
-author: Edsilas
-date: 2026-08-08
----
-
 [Início](../README.md) › [Comece aqui](../README.md#comece-aqui) › **Segurança de bancada e boas práticas**
 
 # Segurança de bancada e boas práticas
