@@ -1,10 +1,3 @@
----
-title: Índices cruzados
-description: Os mesmos registros reagrupados por componente, camada, risco, fase do POST, tipo de sinal e ferramenta — para quem não chega pelo sintoma.
-author: Edsilas
-date: 2026-08-08
----
-
 [Início](../README.md) › [Consulte a referência](../README.md#consulte-a-referência) › **Índices cruzados**
 
 # Índices cruzados
